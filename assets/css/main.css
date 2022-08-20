@@ -14,14 +14,12 @@
     --primary-color: #a63f03;
     --primary-color-darker: #731702;
     --primary-color-lighter: #d97904;
+    background-color: var(--light);
+    color: var(--dark);
 }
 
 #main-menu {
     position: fixed;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    width: 100%;
 }
 
 .main-menu-link {
