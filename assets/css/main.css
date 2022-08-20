@@ -1,9 +1,32 @@
-#main-menu {
+@font-face {
+    font-family: 'Genome Thin';
+    src: url('../fonts/genome_thin.otf');
+}
 
+@font-face {
+    font-family: 'Courier Prime Code';
+    src: url('../fonts/courier_prime_code.ttf');
+}
+
+:root {
+    --dark: #260101;
+    --light: #f2f2f2;
+    --primary-color: #a63f03;
+    --primary-color-darker: #731702;
+    --primary-color-lighter: #d97904;
+}
+
+#main-menu {
+    position: fixed;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    width: 100%;
 }
 
 .main-menu-link {
     padding: 20px 30px;
+    font-family: 'Courier Prime Code';
     text-decoration: none;
     color: inherit;
 }
