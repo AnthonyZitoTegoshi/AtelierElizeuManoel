@@ -11,11 +11,17 @@
 :root {
     --dark: #260101;
     --light: #f2f2f2;
-    --primary-color: #a63f03;
-    --primary-color-darker: #731702;
-    --primary-color-lighter: #d97904;
+    --primary: #a63f03;
+    --primary-darker: #731702;
+    --primary-lighter: #d97904;
     background-color: var(--light);
     color: var(--dark);
+}
+
+#loading-screen {
+    position: fixed;
+    z-index: 99999;
+    background-color: var(--light);
 }
 
 #main-menu {
@@ -27,4 +33,10 @@
     font-family: 'Courier Prime Code';
     text-decoration: none;
     color: inherit;
+}
+
+.retractable-menu-retractor {
+    border: none;
+    color: inherit;
+    background-color: inherit;
 }

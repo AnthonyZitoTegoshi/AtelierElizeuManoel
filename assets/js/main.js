@@ -1,6 +1,7 @@
 window.addEventListener("load", function () {
     setRetractorsListeners();
     adjustRetractableMenus();
+    window.document.getElementById("loading-screen").style.display = "none";
 });
 
 window.addEventListener("resize", function () {
