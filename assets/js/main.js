@@ -19,7 +19,7 @@ function setRetractorsListeners() {
             retractor.children[0].style.display = "";
             retractor.children[1].style.display = "none";
         }
-        retractor.addEventListener("click", function () {
+        retractor.addEventListener("click", function (event) {
             if (window.getComputedStyle(retracted).display == "none") {
                 retracted.style.display = "";
                 if (retractor.getAttribute("data-alternate") == "true") {
@@ -32,6 +32,14 @@ function setRetractorsListeners() {
                     retractor.children[0].style.display = "";
                     retractor.children[1].style.display = "none";
                 }
+            }
+            event.stopPropagation ? event.stopPropagation() : event.cancelBubble = true;
+        });
+        window.document.body.addEventListener("click", function () {
+            retracted.style.display = "none";
+            if (retractor.getAttribute("data-alternate") == "true") {
+                retractor.children[0].style.display = "";
+                retractor.children[1].style.display = "none";
             }
         });
     }
