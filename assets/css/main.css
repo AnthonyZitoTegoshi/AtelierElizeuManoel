@@ -1,44 +1,118 @@
+@font-face {
+  font-family: 'Genome Thin';
+  src: url('../fonts/genome_thin.otf');
+}
+
+@font-face {
+  font-family: 'Courier Prime Code';
+  src: url('../fonts/courier_prime_code.ttf');
+}
+
+:root {
+  --dark: #260101;
+  --light: #f2f2f2;
+  --primary: #a63f03;
+  --primary-darker: #731702;
+  --primary-lighter: #d97904;
+  background-color: var(--light);
+  color: var(--dark);
+}
+
+* {
+  transition: all linear 50ms;
+}
+
+button {
+  border: none;
+  color: inherit;
+  background-color: inherit;
+}
+
+#loading-screen {
+  position: fixed;
+  z-index: 99999;
+  background-color: var(--light);
+}
+
+#main-menu {
+  position: fixed;
+  max-height: 100vh;
+  box-shadow: 0px 0px 10px 0px var(--dark);
+  z-index: 99998;
+  background-color: var(--light);
+}
+
+#retracted-main-menu-lsm {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: max-content;
+  height: 100%;
+  border-radius: 20px 0 0 20px;
+  box-shadow: 0px 0px 10px 0px var(--dark);
+  z-index: 99998;
+  background-color: var(--light);
+}
+
+.main-menu-link {
+  padding: 20px 30px;
+  font-family: 'Courier Prime Code';
+  text-decoration: none;
+  color: inherit;
+}
+
+.hover-color-change:hover {
+  color: var(--light);
+  background-color: var(--primary-lighter);
+}
+
+.hover-line-bottom {
+  position: relative;
+}
+
+.hover-line-bottom-span {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--primary-lighter);
+}
 
 .main-banner{
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(../img/WhatsApp\ Image\ 2022-08-11\ at\ 22.54.59.jpeg);
-    /**/
-    background-repeat: no-repeat;
-    background-size:  cover;
-    min-height: 100vh;
-    z-index: -1;
-       
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(../img/WhatsApp\ Image\ 2022-08-11\ at\ 22.54.59.jpeg);
+  background-repeat: no-repeat;
+  background-size:  cover;
+  min-height: 100vh;
+  z-index: -1;
 }
 
 .img-banner{
-    height: 200px;
-    width: 200px;
+  height: 200px;
+  width: 200px;
 }
-
 
 .img-info{
   width: 100%;
   height: 50%;
   border-radius: 20px;
-  
-  
-
 }
 
-
 .m-0{
-    margin: 0 auto;
-    color: white;
-    font-weight: 700;
+  margin: 0 auto;
+  color: white;
+  font-weight: 700;
 }
 
 .m-top{
-    margin: 125% 0
+  margin: 125% 0;
 }
 
 .gap-1{
-    gap: 10px;
+  gap: 10px;
 }
-
 
 .btn-banner {
   align-items: center;
@@ -66,7 +140,6 @@
   transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
   user-select: none;
   touch-action: manipulation;
-  z-index: 0;
 }
 
 .btn-banner:hover {
@@ -104,63 +177,20 @@
   box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
 }
 
-@font-face {
-    font-family: 'Genome Thin';
-    src: url('../fonts/genome_thin.otf');
+.card {
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+  border-radius: 10px;
+  background-color: blueviolet;
+  height: 100%;
+  padding: 8px;
+  width: 340px;
+  height: 520px;
 }
 
-@font-face {
-    font-family: 'Courier Prime Code';
-    src: url('../fonts/courier_prime_code.ttf');
-}
-
-:root {
-    --dark: #260101;
-    --light: #f2f2f2;
-    --primary: #a63f03;
-    --primary-darker: #731702;
-    --primary-lighter: #d97904;
-    background-color: var(--light);
-    color: var(--dark);
-}
-
-#loading-screen {
-    position: fixed;
-    z-index: 99999;
-    background-color: var(--light);
-}
-
-#main-menu {
-    position: fixed;
-}
-
-.main-menu-link {
-    padding: 20px 30px;
-    font-family: 'Courier Prime Code';
-    text-decoration: none;
-    color: inherit;
-}
-
-.retractable-menu-retractor {
-    border: none;
-    color: inherit;
-    background-color: inherit;
-}
-
-.card{
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
-    border-radius: 10px;
-    background-color: blueviolet;
-    height: 100%;
-    padding: 8px;
-    width: 340px;
-    height: 520px;
-}
-
-.btn-back{
+.btn-back {
   transform: rotate(-180deg);
 }
 
-.background-dark{
+.background-dark {
   background-color: var(--dark);
 }

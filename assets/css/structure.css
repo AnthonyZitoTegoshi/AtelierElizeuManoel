@@ -12,6 +12,9 @@
 **  |-------------------------------------------------------------------|
 **  |- ".m*" é o mainaxis e ".c*" é o crossaxis da flex                 |
 **  |-------------------------------------------------------------------|
+**  |- ".s" é um elemento scrollable e ".ns" é um elemento não          |
+**  |scrollable                                                         |
+**  |-------------------------------------------------------------------|
 **  |- ".w*" é a width e ".h*" é o height do objeto                     |
 **  |-------------------------------------------------------------------|
 **  |- ".lsm" é low small, ".hsm" é high small, ".lmd" é low medium,    |
@@ -49,15 +52,18 @@
 **  |-------------------------------------------------------------------|
 **  |5. Escolha se flex deve ou não dar wrap com ".wrap" ou ".nowrap";  |
 **  |-------------------------------------------------------------------|
-**  |6. Toda classe, exceto a ".i", pode ser seguida por um tamanho     |
+**  |6. Escolha se o elemento deve ou não ser scrollable com ".s" ou    |
+**  |".ns" e em quais dimensões de tela deve permanecer assim;          |
+**  |-------------------------------------------------------------------|
+**  |7. Toda classe, exceto a ".i", pode ser seguida por um tamanho     |
 **  |entre "lsm", "hsm", "lmd", "hmd", "llg", "hlg";                    |
 **  |-------------------------------------------------------------------|
-**  |7. Todo elemento pode ter suas dimensões definidas em porcentagens |
+**  |8. Todo elemento pode ter suas dimensões definidas em porcentagens |
 **  |do elemento pai entre 0 e 12, além dos min, max e auto;            |
 **  |-------------------------------------------------------------------|
-**  |8. Containers servem tanto como filhos quanto como pais das flex;  |
+**  |9. Containers servem tanto como filhos quanto como pais das flex;  |
 **  |-------------------------------------------------------------------|
-**  |9. As mediaqueries do framework podem ser usadas para produzir     |
+**  |10. As mediaqueries do framework podem ser usadas para produzir    |
 **  |diferentes layouts a depender do tamanho da tela do dispositivo;   |
 **  +-------------------------------------------------------------------+
 **
@@ -160,6 +166,11 @@
 .h11 {height: 91.6666%;}
 .h12 {height: 100%;}
 
+/*--/*--SCROLL--*/
+.s {overflow: auto;}
+.s > * {overflow: visible;}
+.ns {overflow: visible;}
+
 /*--DISPOSITIVOS_LOW_SMALL--*/
 @media only screen and (min-width: 0px) {
     /*--/*--ITENS--*/
@@ -235,6 +246,11 @@
     .h10-lsm {height: 83.3333%;}
     .h11-lsm {height: 91.6666%;}
     .h12-lsm {height: 100%;}
+
+    /*--/*--SCROLL--*/
+    .s-lsm {overflow: auto;}
+    .s-lsm > * {overflow: visible;}
+    .ns-lsm {overflow: visible;}
 }
 
 /*--DISPOSITIVOS_HIGH_SMALL--*/
@@ -312,6 +328,11 @@
     .h10-hsm {height: 83.3333%;}
     .h11-hsm {height: 91.6666%;}
     .h12-hsm {height: 100%;}
+
+    /*--/*--SCROLL--*/
+    .s-hsm {overflow: auto;}
+    .s-hsm > * {overflow: visible;}
+    .ns-hsm {overflow: visible;}
 }
 
 /*--DISPOSITIVOS_LOW_MEDIUM--*/
@@ -389,6 +410,11 @@
     .h10-lmd {height: 83.3333%;}
     .h11-lmd {height: 91.6666%;}
     .h12-lmd {height: 100%;}
+
+    /*--/*--SCROLL--*/
+    .s-lmd {overflow: auto;}
+    .s-lmd > * {overflow: visible;}
+    .ns-lmd {overflow: visible;}
 }
 
 /*--DISPOSITIVOS_HIGH_MEDIUM--*/
@@ -466,6 +492,11 @@
     .h10-hmd {height: 83.3333%;}
     .h11-hmd {height: 91.6666%;}
     .h12-hmd {height: 100%;}
+
+    /*--/*--SCROLL--*/
+    .s-hmd {overflow: auto;}
+    .s-hmd > * {overflow: visible;}
+    .ns-hmd {overflow: visible;}
 }
 
 /*--DISPOSITIVOS_LOW_LARGE--*/
@@ -543,6 +574,11 @@
     .h10-llg {height: 83.3333%;}
     .h11-llg {height: 91.6666%;}
     .h12-llg {height: 100%;}
+
+    /*--/*--SCROLL--*/
+    .s-llg {overflow: auto;}
+    .s-llg > * {overflow: visible;}
+    .ns-llg {overflow: visible;}
 }
 
 /*--DISPOSITIVOS_HIGH_LARGE--*/
@@ -620,4 +656,9 @@
     .h10-hlg {height: 83.3333%;}
     .h11-hlg {height: 91.6666%;}
     .h12-hlg {height: 100%;}
+
+    /*--/*--SCROLL--*/
+    .s-hlg {overflow: auto;}
+    .s-hlg > * {overflow: visible;}
+    .ns-hlg {overflow: visible;}
 }
