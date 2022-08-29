@@ -191,6 +191,19 @@ button {
   transform: rotate(-180deg);
 }
 
+.relative {
+    position: relative;
+}
+
+.whatsappbutton{
+    position: fixed;
+    height: 80px;
+    width: 80px;
+    bottom: 40px;
+    right: 50px;
+    background-color: green;
+    border-radius: 40px;
+}
 .background-dark {
   background-color: var(--dark);
 }
