@@ -44,8 +44,8 @@
     background-size:  cover;
     min-height: 100vh;
     z-index: -1;
-       
 }
+
 @font-face {
   font-family: 'Genome Thin';
   src: url('../fonts/genome_thin.otf');
@@ -156,9 +156,8 @@ button {
 }
 
 
-
-
 .m-0{
+  
   margin: 0 auto;
   color: white;
   font-weight: 700;
