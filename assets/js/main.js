@@ -77,3 +77,45 @@ function adjustRetractableMenus() {
         }
     }
 }
+
+
+/* ----------Fade effect with ScrollBar---------- */
+
+
+function viewElement(element) { 
+    let elementContainer = element.getBoundingClientRect();
+    distFromTop = -200
+    windowHSize = window.innerHeight;
+
+    if (elementContainer.top - window.innerHeight < distFromTop ) {
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function scanContent () {
+    hiddenElement = document.querySelectorAll('.hidden')
+    for (let i = 0; i < hiddenElement.length; i++) {
+        const hiddenList = hiddenElement[i];
+        if (viewElement(hiddenList)) {
+            hiddenList.classList.remove('hidden')
+        } 
+        
+    }
+}
+
+
+function timeToExcecute ( myFunc, timeWait) {
+    nowTime = Date.now();
+    return function () {
+        if ((nowTime + timeWait - Date.now()) < 0 ) {
+            myFunc();
+            nowTime = Date.now();
+        }
+    }
+    
+}
+
+document.addEventListener("scroll", timeToExcecute(scanContent, 1200));
