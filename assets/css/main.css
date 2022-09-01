@@ -130,7 +130,7 @@ button {
 }
 
 .main-banner{
-  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(../img/WhatsApp\ Image\ 2022-08-11\ at\ 22.54.59.jpeg);
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(../img/imgAtelier/background_banner.jpeg);
   background-repeat: no-repeat;
   background-size:  cover;
   min-height: 100vh;
@@ -157,7 +157,7 @@ button {
 
 
 .m-0{
-  
+
   margin: 0 auto;
   color: white;
   font-weight: 700;
