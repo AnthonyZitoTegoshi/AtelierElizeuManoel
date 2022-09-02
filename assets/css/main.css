@@ -129,18 +129,11 @@ button {
   background-color: var(--primary-lighter);
 }
 
-.main-banner{
-  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(../img/imgAtelier/background_banner.jpeg);
-  background-repeat: no-repeat;
+#main-banner{
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("../img/imgAtelier/background_banner.jpeg") no-repeat;
   background-size:  cover;
   min-height: 100vh;
-  z-index: -1;
-
-}
-
-.img-banner{
-  height: 200px;
-  width: 200px;
+  color: var(--light);
 }
 
 .img-info{
@@ -149,18 +142,8 @@ button {
   object-fit: contain;
 }
 
-
-
 .m-b-1{
   margin-bottom: 20px;
-}
-
-
-.m-0{
-
-  margin: 0 auto;
-  color: white;
-  font-weight: 700;
 }
 
 .m-r-5{
