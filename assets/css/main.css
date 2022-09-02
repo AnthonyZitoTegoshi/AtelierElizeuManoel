@@ -1,6 +1,40 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500&family=Roboto:wght@300;400&display=swap');
 
+@font-face {
+  font-family: 'Genome Thin';
+  src: url('../fonts/genome_thin.otf');
+}
+
+@font-face {
+  font-family: 'Courier Prime Code';
+  src: url('../fonts/courier_prime_code.ttf');
+}
+
+@font-face {
+  font-family: 'Send Flowers';
+  src: url('../fonts/send_flowers.ttf');
+}
+
+:root {
+  --dark: #260101;
+  --light: #f2f2f2;
+  --primary: #a63f03;
+  --primary-darker: #731702;
+  --primary-lighter: #d97904;
+  background-color: var(--light);
+  color: var(--dark);
+}
+
+* {
+  transition: all linear 50ms;
+}
+
+h1 {
+  font-size: 2rem;
+  font-family: 'Send Flowers';
+  padding: 1rem;
+}
 
 .outfit{
   font-family: 'Outfit', sans-serif;
@@ -11,11 +45,6 @@
   font-weight: 500;
   font-size: 2.5em;
   overflow: hidden;
-  
-}
-
-.ref-title{
-
 }
 
 .roboto{
@@ -35,39 +64,6 @@
 .ref-title{
   color: var(--light);
   font-size: 18px;
-}
-
-.main-banner{
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(../img/imgAtelier/background_banner.jpeg);
-    /**/
-    background-repeat: no-repeat;
-    background-size:  cover;
-    min-height: 100vh;
-    z-index: -1;
-}
-
-@font-face {
-  font-family: 'Genome Thin';
-  src: url('../fonts/genome_thin.otf');
-}
-
-@font-face {
-  font-family: 'Courier Prime Code';
-  src: url('../fonts/courier_prime_code.ttf');
-}
-
-:root {
-  --dark: #260101;
-  --light: #f2f2f2;
-  --primary: #a63f03;
-  --primary-darker: #731702;
-  --primary-lighter: #d97904;
-  background-color: var(--light);
-  color: var(--dark);
-}
-
-* {
-  transition: all linear 50ms;
 }
 
 button {
@@ -100,6 +96,12 @@ button {
   box-shadow: 0px 0px 10px 0px var(--dark);
   z-index: 99998;
   background-color: var(--light);
+}
+
+.retractable-menu-retractor {
+  border: none;
+  color: inherit;
+  background-color: inherit;
 }
 
 .main-menu-link {
@@ -236,67 +238,12 @@ button {
 }
 
 .card {
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
-  border-radius: 10px;
+  margin: 20px;
   background-color: blueviolet;
-  height: 100%;
-  padding: 8px;
-  width: 340px;
-  height: 520px;
-}
-
-
-@font-face {
-    font-family: 'Courier Prime Code';
-    src: url('../fonts/courier_prime_code.ttf');
-}
-
-:root {
-    --dark: #260101;
-    --light: #f2f2f2;
-    --primary: #a63f03;
-    --primary-darker: #731702;
-    --primary-lighter: #d97904;
-    background-color: var(--light);
-    color: var(--dark);
-    
 }
 
 .background-prim{
   background-color: var(--primary-darker);
-}
-
-#loading-screen {
-    position: fixed;
-    z-index: 99999;
-    background-color: var(--light);
-}
-
-#main-menu {
-    position: fixed;
-}
-
-.main-menu-link {
-    padding: 20px 30px;
-    font-family: 'Courier Prime Code';
-    text-decoration: none;
-    color: inherit;
-}
-
-.retractable-menu-retractor {
-    border: none;
-    color: inherit;
-    background-color: inherit;
-}
-
-.card{
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
-    border-radius: 10px;
-    background-color: blueviolet;
-    height: 100%;
-    padding: 8px;
-    width: 340px;
-    height: 520px;
 }
 
 .card-symbol{
