@@ -30,12 +30,6 @@
   transition: all linear 50ms;
 }
 
-h1 {
-  font-size: 2rem;
-  font-family: 'Send Flowers';
-  padding: 1rem;
-}
-
 .outfit{
   font-family: 'Outfit', sans-serif;
 }
@@ -238,8 +232,7 @@ button {
 }
 
 .card {
-  margin: 20px;
-  background-color: blueviolet;
+  padding: 20px;
 }
 
 .background-prim{

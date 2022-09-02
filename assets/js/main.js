@@ -3,6 +3,7 @@ window.addEventListener("load", function () {
     setRetractorsListeners();
     adjustRetractableMenus();
     setHoverLineBottom();
+    setCarousels();
     window.document.getElementById("loading-screen").style.display = "none";
 });
 
@@ -153,7 +154,48 @@ function adjustRetractableMenus() {
     }
 }
 
-
+function setCarousels() {
+    var carousels = window.document.getElementsByClassName("carousel");
+    for (var i = 0; i < carousels.length; i++) {
+        var carousel = carousels[i];
+        var display = carousel.getElementsByClassName("carousel-display")[0];
+        display.style.overflow = "hidden";
+        display.style.cursor = "grab";
+        display.onmousedown = function () {
+            this.onmousemove = function (event) {
+                this.scroll(this.scrollLeft - event.movementX, 0);
+            };
+        };
+        carousel.getElementsByClassName("carousel-previous-button")[0].addEventListener("click", function () {
+            var display = this.parentElement.getElementsByClassName("carousel-display")[0];
+            var items = display.getElementsByClassName("carousel-item");
+            var currentItem = parseInt(display.getAttribute("data-focused-item"));
+            if (currentItem > 0) {
+                currentItem -= 1;
+                display.scroll(items[currentItem].offsetLeft - items[0].offsetLeft - display.getBoundingClientRect().width / 2 + items[currentItem].getBoundingClientRect().width / 2, 0);
+                display.setAttribute("data-focused-item", currentItem);
+            }
+        });
+        carousel.getElementsByClassName("carousel-next-button")[0].addEventListener("click", function () {
+            var display = this.parentElement.getElementsByClassName("carousel-display")[0];
+            var items = display.getElementsByClassName("carousel-item");
+            var currentItem = parseInt(display.getAttribute("data-focused-item"));
+            if (currentItem < items.length - 1) {
+                currentItem += 1;
+                display.scroll(items[currentItem].offsetLeft - items[0].offsetLeft - display.getBoundingClientRect().width / 2 + items[currentItem].getBoundingClientRect().width / 2, 0);
+                display.setAttribute("data-focused-item", currentItem);
+            }
+        });
+    }
+    window.document.addEventListener("mouseup", function () {
+        var carousels = window.document.getElementsByClassName("carousel");
+        for (var i = 0; i < carousels.length; i++) {
+            var carousel = carousels[i];
+            var display = carousel.getElementsByClassName("carousel-display")[0];
+            display.onmousemove = null;
+        }
+    });
+}
 
 /* ----------Fade effect with ScrollBar---------- */
 
