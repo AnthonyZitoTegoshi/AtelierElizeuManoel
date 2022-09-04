@@ -28,6 +28,7 @@
 
 * {
   transition: all linear 50ms;
+  scroll-behavior: smooth;
 }
 
 .outfit{
@@ -130,6 +131,10 @@ button {
   background-size:  cover;
   min-height: 100vh;
   color: var(--light);
+}
+
+.carousel-previous-button, .carousel-next-button {
+  cursor: pointer;
 }
 
 .img-info{

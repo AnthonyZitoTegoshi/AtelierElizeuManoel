@@ -162,8 +162,11 @@ function setCarousels() {
         display.style.overflow = "hidden";
         display.style.cursor = "grab";
         display.onmousedown = function () {
+            this.style.cursor = "grabbing";
             this.onmousemove = function (event) {
+                this.style.scrollBehavior = "auto";
                 this.scroll(this.scrollLeft - event.movementX, 0);
+                this.style.scrollBehavior = "";
             };
         };
         carousel.getElementsByClassName("carousel-previous-button")[0].addEventListener("click", function () {
@@ -192,6 +195,7 @@ function setCarousels() {
         for (var i = 0; i < carousels.length; i++) {
             var carousel = carousels[i];
             var display = carousel.getElementsByClassName("carousel-display")[0];
+            display.style.cursor = "grab";
             display.onmousemove = null;
         }
     });
