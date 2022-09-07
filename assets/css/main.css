@@ -22,21 +22,12 @@
   --primary: #a63f03;
   --primary-darker: #731702;
   --primary-lighter: #d97904;
-  background-color: var(--light);
   color: var(--dark);
 }
 
 * {
   transition: all linear 50ms;
   scroll-behavior: smooth;
-}
-
-.marker {
-  display: block;
-}
-
-.section {
-  background-color: var(--light);
 }
 
 .title {
@@ -53,23 +44,12 @@
   font-size: 1.2rem;
   text-indent: 1.8rem;
   line-height: 1.8rem;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   color: var(--dark);
 }
 
-.font-alter{
-  color: var(--light);
-  font-size: x-large;
-  
-}
-
-.div-alter{
-  height: 300px;
-}
-
-.ref-title{
-  color: var(--light);
-  font-size: 18px;
+.text-info:last-child {
+  margin-bottom: 0;
 }
 
 button {
@@ -148,40 +128,6 @@ button {
   cursor: pointer;
 }
 
-.img-info{
-  object-fit: contain;
-}
-
-.m-b-1{
-  margin-bottom: 20px;
-}
-
-.m-r-5{
-  margin-right: 25%;
-}
-
-.m-l-5{
-  margin-left: 25%;
-}
-
-.m-top{
-  margin: 125% 0;
-}
-
-.m-top-0{
-  margin: auto;
-}
-
-.m-bottom{
-  margin-bottom: 20px;
-}
-.gap-1{
-  gap: 10px;
-}
-.gap-2{
-  gap: 25px;
-}
-
 .btn-banner {
   align-items: center;
   appearance: none;
@@ -212,7 +158,6 @@ button {
 
 .btn-banner:hover {
   background: #F6F9FE;
-  
 }
 
 .btn-banner:active {
@@ -249,10 +194,6 @@ button {
   padding: 20px;
 }
 
-.background-prim{
-  background-color: var(--primary-darker);
-}
-
 .card-symbol{
   box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
   border-radius: 10px;
@@ -263,34 +204,14 @@ button {
   height: 340px;
 }
 
-.btn-back{
-  transform: rotate(-180deg);
-}
-
-.p-5{
-  padding: 120px;
-}
-.btn-back {
-  transform: rotate(-180deg);
-}
-
-.relative {
-    position: relative;
-}
-
 .whatsappbutton{
-    position: fixed;
-    height: 80px;
-    width: 80px;
-    bottom: 40px;
-    right: 50px;
-    background-color: green;
-    border-radius: 40px;
-}
-
-.background-dark {
-  background-color: var(--dark);
-
+  position: fixed;
+  height: 80px;
+  width: 80px;
+  bottom: 40px;
+  right: 50px;
+  background-color: green;
+  border-radius: 40px;
 }
 
 .visible{
@@ -300,4 +221,48 @@ button {
 
 .hidden{
   opacity: 0;
+}
+
+.marker {
+  display: block;
+}
+
+.bgDark {
+  background-color: var(--dark);
+}
+
+.bgLight {
+  background-color: var(--light);
+}
+
+.bgPrimary {
+  background-color: var(--primary);
+}
+
+.bgPrimaryDarker {
+  background-color: var(--primary-darker);
+}
+
+.bgPrimaryLighter {
+  background-color: var(--primary-lighter);
+}
+
+.dark {
+  color: var(--dark);
+}
+
+.light {
+  color: var(--light);
+}
+
+.primary {
+  color: var(--primary);
+}
+
+.primaryDarker {
+  color: var(--primary-darker);
+}
+
+.primaryLighter {
+  color: var(--primary-lighter);
 }

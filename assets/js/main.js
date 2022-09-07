@@ -1,3 +1,4 @@
+var lastLocationHref;
 var lastScrollPosition, currentScrollPosition;
 var scrollingDown;
 
