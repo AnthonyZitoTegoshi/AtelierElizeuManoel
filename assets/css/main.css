@@ -118,7 +118,7 @@ button {
 }
 
 #main-banner{
-  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("../img/atelier/background_banner.jpeg") no-repeat;
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("../img/atelier/background_banner.webp") no-repeat;
   background-size:  cover;
   min-height: 100vh;
   color: var(--light);
