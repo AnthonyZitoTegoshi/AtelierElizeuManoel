@@ -22,21 +22,21 @@ window.addEventListener("scroll", function () {
         var mainMenu = window.document.getElementById("main-menu");
         currentScrollPosition = window.scrollY;
         if (currentScrollPosition > lastScrollPosition) {
-            if (scrollingDown == false || scrollingDown == null && window.getComputedStyle(mainMenu).top == "0px") {
-                if (window.getComputedStyle(window.document.getElementById("retracted-main-menu-lsm")).display != "none" || window.getComputedStyle(window.document.getElementById("retracted-main-menu-lmd")).display != "none") {
+            if ((scrollingDown == false || scrollingDown == null) && window.getComputedStyle(mainMenu).top == "0px") {
+                var retractedLsmStyle = window.getComputedStyle(window.document.getElementById("retracted-main-menu-lsm"));
+                var retractedLmdStyle = window.getComputedStyle(window.document.getElementById("retracted-main-menu-lmd"));
+                if (retractedLsmStyle.display != "none" && retractedLsmStyle.right == "0px" || retractedLmdStyle.display != "none" && retractedLmdStyle.height != "0px") {
                     mainMenu.getElementsByClassName("retractable-menu-retractor")[0].click();
                 }
+                mainMenu.style.top = "-" + mainMenu.getBoundingClientRect().height + "px";
                 mainMenu.animate([
                     {top:  "0px"},
                     {top: "-" + mainMenu.getBoundingClientRect().height + "px"}
                 ], 100, 1);
-                window.setTimeout(function () {
-                    mainMenu.style.top = "-" + mainMenu.getBoundingClientRect().height + "px";
-                }, 100);
             }
             scrollingDown = true;
         } else {
-            if (scrollingDown == true || scrollingDown == null && window.getComputedStyle(mainMenu).top != "0px") {
+            if ((scrollingDown == true || scrollingDown == null) && window.getComputedStyle(mainMenu).top != "0px") {
                 mainMenu.style.top = "0px";
                 mainMenu.animate([
                     {top: "-" + mainMenu.getBoundingClientRect().height + "px"},
@@ -66,7 +66,7 @@ function setRetractorsListeners() {
                 retracted.style.display = "";
                 if (retracted.id == "retracted-main-menu-lsm" || retracted.id == "retracted-main-menu-lmd") {
                     var mainMenu = window.document.getElementById("main-menu");
-                    if (scrollingDown == true || scrollingDown == null && window.getComputedStyle(mainMenu).top != "0px") {
+                    if ((scrollingDown == true || scrollingDown == null) && window.getComputedStyle(mainMenu).top != "0px") {
                         mainMenu.style.top = "0px";
                         mainMenu.animate([
                             {top: "-" + mainMenu.getBoundingClientRect().height + "px"},

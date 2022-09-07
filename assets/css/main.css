@@ -31,23 +31,30 @@
   scroll-behavior: smooth;
 }
 
-.outfit{
-  font-family: 'Outfit', sans-serif;
-}
-
 .marker {
   display: block;
 }
 
-.AboutMe{
+.section {
+  background-color: var(--light);
+}
+
+.title {
+  font-family: 'Outfit', sans-serif;
   letter-spacing: 0.5px;
   font-weight: 500;
   font-size: 2.5em;
-  overflow: hidden;
+  line-height: 3.75rem;
 }
 
-.roboto{
+.text-info {
   font-family: 'Roboto', sans-serif;
+  text-align: left;
+  font-size: 1.2rem;
+  text-indent: 1.8rem;
+  line-height: 1.8rem;
+  margin-bottom: 10px;
+  color: var(--dark);
 }
 
 .font-alter{
@@ -178,12 +185,12 @@ button {
 .btn-banner {
   align-items: center;
   appearance: none;
-  background-color: #fff;
+  background-color: var(--light);
   border-radius: 24px;
   border-style: none;
   box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
   box-sizing: border-box;
-  color: #3c4043;
+  color: var(--dark);
   cursor: pointer;
   display: inline-flex;
   font-family: "Google Sans",Roboto,Arial,sans-serif;
@@ -249,7 +256,7 @@ button {
 .card-symbol{
   box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
   border-radius: 10px;
-  border: solid #260101;
+  border: solid var(--dark);
   height: 100%;
   padding: 8px;
   width: 340px;
@@ -280,17 +287,10 @@ button {
     background-color: green;
     border-radius: 40px;
 }
+
 .background-dark {
   background-color: var(--dark);
 
-}
-
-
-
-.text-info{
-  text-align: justify;
-  font-size: 18px;
-  color: #3c4043;
 }
 
 .visible{
