@@ -1,9 +1,13 @@
+var lastScrollPosition, currentScrollPosition;
+var scrollingDown;
+
 window.addEventListener("load", function () {
     adjustMainRetractableMenu();
     setRetractorsListeners();
     adjustRetractableMenus();
     setHoverLineBottom();
     setCarousels();
+    lastScrollPosition = currentScrollPosition = window.scrollY;
     window.document.getElementById("loading-screen").style.display = "none";
 });
 
@@ -11,6 +15,38 @@ window.addEventListener("resize", function () {
     adjustMainRetractableMenu();
     setRetractorsListeners();
     adjustRetractableMenus();
+});
+
+window.addEventListener("scroll", function () {
+    if (lastScrollPosition != null && currentScrollPosition != null) {
+        var mainMenu = window.document.getElementById("main-menu");
+        currentScrollPosition = window.scrollY;
+        if (currentScrollPosition > lastScrollPosition) {
+            if (scrollingDown == false || scrollingDown == null && window.getComputedStyle(mainMenu).display != "none") {
+                if (window.getComputedStyle(window.document.getElementById("retracted-main-menu-lsm")).display != "none" || window.getComputedStyle(window.document.getElementById("retracted-main-menu-lmd")).display != "none") {
+                    mainMenu.getElementsByClassName("retractable-menu-retractor")[0].click();
+                }
+                mainMenu.animate([
+                    {top:  "0px"},
+                    {top: "-" + mainMenu.getBoundingClientRect().height + "px"}
+                ], 100, 1);
+                window.setTimeout(function () {
+                    mainMenu.style.display = "none";
+                }, 100);
+            }
+            scrollingDown = true;
+        } else {
+            if (scrollingDown == true || scrollingDown == null && window.getComputedStyle(mainMenu).display == "none") {
+                mainMenu.style.display = "";
+                mainMenu.animate([
+                    {top: "-" + mainMenu.getBoundingClientRect().height + "px"},
+                    {top:  "0px"}
+                ], 100, 1);
+            }
+            scrollingDown = false;
+        }
+        lastScrollPosition = currentScrollPosition;
+    }
 });
 
 function setRetractorsListeners() {
