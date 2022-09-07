@@ -22,7 +22,7 @@ window.addEventListener("scroll", function () {
         var mainMenu = window.document.getElementById("main-menu");
         currentScrollPosition = window.scrollY;
         if (currentScrollPosition > lastScrollPosition) {
-            if (scrollingDown == false || scrollingDown == null && window.getComputedStyle(mainMenu).display != "none") {
+            if (scrollingDown == false || scrollingDown == null && window.getComputedStyle(mainMenu).top == "0px") {
                 if (window.getComputedStyle(window.document.getElementById("retracted-main-menu-lsm")).display != "none" || window.getComputedStyle(window.document.getElementById("retracted-main-menu-lmd")).display != "none") {
                     mainMenu.getElementsByClassName("retractable-menu-retractor")[0].click();
                 }
@@ -31,13 +31,13 @@ window.addEventListener("scroll", function () {
                     {top: "-" + mainMenu.getBoundingClientRect().height + "px"}
                 ], 100, 1);
                 window.setTimeout(function () {
-                    mainMenu.style.display = "none";
+                    mainMenu.style.top = "-" + mainMenu.getBoundingClientRect().height + "px";
                 }, 100);
             }
             scrollingDown = true;
         } else {
-            if (scrollingDown == true || scrollingDown == null && window.getComputedStyle(mainMenu).display == "none") {
-                mainMenu.style.display = "";
+            if (scrollingDown == true || scrollingDown == null && window.getComputedStyle(mainMenu).top != "0px") {
+                mainMenu.style.top = "0px";
                 mainMenu.animate([
                     {top: "-" + mainMenu.getBoundingClientRect().height + "px"},
                     {top:  "0px"}
@@ -64,6 +64,17 @@ function setRetractorsListeners() {
             var retracted = window.document.getElementById(this.getAttribute("data-toggle"))
             if (window.getComputedStyle(retracted).display == "none") {
                 retracted.style.display = "";
+                if (retracted.id == "retracted-main-menu-lsm" || retracted.id == "retracted-main-menu-lmd") {
+                    var mainMenu = window.document.getElementById("main-menu");
+                    if (scrollingDown == true || scrollingDown == null && window.getComputedStyle(mainMenu).top != "0px") {
+                        mainMenu.style.top = "0px";
+                        mainMenu.animate([
+                            {top: "-" + mainMenu.getBoundingClientRect().height + "px"},
+                            {top:  "0px"}
+                        ], 100, 1);
+                    }
+                    scrollingDown = false;
+                }
                 if (retracted.id == "retracted-main-menu-lsm") {
                     retracted.animate([
                         {right: "-" + retracted.clientWidth + "px"},
