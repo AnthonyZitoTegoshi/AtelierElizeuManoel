@@ -8,6 +8,7 @@ window.addEventListener("load", function () {
     adjustRetractableMenus();
     setHoverLineBottom();
     setCarousels();
+    adjustCarousels();
     lastScrollPosition = currentScrollPosition = window.scrollY;
     window.document.getElementById("loading-screen").style.display = "none";
 });
@@ -16,6 +17,7 @@ window.addEventListener("resize", function () {
     adjustMainRetractableMenu();
     setRetractorsListeners();
     adjustRetractableMenus();
+    adjustCarousels();
 });
 
 window.addEventListener("scroll", function () {
@@ -207,10 +209,35 @@ function setCarousels() {
     for (var i = 0; i < carousels.length; i++) {
         var carousel = carousels[i];
         var display = carousel.getElementsByClassName("carousel-display")[0];
+        var items = display.getElementsByClassName("carousel-item");
+        var currentItem = parseInt(display.getAttribute("data-focused-item"));
+        for (var j = 0; j < items.length; j++) {
+            var cards = items[j].getElementsByClassName("card");
+            if (cards.length > 0) {
+                if (j == currentItem) {
+                    cards[0].style.borderColor = "var(--primary-lighter)";
+                } else {
+                    cards[0].style.borderColor = "";
+                }
+            }
+        }
         display.style.overflow = "hidden";
         display.style.cursor = "grab";
+        display.onscroll = function () {
+            if (this.scrollLeft == 0) {
+                this.parentElement.getElementsByClassName("carousel-previous-button")[0].style.boxShadow = "none";
+            } else {
+                this.parentElement.getElementsByClassName("carousel-previous-button")[0].style.boxShadow = "";
+            }
+            if (this.scrollLeft >= this.children[0].getBoundingClientRect().width - this.getBoundingClientRect().width) {
+                this.parentElement.getElementsByClassName("carousel-next-button")[0].style.boxShadow = "none";
+            } else {
+                this.parentElement.getElementsByClassName("carousel-next-button")[0].style.boxShadow = "";
+            }
+        };
         display.onmousedown = function () {
             this.style.cursor = "grabbing";
+            this.style.userSelect = "none";
             this.onmousemove = function (event) {
                 this.style.scrollBehavior = "auto";
                 this.scroll(this.scrollLeft - event.movementX, 0);
@@ -223,8 +250,18 @@ function setCarousels() {
             var currentItem = parseInt(display.getAttribute("data-focused-item"));
             if (currentItem > 0) {
                 currentItem -= 1;
-                display.scroll(items[currentItem].offsetLeft - items[0].offsetLeft - display.getBoundingClientRect().width / 2 + items[currentItem].getBoundingClientRect().width / 2, 0);
-                display.setAttribute("data-focused-item", currentItem);
+            }
+            display.scroll(items[currentItem].offsetLeft - items[0].offsetLeft - display.getBoundingClientRect().width / 2 + items[currentItem].getBoundingClientRect().width / 2, 0);
+            display.setAttribute("data-focused-item", currentItem);
+            for (var j = 0; j < items.length; j++) {
+                var cards = items[j].getElementsByClassName("card");
+                if (cards.length > 0) {
+                    if (j == currentItem) {
+                        cards[0].style.borderColor = "var(--primary-lighter)";
+                    } else {
+                        cards[0].style.borderColor = "";
+                    }
+                }
             }
         });
         carousel.getElementsByClassName("carousel-next-button")[0].addEventListener("click", function () {
@@ -233,8 +270,18 @@ function setCarousels() {
             var currentItem = parseInt(display.getAttribute("data-focused-item"));
             if (currentItem < items.length - 1) {
                 currentItem += 1;
-                display.scroll(items[currentItem].offsetLeft - items[0].offsetLeft - display.getBoundingClientRect().width / 2 + items[currentItem].getBoundingClientRect().width / 2, 0);
-                display.setAttribute("data-focused-item", currentItem);
+            }
+            display.scroll(items[currentItem].offsetLeft - items[0].offsetLeft - display.getBoundingClientRect().width / 2 + items[currentItem].getBoundingClientRect().width / 2, 0);
+            display.setAttribute("data-focused-item", currentItem);
+            for (var j = 0; j < items.length; j++) {
+                var cards = items[j].getElementsByClassName("card");
+                if (cards.length > 0) {
+                    if (j == currentItem) {
+                        cards[0].style.borderColor = "var(--primary-lighter)";
+                    } else {
+                        cards[0].style.borderColor = "";
+                    }
+                }
             }
         });
     }
@@ -244,9 +291,31 @@ function setCarousels() {
             var carousel = carousels[i];
             var display = carousel.getElementsByClassName("carousel-display")[0];
             display.style.cursor = "grab";
+            display.style.userSelect = "";
             display.onmousemove = null;
         }
     });
+}
+
+function adjustCarousels() {
+    var carousels = window.document.getElementsByClassName("carousel");
+    for (var i = 0; i < carousels.length; i++) {
+        var display = carousels[i].getElementsByClassName("carousel-display")[0];
+        var items = display.getElementsByClassName("carousel-item");
+        for (var j = 0; j < items.length; j++) {
+            items[j].style.maxWidth = (display.getBoundingClientRect().width - 40) + "px";
+        }
+        if (display.scrollLeft == 0) {
+            display.parentElement.getElementsByClassName("carousel-previous-button")[0].style.boxShadow = "none";
+        } else {
+            display.parentElement.getElementsByClassName("carousel-previous-button")[0].style.boxShadow = "";
+        }
+        if (display.scrollLeft >= display.children[0].getBoundingClientRect().width - display.getBoundingClientRect().width) {
+            display.parentElement.getElementsByClassName("carousel-next-button")[0].style.boxShadow = "none";
+        } else {
+            display.parentElement.getElementsByClassName("carousel-next-button")[0].style.boxShadow = "";
+        }
+    }
 }
 
 /* ----------Fade effect with ScrollBar---------- */

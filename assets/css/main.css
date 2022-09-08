@@ -26,7 +26,7 @@
 }
 
 * {
-  transition: all linear 50ms;
+  transition: color background-color linear 5000ms;
   scroll-behavior: smooth;
 }
 
@@ -124,8 +124,50 @@ button {
   color: var(--light);
 }
 
+.carousel {
+  padding: 20px;
+  background-color: inherit;
+}
+
 .carousel-previous-button, .carousel-next-button {
   cursor: pointer;
+}
+
+.carousel-previous-button {
+  position: relative;
+  box-shadow: 0 0 8px 0 var(--dark);
+}
+
+.carousel-next-button {
+  position: relative;
+  box-shadow: 0 0 8px 0 var(--dark);
+}
+
+.carousel-previous-button *, .carousel-next-button * {
+  position: relative;
+  z-index: 1;
+}
+
+.carousel-previous-button::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: calc(100% + 20px);
+  height: calc(100% + 40px);
+  background-color: inherit;
+}
+
+.carousel-next-button::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: calc(100% + 20px);
+  height: calc(100% + 40px);
+  background-color: inherit;
 }
 
 .btn-banner {
@@ -191,7 +233,9 @@ button {
 }
 
 .card {
-  padding: 20px;
+  margin: 10px;
+  border: 1px solid var(--dark);
+  border-radius: 10px;
 }
 
 .card-symbol{
