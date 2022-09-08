@@ -1,6 +1,10 @@
-var lastLocationHref;
 var lastScrollPosition, currentScrollPosition;
 var scrollingDown;
+
+var lastTouchPositionX, lastTouchPositionY;
+var verifyTouch;
+
+var waitingToScrollX;
 
 window.addEventListener("load", function () {
     adjustMainRetractableMenu();
@@ -244,6 +248,52 @@ function setCarousels() {
                 this.style.scrollBehavior = "";
             };
         };
+        display.ontouchstart = function (event) {
+            window.document.body.style.overflow = "hidden";
+            this.style.userSelect = "none";
+            lastTouchPositionX = event.touches[0].pageX;
+            lastTouchPositionY = event.touches[0].pageY;
+            verifyTouch = true;
+            this.ontouchmove = function (event) {
+                if (Math.abs(event.touches[0].pageY - lastTouchPositionY) > Math.abs(event.touches[0].pageX - lastTouchPositionX) && verifyTouch) {
+                    display.style.userSelect = "";
+                    window.document.body.style.overflow = "";
+                    display.ontouchmove = null;
+                } else {
+                    this.style.scrollBehavior = "auto";
+                    this.scroll(this.scrollLeft - (event.touches[0].pageX - lastTouchPositionX), 0);
+                    this.style.scrollBehavior = "";
+                }
+                waitingToScrollX = event.touches[0].pageX - lastTouchPositionX;
+                lastTouchPositionX = event.touches[0].pageX;
+                lastTouchPositionY = event.touches[0].pageY;
+                verifyTouch = false;
+            };
+            this.ontouchend = function () {
+                this.style.scrollBehavior = "auto";
+                var target = window.document.getElementById("target");
+                if (target) {
+                    target.setAttribute("id", "");
+                }
+                this.setAttribute("id", "target")
+                if (waitingToScrollX > 0) {
+                    for (var j = waitingToScrollX; j > 0; j -= 10) {
+                        window.setTimeout(function () {
+                            var target = window.document.getElementById("target");
+                            target.scroll(target.scrollLeft - j, 0);
+                        }, 10);
+                    }
+                } else {
+                    for (var j = waitingToScrollX; j < 0; j += 10) {
+                        window.setTimeout(function () {
+                            var target = window.document.getElementById("target");
+                            target.scroll(target.scrollLeft - j, 0);
+                        }, 10);
+                    }
+                }
+                this.style.scrollBehavior = "";
+            };
+        };
         carousel.getElementsByClassName("carousel-previous-button")[0].addEventListener("click", function () {
             var display = this.parentElement.getElementsByClassName("carousel-display")[0];
             var items = display.getElementsByClassName("carousel-item");
@@ -293,6 +343,17 @@ function setCarousels() {
             display.style.cursor = "grab";
             display.style.userSelect = "";
             display.onmousemove = null;
+        }
+    });
+    window.document.addEventListener("touchend", function () {
+        var carousels = window.document.getElementsByClassName("carousel");
+        for (var i = 0; i < carousels.length; i++) {
+            var carousel = carousels[i];
+            var display = carousel.getElementsByClassName("carousel-display")[0];
+            display.style.userSelect = "";
+            window.document.body.style.overflow = "";
+            display.ontouchmove = null;
+            display.ontouchend = null;
         }
     });
 }
@@ -346,18 +407,12 @@ function scanContent () {
 }
 
 
-function timeToExcecute ( myFunc, timeWait) {
+function sleep(timeWait) {
     nowTime = Date.now();
-    return function () {
-        if ((nowTime + timeWait - Date.now()) < 0 ) {
-            myFunc();
-            nowTime = Date.now();
-        }
-    }
-    
+    while (nowTime + timeWait > Date.now()) {console.log("sleep");}    
 }
 
-document.addEventListener("scroll", timeToExcecute(scanContent, 1200));
+document.addEventListener("scroll", scanContent);
 
 
 function adjustMainRetractableMenu() {
