@@ -229,7 +229,7 @@ function setCarousels() {
             } else {
                 this.parentElement.getElementsByClassName("carousel-previous-button")[0].style.boxShadow = "";
             }
-            if (this.scrollLeft >= this.children[0].getBoundingClientRect().width - this.getBoundingClientRect().width) {
+            if (this.scrollLeft >= Math.floor(this.children[0].getBoundingClientRect().width - this.getBoundingClientRect().width)) {
                 this.parentElement.getElementsByClassName("carousel-next-button")[0].style.boxShadow = "none";
             } else {
                 this.parentElement.getElementsByClassName("carousel-next-button")[0].style.boxShadow = "";
@@ -310,7 +310,7 @@ function adjustCarousels() {
         } else {
             display.parentElement.getElementsByClassName("carousel-previous-button")[0].style.boxShadow = "";
         }
-        if (display.scrollLeft >= display.children[0].getBoundingClientRect().width - display.getBoundingClientRect().width) {
+        if (display.scrollLeft >= Math.floor(display.children[0].getBoundingClientRect().width - display.getBoundingClientRect().width)) {
             display.parentElement.getElementsByClassName("carousel-next-button")[0].style.boxShadow = "none";
         } else {
             display.parentElement.getElementsByClassName("carousel-next-button")[0].style.boxShadow = "";
