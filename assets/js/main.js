@@ -1,3 +1,5 @@
+const targetCarouselDisplay = "target#carousel-display";
+
 var lastScrollPosition, currentScrollPosition;
 var scrollingDown;
 
@@ -55,6 +57,18 @@ window.addEventListener("scroll", function () {
         lastScrollPosition = currentScrollPosition;
     }
 });
+
+function setTarget(element, typeOfTarget) {
+    var target = window.document.getElementById(typeOfTarget);
+    if (target) {
+        target.setAttribute("id", "");
+    }
+    element.setAttribute("id", typeOfTarget);
+}
+
+function getTarget(typeOfTarget) {
+    return window.document.getElementById(typeOfTarget);
+}
 
 function setRetractorsListeners() {
     var retractors = window.document.getElementsByClassName("retractable-menu-retractor");
@@ -246,6 +260,7 @@ function setCarousels() {
                 this.style.scrollBehavior = "auto";
                 this.scroll(this.scrollLeft - event.movementX, 0);
                 this.style.scrollBehavior = "";
+                waitingToScrollX = event.movementX;
             };
         };
         display.ontouchstart = function (event) {
@@ -270,28 +285,7 @@ function setCarousels() {
                 verifyTouch = false;
             };
             this.ontouchend = function () {
-                this.style.scrollBehavior = "auto";
-                var target = window.document.getElementById("target");
-                if (target) {
-                    target.setAttribute("id", "");
-                }
-                this.setAttribute("id", "target")
-                if (waitingToScrollX > 0) {
-                    for (var j = waitingToScrollX; j > 0; j -= 10) {
-                        window.setTimeout(function () {
-                            var target = window.document.getElementById("target");
-                            target.scroll(target.scrollLeft - j, 0);
-                        }, 10);
-                    }
-                } else {
-                    for (var j = waitingToScrollX; j < 0; j += 10) {
-                        window.setTimeout(function () {
-                            var target = window.document.getElementById("target");
-                            target.scroll(target.scrollLeft - j, 0);
-                        }, 10);
-                    }
-                }
-                this.style.scrollBehavior = "";
+                this.scroll(this.scrollLeft - waitingToScrollX * 10, 0);
             };
         };
         carousel.getElementsByClassName("carousel-previous-button")[0].addEventListener("click", function () {
@@ -343,6 +337,7 @@ function setCarousels() {
             display.style.cursor = "grab";
             display.style.userSelect = "";
             display.onmousemove = null;
+            display.scroll(display.scrollLeft - waitingToScrollX * 10, 0);
         }
     });
     window.document.addEventListener("touchend", function () {
