@@ -171,6 +171,14 @@ button {
   background-color: inherit;
 }
 
+.icon-footer{
+  width: 25px;
+}
+
+.icon-footer-large{
+  width: 35px;
+}
+
 .btn-banner {
   align-items: center;
   appearance: none;
@@ -264,6 +272,13 @@ button {
   opacity: 1;
   transition: opacity 1.5s ease;
 }
+
+.p-footer{
+  padding: 15px;
+  overflow: hidden;
+}
+
+
 
 .hidden{
   opacity: 0;
