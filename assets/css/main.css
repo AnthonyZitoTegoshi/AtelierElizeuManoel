@@ -249,14 +249,15 @@ button {
   height: 340px;
 }
 
-.whatsappbutton{
+.whatsapp-button{
   position: fixed;
   height: 80px;
   width: 80px;
-  bottom: 40px;
-  right: 50px;
+  bottom: 20px;
+  right: 20px;
   background-color: green;
-  border-radius: 40px;
+  border-radius: 99999px;
+  z-index: 1;
 }
 
 .visible{
