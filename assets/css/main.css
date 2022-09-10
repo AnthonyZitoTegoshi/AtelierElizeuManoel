@@ -327,3 +327,7 @@ button {
 .primaryLighter {
   color: var(--primary-lighter);
 }
+
+.gap-iframe {
+  gap: 50%;
+}
