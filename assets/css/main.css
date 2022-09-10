@@ -26,7 +26,7 @@
 }
 
 * {
-  transition: color background-color linear 5000ms;
+  transition: color, background-color linear 50ms;
   scroll-behavior: smooth;
 }
 
@@ -117,8 +117,8 @@ button {
   background-color: var(--primary-lighter);
 }
 
-#main-banner{
-  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("../img/atelier/background_banner.webp") no-repeat;
+#main-banner {
+  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("../img/atelier/atelier_elizeu.webp") no-repeat;
   background-attachment: fixed;
   background-size: cover;
   min-height: 100vh;

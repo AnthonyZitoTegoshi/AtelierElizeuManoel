@@ -1,5 +1,3 @@
-const targetCarouselDisplay = "target#carousel-display";
-
 var lastScrollPosition, currentScrollPosition;
 var scrollingDown;
 
@@ -29,8 +27,14 @@ window.addEventListener("resize", function () {
 window.addEventListener("scroll", function () {
     if (lastScrollPosition != null && currentScrollPosition != null) {
         var mainMenu = window.document.getElementById("main-menu");
+        var mainMenuHeight = mainMenu.getBoundingClientRect().height;
+        if (window.getComputedStyle(window.document.getElementById("retracted-main-menu-lmd")).display != "none") {
+            window.document.getElementById("retracted-main-menu-lmd").style.display = "none";
+            var mainMenuHeight = mainMenu.getBoundingClientRect().height;
+            window.document.getElementById("retracted-main-menu-lmd").style.display = "";
+        }
         currentScrollPosition = window.scrollY;
-        if (currentScrollPosition > lastScrollPosition) {
+        if (currentScrollPosition > lastScrollPosition && currentScrollPosition > mainMenuHeight) {
             if ((scrollingDown == false || scrollingDown == null) && window.getComputedStyle(mainMenu).top == "0px") {
                 var retractedLsmStyle = window.getComputedStyle(window.document.getElementById("retracted-main-menu-lsm"));
                 var retractedLmdStyle = window.getComputedStyle(window.document.getElementById("retracted-main-menu-lmd"));
