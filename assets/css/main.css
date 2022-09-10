@@ -26,7 +26,7 @@
 }
 
 * {
-  transition: color, background-color linear 50ms;
+  transition: color, background-color, scale linear 50ms;
   scroll-behavior: smooth;
 }
 
@@ -258,14 +258,19 @@ button {
   height: 340px;
 }
 
-.whatsapp-button{
+.whatsapp-button {
   position: fixed;
   height: 80px;
   width: 80px;
   bottom: 20px;
   right: 20px;
   border-radius: 99999px;
+  overflow: hidden;
   z-index: 1;
+}
+
+.whatsapp-button:hover {
+  scale: 110%;
 }
 
 .visible{
