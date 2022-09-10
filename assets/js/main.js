@@ -286,6 +286,7 @@ function setCarousels() {
             };
             this.ontouchend = function () {
                 this.scroll(this.scrollLeft - waitingToScrollX * 10, 0);
+                waitingToScrollX = 0;
             };
         };
         carousel.getElementsByClassName("carousel-previous-button")[0].addEventListener("click", function () {
@@ -338,6 +339,7 @@ function setCarousels() {
             display.style.userSelect = "";
             display.onmousemove = null;
             display.scroll(display.scrollLeft - waitingToScrollX * 10, 0);
+            waitingToScrollX = 0;
         }
     });
     window.document.addEventListener("touchend", function () {
