@@ -173,6 +173,14 @@ button {
   gap: 25px;
 }
 
+.icon-footer{
+  width: 25px;
+}
+
+.icon-footer-large{
+  width: 35px;
+}
+
 .btn-banner {
   align-items: center;
   appearance: none;
@@ -261,6 +269,13 @@ button {
 .p-5{
   padding: 120px;
 }
+
+.p-footer{
+  padding: 15px;
+  overflow: hidden;
+}
+
+
 .btn-back {
   transform: rotate(-180deg);
 }
