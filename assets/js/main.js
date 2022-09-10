@@ -15,6 +15,7 @@ window.addEventListener("load", function () {
     adjustCarousels();
     lastScrollPosition = currentScrollPosition = window.scrollY;
     window.document.getElementById("loading-screen").style.display = "none";
+    window.document.body.style.overflow = "";
 });
 
 window.addEventListener("resize", function () {

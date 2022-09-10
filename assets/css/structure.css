@@ -10,7 +10,11 @@
 **  +-------------------------------------------------------------------+
 **  |- ".r" é uma row, ".c" é uma column e ".i" é um item               |
 **  |-------------------------------------------------------------------|
+**  |- ".p*" é tamanho do padding do elemento                           |
+**  |-------------------------------------------------------------------|
 **  |- ".m*" é o mainaxis e ".c*" é o crossaxis da flex                 |
+**  |-------------------------------------------------------------------|
+**  |- ".g*" é o tamanho do gap de uma row ou column                    |
 **  |-------------------------------------------------------------------|
 **  |- ".s" é um elemento scrollable e ".ns" é um elemento não          |
 **  |scrollable                                                         |
@@ -44,26 +48,32 @@
 **  |-------------------------------------------------------------------|
 **  |2. Escolha entre ".r" ou ".c" a depender da direção do flex;       |
 **  |-------------------------------------------------------------------|
-**  |3. Escolha o modo de posicionamento no mainaxis da flex (".mstart",|
+**  |3. Escolha se o elemento deve ter ou não padding e, se tiver, qual |
+**  |seu tamanho (".p1", ".p2", ".p3" ou ".p4"), indo de 5 em 5px;      |
+**  |-------------------------------------------------------------------|
+**  |4. Escolha o modo de posicionamento no mainaxis da flex (".mstart",|
 **  |".mcenter", ".mend", ".mbetween", ".maround" ou ".mevenly");       |
 **  |-------------------------------------------------------------------|
-**  |4. Posicionamento no crossaxis da flex (".cstart", ".ccenter",     |
+**  |5. Posicionamento no crossaxis da flex (".cstart", ".ccenter",     |
 **  |".cend" ou ".cstretch");                                           |
 **  |-------------------------------------------------------------------|
-**  |5. Escolha se flex deve ou não dar wrap com ".wrap" ou ".nowrap";  |
+**  |6. Escolha se flex deve ou não dar wrap com ".wrap" ou ".nowrap";  |
 **  |-------------------------------------------------------------------|
-**  |6. Escolha se o elemento deve ou não ser scrollable com ".s" ou    |
+**  |7. Escolha se flex deve ter ou não gap e, se tiver, qual seu       |
+**  |tamanho (".g1", ".g2", ".g3" ou ".g4"), indo de 5 em 5px;          |
+**  |-------------------------------------------------------------------|
+**  |8. Escolha se o elemento deve ou não ser scrollable com ".s" ou    |
 **  |".ns" e em quais dimensões de tela deve permanecer assim;          |
 **  |-------------------------------------------------------------------|
-**  |7. Toda classe, exceto a ".i", pode ser seguida por um tamanho     |
+**  |9. Toda classe, exceto a ".i", pode ser seguida por um tamanho     |
 **  |entre "lsm", "hsm", "lmd", "hmd", "llg", "hlg";                    |
 **  |-------------------------------------------------------------------|
-**  |8. Todo elemento pode ter suas dimensões definidas em porcentagens |
+**  |10. Todo elemento pode ter suas dimensões definidas em porcentagens|
 **  |do elemento pai entre 0 e 12, além dos min, max e auto;            |
 **  |-------------------------------------------------------------------|
-**  |9. Containers servem tanto como filhos quanto como pais das flex;  |
+**  |11. Containers servem tanto como filhos quanto como pais das flex; |
 **  |-------------------------------------------------------------------|
-**  |10. As mediaqueries do framework podem ser usadas para produzir    |
+**  |12. As mediaqueries do framework podem ser usadas para produzir    |
 **  |diferentes layouts a depender do tamanho da tela do dispositivo;   |
 **  +-------------------------------------------------------------------+
 **
@@ -112,6 +122,12 @@
 .r {flex-direction: row; width: 100%; height: max-content;}
 .c {flex-direction: column; width: max-content; height: 100%;}
 
+/*--/*--ELEMENT_PADDING--*/
+.p1 {padding: 5px;}
+.p2 {padding: 10px;}
+.p3 {padding: 15px;}
+.p4 {padding: 20px;}
+
 /*--/*--EIXO_PRINCIPAL--*/
 .mstart {justify-content: flex-start;}
 .mcenter {justify-content: center;}
@@ -129,6 +145,12 @@
 /*--/*--WRAP--*/
 .wrap {flex-wrap: wrap;}
 .nowrap {flex-wrap: nowrap;}
+
+/*--/*--GAP_BETWEEN_ELEMENTS--*/
+.g1 {gap: 5px;}
+.g2 {gap: 10px;}
+.g3 {gap: 15px;}
+.g4 {gap: 20px;}
 
 /*--/*--LARGURA--*/
 .wauto {width: auto;}
@@ -193,6 +215,12 @@
     .r-lsm {flex-direction: row; width: 100%; height: max-content;}
     .c-lsm {flex-direction: column; width: max-content; height: 100%;}
 
+    /*--/*--ELEMENT_PADDING--*/
+    .p1-lsm {padding: 5px;}
+    .p2-lsm {padding: 10px;}
+    .p3-lsm {padding: 15px;}
+    .p4-lsm {padding: 20px;}
+
     /*--/*--EIXO_PRINCIPAL--*/
     .mstart-lsm {justify-content: flex-start;}
     .mcenter-lsm {justify-content: center;}
@@ -210,6 +238,12 @@
     /*--/*--WRAP--*/
     .wrap-lsm {flex-wrap: wrap;}
     .nowrap-lsm {flex-wrap: nowrap;}
+
+    /*--/*--GAP_BETWEEN_ELEMENTS--*/
+    .g1-lsm {gap: 5px;}
+    .g2-lsm {gap: 10px;}
+    .g3-lsm {gap: 15px;}
+    .g4-lsm {gap: 20px;}
 
     /*--/*--LARGURA--*/
     .wauto-lsm {width: auto;}
@@ -275,6 +309,12 @@
     .r-hsm {flex-direction: row; width: 100%; height: max-content;}
     .c-hsm {flex-direction: column; width: max-content; height: 100%;}
 
+    /*--/*--ELEMENT_PADDING--*/
+    .p1-hsm {padding: 5px;}
+    .p2-hsm {padding: 10px;}
+    .p3-hsm {padding: 15px;}
+    .p4-hsm {padding: 20px;}
+
     /*--/*--EIXO_PRINCIPAL--*/
     .mstart-hsm {justify-content: flex-start;}
     .mcenter-hsm {justify-content: center;}
@@ -292,6 +332,12 @@
     /*--/*--WRAP--*/
     .wrap-hsm {flex-wrap: wrap;}
     .nowrap-hsm {flex-wrap: nowrap;}
+
+    /*--/*--GAP_BETWEEN_ELEMENTS--*/
+    .g1-hsm {gap: 5px;}
+    .g2-hsm {gap: 10px;}
+    .g3-hsm {gap: 15px;}
+    .g4-hsm {gap: 20px;}
 
     /*--/*--LARGURA--*/
     .wauto-hsm {width: auto;}
@@ -357,6 +403,12 @@
     .r-lmd {flex-direction: row; width: 100%; height: max-content;}
     .c-lmd {flex-direction: column; width: max-content; height: 100%;}
 
+    /*--/*--ELEMENT_PADDING--*/
+    .p1-lmd {padding: 5px;}
+    .p2-lmd {padding: 10px;}
+    .p3-lmd {padding: 15px;}
+    .p4-lmd {padding: 20px;}
+
     /*--/*--EIXO_PRINCIPAL--*/
     .mstart-lmd {justify-content: flex-start;}
     .mcenter-lmd {justify-content: center;}
@@ -374,6 +426,12 @@
     /*--/*--WRAP--*/
     .wrap-lmd {flex-wrap: wrap;}
     .nowrap-lmd {flex-wrap: nowrap;}
+
+    /*--/*--GAP_BETWEEN_ELEMENTS--*/
+    .g1-lmd {gap: 5px;}
+    .g2-lmd {gap: 10px;}
+    .g3-lmd {gap: 15px;}
+    .g4-lmd {gap: 20px;}
 
     /*--/*--LARGURA--*/
     .wauto-lmd {width: auto;}
@@ -439,6 +497,12 @@
     .r-hmd {flex-direction: row; width: 100%; height: max-content;}
     .c-hmd {flex-direction: column; width: max-content; height: 100%;}
 
+    /*--/*--ELEMENT_PADDING--*/
+    .p1-hmd {padding: 5px;}
+    .p2-hmd {padding: 10px;}
+    .p3-hmd {padding: 15px;}
+    .p4-hmd {padding: 20px;}
+
     /*--/*--EIXO_PRINCIPAL--*/
     .mstart-hmd {justify-content: flex-start;}
     .mcenter-hmd {justify-content: center;}
@@ -456,6 +520,12 @@
     /*--/*--WRAP--*/
     .wrap-hmd {flex-wrap: wrap;}
     .nowrap-hmd {flex-wrap: nowrap;}
+
+    /*--/*--GAP_BETWEEN_ELEMENTS--*/
+    .g1-hmd {gap: 5px;}
+    .g2-hmd {gap: 10px;}
+    .g3-hmd {gap: 15px;}
+    .g4-hmd {gap: 20px;}
 
     /*--/*--LARGURA--*/
     .wauto-hmd {width: auto;}
@@ -521,6 +591,12 @@
     .r-llg {flex-direction: row; width: 100%; height: max-content;}
     .c-llg {flex-direction: column; width: max-content; height: 100%;}
 
+    /*--/*--ELEMENT_PADDING--*/
+    .p1-llg {padding: 5px;}
+    .p2-llg {padding: 10px;}
+    .p3-llg {padding: 15px;}
+    .p4-llg {padding: 20px;}
+
     /*--/*--EIXO_PRINCIPAL--*/
     .mstart-llg {justify-content: flex-start;}
     .mcenter-llg {justify-content: center;}
@@ -538,6 +614,12 @@
     /*--/*--WRAP--*/
     .wrap-llg {flex-wrap: wrap;}
     .nowrap-llg {flex-wrap: nowrap;}
+
+    /*--/*--GAP_BETWEEN_ELEMENTS--*/
+    .g1-llg {gap: 5px;}
+    .g2-llg {gap: 10px;}
+    .g3-llg {gap: 15px;}
+    .g4-llg {gap: 20px;}
 
     /*--/*--LARGURA--*/
     .wauto-llg {width: auto;}
@@ -603,6 +685,12 @@
     .r-hlg {flex-direction: row; width: 100%; height: max-content;}
     .c-hlg {flex-direction: column; width: max-content; height: 100%;}
 
+    /*--/*--ELEMENT_PADDING--*/
+    .p1-hlg {padding: 5px;}
+    .p2-hlg {padding: 10px;}
+    .p3-hlg {padding: 15px;}
+    .p4-hlg {padding: 20px;}
+
     /*--/*--EIXO_PRINCIPAL--*/
     .mstart-hlg {justify-content: flex-start;}
     .mcenter-hlg {justify-content: center;}
@@ -620,6 +708,12 @@
     /*--/*--WRAP--*/
     .wrap-hlg {flex-wrap: wrap;}
     .nowrap-hlg {flex-wrap: nowrap;}
+
+    /*--/*--GAP_BETWEEN_ELEMENTS--*/
+    .g1-hlg {gap: 5px;}
+    .g2-hlg {gap: 10px;}
+    .g3-hlg {gap: 15px;}
+    .g4-hlg {gap: 20px;}
 
     /*--/*--LARGURA--*/
     .wauto-hlg {width: auto;}
