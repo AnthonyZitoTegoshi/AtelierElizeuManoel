@@ -16,6 +16,24 @@
   src: url('../fonts/send_flowers.ttf');
 }
 
+@keyframes hover-line-bottom-enter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes hover-line-bottom-leave {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
+
 :root {
   --dark: #260101;
   --light: #f2f2f2;
@@ -26,8 +44,9 @@
 }
 
 * {
-  transition: color background-color linear 5000ms;
+  transition: outline linear 50ms, border-color linear 50ms, color linear 50ms, background-color linear 50ms, scale linear 50ms;
   scroll-behavior: smooth;
+  color: var(--dark);
 }
 
 .title {
@@ -53,7 +72,6 @@
   font-size: 1.2rem;
   text-indent: 1.8rem;
   line-height: 1.8rem;
-  margin-bottom: 20px;
   color: var(--dark);
 }
 
@@ -63,11 +81,14 @@
   color: var(--light);
 }
 
-.text-info:last-child {
-  margin-bottom: 0;
+.text-info-alter {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.05rem;
+  color: var(--light);
 }
 
-button {
+button, input:is([type="button"]) {
+  outline: none;
   border: none;
   color: inherit;
   background-color: inherit;
@@ -105,7 +126,8 @@ button {
   background-color: inherit;
 }
 
-.main-menu-link {
+.main-menu-link, .main-menu-link:any-link {
+  outline: none;
   padding: 20px 30px;
   font-family: 'Courier Prime Code';
   text-decoration: none;
@@ -121,20 +143,28 @@ button {
   position: relative;
 }
 
-.hover-line-bottom-span {
+.hover-line-bottom::after {
+  content: "";
   display: block;
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 0;
   height: 2px;
   border-radius: 1px;
   background-color: var(--primary-lighter);
+  animation: 100ms ease hover-line-bottom-leave;
 }
 
-#main-banner{
-  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("../img/atelier/background_banner.webp") no-repeat;
-  background-size:  cover;
+.hover-line-bottom:hover::after {
+  width: 100%;
+  animation: 100ms ease hover-line-bottom-enter;
+}
+
+#main-banner {
+  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("../img/atelier/atelier_elizeu.webp") no-repeat center;
+  background-attachment: fixed;
+  background-size: cover;
   min-height: 100vh;
   color: var(--light);
 }
@@ -283,7 +313,7 @@ button {
 
 .card {
   margin: 10px;
-  border: 1px solid var(--dark);
+  border: 2px solid var(--dark);
   border-radius: 10px;
 }
 
@@ -297,15 +327,19 @@ button {
   height: 340px;
 }
 
-.whatsapp-button{
+.whatsapp-button {
   position: fixed;
   height: 80px;
   width: 80px;
   bottom: 20px;
   right: 20px;
-  background-color: green;
   border-radius: 99999px;
+  overflow: hidden;
   z-index: 1;
+}
+
+.whatsapp-button:hover {
+  scale: 110%;
 }
 
 .visible{
@@ -318,7 +352,115 @@ button {
   overflow: hidden;
 }
 
+.button-sign {
+  background-color: #111827;
+  border: 1px solid transparent;
+  border-radius: .75rem;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  flex: 0 0 auto;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.05rem;
+  padding: 0.85rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition-duration: 0.15s;
+  transition-property: background-color;
+  width: auto;
+}
 
+.button-sign:hover {
+  background-color: #374151;
+}
+
+.no-overflow{
+  overflow: hidden;
+}
+
+.gap-1{
+  gap: 10px;
+}
+
+.gap-2{
+  gap: 20px;
+}
+
+.gap-3{
+  gap: 25px;
+}
+
+.link-footer{
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  color: var(--light);
+}
+
+.sign{
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  padding: 15px;
+  border-radius: 20px;
+  width: 250px;
+}
+
+.blur-effect{
+  box-shadow: 0px 0px 5px var(--light);
+}
+
+#login-main-banner {
+  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("../img/atelier/login_background.webp") no-repeat center;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
+  color: var(--light);
+}
+
+.text-input-wrapper {
+  border: 1px solid var(--dark);
+  border-radius: 99999px;
+  padding: 5px 10px;
+}
+
+.text-input-wrapper:focus-within {
+  outline: 2px solid var(--primary-lighter);
+}
+
+input.text-input {
+  outline: none;
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  background-color: transparent;
+}
+
+input.submit-button {
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 99999px;
+  padding: 5px 10px;
+  font-family: 'Roboto', sans-serif;
+  color: var(--light);
+  background-color: var(--primary-lighter);
+  cursor: pointer;
+}
+
+input.submit-button:focus-within {
+  outline: 2px solid var(--primary-lighter);
+}
+
+.forgot-password-link:any-link {
+  outline: none;
+  padding: 2px;
+  font-size: 0.75rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.forgot-password-link:focus-within {
+  outline: 2px solid var(--primary-lighter);
+}
 
 .hidden{
   opacity: 0;
@@ -366,6 +508,22 @@ button {
 
 .primaryLighter {
   color: var(--primary-lighter);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.gap-iframe {
+  gap: 50%;
 }
 
 .no-overflow{
