@@ -16,7 +16,6 @@ window.addEventListener("load", function () {
     adjustMainRetractableMenu();
     setRetractorsListeners();
     adjustRetractableMenus();
-    setHoverLineBottom();
     setCarousels();
     adjustCarousels();
     setSvgColors();
@@ -433,31 +432,3 @@ function adjustMainRetractableMenu() {
         }
     }
 }
-
-function setHoverLineBottom() {
-    var elements = window.document.getElementsByClassName("hover-line-bottom");
-    for (var i = 0; i < elements.length; i++) {
-        var element = elements[i];
-        element.onmouseover = function () {
-            var child = window.document.createElement("span");
-            child.className = "hover-line-bottom-span";
-            this.appendChild(child);
-            child.animate([
-                {width: "0px"},
-                {width: child.clientWidth + "px"}
-            ], 100, 1);
-        };
-        element.onmouseout = function () {
-            var target = this.getBoundingClientRect();
-            var child = this.getElementsByClassName("hover-line-bottom-span")[0];
-            child.animate([
-                {width: child.clientWidth + "px"},
-                {width: "0px"}
-            ], 100, 1);
-            window.setTimeout(function (element) {
-                element.removeChild(element.getElementsByClassName("hover-line-bottom-span")[0]);
-            }, 100, this);
-        };
-    }
-}
-

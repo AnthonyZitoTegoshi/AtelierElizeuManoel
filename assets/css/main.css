@@ -16,6 +16,24 @@
   src: url('../fonts/send_flowers.ttf');
 }
 
+@keyframes hover-line-bottom-enter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes hover-line-bottom-leave {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
+
 :root {
   --dark: #260101;
   --light: #f2f2f2;
@@ -104,15 +122,22 @@ button, input:is([type="button"]) {
   position: relative;
 }
 
-.hover-line-bottom-span {
+.hover-line-bottom::after {
+  content: "";
   display: block;
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 0;
   height: 2px;
   border-radius: 1px;
   background-color: var(--primary-lighter);
+  animation: 100ms ease hover-line-bottom-leave;
+}
+
+.hover-line-bottom:hover::after {
+  width: 100%;
+  animation: 100ms ease hover-line-bottom-enter;
 }
 
 #main-banner {
