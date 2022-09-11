@@ -243,10 +243,17 @@ function setCarousels() {
         for (var j = 0; j < items.length; j++) {
             var cards = items[j].getElementsByClassName("card");
             if (cards.length > 0) {
+                var btnCard = cards[0].getElementsByClassName("btn-card")[0];
                 if (j == currentItem) {
                     cards[0].style.borderColor = primaryLighter;
+                    if (btnCard) {
+                        btnCard.style.backgroundColor = primaryLighter;
+                    }
                 } else {
                     cards[0].style.borderColor = "";
+                    if (btnCard) {
+                        btnCard.style.backgroundColor = dark;
+                    }
                 }
             }
         }
@@ -312,10 +319,17 @@ function setCarousels() {
             for (var j = 0; j < items.length; j++) {
                 var cards = items[j].getElementsByClassName("card");
                 if (cards.length > 0) {
+                    var btnCard = cards[0].getElementsByClassName("btn-card")[0];
                     if (j == currentItem) {
                         cards[0].style.borderColor = primaryLighter;
+                        if (btnCard) {
+                            btnCard.style.backgroundColor = primaryLighter;
+                        }
                     } else {
                         cards[0].style.borderColor = "";
+                        if (btnCard) {
+                            btnCard.style.backgroundColor = dark;
+                        }
                     }
                 }
             }
@@ -332,10 +346,17 @@ function setCarousels() {
             for (var j = 0; j < items.length; j++) {
                 var cards = items[j].getElementsByClassName("card");
                 if (cards.length > 0) {
+                    var btnCard = cards[0].getElementsByClassName("btn-card")[0];
                     if (j == currentItem) {
                         cards[0].style.borderColor = primaryLighter;
+                        if (btnCard) {
+                            btnCard.style.backgroundColor = primaryLighter;
+                        }
                     } else {
                         cards[0].style.borderColor = "";
+                        if (btnCard) {
+                            btnCard.style.backgroundColor = dark;
+                        }
                     }
                 }
             }
@@ -439,7 +460,7 @@ function adjustMainRetractableMenu() {
 }
 
 function adjustWhatsappButton() {
-    if (!animatingWhatsappButton) {
+    if (!animatingWhatsappButton && window.document.getElementById("main-footer")) {
         var mainFooter = window.document.getElementById("main-footer");
         var whatsappButton = window.document.getElementById("whatsapp-button");
         if (window.innerHeight > mainFooter.getBoundingClientRect().top) {

@@ -40,12 +40,16 @@
   --primary: #a63f03;
   --primary-darker: #731702;
   --primary-lighter: #d97904;
-  color: var(--dark);
 }
 
 * {
   transition: outline linear 50ms, border-color linear 50ms, color linear 50ms, background-color linear 50ms, scale linear 50ms;
   scroll-behavior: smooth;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-height: 1.5rem;
   color: var(--dark);
 }
 
@@ -69,16 +73,10 @@
 .text-info {
   font-family: 'Roboto', sans-serif;
   text-align: left;
-  font-size: 1.2rem;
-  text-indent: 1.8rem;
-  line-height: 1.8rem;
+  font-size: 1rem;
+  text-indent: 1.5rem;
+  line-height: 1.5rem;
   color: var(--dark);
-}
-
-.text-info-alter {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.05rem;
-  color: var(--light);
 }
 
 .text-info-alter {
@@ -286,35 +284,21 @@ button, input:is([type="button"]) {
   box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
 }
 
-.button-sign {
-  background-color: #111827;
-  border: 1px solid transparent;
-  border-radius: .75rem;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  cursor: pointer;
-  flex: 0 0 auto;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.125rem;
-  font-weight: 600;
-  line-height: 1.05rem;
-  padding: 0.85rem 1rem;
-  text-align: center;
-  text-decoration: none;
-  transition-duration: 0.15s;
-  transition-property: background-color;
-  width: auto;
-}
-
-.button-sign:hover {
-  background-color: #374151;
-}
-
-
 .card {
   margin: 10px;
   border: 2px solid var(--dark);
   border-radius: 10px;
+  overflow: hidden;
+}
+
+.btn-card {
+  width: 100%;
+  padding: 10px 20px;
+  font-family: 'Courier Prime Code';
+  text-decoration: none;
+  text-align: center;
+  color: var(--light);
+  background-color: var(--dark);
 }
 
 .card-symbol{
@@ -352,7 +336,7 @@ button, input:is([type="button"]) {
   overflow: hidden;
 }
 
-.button-sign {
+input.button-sign {
   background-color: #111827;
   border: 1px solid transparent;
   border-radius: .75rem;
@@ -455,7 +439,6 @@ input.submit-button:focus-within {
   outline: none;
   padding: 2px;
   font-size: 0.75rem;
-  font-family: 'Roboto', sans-serif;
 }
 
 .forgot-password-link:focus-within {
