@@ -10,7 +10,8 @@ require_once "./etc/conf.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/structure.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="shortcut icon" href="./assets/img/atelier_logo_tiny.svg" type="image/svg+xml">
     <title>Atelier Elizeu Manoel</title>
 </head>
 <body style="overflow: hidden;">
