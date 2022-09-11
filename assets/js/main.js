@@ -1,3 +1,9 @@
+const dark = "#260101";
+const light = "#f2f2f2";
+const primary = "#a63f03";
+const primaryDarker = "#731702";
+const primaryLighter = "#d97904";
+
 var lastScrollPosition, currentScrollPosition;
 var scrollingDown;
 
@@ -13,6 +19,7 @@ window.addEventListener("load", function () {
     setHoverLineBottom();
     setCarousels();
     adjustCarousels();
+    setSvgColors();
     lastScrollPosition = currentScrollPosition = window.scrollY;
     window.document.getElementById("loading-screen").style.display = "none";
     window.document.body.style.overflow = "";
@@ -26,7 +33,7 @@ window.addEventListener("resize", function () {
 });
 
 window.addEventListener("scroll", function () {
-    if (lastScrollPosition != null && currentScrollPosition != null) {
+    if (lastScrollPosition != null && currentScrollPosition != null && window.document.getElementById("main-menu")) {
         var mainMenu = window.document.getElementById("main-menu");
         var mainMenuHeight = mainMenu.getBoundingClientRect().height;
         if (window.getComputedStyle(window.document.getElementById("retracted-main-menu-lmd")).display != "none") {
@@ -63,16 +70,11 @@ window.addEventListener("scroll", function () {
     }
 });
 
-function setTarget(element, typeOfTarget) {
-    var target = window.document.getElementById(typeOfTarget);
-    if (target) {
-        target.setAttribute("id", "");
+function setSvgColors() {
+    var svgs = window.document.getElementsByTagName("svg");
+    for (var i = 0; i < svgs.length; i++) {
+        svgs[i].setAttribute("fill", dark);
     }
-    element.setAttribute("id", typeOfTarget);
-}
-
-function getTarget(typeOfTarget) {
-    return window.document.getElementById(typeOfTarget);
 }
 
 function setRetractorsListeners() {
@@ -238,7 +240,7 @@ function setCarousels() {
             var cards = items[j].getElementsByClassName("card");
             if (cards.length > 0) {
                 if (j == currentItem) {
-                    cards[0].style.borderColor = "var(--primary-lighter)";
+                    cards[0].style.borderColor = primaryLighter;
                 } else {
                     cards[0].style.borderColor = "";
                 }
@@ -307,7 +309,7 @@ function setCarousels() {
                 var cards = items[j].getElementsByClassName("card");
                 if (cards.length > 0) {
                     if (j == currentItem) {
-                        cards[0].style.borderColor = "var(--primary-lighter)";
+                        cards[0].style.borderColor = primaryLighter;
                     } else {
                         cards[0].style.borderColor = "";
                     }
@@ -327,7 +329,7 @@ function setCarousels() {
                 var cards = items[j].getElementsByClassName("card");
                 if (cards.length > 0) {
                     if (j == currentItem) {
-                        cards[0].style.borderColor = "var(--primary-lighter)";
+                        cards[0].style.borderColor = primaryLighter;
                     } else {
                         cards[0].style.borderColor = "";
                     }
@@ -418,15 +420,17 @@ document.addEventListener("scroll", scanContent);
 
 
 function adjustMainRetractableMenu() {
-    var mainMenuRetractors = window.document.getElementById("main-menu").getElementsByClassName("retractable-menu-retractor");
-    var mainMenuToggle = mainMenuRetractors[0].getAttribute("data-toggle");
-    if (window.innerWidth >= 700) {
-        mainMenuToggle = mainMenuToggle.substring(0, mainMenuToggle.length - 3) + "lmd";
-    } else {
-        mainMenuToggle = mainMenuToggle.substring(0, mainMenuToggle.length - 3) + "lsm";
-    }
-    for (var i = 0; i < mainMenuRetractors.length; i++) {
-        mainMenuRetractors[i].setAttribute("data-toggle", mainMenuToggle);
+    if (window.document.getElementById("main-menu")) {
+        var mainMenuRetractors = window.document.getElementById("main-menu").getElementsByClassName("retractable-menu-retractor");
+        var mainMenuToggle = mainMenuRetractors[0].getAttribute("data-toggle");
+        if (window.innerWidth >= 700) {
+            mainMenuToggle = mainMenuToggle.substring(0, mainMenuToggle.length - 3) + "lmd";
+        } else {
+            mainMenuToggle = mainMenuToggle.substring(0, mainMenuToggle.length - 3) + "lsm";
+        }
+        for (var i = 0; i < mainMenuRetractors.length; i++) {
+            mainMenuRetractors[i].setAttribute("data-toggle", mainMenuToggle);
+        }
     }
 }
 

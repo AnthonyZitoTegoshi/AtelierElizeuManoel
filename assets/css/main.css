@@ -26,8 +26,9 @@
 }
 
 * {
-  transition: color, background-color, scale linear 50ms;
+  transition: outline linear 50ms, border-color linear 50ms, color linear 50ms, background-color linear 50ms, scale linear 50ms;
   scroll-behavior: smooth;
+  color: var(--dark);
 }
 
 .title {
@@ -47,7 +48,8 @@
   color: var(--dark);
 }
 
-button {
+button, input:is([type="button"]) {
+  outline: none;
   border: none;
   color: inherit;
   background-color: inherit;
@@ -85,7 +87,8 @@ button {
   background-color: inherit;
 }
 
-.main-menu-link {
+.main-menu-link, .main-menu-link:any-link {
+  outline: none;
   padding: 20px 30px;
   font-family: 'Courier Prime Code';
   text-decoration: none;
@@ -113,7 +116,7 @@ button {
 }
 
 #main-banner {
-  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("../img/atelier/atelier_elizeu.webp") no-repeat;
+  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("../img/atelier/atelier_elizeu.webp") no-repeat center;
   background-attachment: fixed;
   background-size: cover;
   min-height: 100vh;
@@ -239,7 +242,7 @@ button {
 
 .card {
   margin: 10px;
-  border: 1px solid var(--dark);
+  border: 2px solid var(--dark);
   border-radius: 10px;
 }
 
@@ -278,7 +281,57 @@ button {
   overflow: hidden;
 }
 
+#login-main-banner {
+  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("../img/atelier/look_violin.webp") no-repeat center;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
+  color: var(--light);
+}
 
+.text-input-wrapper {
+  border: 1px solid var(--dark);
+  border-radius: 99999px;
+  padding: 5px 10px;
+}
+
+.text-input-wrapper:focus-within {
+  outline: 2px solid var(--primary-lighter);
+}
+
+input.text-input {
+  outline: none;
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  background-color: transparent;
+}
+
+input.submit-button {
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 99999px;
+  padding: 5px 10px;
+  font-family: 'Roboto', sans-serif;
+  color: var(--light);
+  background-color: var(--primary-lighter);
+  cursor: pointer;
+}
+
+input.submit-button:focus-within {
+  outline: 2px solid var(--primary-lighter);
+}
+
+.forgot-password-link:any-link {
+  outline: none;
+  padding: 2px;
+  font-size: 0.75rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.forgot-password-link:focus-within {
+  outline: 2px solid var(--primary-lighter);
+}
 
 .hidden{
   opacity: 0;
@@ -326,6 +379,18 @@ button {
 
 .primaryLighter {
   color: var(--primary-lighter);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
 }
 
 .gap-iframe {
