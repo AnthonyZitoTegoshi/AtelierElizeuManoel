@@ -90,36 +90,34 @@ require_once "./etc/conf.php";
             <button class="i wmin hauto ns carousel-previous-button" title="Anterior">
                 <svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M27.083 36.667 10.417 20 27.083 3.333l2.542 2.584L15.542 20l14.083 14.083Z"/></svg>
             </button>
-            <div class="i wauto s carousel-display" data-focused-item="0">
-                <ul class="r mevenly ccenter wmax">
+            <div class="i w12 hauto s carousel-display" data-focused-item="0">
+                <ul class="r mevenly ccenter wmax" style="min-width: 100%;">
                     <li class="carousel-item" style="width: 16rem;">
-                        <div class="c mcenter ccenter wauto hauto card">
-                            <img class="i w12 hauto ns text-center" src="./assets/img/atelier/preset_violin.webp" alt="" draggable="false">
+                        <div class="c mcenter ccenter wauto hauto ns card">
+                        <img class="i w12 hauto ns text-center" src="./assets/img/atelier/between_violin.webp" alt="" draggable="false">
+                            <p class="i text-info p2" style="text-indent: 0;">Serviço 1</p>
+                            <a class="btn-card" href="#contact">CONTRATAR</a>
                         </div>
                     </li>
                     <li class="carousel-item" style="width: 16rem;">
-                        <div class="c mcenter ccenter wauto hauto card">
-                            <img class="i w12 hauto ns text-center" src="./assets/img/atelier/between_violin.webp" alt="" draggable="false">
+                        <div class="c mcenter ccenter wauto hauto ns card">
+                        <img class="i w12 hauto ns text-center" src="./assets/img/atelier/between_violin.webp" alt="" draggable="false">
+                            <p class="i text-info p2" style="text-indent: 0;">Serviço 2</p>
+                            <a class="btn-card" href="#contact">CONTRATAR</a>
                         </div>
                     </li>
                     <li class="carousel-item" style="width: 16rem;">
-                        <div class="c mcenter ccenter wauto hauto card">
-                            <img class="i w12 hauto ns text-center" src="./assets/img/atelier/voluta_violin.webp" alt="" draggable="false">
+                        <div class="c mcenter ccenter wauto hauto ns card">
+                        <img class="i w12 hauto ns text-center" src="./assets/img/atelier/between_violin.webp" alt="" draggable="false">
+                            <p class="i text-info p2" style="text-indent: 0;">Serviço 3</p>
+                            <a class="btn-card" href="#contact">CONTRATAR</a>
                         </div>
                     </li>
                     <li class="carousel-item" style="width: 16rem;">
-                        <div class="c mcenter ccenter wauto hauto card">
-                            <img class="i w12 hauto ns text-center" src="./assets/img/atelier/preset_violin.webp" alt="" draggable="false">
-                        </div>
-                    </li>
-                    <li class="carousel-item" style="width: 16rem;">
-                        <div class="c mcenter ccenter wauto hauto card">
-                            <img class="i w12 hauto ns text-center" src="./assets/img/atelier/between_violin.webp" alt="" draggable="false">
-                        </div>
-                    </li>
-                    <li class="carousel-item" style="width: 16rem;">
-                        <div class="c mcenter ccenter wauto hauto card">
-                            <img class="i w12 hauto ns text-center" src="./assets/img/atelier/voluta_violin.webp" alt="" draggable="false">
+                        <div class="c mcenter ccenter wauto hauto ns card">
+                        <img class="i w12 hauto ns text-center" src="./assets/img/atelier/between_violin.webp" alt="" draggable="false">
+                            <p class="i text-info p2" style="text-indent: 0;">Serviço 4</p>
+                            <a class="btn-card" href="#contact">CONTRATAR</a>
                         </div>
                     </li>
                 </ul>
@@ -176,7 +174,7 @@ require_once "./etc/conf.php";
         </div>
     </section>
     <!-------------------------------------------------------RODAPÉ----------------------------------------------------->
-    <footer class="i">
+    <footer class="i" id="main-footer">
         <section class="r-hmd c-lsm ccenter-lsm mevenly-lsm bgDark w12-lsm " >
             <div class="r w2-hmd w12-lsm " style="height: 300px;">
                 <div class="c mstart w12 p-footer" >
@@ -192,7 +190,7 @@ require_once "./etc/conf.php";
                 <h3 class="r mcenter ccenter title-alter">REGISTER NOW</h3>
                 <div class="r ccenter mcenter gap-1">
                     <input class="sign" type="text" placeholder="Please enter your e-mail" >
-                    <input class="button-sign"type="button" value="Sign Up">
+                    <input class="button-sign" type="button" value="Sign Up">
                 </div>
             </div>
             <div class="r w2-hmd w12-lsm p-footer " >
@@ -239,7 +237,7 @@ require_once "./etc/conf.php";
             </div>
         </section>
     </footer>
-    <a class="whatsapp-button" href="https://api.whatsapp.com/send?phone=5511960995554&text=Boa%20tarde!%20Gostaria%20de%20mais%20informações" target="_blank" title="Contato por Whatsapp">
+    <a class="whatsapp-button" id="whatsapp-button" href="https://api.whatsapp.com/send?phone=5511960995554&text=Boa%20tarde!%20Gostaria%20de%20mais%20informações" target="_blank" title="Contato por Whatsapp">
         <img class="i" src="./assets/img/whatsapp_logo.png" alt="Whatsapp">
     </a>
     <script src="./assets/js/main.js"></script>

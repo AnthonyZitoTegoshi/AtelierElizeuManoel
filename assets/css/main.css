@@ -40,12 +40,16 @@
   --primary: #a63f03;
   --primary-darker: #731702;
   --primary-lighter: #d97904;
-  color: var(--dark);
 }
 
 * {
   transition: outline linear 50ms, border-color linear 50ms, color linear 50ms, background-color linear 50ms, scale linear 50ms;
   scroll-behavior: smooth;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-height: 1.5rem;
   color: var(--dark);
 }
 
@@ -69,9 +73,9 @@
 .text-info {
   font-family: 'Roboto', sans-serif;
   text-align: left;
-  font-size: 1.2rem;
-  text-indent: 1.8rem;
-  line-height: 1.8rem;
+  font-size: 1rem;
+  text-indent: 1.5rem;
+  line-height: 1.5rem;
   color: var(--dark);
 }
 
@@ -284,6 +288,17 @@ button, input:is([type="button"]) {
   margin: 10px;
   border: 2px solid var(--dark);
   border-radius: 10px;
+  overflow: hidden;
+}
+
+.btn-card {
+  width: 100%;
+  padding: 10px 20px;
+  font-family: 'Courier Prime Code';
+  text-decoration: none;
+  text-align: center;
+  color: var(--light);
+  background-color: var(--dark);
 }
 
 .card-symbol{
@@ -321,7 +336,7 @@ button, input:is([type="button"]) {
   overflow: hidden;
 }
 
-.button-sign {
+input.button-sign {
   background-color: #111827;
   border: 1px solid transparent;
   border-radius: .75rem;
@@ -424,7 +439,6 @@ input.submit-button:focus-within {
   outline: none;
   padding: 2px;
   font-size: 0.75rem;
-  font-family: 'Roboto', sans-serif;
 }
 
 .forgot-password-link:focus-within {
@@ -493,4 +507,46 @@ input.submit-button:focus-within {
 
 .gap-iframe {
   gap: 50%;
+}
+
+.no-overflow{
+  overflow: hidden;
+}
+
+.gap-1{
+  gap: 10px;
+}
+
+.gap-2{
+  gap: 20px;
+}
+
+.gap-3{
+  gap: 25px;
+}
+
+.p-footer{
+  padding: 10px;
+}
+
+.link-footer{
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  color: var(--light);
+}
+
+.sign{
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  padding: 15px;
+  border-radius: 20px;
+  width: 250px;
+}
+
+.blur-effect{
+  box-shadow: 0px 0px 5px var(--light);
+}
+
+.m-b-footer{
+  margin-bottom: 30px;
 }

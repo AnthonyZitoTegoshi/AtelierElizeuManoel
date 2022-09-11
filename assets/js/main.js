@@ -12,6 +12,8 @@ var verifyTouch;
 
 var waitingToScrollX;
 
+var animatingWhatsappButton = false;
+
 window.addEventListener("load", function () {
     adjustMainRetractableMenu();
     setRetractorsListeners();
@@ -19,6 +21,7 @@ window.addEventListener("load", function () {
     setCarousels();
     adjustCarousels();
     setSvgColors();
+    adjustWhatsappButton();
     lastScrollPosition = currentScrollPosition = window.scrollY;
     window.document.getElementById("loading-screen").style.display = "none";
     window.document.body.style.overflow = "";
@@ -29,6 +32,7 @@ window.addEventListener("resize", function () {
     setRetractorsListeners();
     adjustRetractableMenus();
     adjustCarousels();
+    adjustWhatsappButton();
 });
 
 window.addEventListener("scroll", function () {
@@ -67,6 +71,7 @@ window.addEventListener("scroll", function () {
         }
         lastScrollPosition = currentScrollPosition;
     }
+    adjustWhatsappButton();
 });
 
 function setSvgColors() {
@@ -238,10 +243,17 @@ function setCarousels() {
         for (var j = 0; j < items.length; j++) {
             var cards = items[j].getElementsByClassName("card");
             if (cards.length > 0) {
+                var btnCard = cards[0].getElementsByClassName("btn-card")[0];
                 if (j == currentItem) {
                     cards[0].style.borderColor = primaryLighter;
+                    if (btnCard) {
+                        btnCard.style.backgroundColor = primaryLighter;
+                    }
                 } else {
                     cards[0].style.borderColor = "";
+                    if (btnCard) {
+                        btnCard.style.backgroundColor = dark;
+                    }
                 }
             }
         }
@@ -307,10 +319,17 @@ function setCarousels() {
             for (var j = 0; j < items.length; j++) {
                 var cards = items[j].getElementsByClassName("card");
                 if (cards.length > 0) {
+                    var btnCard = cards[0].getElementsByClassName("btn-card")[0];
                     if (j == currentItem) {
                         cards[0].style.borderColor = primaryLighter;
+                        if (btnCard) {
+                            btnCard.style.backgroundColor = primaryLighter;
+                        }
                     } else {
                         cards[0].style.borderColor = "";
+                        if (btnCard) {
+                            btnCard.style.backgroundColor = dark;
+                        }
                     }
                 }
             }
@@ -327,10 +346,17 @@ function setCarousels() {
             for (var j = 0; j < items.length; j++) {
                 var cards = items[j].getElementsByClassName("card");
                 if (cards.length > 0) {
+                    var btnCard = cards[0].getElementsByClassName("btn-card")[0];
                     if (j == currentItem) {
                         cards[0].style.borderColor = primaryLighter;
+                        if (btnCard) {
+                            btnCard.style.backgroundColor = primaryLighter;
+                        }
                     } else {
                         cards[0].style.borderColor = "";
+                        if (btnCard) {
+                            btnCard.style.backgroundColor = dark;
+                        }
                     }
                 }
             }
@@ -429,6 +455,40 @@ function adjustMainRetractableMenu() {
         }
         for (var i = 0; i < mainMenuRetractors.length; i++) {
             mainMenuRetractors[i].setAttribute("data-toggle", mainMenuToggle);
+        }
+    }
+}
+
+function adjustWhatsappButton() {
+    if (!animatingWhatsappButton && window.document.getElementById("main-footer")) {
+        var mainFooter = window.document.getElementById("main-footer");
+        var whatsappButton = window.document.getElementById("whatsapp-button");
+        if (window.innerHeight > mainFooter.getBoundingClientRect().top) {
+            if (whatsappButton.style.display != "none") {
+                whatsappButton.animate([
+                    {scale:  "100%"},
+                    {scale: "0"}
+                ], 100, 1);
+                window.setTimeout(function () {
+                    whatsappButton.style.display = "none";
+                    animatingWhatsappButton = false;
+                    adjustWhatsappButton();
+                }, 100);
+                animatingWhatsappButton = true;
+            }
+        } else {
+            if (whatsappButton.style.display == "none") {
+                whatsappButton.style.display = "";
+                whatsappButton.animate([
+                    {scale:  "0"},
+                    {scale: "100%"}
+                ], 100, 1);
+                window.setTimeout(function () {
+                    animatingWhatsappButton = false;
+                    adjustWhatsappButton();
+                }, 100);
+                animatingWhatsappButton = true;
+            }
         }
     }
 }
