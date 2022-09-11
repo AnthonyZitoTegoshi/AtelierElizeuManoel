@@ -158,8 +158,22 @@ require_once "./etc/conf.php";
         </ul>
     </section>-->
     <span class="marker" id="contact"></span>
-    <section>
-        <div class="r mcenter ccenter"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1118.6813634462094!2d-46.54722453538345!3d-23.46625868680038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef5719bad7fe1%3A0xca2fd76155a45ced!2sR.%20Jaboticabeira%2C%2052%20-%20Vila%20Sirena%2C%20Guarulhos%20-%20SP%2C%2007051-070!5e1!3m2!1spt-BR!2sbr!4v1662776367692!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    <section class="r">
+        <div class="c">
+            <h2>Atelier Elizeu Manoel</h2>
+            <hr class="dark">
+            <h3>Whatsapp</h3>
+            <h3>(11) 98787-0977</h3>
+            <h4>atelierElizeuManoel@outlook.com</h4>
+            <hr class="dark">
+            <h3>Horário de Funcionamento</h3>
+            <h4>Segunda a sexta, das 8h às 17h</h4>
+            <h4>Sábado 9h ao 12h</h4>
+        </div>
+        <div class="c mcenter ccenter">
+            <p>Rua Jaboticabeiras, 52 - Vila Sirena 07051-070 Guarulhos/SP</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1118.6813634462094!2d-46.54722453538345!3d-23.46625868680038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef5719bad7fe1%3A0xca2fd76155a45ced!2sR.%20Jaboticabeira%2C%2052%20-%20Vila%20Sirena%2C%20Guarulhos%20-%20SP%2C%2007051-070!5e1!3m2!1spt-BR!2sbr!4v1662776367692!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
     </section>
     <!-------------------------------------------------------RODAPÉ----------------------------------------------------->
     <footer class="i">
