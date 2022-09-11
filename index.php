@@ -162,7 +162,7 @@ require_once "./etc/conf.php";
         <div class="r mcenter ccenter"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1118.6813634462094!2d-46.54722453538345!3d-23.46625868680038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef5719bad7fe1%3A0xca2fd76155a45ced!2sR.%20Jaboticabeira%2C%2052%20-%20Vila%20Sirena%2C%20Guarulhos%20-%20SP%2C%2007051-070!5e1!3m2!1spt-BR!2sbr!4v1662776367692!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
     </section>
     <!-------------------------------------------------------RODAPÉ----------------------------------------------------->
-    <footer class="i">
+    <footer class="i" id="main-footer">
         <section class="r-hmd c-lsm ccenter-lsm mevenly-lsm bgDark w12-lsm " >
             <div class="r w2-hmd w12-lsm " style="height: 300px;">
                 <div class="c mstart w12 p-footer" >
@@ -225,7 +225,7 @@ require_once "./etc/conf.php";
             </div>
         </section>
     </footer>
-    <a class="whatsapp-button" href="https://api.whatsapp.com/send?phone=5511960995554&text=Boa%20tarde!%20Gostaria%20de%20mais%20informações" target="_blank" title="Contato por Whatsapp">
+    <a class="whatsapp-button" id="whatsapp-button" href="https://api.whatsapp.com/send?phone=5511960995554&text=Boa%20tarde!%20Gostaria%20de%20mais%20informações" target="_blank" title="Contato por Whatsapp">
         <img class="i" src="./assets/img/whatsapp_logo.png" alt="Whatsapp">
     </a>
     <script src="./assets/js/main.js"></script>
