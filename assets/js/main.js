@@ -296,8 +296,8 @@ function setCarousels() {
                     this.style.scrollBehavior = "auto";
                     this.scroll(this.scrollLeft - (event.touches[0].pageX - lastTouchPositionX), 0);
                     this.style.scrollBehavior = "";
+                    waitingToScrollX = event.touches[0].pageX - lastTouchPositionX;
                 }
-                waitingToScrollX = event.touches[0].pageX - lastTouchPositionX;
                 lastTouchPositionX = event.touches[0].pageX;
                 lastTouchPositionY = event.touches[0].pageY;
                 verifyTouch = false;
