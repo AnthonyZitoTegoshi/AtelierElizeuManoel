@@ -67,18 +67,24 @@ require_once "./etc/conf.php";
         </div>
     </header>
     <span class="marker" id="atelier"></span>
-    <section class="c mcenter ccenter w12 hmin bgLight">
-        <div class="c p4 mcenter ccenter g4 w12 w11-lmd w10-hmd w9-llg w8-hlg ns">
-            <div class="c r-lmd mcenter ccenter g4 w12">
-                <img class="i w12 w6-lmd hauto ns text-center" style="max-width: 32rem;" src="./assets/img/atelier/preset_violin.webp" alt="(Foto do Elizeu Manoel trabalhando)">
-                <h2 class="i w12 wmax-lmd hauto title ns">Elizeu Manoel, Luthier Brasileiro</h2>
+    <section class="c p4 mcenter ccenter g4 w12 hmin bgLight">
+        <div class="c r-lmd mcenter ccenter g4 w12 w11-lmd w10-hmd w8-llg w6-hlg ns">
+            <img class="i w12 w6-lmd hauto ns text-center" style="max-width: 32rem;" src="./assets/img/atelier/preset_violin.webp" alt="(Foto do Elizeu Manoel trabalhando)">
+            <div class="c mcenter ccenter g4 w12 w6-lmd hauto">
+                <h2 class="i w12 hauto title">Elizeu Manoel, Luthier Brasileiro</h2>
+                <p class="text-info">O artesanato tradicional do violino em Cremona e nossa paixão pela excelência ressoam entre as paredes da oficina de Andrea Varazzani, onde o barulho das goivas, raspadores, limas, formões, aviões, as cores da madeira, os aromas da tinta fresca se misturam em uma maravilhosa síntese e assim, paixão, dedicação e cura dão forma ao informe.</p>
             </div>
-            <p class="text-info">O artesanato tradicional do violino em Cremona e nossa paixão pela excelência ressoam entre as paredes da oficina de Andrea Varazzani, onde o barulho das goivas, raspadores, limas, formões, aviões, as cores da madeira, os aromas da tinta fresca se misturam em uma maravilhosa síntese e assim, paixão, dedicação e cura dão forma ao informe.</p>
-            <p class="text-info">Tanta habilidade, trabalho duro, meticulosidade, virtuosismo, tornam-se o artesanato de Andrea Varazzani, inspirando e homenageando a arte refinada dos sons. A música é como uma fênix, que levanta seu vôo com leveza e ousadia e com as asas o ímpeto agrada aos deuses e aos homens. Essa mesma arte nos faz sentir uma alegria emocional curta que sobe e desce...</p>
+        </div>
+        <div class="c r-lmd mcenter ccenter g4 w12 w11-lmd w10-hmd w8-llg w6-hlg ns">
+            <div class="c mcenter ccenter g4 w12 w6-lmd hauto">
+                <h2 class="i w12 hauto title">Título 2</h2>
+                <p class="text-info">Tanta habilidade, trabalho duro, meticulosidade, virtuosismo, tornam-se o artesanato de Andrea Varazzani, inspirando e homenageando a arte refinada dos sons. A música é como uma fênix, que levanta seu vôo com leveza e ousadia e com as asas o ímpeto agrada aos deuses e aos homens. Essa mesma arte nos faz sentir uma alegria emocional curta que sobe e desce...</p>
+            </div>
+            <img class="i w12 w6-lmd hauto ns text-center" style="max-width: 32rem;" src="./assets/img/atelier/voluta_violin.webp" alt="(Foto do Elizeu Manoel trabalhando)">
         </div>
     </section>
     <section class="c mcenter ccenter w12 hmin bgDark">
-        <div class="c p4 mcenter ccenter g4 w12 w11-lmd w10-hmd w9-llg w8-hlg hauto ns">
+        <div class="c p4 mcenter ccenter g4 w12 w11-lmd w10-hmd w8-llg w6-hlg hauto ns">
             <p class="text-info light" style="font-style: italic;">&ldquo;Ofereço diversos serviços na lutheria, visando obter um excelente resultado, com o uso dos mais sofisticados materiais, ao entender o propósito do músico com seu instrumento, tanto na criação quanto nos ajustes deste.&rdquo;</p>
             <p class="text-info light" style="text-indent: 0;">&mdash; Elizeu Manoel da Silva &mdash;</p>
         </div>
@@ -86,7 +92,7 @@ require_once "./etc/conf.php";
     <span class="marker" id="projects"></span>
     <span class="marker" id="services"></span>
     <section class="c mcenter ccenter w12 hmin bgLight">
-        <div class="r mbetween cstretch w12 w11-lmd w10-hmd w9-llg w8-hlg carousel">
+        <div class="r mbetween cstretch w12 w11-lmd w10-hmd w8-llg w6-hlg carousel">
             <button class="i wmin hauto ns carousel-previous-button" title="Anterior">
                 <svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M27.083 36.667 10.417 20 27.083 3.333l2.542 2.584L15.542 20l14.083 14.083Z"/></svg>
             </button>
@@ -157,7 +163,7 @@ require_once "./etc/conf.php";
     </section>-->
     <span class="marker" id="contact"></span>
     <section class="c mcenter ccenter w12 hauto bgLight">
-        <div class="c p4 r-lmd mcenter ccenter cstretch-lmd g4 w12 w11-lmd w10-hmd w9-llg w8-hlg hauto">
+        <div class="c p4 r-lmd mcenter ccenter cstretch-lmd g4 w12 w11-lmd w10-hmd w8-llg w6-hlg hauto">
             <div class="c mbetween ccenter g4 w12 w6-lmd hauto">
                 <h2 class="c mcenter ccenter w12 hauto ns"><img class="i wauto" style="height: 4rem;" src="./assets/img/atelier_logo.svg" alt="Atelier Elizeu Manoel"></h2>
                 <hr class="i w12 hauto dark">
