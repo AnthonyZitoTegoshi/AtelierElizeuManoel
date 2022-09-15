@@ -71,21 +71,21 @@ require_once "./etc/conf.php";
         <div class="c r-lmd p4 mcenter ccenter cstart-lmd g4 w12 w11-lmd w10-hmd w8-llg w6-hlg ns">
             <img class="i w12 w6-lmd hauto ns text-center" style="max-width: 32rem;" src="./assets/img/atelier/look_violin.webp" alt="(Foto do Elizeu Manoel trabalhando)">
             <div class="c mcenter ccenter g4 w12 w6-lmd hauto">
-                <h2 class="i w12 hauto title">Título 1</h2>
-                <p class="text-info">Pellentesque eleifend velit ac magna cursus, eu vestibulum augue posuere. Integer elementum at eros nec faucibus. Nunc et ligula commodo, semper est et, dignissim justo. Nunc dignissim porttitor vehicula. Pellentesque finibus, eros sed gravida tincidunt, nibh augue mattis tellus, id lobortis lacus velit vitae orci. Morbi sit amet ornare lectus. Nunc vestibulum in justo id fermentum. Integer sodales magna eget vehicula mollis. Fusce ligula risus, dignissim in pulvinar ac, efficitur nec neque.</p>
+                <h2 class="i w12 hauto title">Atelier Elizeu Manoel</h2>
+                <p class="text-info">Refinamento e classe: os motivos que encontrei para a excelência do meu trabalho. Procuro ser um especialista onde atuo, principalmente na criação e ajustes de violinos, violoncellos e violas. Venho me aperfeiçoando no ramo da lutheria há mais de 5 anos e, muito provavelmente, a consistência e o amor pelo trabalho têm me feito um dos melhores que conheço na cidade.</p>
             </div>
         </div>
         <div class="c r-lmd p4 mcenter ccenter cstart-lmd g4 w12 w11-lmd w10-hmd w8-llg w6-hlg ns">
             <div class="c mcenter ccenter g4 o2 o1-lmd w12 w6-lmd hauto">
-                <h2 class="i w12 hauto title">Título 2</h2>
-                <p class="text-info">Suspendisse eros elit, placerat at rutrum sed, accumsan non nibh. Suspendisse viverra erat lectus, et condimentum libero tincidunt at. Nunc bibendum, purus tempor ultrices pharetra, orci metus efficitur mauris, non imperdiet ex justo sit amet nisl. Nullam rhoncus ipsum id bibendum tristique. Nullam sed mauris quis mauris hendrerit imperdiet. Donec mattis at nunc nec bibendum. Nulla elementum nunc eget erat cursus consequat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque finibus est diam, ac sollicitudin nisi malesuada vitae. Aliquam suscipit mi vel felis mattis egestas. Integer scelerisque rhoncus malesuada. Nunc sit amet ligula quam. Vivamus vestibulum vestibulum blandit.</p>
+                <h2 class="i w12 hauto title">Honra de servir à música</h2>
+                <p class="text-info">Atenção, meticulosidade, inspiração, harmonia... É como se a música fosse um guia, um caminho na minha vida. E ser responsável pela criação dos instrumentos que a produzem é, definitivamente, é a maior honra que poderia ter. Este sou eu, preparado para solucionar qualquer problema que você tenha no seu instrumento...</p>
             </div>
             <img class="i o1 o2-lmd w12 w6-lmd hauto ns text-center" style="max-width: 32rem;" src="./assets/img/atelier/voluta_violin.webp" alt="(Foto do Elizeu Manoel trabalhando)">
         </div>
     </section>
     <section class="c mcenter ccenter w12 hmin bgDark">
         <div class="c p4 mcenter ccenter g4 w12 w11-lmd w10-hmd w8-llg w6-hlg hauto ns">
-            <p class="text-info light" style="font-style: italic;">&ldquo;Ofereço diversos serviços na lutheria, visando obter um excelente resultado, com o uso dos mais sofisticados materiais, ao entender o propósito do músico com seu instrumento, tanto na criação quanto nos ajustes deste.&rdquo;</p>
+            <p class="text-info light" style="font-style: italic;">&ldquo;Visando a excelência, ofereço os mais variados serviços na lutheria com o uso dos mais sofisticados materiais. Reconheço o propósito do músico com seu instrumento e estou disposto a colaborar tanto com a criação quanto com os ajustes necessários nessa jornada.&rdquo;</p>
             <p class="text-info light">&mdash; Elizeu Manoel da Silva &mdash;</p>
         </div>
     </section>
@@ -102,28 +102,28 @@ require_once "./etc/conf.php";
                         <div class="c mcenter ccenter wauto hauto ns card">
                         <img class="i w12 hauto ns text-center" src="./assets/img/atelier/between_violin.webp" alt="" draggable="false">
                             <p class="i text-info p2">Serviço 1</p>
-                            <a class="btn-card" href="#contact">CONTRATAR</a>
+                            <a class="btn-card" href="#contact" draggable="false">CONTRATAR</a>
                         </div>
                     </li>
                     <li class="carousel-item" style="width: 16rem;">
                         <div class="c mcenter ccenter wauto hauto ns card">
                         <img class="i w12 hauto ns text-center" src="./assets/img/atelier/between_violin.webp" alt="" draggable="false">
                             <p class="i text-info p2">Serviço 2</p>
-                            <a class="btn-card" href="#contact">CONTRATAR</a>
+                            <a class="btn-card" href="#contact" draggable="false">CONTRATAR</a>
                         </div>
                     </li>
                     <li class="carousel-item" style="width: 16rem;">
                         <div class="c mcenter ccenter wauto hauto ns card">
                         <img class="i w12 hauto ns text-center" src="./assets/img/atelier/between_violin.webp" alt="" draggable="false">
                             <p class="i text-info p2">Serviço 3</p>
-                            <a class="btn-card" href="#contact">CONTRATAR</a>
+                            <a class="btn-card" href="#contact" draggable="false">CONTRATAR</a>
                         </div>
                     </li>
                     <li class="carousel-item" style="width: 16rem;">
                         <div class="c mcenter ccenter wauto hauto ns card">
                         <img class="i w12 hauto ns text-center" src="./assets/img/atelier/between_violin.webp" alt="" draggable="false">
                             <p class="i text-info p2">Serviço 4</p>
-                            <a class="btn-card" href="#contact">CONTRATAR</a>
+                            <a class="btn-card" href="#contact" draggable="false">CONTRATAR</a>
                         </div>
                     </li>
                 </ul>
