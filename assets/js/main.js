@@ -12,6 +12,8 @@ var verifyTouch;
 
 var waitingToScrollX;
 
+var animatingWhatsappButton = false;
+
 window.addEventListener("load", function () {
     adjustMainRetractableMenu();
     setRetractorsListeners();
@@ -19,6 +21,7 @@ window.addEventListener("load", function () {
     setCarousels();
     adjustCarousels();
     setSvgColors();
+    adjustWhatsappButton();
     lastScrollPosition = currentScrollPosition = window.scrollY;
     window.document.getElementById("loading-screen").style.display = "none";
     window.document.body.style.overflow = "";
@@ -29,6 +32,7 @@ window.addEventListener("resize", function () {
     setRetractorsListeners();
     adjustRetractableMenus();
     adjustCarousels();
+    adjustWhatsappButton();
 });
 
 window.addEventListener("scroll", function () {
@@ -67,6 +71,7 @@ window.addEventListener("scroll", function () {
         }
         lastScrollPosition = currentScrollPosition;
     }
+    adjustWhatsappButton();
 });
 
 function setSvgColors() {
@@ -145,32 +150,37 @@ function setRetractorsListeners() {
             event.stopPropagation ? event.stopPropagation() : event.cancelBubble = true;
         };
     }
+    window.document.body.ontouchend = function () {
+        window.document.body.click();
+    }
     window.document.body.onclick = function () {
         for (var i = 0; i < retractors.length; i++) {
             var retractor = retractors[i];
             var retracted = window.document.getElementById(retractor.getAttribute("data-toggle"));
-            if (retracted.id == "retracted-main-menu-lsm") {
-                retracted.animate([
-                    {right:  "0px"},
-                    {right: "-" + retracted.clientWidth + "px"}
-                ], 100, 1);
-                window.setTimeout(function () {
+            if (window.getComputedStyle(retracted).display != "none") {
+                if (retracted.id == "retracted-main-menu-lsm") {
+                    retracted.animate([
+                        {right:  "0px"},
+                        {right: "-" + retracted.clientWidth + "px"}
+                    ], 100, 1);
+                    window.setTimeout(function () {
+                        retracted.style.display = "none";
+                    }, 100);
+                } else if (retracted.id == "retracted-main-menu-lmd") {
+                    retracted.animate([
+                        {height: retracted.clientHeight + "px"},
+                        {height:  "0px"}
+                    ], 100, 1);
+                    window.setTimeout(function () {
+                        retracted.style.display = "none";
+                    }, 100);
+                } else {
                     retracted.style.display = "none";
-                }, 100);
-            } else if (retracted.id == "retracted-main-menu-lmd") {
-                retracted.animate([
-                    {height: retracted.clientHeight + "px"},
-                    {height:  "0px"}
-                ], 100, 1);
-                window.setTimeout(function () {
-                    retracted.style.display = "none";
-                }, 100);
-            } else {
-                retracted.style.display = "none";
-            }
-            if (retractor.getAttribute("data-alternate") == "true") {
-                retractor.children[0].style.display = "";
-                retractor.children[1].style.display = "none";
+                }
+                if (retractor.getAttribute("data-alternate") == "true") {
+                    retractor.children[0].style.display = "";
+                    retractor.children[1].style.display = "none";
+                }
             }
         }
     };
@@ -201,28 +211,30 @@ function adjustRetractableMenus() {
             }
         } else {
             var retracted = window.document.getElementById(retractableMenuRetractor.getAttribute("data-toggle"));
-            if (retracted.id == "retracted-main-menu-lsm") {
-                retracted.animate([
-                    {right:  "0px"},
-                    {right: "-" + retracted.clientWidth + "px"}
-                ], 100, 1);
-                window.setTimeout(function () {
+            if (window.getComputedStyle(retracted).display != "none") {
+                if (retracted.id == "retracted-main-menu-lsm") {
+                    retracted.animate([
+                        {right:  "0px"},
+                        {right: "-" + retracted.clientWidth + "px"}
+                    ], 100, 1);
+                    window.setTimeout(function () {
+                        retracted.style.display = "none";
+                    }, 100);
+                } else if (retracted.id == "retracted-main-menu-lmd") {
+                    retracted.animate([
+                        {height: retracted.clientHeight + "px"},
+                        {height:  "0px"}
+                    ], 100, 1);
+                    window.setTimeout(function () {
+                        retracted.style.display = "none";
+                    }, 100);
+                } else {
                     retracted.style.display = "none";
-                }, 100);
-            } else if (retracted.id == "retracted-main-menu-lmd") {
-                retracted.animate([
-                    {height: retracted.clientHeight + "px"},
-                    {height:  "0px"}
-                ], 100, 1);
-                window.setTimeout(function () {
-                    retracted.style.display = "none";
-                }, 100);
-            } else {
-                retracted.style.display = "none";
-            }
-            if (retractableMenuRetractor.getAttribute("data-alternate") == "true") {
-                retractableMenuRetractor.children[0].style.display = "";
-                retractableMenuRetractor.children[1].style.display = "none";
+                }
+                if (retractableMenuRetractor.getAttribute("data-alternate") == "true") {
+                    retractableMenuRetractor.children[0].style.display = "";
+                    retractableMenuRetractor.children[1].style.display = "none";
+                }
             }
         }
     }
@@ -238,10 +250,17 @@ function setCarousels() {
         for (var j = 0; j < items.length; j++) {
             var cards = items[j].getElementsByClassName("card");
             if (cards.length > 0) {
+                var btnCard = cards[0].getElementsByClassName("btn-card")[0];
                 if (j == currentItem) {
                     cards[0].style.borderColor = primaryLighter;
+                    if (btnCard) {
+                        btnCard.style.backgroundColor = primaryLighter;
+                    }
                 } else {
                     cards[0].style.borderColor = "";
+                    if (btnCard) {
+                        btnCard.style.backgroundColor = dark;
+                    }
                 }
             }
         }
@@ -284,8 +303,8 @@ function setCarousels() {
                     this.style.scrollBehavior = "auto";
                     this.scroll(this.scrollLeft - (event.touches[0].pageX - lastTouchPositionX), 0);
                     this.style.scrollBehavior = "";
+                    waitingToScrollX = event.touches[0].pageX - lastTouchPositionX;
                 }
-                waitingToScrollX = event.touches[0].pageX - lastTouchPositionX;
                 lastTouchPositionX = event.touches[0].pageX;
                 lastTouchPositionY = event.touches[0].pageY;
                 verifyTouch = false;
@@ -307,10 +326,17 @@ function setCarousels() {
             for (var j = 0; j < items.length; j++) {
                 var cards = items[j].getElementsByClassName("card");
                 if (cards.length > 0) {
+                    var btnCard = cards[0].getElementsByClassName("btn-card")[0];
                     if (j == currentItem) {
                         cards[0].style.borderColor = primaryLighter;
+                        if (btnCard) {
+                            btnCard.style.backgroundColor = primaryLighter;
+                        }
                     } else {
                         cards[0].style.borderColor = "";
+                        if (btnCard) {
+                            btnCard.style.backgroundColor = dark;
+                        }
                     }
                 }
             }
@@ -327,10 +353,17 @@ function setCarousels() {
             for (var j = 0; j < items.length; j++) {
                 var cards = items[j].getElementsByClassName("card");
                 if (cards.length > 0) {
+                    var btnCard = cards[0].getElementsByClassName("btn-card")[0];
                     if (j == currentItem) {
                         cards[0].style.borderColor = primaryLighter;
+                        if (btnCard) {
+                            btnCard.style.backgroundColor = primaryLighter;
+                        }
                     } else {
                         cards[0].style.borderColor = "";
+                        if (btnCard) {
+                            btnCard.style.backgroundColor = dark;
+                        }
                     }
                 }
             }
@@ -429,6 +462,40 @@ function adjustMainRetractableMenu() {
         }
         for (var i = 0; i < mainMenuRetractors.length; i++) {
             mainMenuRetractors[i].setAttribute("data-toggle", mainMenuToggle);
+        }
+    }
+}
+
+function adjustWhatsappButton() {
+    if (!animatingWhatsappButton && window.document.getElementById("main-footer")) {
+        var mainFooter = window.document.getElementById("main-footer");
+        var whatsappButton = window.document.getElementById("whatsapp-button");
+        if (window.innerHeight > mainFooter.getBoundingClientRect().top) {
+            if (whatsappButton.style.display != "none") {
+                whatsappButton.animate([
+                    {scale:  "100%"},
+                    {scale: "0"}
+                ], 100, 1);
+                window.setTimeout(function () {
+                    whatsappButton.style.display = "none";
+                    animatingWhatsappButton = false;
+                    adjustWhatsappButton();
+                }, 100);
+                animatingWhatsappButton = true;
+            }
+        } else {
+            if (whatsappButton.style.display == "none") {
+                whatsappButton.style.display = "";
+                whatsappButton.animate([
+                    {scale:  "0"},
+                    {scale: "100%"}
+                ], 100, 1);
+                window.setTimeout(function () {
+                    animatingWhatsappButton = false;
+                    adjustWhatsappButton();
+                }, 100);
+                animatingWhatsappButton = true;
+            }
         }
     }
 }
