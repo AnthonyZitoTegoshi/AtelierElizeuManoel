@@ -57,7 +57,7 @@ require_once "./etc/conf.php";
             </div>
         </div>
     </nav>
-    <span class="marker" id="home"></span>
+    <div class="marker" id="home"></div>
     <header class="c mcenter ccenter w12 ns" id="main-banner">
         <span style="min-height: calc(4rem + 40px);"></span>
         <div class="c p4 mcenter ccenter g4 w12 ns">
@@ -66,7 +66,7 @@ require_once "./etc/conf.php";
             <a class="btn-banner" href="#contact">Contato</a>
         </div>
     </header>
-    <span class="marker" id="atelier"></span>
+    <div class="marker" id="atelier"></div>
     <section class="c mcenter ccenter g4 w12 hmin bgLight">
         <div class="c r-lmd p4 mcenter ccenter cstart-lmd g4 w12 w11-lmd w10-hmd w8-llg w6-hlg ns">
             <img class="i w12 w6-lmd hauto ns text-center" style="max-width: 32rem;" src="./assets/img/atelier/look_violin.webp" alt="(Foto do Elizeu Manoel trabalhando)">
@@ -89,8 +89,8 @@ require_once "./etc/conf.php";
             <p class="text-info light">&mdash; Elizeu Manoel da Silva &mdash;</p>
         </div>
     </section>
-    <span class="marker" id="projects"></span>
-    <span class="marker" id="services"></span>
+    <div class="marker" id="projects"></div>
+    <div class="marker" id="services"></div>
     <section class="c mcenter ccenter w12 hmin bgLight">
         <div class="r mbetween cstretch w12 w11-lmd w10-hmd w8-llg w6-hlg carousel">
             <button class="i wmin hauto ns carousel-previous-button" title="Anterior">
@@ -161,7 +161,7 @@ require_once "./etc/conf.php";
             </li>
         </ul>
     </section>-->
-    <span class="marker" id="contact"></span>
+    <div class="marker" id="contact"></div>
     <section class="c mcenter ccenter w12 hauto bgLight">
         <div class="c p4 r-lmd mcenter ccenter cstretch-lmd g4 w12 w11-lmd w10-hmd w8-llg w6-hlg hauto">
             <div class="c mbetween ccenter g4 w12 w6-lmd hauto">
