@@ -34,6 +34,20 @@
   }
 }
 
+@keyframes addUnderline {
+  0%{
+    background-color: #731702;
+  }
+
+  50%{
+    background-color: green;
+  }
+
+  100%{
+   background-color: #374151;
+  }
+}
+
 :root {
   --dark: #260101;
   --light: #f2f2f2;
@@ -227,6 +241,7 @@ button, input:is([type="button"]) {
 
 .icon-footer-large{
   width: 35px;
+  cursor: pointer;
 }
 
 .btn-banner {
@@ -347,11 +362,10 @@ button, input:is([type="button"]) {
 input.button-sign {
   background-color: #111827;
   border: 1px solid transparent;
-  border-radius: .75rem;
+  border-radius: 0.75rem;
   box-sizing: border-box;
   color: #FFFFFF;
   cursor: pointer;
-  flex: 0 0 auto;
   font-family: 'Roboto', sans-serif;
   font-size: 1.125rem;
   font-weight: 600;
@@ -361,7 +375,7 @@ input.button-sign {
   text-decoration: none;
   transition-duration: 0.15s;
   transition-property: background-color;
-  width: auto;
+  
 }
 
 .button-sign:hover {
@@ -388,6 +402,14 @@ input.button-sign {
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
   color: var(--light);
+  animation-duration: s;
+  
+}
+
+.link-footer:hover{
+  animation-name: addUnderline;
+  animation-timing-function: ease;
+  
 }
 
 .sign{
@@ -533,15 +555,6 @@ input.submit-button:focus-within {
   gap: 25px;
 }
 
-.p-footer{
-  padding: 10px;
-}
-
-.link-footer{
-  text-decoration: none;
-  font-family: 'Roboto', sans-serif;
-  color: var(--light);
-}
 
 .sign{
   border: none;
@@ -552,9 +565,93 @@ input.submit-button:focus-within {
 }
 
 .blur-effect{
-  box-shadow: 0px 0px 5px var(--light);
+  box-shadow: 0px 0px 7.5px black;
 }
 
 .m-b-footer{
   margin-bottom: 30px;
+}
+
+@media only screen and (min-width: 300px) {
+
+  .btn-min{
+      background-color: #111827;
+      border: 1px solid transparent;
+      border-radius: 0.75rem;
+      box-sizing: border-box;
+      color: #FFFFFF;
+      cursor: pointer;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1rem;
+      padding: 0.70rem 0.85rem;
+      text-align: center;
+      text-decoration: none;
+      transition-duration: 0.15s;
+      transition-property: background-color;
+  }
+
+  .input-min{
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    padding: 15px;
+    border-radius: 20px;
+    width: 175px;
+  }
+
+}
+
+@media only screen and (min-width: 400px) {
+  .button-sign {
+    background-color: #111827;
+    border: 1px solid transparent;
+    border-radius: 0.75rem;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.05rem;
+    padding: 0.85rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 0.15s;
+    transition-property: background-color;
+    
+  }
+
+  .sign{
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    padding: 15px;
+    border-radius: 20px;
+    width: 250px;
+  }
+  
+}
+
+@media only screen and (min-width: 1200px) {
+
+  .sign{
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    padding: 15px;
+    border-radius: 20px;
+    width: 150px;
+  }
+  
+}
+
+@media only screen and (min-width: 1800px) {
+
+  .sign{
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    padding: 15px;
+    border-radius: 20px;
+    width: 250px;
+  }
+  
 }

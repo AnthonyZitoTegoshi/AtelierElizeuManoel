@@ -189,24 +189,24 @@ require_once "./etc/conf.php";
     <!-------------------------------------------------------RODAPÉ----------------------------------------------------->
     <footer class="i" id="main-footer">
         <section class="r-hmd c-lsm ccenter-lsm mevenly-lsm bgDark w12-lsm " >
-            <div class="r w2-hmd w12-lsm " style="height: 300px;">
-                <div class="c mstart w12 p-footer" >
+            <div class="r w2-hmd w12-lsm w6-lmd" style="height: 300px;">
+                <div class="c-lsm mstart w12 p-footer" >
                     <img src="./assets/img/atelier_logo.svg" alt="logo-Atelier" class="w10 w12-lsm">
-                    <p class="r no-overflow text-info-alter">
+                    <p class="r no-overflow text-info-alter ">
                         Ofereço diversos serviços na lutheria, visando obter um excelente resultado, com o
                         uso dos mais sofisticados materiais, ao entender o propósito do músico com seu
                         instrumento, tanto na criação quanto nos ajustes deste.
                     </p> 
                 </div>
             </div>
-            <div class="c w3-hmd w12-lsm gap-1 p-footer ccenter-lsm mcenter-lsm mstart-hmd " style="height: 200px;">
-                <h3 class="r mcenter ccenter title-alter">REGISTER NOW</h3>
-                <div class="r ccenter mcenter gap-1">
-                    <input class="sign" type="text" placeholder="Please enter your e-mail" >
-                    <input class="button-sign" type="button" value="Sign Up">
+            <div class="c w3-hmd w12-lsm gap-3 p-footer ccenter-lsm mcenter-lsm mstart-hmd " style="height: 200px;">
+                <h3 class="r mcenter ccenter title-alter no-overflow">REGISTER NOW</h3>
+                <div class="c-lsm r-lmd ccenter mcenter g2-lmd g3-lsm">
+                    <input class="sign input-min" type="text" placeholder="Please enter your e-mail" >
+                    <input class="button-sign bgLight btn-min"type="button" value="Sign Up">
                 </div>
             </div>
-            <div class="r w2-hmd w12-lsm p-footer " >
+            <div class="r w2-hmd w12-lsm p-footer p4-lsm p1-hmd" >
                 <div class="c w12-lsm ccenter-lsm cstart-hmd ">
                     <h3 class="r-lsm m-b-footer title-alter mcenter-lsm mstart-hmd">MENU LINKS</h3>
                     <ul class="c gap-2 no-overflow ">
@@ -218,25 +218,27 @@ require_once "./etc/conf.php";
                     </ul>
                 </div>
             </div>
-            <div class="r w3-hmd w12-lsm p-footer " >
-                <div class="c gap-3 ">
-                    <h3 class="r mcenter ccenter title-alter">CONTACT US</h3>
-                    <div class="r ccenter gap-1 text-info-alter">
-                        <img src="./assets/img/phone-call-min.png" alt="" class="icon-footer">
-                        <p>(11) 98787-0977</p>
-                    </div>
-                    <div class="r ccenter gap-1 text-info-alter">
-                        <img src="./assets/img/email-min.png" alt="" class="icon-footer">
-                        <p>atelierElizeuManoel@outlook.com</p>
-                    </div>
-                    <div class="r ccenter gap-1 text-info-alter">
-                        <img src="./assets/img/home-min.png" alt="" class="icon-footer">
-                        <p>Rua Jaboticabeiras, 52 - Vila Sirena 07051-070</p>
-                    </div>
+            <div class="r w4-hmd w3-llg w12-lsm p-footer p4-lsm p1-hmd p4-lmd mcenter-lmd ccenter-hsm mcenter-hsm" >
+                <div class="c-lsm gap-3 w12-lmd ccenter-lmd c-hmd  ">
+                    <h3 class="r mcenter ccenter title-alter ">CONTACT US</h3>
+                    <section class="c-lsm mcenter-lsm g3-lsm">
+                        <div class="r ccenter gap-1 ">
+                            <img src="./assets/img/phone-call-min.png" alt="" class="icon-footer">
+                            <p class="text-info-alter">(11) 98787-0977</p>
+                        </div>
+                        <div class="r ccenter gap-1 ">
+                            <img src="./assets/img/email-min.png" alt="" class="icon-footer">
+                            <p class="text-info-alter">atelierElizeuManoel@outlook.com</p>
+                        </div>
+                        <div class="r ccenter gap-1 ">
+                            <img src="./assets/img/home-min.png" alt="" class="icon-footer">
+                            <p class="text-info-alter">Rua Jaboticabeiras, 52 - Vila Sirena 07051-070</p>
+                        </div>
+                    </section>
                 </div>
             </div>
         </section>
-        <section class="r ccenter maround w12-lsm bgDark blur-effect " style="height: 100px;">
+        <section class="c-lsm r-lmd ccenter maround w12-lsm bgDark blur-effect " style="height: 100px;">
             <div>
                 <p class="text-info-alter">© 2022 Copyright: <span class="title-alter">TEA</span> </p>
             </div>
