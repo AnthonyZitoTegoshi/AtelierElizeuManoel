@@ -61,8 +61,10 @@ require_once "./etc/conf.php";
     <header class="c mcenter ccenter w12 ns" id="main-banner">
         <span style="min-height: calc(4rem + 40px);"></span>
         <div class="c p4 mcenter ccenter g4 w12 ns">
+            <div class="bgLight" style="height: 8rem; width: 8rem; border-radius: 100%;" >
+                <p></p>
+            </div>
             <!--<img src="./assets/img/Asset-104.png" style="height: 8rem;">-->
-            <div style="border: 1px solid var(--light); width: 8rem; height: 8rem; border-radius: 100%"></div>
             <h2 class="text-center light">ATELIER ELIZEU MANOEL</h2>
             <a class="btn-banner" href="#contact">Contato</a>
         </div>
@@ -203,10 +205,10 @@ require_once "./etc/conf.php";
                     <input class="button-sign bgLight btn-min"type="button" value="Sign Up">
                 </div>
             </div>
-            <div class="r w2-hmd w12-lsm p-footer p4-lsm p1-hmd" >
-                <div class="c w12-lsm ccenter-lsm cstart-hmd ">
+            <div class="r w2-hmd w12-lsm p-footer p4-lsm p1-hmd " style="height: 300px;" >
+                <div class="c w12-lsm ccenter-lsm cstart-hmd m-top">
                     <h3 class="r-lsm m-b-footer title-alter mcenter-lsm mstart-hmd">MENU LINKS</h3>
-                    <ul class="c gap-2 no-overflow ">
+                    <ul class="c gap-2 no-overflow">
                         <li><a class="link-footer" href="#atelier">ATELIER</a></li>
                         <li><a class="link-footer" href="#projects">PROJETOS</a></li>
                         <li><a class="link-footer" href="#services">SERVIÇOS</a></li>
