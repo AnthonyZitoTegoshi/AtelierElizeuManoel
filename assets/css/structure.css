@@ -16,10 +16,11 @@
 **  |-------------------------------------------------------------------|
 **  |- ".g*" é o tamanho do gap de uma row ou column                    |
 **  |-------------------------------------------------------------------|
-**  |- ".o*" é ordem do elemento em uma row ou column                   |
+**  |- ".o*" (seguido de número) é ordem do elemento em uma row ou      |
+**  |column                                                             |
 **  |-------------------------------------------------------------------|
-**  |- ".s" é um elemento scrollable e ".ns" é um elemento não          |
-**  |scrollable                                                         |
+**  |- ".o*" (seguido de "auto", "visible" ou "hidden") é um elemento   |
+**  |com certo tipo de scroll associado ao nome                         |
 **  |-------------------------------------------------------------------|
 **  |- ".w*" é a width e ".h*" é o height do objeto                     |
 **  |-------------------------------------------------------------------|
@@ -67,8 +68,9 @@
 **  |8. Escolha se o elemento deve ter uma ordem específica entre os    |
 **  |elementos da row ou da column (".o1" até ".o12");                  |
 **  |-------------------------------------------------------------------|
-**  |9. Escolha se o elemento deve ou não ser scrollable com ".s" ou    |
-**  |".ns" e em quais dimensões de tela deve permanecer assim;          |
+**  |9. Escolha o tipo de scroll do elemento com ".oauto", ".ovisible"  |
+**  |ou ".ohidden", podendo especicificar em qual eixo adicionando "-x" |
+**  |ou "-y" ao final da classe                                         |
 **  |-------------------------------------------------------------------|
 **  |10. Toda classe, exceto a ".i", pode ser seguida por um tamanho    |
 **  |entre "lsm", "hsm", "lmd", "hmd", "llg", "hlg";                    |
@@ -208,9 +210,17 @@
 .h12 {height: 100%;}
 
 /*--/*--SCROLL--*/
-.s {overflow: auto;}
-.s > * {overflow: visible;}
-.ns {overflow: visible;}
+.oauto {overflow: auto;}
+.ovisible {overflow: visible;}
+.ohidden {overflow: hidden;}
+
+.oauto-x {overflow-x: auto;}
+.ovisible-x {overflow-x: visible;}
+.ohidden-x {overflow-x: hidden;}
+
+.oauto-y {overflow-y: auto;}
+.ovisible-y {overflow-y: visible;}
+.ohidden-y {overflow-y: hidden;}
 
 /*--DISPOSITIVOS_LOW_SMALL--*/
 @media only screen and (min-width: 0px) {
@@ -315,9 +325,17 @@
     .h12-lsm {height: 100%;}
 
     /*--/*--SCROLL--*/
-    .s-lsm {overflow: auto;}
-    .s-lsm > * {overflow: visible;}
-    .ns-lsm {overflow: visible;}
+    .oauto-lsm {overflow: auto;}
+    .ovisible-lsm {overflow: visible;}
+    .ohidden-lsm {overflow: hidden;}
+
+    .oauto-x-lsm {overflow-x: auto;}
+    .ovisible-x-lsm {overflow-x: visible;}
+    .ohidden-x-lsm {overflow-x: hidden;}
+
+    .oauto-y-lsm {overflow-y: auto;}
+    .ovisible-y-lsm {overflow-y: visible;}
+    .ohidden-y-lsm {overflow-y: hidden;}
 }
 
 /*--DISPOSITIVOS_HIGH_SMALL--*/
@@ -423,9 +441,17 @@
     .h12-hsm {height: 100%;}
 
     /*--/*--SCROLL--*/
-    .s-hsm {overflow: auto;}
-    .s-hsm > * {overflow: visible;}
-    .ns-hsm {overflow: visible;}
+    .oauto-hsm {overflow: auto;}
+    .ovisible-hsm {overflow: visible;}
+    .ohidden-hsm {overflow: hidden;}
+
+    .oauto-x-hsm {overflow-x: auto;}
+    .ovisible-x-hsm {overflow-x: visible;}
+    .ohidden-x-hsm {overflow-x: hidden;}
+
+    .oauto-y-hsm {overflow-y: auto;}
+    .ovisible-y-hsm {overflow-y: visible;}
+    .ohidden-y-hsm {overflow-y: hidden;}
 }
 
 /*--DISPOSITIVOS_LOW_MEDIUM--*/
@@ -531,9 +557,17 @@
     .h12-lmd {height: 100%;}
 
     /*--/*--SCROLL--*/
-    .s-lmd {overflow: auto;}
-    .s-lmd > * {overflow: visible;}
-    .ns-lmd {overflow: visible;}
+    .oauto-lmd {overflow: auto;}
+    .ovisible-lmd {overflow: visible;}
+    .ohidden-lmd {overflow: hidden;}
+
+    .oauto-x-lmd {overflow-x: auto;}
+    .ovisible-x-lmd {overflow-x: visible;}
+    .ohidden-x-lmd {overflow-x: hidden;}
+
+    .oauto-y-lmd {overflow-y: auto;}
+    .ovisible-y-lmd {overflow-y: visible;}
+    .ohidden-y-lmd {overflow-y: hidden;}
 }
 
 /*--DISPOSITIVOS_HIGH_MEDIUM--*/
@@ -639,9 +673,17 @@
     .h12-hmd {height: 100%;}
 
     /*--/*--SCROLL--*/
-    .s-hmd {overflow: auto;}
-    .s-hmd > * {overflow: visible;}
-    .ns-hmd {overflow: visible;}
+    .oauto-hmd {overflow: auto;}
+    .ovisible-hmd {overflow: visible;}
+    .ohidden-hmd {overflow: hidden;}
+
+    .oauto-x-hmd {overflow-x: auto;}
+    .ovisible-x-hmd {overflow-x: visible;}
+    .ohidden-x-hmd {overflow-x: hidden;}
+
+    .oauto-y-hmd {overflow-y: auto;}
+    .ovisible-y-hmd {overflow-y: visible;}
+    .ohidden-y-hmd {overflow-y: hidden;}
 }
 
 /*--DISPOSITIVOS_LOW_LARGE--*/
@@ -747,9 +789,17 @@
     .h12-llg {height: 100%;}
 
     /*--/*--SCROLL--*/
-    .s-llg {overflow: auto;}
-    .s-llg > * {overflow: visible;}
-    .ns-llg {overflow: visible;}
+    .oauto-llg {overflow: auto;}
+    .ovisible-llg {overflow: visible;}
+    .ohidden-llg {overflow: hidden;}
+
+    .oauto-x-llg {overflow-x: auto;}
+    .ovisible-x-llg {overflow-x: visible;}
+    .ohidden-x-llg {overflow-x: hidden;}
+
+    .oauto-y-llg {overflow-y: auto;}
+    .ovisible-y-llg {overflow-y: visible;}
+    .ohidden-y-llg {overflow-y: hidden;}
 }
 
 /*--DISPOSITIVOS_HIGH_LARGE--*/
@@ -855,7 +905,15 @@
     .h12-hlg {height: 100%;}
 
     /*--/*--SCROLL--*/
-    .s-hlg {overflow: auto;}
-    .s-hlg > * {overflow: visible;}
-    .ns-hlg {overflow: visible;}
+    .oauto-hlg {overflow: auto;}
+    .ovisible-hlg {overflow: visible;}
+    .ohidden-hlg {overflow: hidden;}
+
+    .oauto-x-hlg {overflow-x: auto;}
+    .ovisible-x-hlg {overflow-x: visible;}
+    .ohidden-x-hlg {overflow-x: hidden;}
+
+    .oauto-y-hlg {overflow-y: auto;}
+    .ovisible-y-hlg {overflow-y: visible;}
+    .ohidden-y-hlg {overflow-y: hidden;}
 }
