@@ -77,7 +77,22 @@ window.addEventListener("scroll", function () {
 function setSvgColors() {
     var svgs = window.document.getElementsByTagName("svg");
     for (var i = 0; i < svgs.length; i++) {
-        svgs[i].setAttribute("fill", dark);
+        switch (svgs[i].getAttribute("fill")) {
+            case "light":
+                svgs[i].setAttribute("fill", light);
+                break;
+            case "primary":
+                svgs[i].setAttribute("fill", primary);
+                break;
+            case "primaryDarker":
+                svgs[i].setAttribute("fill", primaryDarker);
+                break;
+            case "primaryLighter":
+                svgs[i].setAttribute("fill", primaryLighter);
+                break;
+            default:
+                svgs[i].setAttribute("fill", dark);
+        }
     }
 }
 
