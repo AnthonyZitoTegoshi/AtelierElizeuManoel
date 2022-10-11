@@ -413,6 +413,7 @@ input.button-sign {
   height: 2px;
   border-radius: 4px;
   background-color: white;
+  transform-origin: right;
   bottom: 0;
   transform: scaleX(0);
   transition: transform 0.4s ease-in-out;
