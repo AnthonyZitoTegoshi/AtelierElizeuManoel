@@ -1,7 +1,10 @@
 <?php
 
-// Inicia ou resume uma sessão
-session_start();
+// Verifica se nenhuma sessão está criada
+if (session_status() == PHP_SESSION_NONE) {
+    // Inicia ou resume uma sessão
+    session_start();
+}
 
 // Verifica qual é o local em que o código está sendo executado
 if ($_SERVER["HTTP_HOST"] == "localhost") {
@@ -30,6 +33,6 @@ if ($_SERVER["HTTP_HOST"] == "localhost") {
 
 // Seta a tabela de usuário e seus campos
 $_SESSION["CONNECTION"]["DATABASE"]["TABLES"]["USERS"]["NAME"] = "Users";
-$_SESSION["CONNECTION"]["DATABASE"]["TABLES"]["USERS"]["FIELDS"] = array("id", "name", "email", "password"); // !change
+$_SESSION["CONNECTION"]["DATABASE"]["TABLES"]["USERS"]["FIELDS"] = array("id", "name", "email", "password");
 
 ?>
