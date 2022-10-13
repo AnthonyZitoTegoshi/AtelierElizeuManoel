@@ -445,13 +445,20 @@ input.button-sign {
   color: var(--light);
 }
 
-.text-input-wrapper {
-  border: 1px solid var(--dark);
+.text-input-wrapper, .text-input-wrapper-error {
   border-radius: 99999px;
   padding: 5px 10px;
 }
 
-.text-input-wrapper:focus-within {
+.text-input-wrapper {
+  border: 1px solid var(--dark);
+}
+
+.text-input-wrapper-error {
+  border: 1px solid red; /*!change*/
+}
+
+.text-input-wrapper:focus-within, .text-input-wrapper-error:focus-within {
   outline: 2px solid var(--primary-lighter);
 }
 
@@ -486,6 +493,13 @@ input.submit-button:focus-within {
 
 .forgot-password-link:focus-within {
   outline: 2px solid var(--primary-lighter);
+}
+
+.error-tooltip {
+  display: block;
+  position: absolute;
+  left: 100%;
+  background-color: red; /*!change*/
 }
 
 .hidden{
@@ -566,6 +580,14 @@ input.submit-button:focus-within {
 
 .gap-3{
   gap: 25px;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
 }
 
 
