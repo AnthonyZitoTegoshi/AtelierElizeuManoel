@@ -1,6 +1,6 @@
 <?php
 
-require_once "./etc/conf.php";
+require_once(__DIR__ . "/etc/conf.php");
 
 ?>
 <!DOCTYPE html>

@@ -1,6 +1,35 @@
 <?php
 
-require_once "./etc/conf.php";
+require_once(__DIR__ . "/etc/conf.php");
+require_once(__DIR__ . "/etc/autoload.php");
+
+$sentForm = isset($_POST["email"]) && isset($_POST["password"]);
+$isValidEmail = TRUE;
+$isValidPassword = TRUE;
+$isLogged = FALSE;
+
+if ($sentForm) {
+    // !todo: Fazer os inputs já preenchidos continuarem preenchidos quando a página é chamada novamente
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    // !todo: Fazer alguma coisa quanto a esses valores no input (tipo informar que o campo está inválido)
+    $isValidEmail = InputHelper::isValidEmail($email);
+    $isValidPassword = InputHelper::isValidPassword($password);
+
+    if ($isValidEmail && $isValidPassword) {
+        $user = new UserModel(0, "", $email, $password);
+        $connection = new DatabaseConnection();
+        $userDao = new UserDao();
+        // !todo: Evitar injeção SQL
+        $userDao->setComplement("WHERE " . $userDao->getFields()[2] . " = \"$email\" AND " . $userDao->getFields()[3] . " = \"$password\"");
+        if (count($connection->query($userDao->readQuery())) == 1) {
+            $isLogged = TRUE;
+        }
+    }
+} else {
+    // !todo: Fazer a validação se o usuário já está previamente logado (com cookie ou algo assim)
+}
 
 ?>
 <!DOCTYPE html>
@@ -27,9 +56,9 @@ require_once "./etc/conf.php";
                         <svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M9.417 29.083q2.458-1.75 5.062-2.729 2.604-.979 5.521-.979t5.542.979q2.625.979 5.083 2.729Q32.333 27 33.104 24.75q.771-2.25.771-4.75 0-5.875-4-9.875t-9.875-4q-5.875 0-9.875 4t-4 9.875q0 2.5.792 4.75.791 2.25 2.5 4.333ZM20 21.375q-2.417 0-4.083-1.667-1.667-1.666-1.667-4.083 0-2.417 1.667-4.083Q17.583 9.875 20 9.875q2.417 0 4.083 1.667 1.667 1.666 1.667 4.083 0 2.458-1.667 4.104-1.666 1.646-4.083 1.646Zm0 15.292q-3.417 0-6.458-1.313-3.042-1.312-5.313-3.583t-3.583-5.292Q3.333 23.458 3.333 20t1.313-6.479Q5.958 10.5 8.229 8.229t5.292-3.583Q16.542 3.333 20 3.333t6.479 1.313q3.021 1.312 5.292 3.583t3.583 5.292q1.313 3.021 1.313 6.479 0 3.417-1.313 6.458-1.312 3.042-3.583 5.313t-5.292 3.583Q23.458 36.667 20 36.667Zm0-2.792q2.25 0 4.375-.646t4.083-2.187q-1.958-1.375-4.083-2.125T20 28.167q-2.25 0-4.375.75t-4.083 2.125q1.958 1.541 4.083 2.187 2.125.646 4.375.646Zm0-15.25q1.292 0 2.125-.833.833-.834.833-2.167 0-1.292-.833-2.125T20 12.667q-1.292 0-2.125.833t-.833 2.125q0 1.333.833 2.167.833.833 2.125.833Zm0-3Zm0 15.417Z"/></svg>
                         <p class="text-info" style="text-indent: 0;">LOGIN</p>
                     </div>
-                    <label class="r mcenter ccenter g1 w12 hauto text-input-wrapper" for="username">
+                    <label class="r mcenter ccenter g1 w12 hauto text-input-wrapper" for="email">
                         <svg class="i wauto hauto ovisible" xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M3.5 16q-.625 0-1.062-.438Q2 15.125 2 14.5v-9q0-.625.438-1.062Q2.875 4 3.5 4h13q.625 0 1.062.438Q18 4.875 18 5.5v9q0 .625-.438 1.062Q17.125 16 16.5 16Zm6.5-5L3.5 7.271V14.5h13V7.271Zm0-1.771L16.5 5.5h-13ZM3.5 7.271V5.5v9Z"/></svg>
-                        <input class="i text-input" type="email" name="username" id="username" placeholder="Email">
+                        <input class="i text-input" type="email" name="email" id="email" placeholder="Email">
                     </label>
                     <div class="c mcenter cend g1 w12 hauto ovisible">
                         <label class="r mcenter ccenter g1 w12 hauto text-input-wrapper" for="password">
@@ -38,7 +67,7 @@ require_once "./etc/conf.php";
                         </label>
                         <a class="i wauto hauto ovisible forgot-password-link" href="<?=$_SESSION["ROOT_PATH"] . "/#home"?>">Esqueci minha senha</a>
                     </div>
-                    <input class="i submit-button" type="button" value="Login">
+                    <input class="i submit-button" type="submit" value="Login">
                 </form>
             </div>
         </section>
