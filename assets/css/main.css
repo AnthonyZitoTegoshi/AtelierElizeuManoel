@@ -568,9 +568,6 @@ input.submit-button:focus-within {
   gap: 25px;
 }
 
-.m-top{
-  margin-top: 10%;
-}
 
 .sign{
   border: none;
@@ -616,6 +613,10 @@ input.submit-button:focus-within {
     width: 175px;
   }
 
+  .m-top{
+    margin-top: 3%;
+  }
+
 }
 
 @media only screen and (min-width: 400px) {
@@ -657,6 +658,12 @@ input.submit-button:focus-within {
     border-radius: 20px;
     width: 150px;
   }
+
+  .m-top{
+    margin-top: 12%;
+  }
+
+
   
 }
 
@@ -687,6 +694,14 @@ input.submit-button:focus-within {
       transition-property: background-color;
       
     }
+
+    .m-top{
+      margin-top: 15%;
+    }
+
+    
+
+    
   
   
 }

@@ -135,6 +135,15 @@
 .p3 {padding: 15px;}
 .p4 {padding: 20px;}
 
+/*--/*--ELEMENT_MARGIN--*/
+
+.m1{margin: 5px;}
+.m2{margin: 10px;}
+.m3{margin: 15px;}
+.m4{margin: 20px;}
+.m5{margin: 25px;}
+
+
 /*--/*--EIXO_PRINCIPAL--*/
 .mstart {justify-content: flex-start;}
 .mcenter {justify-content: center;}

@@ -191,53 +191,49 @@ require_once "./etc/conf.php";
     </section>
     <!-------------------------------------------------------RODAPÉ----------------------------------------------------->
     <footer class="c mcenter ccenter w12 hauto bgDark" id="main-footer">
-        <section class="c mcenter ccenter w12 hauto">
-            <div class="c r-lmd p4 mcenter mevenly-lmd cstretch g4 w12 w11-lmd w10-hmd w8-llg w6-hlg hauto">
-                <div class="c r-llg mevenly ccenter g4 w12 w6-lmd hauto">
-                    <div class="c mcenter ccenter w12 hauto">
-                        <a class="i wmax hauto main-menu-link ovisible" href="#home"><img class="i wauto ovisible" style="height: 4rem;" src="./assets/img/atelier_logo_light.svg" alt="Atelier Elizeu Manoel"></a>
-                        <p class="i p4 ohidden-y text-info-alter">&ldquo;Visando a excelência, ofereço os mais variados serviços na lutheria com o uso dos mais sofisticados materiais. Reconheço o propósito do músico com seu instrumento e estou disposto a colaborar tanto com a criação quanto com os ajustes necessários nessa jornada.&rdquo;</p>
-                    </div>
-                    <div class="c p4 mcenter ccenter g4 w12 hauto">
-                        <h3 class="i title-alter text-center">REGISTER NOW</h3>
-                        <div class="r mcenter ccenter g2 ovisible">
-                            <input class="sign input-min" type="text" placeholder="Digite seu email">
-                            <input class="button-sign bgLight btn-min" type="button" value="Registrar-se">
-                        </div>
-                    </div>
+    <section class="r-hmd c-lsm ccenter-lsm mevenly-lsm bgDark w12-lsm " >
+        <div class="r w3-hmd w12-lsm w6-lmd w2-llg" style="height: 300px;">
+                <div class="c-lsm mstart ccenter w12 p-footer" >
+                    <a class="i wmax hauto main-menu-link" href="#home"><img class="i wauto" style="height: 4rem;" src="./assets/img/atelier_logo_light.svg" alt="Atelier Elizeu Manoel"></a>
+                    <p class="r no-overflow text-info-alter">&ldquo;Visando a excelência, ofereço os mais variados serviços na lutheria com o uso dos mais sofisticados materiais. Reconheço o propósito do músico com seu instrumento e estou disposto a colaborar tanto com a criação quanto com os ajustes necessários nessa jornada.&rdquo;</p>
                 </div>
-                <div class="c r-llg mevenly ccenter g4 w12 w6-lmd hauto">
-                    <div class="r w2-hmd w12-lsm p-footer p4-lsm p1-hmd">
-                        <div class="c w12-lsm ccenter-lsm cstart-hmd m-top">
-                            <h3 class="r-lsm m-b-footer title-alter mcenter-lsm mstart-hmd">MENU LINKS</h3>
-                            <ul class="c gap-2 no-overflow">
-                                <li><a class="link-footer" href="#atelier">ATELIER</a></li>
-                                <li><a class="link-footer" href="#projects">PROJETOS</a></li>
-                                <li><a class="link-footer" href="#services">SERVIÇOS</a></li>
-                                <li><a class="link-footer" href="#contact">CONTATO</a></li>
-                                <li><a class="link-footer" href="<?="$ROOT_PATH/login.php"?>">LOGIN</a></li>
-                            </ul>
+            </div>
+            <div class="c w3-hmd w12-lsm gap-3 p-footer ccenter-lsm mcenter-lsm mstart-hmd w3-llg" style="height: 200px;">
+                <h3 class="r mcenter ccenter title-alter no-overflow">REGISTER NOW</h3>
+                <div class="c-lsm r-llg ccenter mcenter g2-lmd g3-lsm">
+                    <input class="sign input-min" type="text" placeholder="Please enter your e-mail" >
+                    <input class="button-sign bgLight btn-min"type="button" value="Sign Up">
+                </div>
+            </div>
+            <div class="r w2-hmd w12-lsm p-footer p4-lsm p1-hmd w1-hmd w1-llg" style="height: 300px;" >
+                <div class="c w12-lsm ccenter-lsm cstart-hmd m-top">
+                    <h3 class="r-lsm m-b-footer title-alter mcenter-lsm mstart-hmd no-overflow">MENU LINKS</h3>
+                    <ul class="c gap-2 no-overflow">
+                        <li><a class="link-footer" href="#atelier">ATELIER</a></li>
+                        <li><a class="link-footer" href="#projects">PROJETOS</a></li>
+                        <li><a class="link-footer" href="#services">SERVIÇOS</a></li>
+                        <li><a class="link-footer" href="#contact">CONTATO</a></li>
+                        <li><a class="link-footer" href="https://hostdeprojetosdoifsp.gru.br/atelier/login.php">LOGIN</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="r w5-hmd w4-llg w12-lsm w5-hmd mcenter-lmd ccenter-hsm mcenter-hsm p-footer p4-llg " >
+                <div class="c-lsm gap-3 w12-lmd ccenter-lmd c-hmd  ">
+                    <h3 class="r mcenter ccenter title-alter ">CONTACT US</h3>
+                    <section class="c-lsm mcenter-lsm g3-lsm">
+                        <div class="r ccenter gap-1 ">
+                            <svg class="i wauto hauto" xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="light"><path d="M15.896 16.979q-2.563-.208-4.834-1.281-2.27-1.073-3.989-2.802-1.719-1.729-2.802-4T3 4.062q-.042-.437.26-.76T4 2.979h2.833q.355 0 .615.209.26.208.344.562l.5 2.229q.041.25-.021.5-.063.25-.25.438L6 8.958q.875 1.584 2.146 2.854Q9.417 13.083 11 13.958l2.062-2q.209-.208.459-.26.25-.052.479-.01l2.229.479q.354.083.563.354.208.271.208.625v2.833q0 .563-.396.792-.396.229-.708.208ZM5.312 7.5l1.459-1.458-.354-1.563H4.542q.104.792.291 1.542.188.75.479 1.479Zm7.167 7.167q.729.291 1.49.468.76.177 1.531.282v-1.875l-1.562-.334ZM5.312 7.5Zm7.167 7.167Z"/></svg>
+                            <p class="text-info-alter">(11) 96099-5554</p>
                         </div>
-                    </div>
-                    <div class="r w4-hmd w3-llg w12-lsm p-footer p4-lsm p1-hmd p4-lmd mcenter-lmd ccenter-hsm mcenter-hsm" >
-                        <div class="c-lsm gap-3 w12-lmd ccenter-lmd c-hmd  ">
-                            <h3 class="r mcenter ccenter title-alter ">CONTACT US</h3>
-                            <section class="c-lsm mcenter-lsm g3-lsm">
-                                <div class="r ccenter gap-1 ">
-                                    <svg class="i wauto hauto" xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="light"><path d="M15.896 16.979q-2.563-.208-4.834-1.281-2.27-1.073-3.989-2.802-1.719-1.729-2.802-4T3 4.062q-.042-.437.26-.76T4 2.979h2.833q.355 0 .615.209.26.208.344.562l.5 2.229q.041.25-.021.5-.063.25-.25.438L6 8.958q.875 1.584 2.146 2.854Q9.417 13.083 11 13.958l2.062-2q.209-.208.459-.26.25-.052.479-.01l2.229.479q.354.083.563.354.208.271.208.625v2.833q0 .563-.396.792-.396.229-.708.208ZM5.312 7.5l1.459-1.458-.354-1.563H4.542q.104.792.291 1.542.188.75.479 1.479Zm7.167 7.167q.729.291 1.49.468.76.177 1.531.282v-1.875l-1.562-.334ZM5.312 7.5Zm7.167 7.167Z"/></svg>
-                                    <p class="text-info-alter">(11) 96099-5554</p>
-                                </div>
-                                <div class="r ccenter gap-1 ">
-                                    <svg class="i wauto hauto" xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="light"><path d="M3.5 16q-.625 0-1.062-.438Q2 15.125 2 14.5v-9q0-.625.438-1.062Q2.875 4 3.5 4h13q.625 0 1.062.438Q18 4.875 18 5.5v9q0 .625-.438 1.062Q17.125 16 16.5 16Zm6.5-5L3.5 7.271V14.5h13V7.271Zm0-1.771L16.5 5.5h-13ZM3.5 7.271V5.5v9Z"/></svg>
-                                    <p class="text-info-alter">atelierelizeumanoel@gmail.com</p>
-                                </div>
-                                <div class="r ccenter gap-1 ">
-                                    <svg class="i wauto hauto" xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="light"><path d="M10 10.042q.708 0 1.208-.5t.5-1.209q0-.708-.5-1.208T10 6.625q-.708 0-1.208.5t-.5 1.208q0 .709.5 1.209.5.5 1.208.5ZM10 16q2.521-2.312 3.719-4.177 1.198-1.865 1.198-3.323 0-2.271-1.417-3.677-1.417-1.406-3.5-1.406T6.5 4.823Q5.083 6.229 5.083 8.5q0 1.458 1.198 3.323T10 16Zm0 2.333q-3.354-2.895-5.01-5.312Q3.333 10.604 3.333 8.5q0-3.146 2-4.99 2-1.843 4.667-1.843t4.667 1.843q2 1.844 2 4.99 0 2.104-1.657 4.521-1.656 2.417-5.01 5.312ZM10 8.5Z"/></svg>
-                                    <p class="text-info-alter">Rua Jaboticabeiras, 52 - Vila Sirena 07051-070 - Guarulhos/SP</p>
-                                </div>
-                            </section>
+                        <div class="r ccenter gap-1 ">
+                            <svg class="i wauto hauto" xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="light"><path d="M3.5 16q-.625 0-1.062-.438Q2 15.125 2 14.5v-9q0-.625.438-1.062Q2.875 4 3.5 4h13q.625 0 1.062.438Q18 4.875 18 5.5v9q0 .625-.438 1.062Q17.125 16 16.5 16Zm6.5-5L3.5 7.271V14.5h13V7.271Zm0-1.771L16.5 5.5h-13ZM3.5 7.271V5.5v9Z"/></svg>
+                            <p class="text-info-alter">atelierelizeumanoel@gmail.com</p>
                         </div>
-                    </div>
+                        <div class="r ccenter gap-1 ">
+                            <svg class="i wauto hauto" xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="light"><path d="M10 10.042q.708 0 1.208-.5t.5-1.209q0-.708-.5-1.208T10 6.625q-.708 0-1.208.5t-.5 1.208q0 .709.5 1.209.5.5 1.208.5ZM10 16q2.521-2.312 3.719-4.177 1.198-1.865 1.198-3.323 0-2.271-1.417-3.677-1.417-1.406-3.5-1.406T6.5 4.823Q5.083 6.229 5.083 8.5q0 1.458 1.198 3.323T10 16Zm0 2.333q-3.354-2.895-5.01-5.312Q3.333 10.604 3.333 8.5q0-3.146 2-4.99 2-1.843 4.667-1.843t4.667 1.843q2 1.844 2 4.99 0 2.104-1.657 4.521-1.656 2.417-5.01 5.312ZM10 8.5Z"/></svg>
+                            <p class="text-info-alter">Rua Jaboticabeiras, 52 - Vila Sirena 07051-070 - Guarulhos/SP</p>
+                        </div>
+                    </section>
                 </div>
             </div>
         </section>
