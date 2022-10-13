@@ -11,7 +11,7 @@ function getFilesWithExtension($dirPath, $fileExtension) {
 			// Verifica se o arquivo é válido (não é "." ou "..")
 			if ($file != "." && $file != "..") {
 				// Acha o caminho completo do arquivo
-				$filePath = $dirPath . "\\" . $file;
+				$filePath = $dirPath . "/" . $file;
 				// Verifica se o arquivo é um diretório
 				if (is_dir($filePath)) {
 					// Busca os arquivos dentro desse diretório
@@ -39,7 +39,7 @@ function getFilesWithExtension($dirPath, $fileExtension) {
 // Função para carregar os arquivos automaticamente
 spl_autoload_register(function ($classname) {
     // Pega todos os arquivos que podem ser a classe requisitada
-    $files = getFilesWithExtension(__DIR__ . "\\..", "$classname.class.php");
+    $files = getFilesWithExtension(__DIR__ . "/..", "$classname.class.php");
     // Requer todos os arquivos
     foreach ($files as $file) {
         require_once($file);
