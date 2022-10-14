@@ -13,9 +13,9 @@ if ($_SERVER["HTTP_HOST"] == "localhost") {
     // Seta o host para conexão com BD
     $_SESSION["CONNECTION"]["HOSTNAME"] = "localhost"; // !change
     // Seta o usuário para conexão com BD
-    $_SESSION["CONNECTION"]["USERNAME"] = "root";
+    $_SESSION["CONNECTION"]["USERNAME"] = "anthony";
     // Seta a senha para conexão com BD
-    $_SESSION["CONNECTION"]["PASSWORD"] = "senha";
+    $_SESSION["CONNECTION"]["PASSWORD"] = "123456";
     // Seta o banco de dados para conexão
     $_SESSION["CONNECTION"]["DATABASE"]["NAME"] = "atelier";
 } else {
