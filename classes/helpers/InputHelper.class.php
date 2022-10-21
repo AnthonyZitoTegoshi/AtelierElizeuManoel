@@ -11,9 +11,13 @@ class InputHelper {
     static function isValidPassword($password) {
         if ($password == NULL || $password == "") {
             return FALSE;
+            echo "<h1>error</h1>";
         }
         return TRUE;
     }
+
 }
+
+
 
 ?>

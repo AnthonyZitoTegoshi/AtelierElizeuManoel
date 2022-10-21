@@ -41,6 +41,7 @@ if ($sentForm) {
     <link rel="stylesheet" href="./assets/css/structure.css">
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="shortcut icon" href="./assets/img/atelier_logo_tiny.svg" type="image/svg+xml">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Atelier Elizeu Manoel - Login</title>
 </head>
 <body style="overflow: hidden;">
@@ -58,16 +59,21 @@ if ($sentForm) {
                     </div>
                     <label class="r mcenter ccenter g1 w12 hauto text-input-wrapper" for="email">
                         <svg class="i wauto hauto ovisible" xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M3.5 16q-.625 0-1.062-.438Q2 15.125 2 14.5v-9q0-.625.438-1.062Q2.875 4 3.5 4h13q.625 0 1.062.438Q18 4.875 18 5.5v9q0 .625-.438 1.062Q17.125 16 16.5 16Zm6.5-5L3.5 7.271V14.5h13V7.271Zm0-1.771L16.5 5.5h-13ZM3.5 7.271V5.5v9Z"/></svg>
-                        <input class="i text-input" type="email" name="email" id="email" placeholder="Email">
+                        <input class="i text-input " type="email" name="email" id="email" placeholder="Email">
                     </label>
+                    <div class="error" id="email-error">E-mail inválido</div>
+                    <div class="error" id="email-required">E-mail é obrigatório</div>
                     <div class="c mcenter cend g1 w12 hauto ovisible">
                         <label class="r mcenter ccenter g1 w12 hauto text-input-wrapper" for="password">
                             <svg class="i wauto hauto ovisible" xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M2 15v-1.5h16V15Zm.896-4.917-1.292-.75.604-1.041H1v-1.5h1.208L1.604 5.75 2.896 5 3.5 6.042 4.104 5l1.292.75-.604 1.042H6v1.5H4.792l.604 1.041-1.292.75L3.5 9.042Zm6.5 0-1.292-.75.604-1.041H7.5v-1.5h1.208L8.104 5.75 9.396 5 10 6.042 10.604 5l1.292.75-.604 1.042H12.5v1.5h-1.208l.604 1.041-1.292.75L10 9.042Zm6.5 0-1.292-.75.604-1.041H14v-1.5h1.208l-.604-1.042L15.896 5l.604 1.042L17.104 5l1.292.75-.604 1.042H19v1.5h-1.208l.604 1.041-1.292.75-.604-1.041Z"/></svg>
                             <input class="i text-input" type="password" name="password" id="password" placeholder="Senha">
+                            
                         </label>
+                        <div class="r mcenter ccenter error">Senha é obrigatória</div>
                         <a class="i wauto hauto ovisible forgot-password-link" href="<?=$_SESSION["ROOT_PATH"] . "/#home"?>">Esqueci minha senha</a>
                     </div>
-                    <input class="i submit-button" type="submit" value="Login">
+                    
+                    <input class="i submit-button" type="submit" value="Login" id="btn-confirm">
                 </form>
             </div>
         </section>

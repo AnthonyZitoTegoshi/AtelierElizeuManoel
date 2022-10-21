@@ -514,3 +514,30 @@ function adjustWhatsappButton() {
         }
     }
 }
+
+/* Error popup in login.php */
+
+function ErrorEmailRequired (e) {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+    if (email == "") {
+        document.getElementById('email-required').style.display="block";
+    }
+    else{
+        document.getElementById('email-required').style.display="none";
+    }
+
+    if (EmailValid(email) || email=="") {
+        document.getElementById('email-error').style.display="none";
+    }
+    else{
+        document.getElementById('email-error').style.display="block";
+    }
+}
+
+function EmailValid(email) { 
+    return /^[A-Za-z0-9_\.]{1,}@[A-Za-z0-9_\.]{1,}\.[A-Za-z0-9_\.]{1,}$/.test(email)
+}
+
+buttonConfirm = document.getElementById("email");
+buttonConfirm.addEventListener("change", ErrorEmailRequired);

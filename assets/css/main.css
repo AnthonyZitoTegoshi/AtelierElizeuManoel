@@ -705,3 +705,15 @@ input.submit-button:focus-within {
   
   
 }
+
+
+
+.error{
+  display: none;
+  padding: 1% 20%;
+  border-radius: 5px;
+  background-color: #FDCAC4;
+  color: #ED6160;
+  
+}
+
