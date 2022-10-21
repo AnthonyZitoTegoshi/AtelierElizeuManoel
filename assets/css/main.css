@@ -721,7 +721,6 @@ input.submit-button:focus-within {
       margin-top: 15%;
     }
   
-<<<<<<< HEAD
   
 }
 
@@ -736,8 +735,7 @@ input.submit-button:focus-within {
   
 }
 
-=======
-}
+
 
 .login {
   align-items: center;
@@ -760,4 +758,3 @@ input.submit-button:focus-within {
 .login:hover {
   background-color: #111827;
 }
->>>>>>> cc90696f6c28f1beb9ad7d85853e05577143445c
