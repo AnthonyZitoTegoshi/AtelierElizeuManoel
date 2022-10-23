@@ -6,11 +6,11 @@ require_once(__DIR__ . "/../../etc/conf.php");
 require_once(__DIR__ . "/Dao.class.php");
 
 // Classe para executar as queries na conexão com BD
-class UserDao extends Dao {
+class LoginDao extends Dao {
     // Construtor para setar os atributos para valores iniciais
     function __construct($values = array(), $complement = "") {
-        $tablename = $_SESSION["CONFIGURATION"]->getConnection()->getDatabase()->getUsersTable()->getName();
-        $fields = $_SESSION["CONFIGURATION"]->getConnection()->getDatabase()->getUsersTable()->getFields();
+        $tablename = $_SESSION["CONFIGURATION"]->getConnection()->getDatabase()->getLoginsTable()->getName();
+        $fields = $_SESSION["CONFIGURATION"]->getConnection()->getDatabase()->getLoginsTable()->getFields();
         parent::__construct($tablename, $fields, $values, $complement);
     }
 }

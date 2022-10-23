@@ -8,10 +8,10 @@ require_once(__DIR__ . "/etc/conf.php");
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?=$_SESSION["ROOT_PATH"] . "/assets/css/reset.css"?>">
-    <link rel="stylesheet" href="<?=$_SESSION["ROOT_PATH"] . "/assets/css/structure.css"?>">
-    <link rel="stylesheet" href="<?=$_SESSION["ROOT_PATH"] . "/assets/css/main.css"?>">
-    <link rel="shortcut icon" href="<?=$_SESSION["ROOT_PATH"] . "/assets/img/atelier_logo_tiny.svg"?>" type="image/svg+xml">
+    <link rel="stylesheet" href="<?=$_SESSION["CONFIGURATION"]->getRootPath() . "/assets/css/reset.css"?>">
+    <link rel="stylesheet" href="<?=$_SESSION["CONFIGURATION"]->getRootPath() . "/assets/css/structure.css"?>">
+    <link rel="stylesheet" href="<?=$_SESSION["CONFIGURATION"]->getRootPath() . "/assets/css/main.css"?>">
+    <link rel="shortcut icon" href="<?=$_SESSION["CONFIGURATION"]->getRootPath() . "/assets/img/atelier_logo_tiny.svg"?>" type="image/svg+xml">
     <title>Atelier Elizeu Manoel</title>
 </head>
 <body style="overflow: hidden;">
@@ -26,7 +26,7 @@ require_once(__DIR__ . "/etc/conf.php");
                 <!--<li class="i wmax"><a class="i wmax main-menu-link hover-line-bottom retractable-menu-option" href="#projects">PROJETOS</a></li>-->
                 <li class="i wmax"><a class="i wmax main-menu-link hover-line-bottom retractable-menu-option" href="#services">SERVIÇOS</a></li>
                 <li class="i wmax"><a class="i wmax main-menu-link hover-line-bottom retractable-menu-option" href="#contact">CONTATO</a></li>
-                <li class="i wmax"><a class="i wmax main-menu-link hover-line-bottom retractable-menu-option" href="<?=$_SESSION["ROOT_PATH"] . "/login.php"?>">LOGIN</a></li>
+                <li class="i wmax"><a class="i wmax main-menu-link hover-line-bottom retractable-menu-option" href="<?=$_SESSION["CONFIGURATION"]->getRootPath() . "/login.php"?>">LOGIN</a></li>
                 <button class="main-menu-link retractable-menu-retractor" data-toggle="retracted-main-menu-lsm" data-alternate="true" title="Menu de links">
                     <svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M5 30v-2.792h30V30Zm0-8.625v-2.75h30v2.75Zm0-8.583V10h30v2.792Z"/></svg>
                     <svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" style="transform: rotate(180deg);"><path d="M5 30v-2.792h21.667V30Zm28.042-2-8-8.042 8-8 1.958 2-6.042 6 6.084 6.084ZM5 21.333v-2.791h16.667v2.791Zm0-8.541V10h21.667v2.792Z"/></svg>
@@ -44,7 +44,7 @@ require_once(__DIR__ . "/etc/conf.php");
                 <!--<li class="i w12"><a class="r mend ccenter g2 w12 main-menu-link text-right" href="#projects">PROJETOS<span class="i wauto hauto"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M3.75 7.5h12.5l-.792-2H4.542Zm6.25-1ZM14 9H5.771L5.5 10.5h8.771ZM3 16l1.271-7H3q-.542 0-.854-.448-.313-.448-.084-.927l1.209-3q.125-.292.375-.458Q3.896 4 4.208 4h11.584q.312 0 .562.167.25.166.375.458l1.209 3q.229.479-.084.927Q17.542 9 17 9h-1.5l1.271 7h-1.5l-.729-4H5.229L4.5 16Z"/></svg></a</span>></li>-->
                 <li class="i w12"><a class="r mend ccenter g2 w12 main-menu-link text-right" href="#services">SERVIÇOS<span class="i wauto hauto"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M3 16V8.5q0-.625.438-1.062Q3.875 7 4.5 7h2V5.5q0-.625.438-1.062Q7.375 4 8 4h4q.625 0 1.062.438.438.437.438 1.062V7h2q.625 0 1.062.438Q17 7.875 17 8.5V16Zm1.5-1.5h11v-2.25h-1.271V13h-1.5v-.75H7.292V13h-1.5v-.75H4.5Zm0-6v2.25h1.292V10h1.5v.75h5.437V10h1.5v.75H15.5V8.5h-11ZM8 7h4V5.5H8Z"/></svg></span></a></li>
                 <li class="i w12"><a class="r mend ccenter g2 w12 main-menu-link text-right" href="#contact">CONTATO<span class="i wauto hauto"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M15.896 16.979q-2.563-.208-4.834-1.281-2.27-1.073-3.989-2.802-1.719-1.729-2.802-4T3 4.062q-.042-.437.26-.76T4 2.979h2.833q.355 0 .615.209.26.208.344.562l.5 2.229q.041.25-.021.5-.063.25-.25.438L6 8.958q.875 1.584 2.146 2.854Q9.417 13.083 11 13.958l2.062-2q.209-.208.459-.26.25-.052.479-.01l2.229.479q.354.083.563.354.208.271.208.625v2.833q0 .563-.396.792-.396.229-.708.208ZM5.312 7.5l1.459-1.458-.354-1.563H4.542q.104.792.291 1.542.188.75.479 1.479Zm7.167 7.167q.729.291 1.49.468.76.177 1.531.282v-1.875l-1.562-.334ZM5.312 7.5Zm7.167 7.167Z"/></svg></span></a></li>
-                <li class="i w12"><a class="r mend ccenter g2 w12 main-menu-link text-right" href="<?=$_SESSION["ROOT_PATH"] . "/login.php"?>">LOGIN<span class="i wauto hauto"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M10 17v-1.5h5.5v-11H10V3h5.5q.625 0 1.062.438Q17 3.875 17 4.5v11q0 .625-.438 1.062Q16.125 17 15.5 17Zm-1.5-3.5-1.062-1.062 1.687-1.688H3v-1.5h6.125L7.438 7.562 8.5 6.5 12 10Z"/></svg></span></a></li>
+                <li class="i w12"><a class="r mend ccenter g2 w12 main-menu-link text-right" href="<?=$_SESSION["CONFIGURATION"]->getRootPath() . "/login.php"?>">LOGIN<span class="i wauto hauto"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M10 17v-1.5h5.5v-11H10V3h5.5q.625 0 1.062.438Q17 3.875 17 4.5v11q0 .625-.438 1.062Q16.125 17 15.5 17Zm-1.5-3.5-1.062-1.062 1.687-1.688H3v-1.5h6.125L7.438 7.562 8.5 6.5 12 10Z"/></svg></span></a></li>
             </div>
         </div>
         <div class="i oauto" id="retracted-main-menu-lmd" style="display: none;">
@@ -53,7 +53,7 @@ require_once(__DIR__ . "/etc/conf.php");
                 <!--<li class="i w12"><a class="i w12 main-menu-link hover-color-change text-center" href="#projects">PROJETOS</a></li>-->
                 <li class="i w12"><a class="i w12 main-menu-link hover-color-change text-center" href="#services">SERVIÇOS</a></li>
                 <li class="i w12"><a class="i w12 main-menu-link hover-color-change text-center" href="#contact">CONTATO</a></li>
-                <li class="i w12"><a class="i w12 main-menu-link hover-color-change text-center" href="<?=$_SESSION["ROOT_PATH"] . "/login.php"?>">LOGIN</a></li>
+                <li class="i w12"><a class="i w12 main-menu-link hover-color-change text-center" href="<?=$_SESSION["CONFIGURATION"]->getRootPath() . "/login.php"?>">LOGIN</a></li>
             </div>
         </div>
     </nav>
@@ -272,7 +272,7 @@ require_once(__DIR__ . "/etc/conf.php");
                         <li><a class="link-footer" href="#projects">PROJETOS</a></li>
                         <li><a class="link-footer" href="#services">SERVIÇOS</a></li>
                         <li><a class="link-footer" href="#contact">CONTATO</a></li>
-                        <li><a class="link-footer" href="<?=$_SESSION["ROOT_PATH"] . "/login.php"?>">LOGIN</a></li>
+                        <li><a class="link-footer" href="<?=$_SESSION["CONFIGURATION"]->getRootPath() . "/login.php"?>">LOGIN</a></li>
                     </ul>
                 </div>
             </div>

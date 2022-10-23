@@ -21,13 +21,13 @@ class DatabaseConnection {
     // Construtor para criar a classe, gerando uma conexão
     function __construct() {
         // Seta o host para conexão com BD
-        $this->setHostname($_SESSION["CONNECTION"]["HOSTNAME"]);
+        $this->setHostname($_SESSION["CONFIGURATION"]->getConnection()->getHostname());
         // Seta o usuário para conexão com BD
-        $this->setUsername($_SESSION["CONNECTION"]["USERNAME"]);
+        $this->setUsername($_SESSION["CONFIGURATION"]->getConnection()->getUsername());
         // Seta a senha para conexão com BD
-        $this->setPassword($_SESSION["CONNECTION"]["PASSWORD"]);
+        $this->setPassword($_SESSION["CONFIGURATION"]->getConnection()->getPassword());
         // Seta o banco de dados para conexão
-        $this->setDatabase($_SESSION["CONNECTION"]["DATABASE"]["NAME"]);
+        $this->setDatabase($_SESSION["CONFIGURATION"]->getConnection()->getDatabase()->getName());
         // Cria a conexão com os valores anteriores
         $this->setConnection(new mysqli(
             $this->getHostname(),
