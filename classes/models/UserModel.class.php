@@ -13,6 +13,10 @@ class UserModel {
         $this->setPassword($password);
     }
 
+    function getValues() {
+        return array($this->getId(), $this->getName(), $this->getEmail(), $this->getPassword());
+    }
+
     function getId() {
         return $this->id;
     }

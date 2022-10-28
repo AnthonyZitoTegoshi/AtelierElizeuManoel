@@ -15,9 +15,6 @@ class InputHelper {
         }
         return preg_match("/^[^\"\']+$/", $password);
     }
-
 }
-
-
 
 ?>
