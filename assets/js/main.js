@@ -430,40 +430,6 @@ function adjustCarousels() {
     }
 }
 
-/* ----------Fade effect with ScrollBar---------- */
-
-
-function viewElement(element) { 
-    let elementContainer = element.getBoundingClientRect();
-    distFromTop = -200
-    windowHSize = window.innerHeight;
-
-    if (elementContainer.top - window.innerHeight < distFromTop ) {
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-
-function scanContent () {
-    hiddenElement = document.querySelectorAll('.hidden')
-    for (let i = 0; i < hiddenElement.length; i++) {
-        const hiddenList = hiddenElement[i];
-        if (viewElement(hiddenList)) {
-            hiddenList.classList.remove('hidden')
-        } 
-        
-    }
-}
-
-
-function sleep(timeWait) {
-    nowTime = Date.now();
-    while (nowTime + timeWait > Date.now()) {console.log("sleep");}    
-}
-
-document.addEventListener("scroll", scanContent);
 
 
 function adjustMainRetractableMenu() {
