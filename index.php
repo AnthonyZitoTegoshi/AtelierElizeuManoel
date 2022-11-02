@@ -103,30 +103,34 @@ require_once(__DIR__ . "/etc/conf.php");
                 <ul class="r mevenly ccenter wmax" style="min-width: 100%;">
                     <li class="carousel-item" style="width: 16rem;">
                         <div class="c mcenter ccenter wauto hauto card">
-                            <img class="i w12 hauto text-center" src="./assets/img/atelier/between_violin.webp" alt="" draggable="false">
-                            <p class="i text-info p2">Serviço 1</p>
-                            <a href="https://api.whatsapp.com/send?phone=5511960995554&text=Boa%20tarde!%20Gostaria%20de%20mais%20informações" target="blank" class="btn-card" href="#contact" draggable="false">CONTRATAR</a>
+                            <img class="i w8 hauto text-center card-image" src="./assets/img/atelier_logo_tiny.svg" alt="" draggable="false">
+                            <p class="i title-slin text-center p2">Serviço 1</p>
+                            <p class="i text-info text-center p2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sodales sollicitudin condimentum. Nulla viverra mollis sapien, sed cursus justo lacinia a. Praesent a ante metus. Sed vestibulum malesuada pellentesque.</p>
+                            <!--<a href="https://api.whatsapp.com/send?phone=5511960995554&text=Boa%20tarde!%20Gostaria%20de%20mais%20informações" target="blank" class="btn-card" draggable="false">CONTRATAR</a>-->
                         </div>
                     </li>
                     <li class="carousel-item" style="width: 16rem;">
                         <div class="c mcenter ccenter wauto hauto card">
-                            <img class="i w12 hauto text-center" src="./assets/img/atelier/between_violin.webp" alt="" draggable="false">
-                            <p class="i text-info p2">Serviço 2</p>
-                            <a href="https://api.whatsapp.com/send?phone=5511960995554&text=Boa%20tarde!%20Gostaria%20de%20mais%20informações" target="blank" class="btn-card" href="#contact" draggable="false">CONTRATAR</a>
+                            <img class="i w8 hauto text-center card-image" src="./assets/img/atelier_logo_tiny.svg" alt="" draggable="false">
+                            <p class="i title-slin text-center p2">Serviço 2</p>
+                            <p class="i text-info text-center p2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sodales sollicitudin condimentum. Nulla viverra mollis sapien, sed cursus justo lacinia a. Praesent a ante metus. Sed vestibulum malesuada pellentesque.</p>
+                            <!--<a href="https://api.whatsapp.com/send?phone=5511960995554&text=Boa%20tarde!%20Gostaria%20de%20mais%20informações" target="blank" class="btn-card" draggable="false">CONTRATAR</a>-->
                         </div>
                     </li>
                     <li class="carousel-item" style="width: 16rem;">
                         <div class="c mcenter ccenter wauto hauto card">
-                            <img class="i w12 hauto text-center" src="./assets/img/atelier/between_violin.webp" alt="" draggable="false">
-                            <p class="i text-info p2">Serviço 3</p>
-                            <a href="https://api.whatsapp.com/send?phone=5511960995554&text=Boa%20tarde!%20Gostaria%20de%20mais%20informações" target="blank" class="btn-card" href="#contact" draggable="false">CONTRATAR</a>
+                            <img class="i w8 hauto text-center card-image" src="./assets/img/atelier_logo_tiny.svg" alt="" draggable="false">
+                            <p class="i title-slin text-center p2">Serviço 3</p>
+                            <p class="i text-info text-center p2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sodales sollicitudin condimentum. Nulla viverra mollis sapien, sed cursus justo lacinia a. Praesent a ante metus. Sed vestibulum malesuada pellentesque.</p>
+                            <!--<a href="https://api.whatsapp.com/send?phone=5511960995554&text=Boa%20tarde!%20Gostaria%20de%20mais%20informações" target="blank" class="btn-card" draggable="false">CONTRATAR</a>-->
                         </div>
                     </li>
                     <li class="carousel-item" style="width: 16rem;">
                         <div class="c mcenter ccenter wauto hauto card">
-                            <img class="i w12 hauto text-center" src="./assets/img/atelier/between_violin.webp" alt="" draggable="false">
-                            <p class="i text-info p2">Serviço 4</p>
-                            <a href="https://api.whatsapp.com/send?phone=5511960995554&text=Boa%20tarde!%20Gostaria%20de%20mais%20informações" target="blank" class="btn-card" href="#contact" draggable="false">CONTRATAR</a>
+                            <img class="i w8 hauto text-center card-image" src="./assets/img/atelier_logo_tiny.svg" alt="" draggable="false">
+                            <p class="i title-slin text-center p2">Serviço 4</p>
+                            <p class="i text-info text-center p2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sodales sollicitudin condimentum. Nulla viverra mollis sapien, sed cursus justo lacinia a. Praesent a ante metus. Sed vestibulum malesuada pellentesque.</p>
+                            <!--<a href="https://api.whatsapp.com/send?phone=5511960995554&text=Boa%20tarde!%20Gostaria%20de%20mais%20informações" target="blank" class="btn-card" draggable="false">CONTRATAR</a>-->
                         </div>
                     </li>
                 </ul>

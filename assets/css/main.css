@@ -309,9 +309,15 @@ button, input:is([type="button"]) {
 
 .card {
   margin: 10px;
-  border: 2px solid var(--dark);
+  /*border: 2px solid var(--dark);*/
+  border: none;
   border-radius: 10px;
   overflow: hidden;
+}
+
+.card-image {
+  padding: 10px;
+  border-radius: 99999px;
 }
 
 .btn-card {
