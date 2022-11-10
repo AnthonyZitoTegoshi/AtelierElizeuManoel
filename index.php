@@ -60,7 +60,7 @@ require_once(__DIR__ . "/etc/conf.php");
     <div class="marker" id="home"></div>
     <header class="c mcenter ccenter w12 ovisible" id="main-banner">
         <span style="min-height: calc(4rem + 40px);"></span>
-        <div class="c p12 mcenter ccenter g4 w12 ovisible">
+        <div class="c p6 p12-lmd mcenter ccenter g4 w12 ovisible">
             <div class="bgLight" style="height: 8rem; width: 8rem; border-radius: 100%;" >
                 <p></p>
             </div>
@@ -70,31 +70,31 @@ require_once(__DIR__ . "/etc/conf.php");
         </div>
     </header>
     <div class="marker" id="atelier"></div>
-    <section class="c p12 mcenter ccenter g12 w12 hmin bgLight">
-        <div class="c r-lmd mcenter ccenter cstart-lmd g6 w12 w11-lmd w10-hmd w8-llg w6-hlg ovisible">
+    <section class="c p6 p12-lmd mcenter ccenter g12 w12 hmin bgLight">
+        <div class="c r-lmd mcenter ccenter cstart-lmd g4 g6-lmd w12 w11-lmd w10-hmd w8-llg w6-hlg ovisible">
             <img class="i w12 w6-lmd hauto ovisible text-center" style="max-width: 32rem;" src="./assets/img/atelier/look_violin.webp" alt="(Foto do Elizeu Manoel trabalhando)">
-            <div class="c mcenter ccenter g6 w12 w6-lmd hauto">
+            <div class="c mcenter ccenter g4 g6-lmd w12 w6-lmd hauto">
                 <h2 class="i w12 hauto title">Atelier Elizeu Manoel</h2>
                 <p class="text-info">Refinamento e classe: os motivos que encontrei para a excelência do meu trabalho. Procuro ser um especialista onde atuo, principalmente na criação e ajustes de violinos, violoncellos e violas. Venho me aperfeiçoando no ramo da lutheria há mais de 5 anos e, muito provavelmente, a consistência e o amor pelo trabalho têm me feito um dos melhores que conheço na cidade.</p>
             </div>
         </div>
-        <div class="c r-lmd mcenter ccenter cstart-lmd g6 w12 w11-lmd w10-hmd w8-llg w6-hlg ovisible">
-            <div class="c mcenter ccenter g6 o2 o1-lmd w12 w6-lmd hauto">
+        <div class="c r-lmd mcenter ccenter cstart-lmd g4 g6-lmd w12 w11-lmd w10-hmd w8-llg w6-hlg ovisible">
+            <div class="c mcenter ccenter g4 g6-lmd o2 o1-lmd w12 w6-lmd hauto">
                 <h2 class="i w12 hauto title">Honra de servir à música</h2>
                 <p class="text-info">Atenção, meticulosidade, inspiração, harmonia... É como se a música fosse um guia, um caminho na minha vida. E ser responsável pela criação dos instrumentos que a produzem é, definitivamente, é a maior honra que poderia ter. Este sou eu, preparado para solucionar qualquer problema que você tenha no seu instrumento...</p>
             </div>
             <img class="i o1 o2-lmd w12 w6-lmd hauto ovisible text-center" style="max-width: 32rem;" src="./assets/img/atelier/voluta_violin.webp" alt="(Foto do Elizeu Manoel trabalhando)">
         </div>
     </section>
-    <section class="c p12 mcenter ccenter w12 hmin bgDark">
-        <div class="c mcenter ccenter g6 w12 w11-lmd w10-hmd w8-llg w6-hlg hauto ovisible">
+    <section class="c p6 p12-lmd mcenter ccenter w12 hmin bgDark">
+        <div class="c mcenter ccenter g4 g6-lmd w12 w11-lmd w10-hmd w8-llg w6-hlg hauto ovisible">
             <p class="text-info light" style="font-style: italic;">&ldquo;Visando a excelência, ofereço os mais variados serviços na lutheria com o uso dos mais sofisticados materiais. Reconheço o propósito do músico com seu instrumento e estou disposto a colaborar tanto com a criação quanto com os ajustes necessários nessa jornada.&rdquo;</p>
             <p class="text-info light">&mdash; Elizeu Manoel da Silva &mdash;</p>
         </div>
     </section>
     <div class="marker" id="services"></div>
     <section class="c mcenter ccenter w12 hmin bgLight">
-        <div class="r mbetween cstretch w12 w11-lmd w10-hmd w8-llg w6-hlg carousel">
+        <div class="r p6 p12-lmd mbetween cstretch w12 w11-lmd w10-hmd w8-llg w6-hlg carousel">
             <button class="i wmin hauto ovisible carousel-previous-button" title="Anterior">
                 <svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M27.083 36.667 10.417 20 27.083 3.333l2.542 2.584L15.542 20l14.083 14.083Z"/></svg>
             </button>
@@ -141,8 +141,8 @@ require_once(__DIR__ . "/etc/conf.php");
     </section>
     <div class="marker" id="contact"></div>
     <section class="c mcenter ccenter w12 hauto bgLight">
-        <div class="c p12 r-lmd mcenter ccenter cstretch-lmd g12 w12 w11-lmd w10-hmd w8-llg w6-hlg hauto">
-            <div class="c mbetween ccenter g6 w12 w6-lmd hauto">
+        <div class="c p6 p12-lmd r-lmd mcenter ccenter cstretch-lmd g6 g12-lmd w12 w11-lmd w10-hmd w8-llg w6-hlg hauto">
+            <div class="c mbetween ccenter g4 g6-lmd w12 w6-lmd hauto">
                 <h2 class="c mcenter ccenter w12 hauto"><img class="i wauto" style="height: 4rem;" src="./assets/img/atelier_logo.svg" alt="Atelier Elizeu Manoel"></h2>
                 <hr class="i w12 hauto dark">
                 <div class="c mcenter ccenter g4 w12 hauto">
@@ -158,7 +158,7 @@ require_once(__DIR__ . "/etc/conf.php");
                 </div>
                 <hr class="i w12 hauto dark">
             </div>
-            <div class="c mcenter ccenter g6 w12 w6-lmd hauto">
+            <div class="c mcenter ccenter g4 g6-lmd w12 w6-lmd hauto">
                 <p class="i w12 hauto ovisible text-info text-center"><svg class="ovisible" xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M10 10.042q.708 0 1.208-.5t.5-1.209q0-.708-.5-1.208T10 6.625q-.708 0-1.208.5t-.5 1.208q0 .709.5 1.209.5.5 1.208.5ZM10 16q2.521-2.312 3.719-4.177 1.198-1.865 1.198-3.323 0-2.271-1.417-3.677-1.417-1.406-3.5-1.406T6.5 4.823Q5.083 6.229 5.083 8.5q0 1.458 1.198 3.323T10 16Zm0 2.333q-3.354-2.895-5.01-5.312Q3.333 10.604 3.333 8.5q0-3.146 2-4.99 2-1.843 4.667-1.843t4.667 1.843q2 1.844 2 4.99 0 2.104-1.657 4.521-1.656 2.417-5.01 5.312ZM10 8.5Z"/></svg>Rua Jaboticabeiras, 52 - Vila Sirena 07051-070 - Guarulhos/SP</p>
                 <iframe class="i" style="border:0; min-height: 450px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3659.8358521454284!2d-46.5493625845613!3d-23.46638478473007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef5719bad7fe1%3A0xca2fd76155a45ced!2sR.%20Jaboticabeira%2C%2052%20-%20Vila%20Sirena%2C%20Guarulhos%20-%20SP%2C%2007051-070!5e0!3m2!1spt-BR!2sbr!4v1665691541490!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
@@ -213,7 +213,7 @@ require_once(__DIR__ . "/etc/conf.php");
             </div>
         </section>-->
         <section class="c mcenter ccenter w12 hauto blur-effect" id="main-footer-credits">
-            <div class="c r-lmd p12 mcenter mbetween-lmd ccenter g4 g12-lmd w12 w11-lmd w10-hmd w8-llg w6-hlg hauto">
+            <div class="c r-lmd p6 p12-lmd mcenter mbetween-lmd ccenter g4 g12-lmd w12 w11-lmd w10-hmd w8-llg w6-hlg hauto">
                 <p class="i wauto hauto o2 o1-lmd text-info text-center light">Copyright <a class="text-info-alter" href="https://projetos.talentosdoifsp.gru.br/tea/" target="blank">TEA</a> &copy; 2022 (icons by <a class="text-info-alter" href="https://icons8.com/" target="blank">ICONS8</a>)</p>
                 <aside class="r mcenter ccenter g2 wauto hauto wrap o1 o2-lmd">
                     <a href="https://www.facebook.com/atelierelizeumanoel/" target="blank"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 30 30" fill="light"><path d="M15,3C8.373,3,3,8.373,3,15c0,6.016,4.432,10.984,10.206,11.852V18.18h-2.969v-3.154h2.969v-2.099c0-3.475,1.693-5,4.581-5 c1.383,0,2.115,0.103,2.461,0.149v2.753h-1.97c-1.226,0-1.654,1.163-1.654,2.473v1.724h3.593L19.73,18.18h-3.106v8.697 C22.481,26.083,27,21.075,27,15C27,8.373,21.627,3,15,3z"></path></svg></a>

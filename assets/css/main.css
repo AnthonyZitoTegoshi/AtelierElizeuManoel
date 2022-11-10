@@ -191,7 +191,8 @@ button, input:is([type="button"]) {
 }
 
 .carousel {
-  padding: 60px 0;
+  padding-left: 0;
+  padding-right: 0;
   background-color: inherit;
   overflow: hidden;
 }
