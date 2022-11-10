@@ -20,6 +20,7 @@ window.addEventListener("load", function () {
     adjustRetractableMenus();
     setCarousels();
     adjustCarousels();
+    setMainFooter();
     setSvgColors();
     adjustWhatsappButton();
     lastScrollPosition = currentScrollPosition = window.scrollY;
@@ -32,6 +33,7 @@ window.addEventListener("resize", function () {
     setRetractorsListeners();
     adjustRetractableMenus();
     adjustCarousels();
+    setMainFooter();
     adjustWhatsappButton();
 });
 
@@ -447,6 +449,14 @@ function adjustMainRetractableMenu() {
     }
 }
 
+function setMainFooter() {
+    if (window.document.getElementById("main-footer")) {
+        var mainFooter = window.document.getElementById("main-footer");
+        var mainFooterCredits = window.document.getElementById("main-footer-credits");
+        mainFooter.style.height = window.getComputedStyle(mainFooterCredits).height;
+    }
+}
+
 function adjustWhatsappButton() {
     if (!animatingWhatsappButton && window.document.getElementById("main-footer")) {
         var mainFooter = window.document.getElementById("main-footer");
@@ -506,4 +516,4 @@ function EmailValid(email) {
 }
 
 buttonConfirm = document.getElementById("email");
-buttonConfirm.addEventListener("change", ErrorEmailRequired);
+buttonConfirm?.addEventListener("change", ErrorEmailRequired);
