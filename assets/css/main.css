@@ -57,6 +57,7 @@
 }
 
 * {
+  position: relative;
   transition: outline linear 50ms, border-color linear 50ms, color linear 50ms, background-color linear 50ms, scale linear 50ms;
   scroll-behavior: smooth;
   font-family: 'Roboto', sans-serif;
@@ -65,6 +66,7 @@
   letter-spacing: normal;
   line-height: 1.5rem;
   color: var(--dark);
+  z-index: 0;
 }
 
 .title {
@@ -189,7 +191,8 @@ button, input:is([type="button"]) {
 }
 
 .carousel {
-  padding: 20px 0;
+  padding-left: 0;
+  padding-right: 0;
   background-color: inherit;
   overflow: hidden;
 }
@@ -233,6 +236,17 @@ button, input:is([type="button"]) {
   width: calc(100% + 20px);
   height: calc(100% + 40px);
   background-color: inherit;
+}
+
+#main-footer {
+  position: relative;
+  z-index: -1;
+}
+
+#main-footer-credits {
+  position: fixed;
+  bottom: 0;
+  z-index: -1;
 }
 
 .icon-footer{
@@ -309,9 +323,15 @@ button, input:is([type="button"]) {
 
 .card {
   margin: 10px;
-  border: 2px solid var(--dark);
+  /*border: 2px solid var(--dark);*/
+  border: none;
   border-radius: 10px;
   overflow: hidden;
+}
+
+.card-image {
+  padding: 10px;
+  border-radius: 99999px;
 }
 
 .btn-card {
@@ -494,13 +514,6 @@ input.submit-button:focus-within {
 
 .forgot-password-link:focus-within {
   outline: 2px solid var(--primary-lighter);
-}
-
-.error-tooltip {
-  display: block;
-  position: absolute;
-  left: 100%;
-  background-color: red; /*!change*/
 }
 
 .hidden{
@@ -729,11 +742,10 @@ input.submit-button:focus-within {
 
 .error{
   display: none;
-  padding: 1% 20%;
+  padding: 10px 20px;
   border-radius: 5px;
   background-color: #FDCAC4;
   color: #ED6160;
-  
 }
 
 
