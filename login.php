@@ -16,11 +16,13 @@ if ($sentForm) {
     $isValidEmail = InputHelper::isValidEmail($email);
     $isValidPassword = InputHelper::isValidPassword($password);
 
+
     if ($isValidEmail && $isValidPassword) {
         $connection = new DatabaseConnection();
         $userDao = new UserDao();
         $userDao->setComplement("WHERE " . $userDao->getFields()[2] . " = \"$email\"");
         $result = $connection->query($userDao->readQuery(array($userDao->getFields()[0])));
+        
         if (count($result) == 1) {
             $userId = $result[0][0];
             $hashedPassword = HashHelper::encrypt($password, $userId);
@@ -63,6 +65,7 @@ if ($sentForm) {
 }}catch (Error $e) {
     echo $e;
 }
+
 
 ?>
 <!DOCTYPE html>

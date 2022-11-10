@@ -2,19 +2,21 @@
 
 class UserModel {
     private $id;
+    private $userLevel;
     private $name;
     private $email;
     private $password;
 
-    function __construct($id, $name, $email, $password) {
+    function __construct($id, $name, $email, $password, $userLevel) {
         $this->setId($id);
         $this->setName($name);
         $this->setEmail($email);
         $this->setPassword($password);
+        $this->setUserLevel($userLevel);
     }
 
     function getValues() {
-        return array($this->getId(), $this->getName(), $this->getEmail(), $this->getPassword());
+        return array($this->getId(), $this->getUserLevel(), $this->getName(), $this->getEmail(), $this->getPassword());
     }
 
     function getId() {
@@ -22,6 +24,12 @@ class UserModel {
     }
     function setId($id) {
         $this->id = $id;
+    }
+    function setUserLevel($userLevel){
+        $this->id = $userLevel;
+    }
+    function getUserLevel() {
+        return $this->userLevel;
     }
     function getName() {
         return $this->name;
