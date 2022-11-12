@@ -1,0 +1,15 @@
+{
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "App\\Model\\": "src/model",
+            "App\\Controller\\": "src/controller",
+            "App\\Helper\\": "src/helper",
+            "Configuration\\": "etc/"
+        }
+    },
+    "require": {
+        "coffeecode/router": "2.0.*",
+        "coffeecode/datalayer": "2.0.*"
+    }
+}
