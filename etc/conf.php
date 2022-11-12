@@ -10,7 +10,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 // Seta a tabela de usuário e seus campos
-$usersTable = new TableConfiguration("Users", array("id", "name", "email", "password"));
+$usersTable = new TableConfiguration("Users", array("id", "name", "email", "password", "userLevel"));
 // Seta a tabela de logins e seus campos
 $loginsTable = new TableConfiguration("Logins", array("id", "userId", "token", "expireDate"));
 
@@ -19,7 +19,7 @@ if ($_SERVER["HTTP_HOST"] == "localhost") {
     // Seta o banco de dados para conexão
     $databaseConfiguration = new DatabaseConfiguration("atelier", $usersTable, $loginsTable);
     // Seta as configurações de conexão
-    $connectionConfiguration = new ConnectionConfiguration("localhost", "anthony", "123456", $databaseConfiguration); // !change
+    $connectionConfiguration = new ConnectionConfiguration("localhost", "root", "Thiluma@37", $databaseConfiguration); // !change
     // Seta as configurações padrão do site
     $defaultConfiguration = new DefaultConfiguration("http://localhost/AtelierElizeuManoel", "localhost", "/AtelierElizeuManoel/", $connectionConfiguration);
 } else {
