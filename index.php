@@ -23,7 +23,6 @@ require_once(__DIR__ . "/etc/conf.php");
             <a class="i wmax main-menu-link" href="#home"><img class="i wauto" style="height: 4rem;" src="./assets/img/atelier_logo.svg" alt="Atelier Elizeu Manoel"></a>
             <ul class="r mend ccenter wauto retractable-menu">
                 <li class="i wmax"><a class="i wmax main-menu-link hover-line-bottom retractable-menu-option" href="#atelier">ATELIER</a></li>
-                <!--<li class="i wmax"><a class="i wmax main-menu-link hover-line-bottom retractable-menu-option" href="#projects">PROJETOS</a></li>-->
                 <li class="i wmax"><a class="i wmax main-menu-link hover-line-bottom retractable-menu-option" href="#services">SERVIÇOS</a></li>
                 <li class="i wmax"><a class="i wmax main-menu-link hover-line-bottom retractable-menu-option" href="#contact">CONTATO</a></li>
                 <li class="i wmax"><a class="i wmax main-menu-link hover-line-bottom retractable-menu-option" href="<?=$_SESSION["CONFIGURATION"]->getRootPath() . "/login.php"?>">LOGIN</a></li>
@@ -41,7 +40,6 @@ require_once(__DIR__ . "/etc/conf.php");
             </div>
             <div class="c mcenter ccenter hmin">
                 <li class="i w12"><a class="r mend ccenter g2 w12 main-menu-link text-right" href="#atelier">ATELIER<span class="i wauto hauto"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M10 17q-1-.667-2.135-1.083Q6.729 15.5 5.5 15.5q-.792 0-1.583.156-.792.156-1.521.469-.5.208-.948-.073Q1 15.771 1 15.229V4.75q0-.292.156-.542.156-.25.427-.375.917-.416 1.907-.625Q4.479 3 5.5 3q1.188 0 2.333.281 1.146.281 2.167.844V15.25q1.062-.562 2.188-.906Q13.312 14 14.5 14q.771 0 1.521.135.75.136 1.479.365v-11q.229.083.458.156.23.073.459.177.271.146.427.386.156.239.156.531v10.479q0 .521-.448.813-.448.291-.948.083-.75-.292-1.531-.458-.781-.167-1.573-.167-1.229 0-2.365.417Q11 16.333 10 17Zm1.5-4V5L16 1v8Zm-3 1.417V5.229q-.708-.396-1.49-.562Q6.229 4.5 5.417 4.5q-.75 0-1.49.167-.739.166-1.427.479v9.271q.708-.229 1.448-.323T5.417 14q.791 0 1.562.094t1.521.323Zm0 0V5.229Z"/></svg></span></a></li>
-                <!--<li class="i w12"><a class="r mend ccenter g2 w12 main-menu-link text-right" href="#projects">PROJETOS<span class="i wauto hauto"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M3.75 7.5h12.5l-.792-2H4.542Zm6.25-1ZM14 9H5.771L5.5 10.5h8.771ZM3 16l1.271-7H3q-.542 0-.854-.448-.313-.448-.084-.927l1.209-3q.125-.292.375-.458Q3.896 4 4.208 4h11.584q.312 0 .562.167.25.166.375.458l1.209 3q.229.479-.084.927Q17.542 9 17 9h-1.5l1.271 7h-1.5l-.729-4H5.229L4.5 16Z"/></svg></a</span>></li>-->
                 <li class="i w12"><a class="r mend ccenter g2 w12 main-menu-link text-right" href="#services">SERVIÇOS<span class="i wauto hauto"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M3 16V8.5q0-.625.438-1.062Q3.875 7 4.5 7h2V5.5q0-.625.438-1.062Q7.375 4 8 4h4q.625 0 1.062.438.438.437.438 1.062V7h2q.625 0 1.062.438Q17 7.875 17 8.5V16Zm1.5-1.5h11v-2.25h-1.271V13h-1.5v-.75H7.292V13h-1.5v-.75H4.5Zm0-6v2.25h1.292V10h1.5v.75h5.437V10h1.5v.75H15.5V8.5h-11ZM8 7h4V5.5H8Z"/></svg></span></a></li>
                 <li class="i w12"><a class="r mend ccenter g2 w12 main-menu-link text-right" href="#contact">CONTATO<span class="i wauto hauto"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M15.896 16.979q-2.563-.208-4.834-1.281-2.27-1.073-3.989-2.802-1.719-1.729-2.802-4T3 4.062q-.042-.437.26-.76T4 2.979h2.833q.355 0 .615.209.26.208.344.562l.5 2.229q.041.25-.021.5-.063.25-.25.438L6 8.958q.875 1.584 2.146 2.854Q9.417 13.083 11 13.958l2.062-2q.209-.208.459-.26.25-.052.479-.01l2.229.479q.354.083.563.354.208.271.208.625v2.833q0 .563-.396.792-.396.229-.708.208ZM5.312 7.5l1.459-1.458-.354-1.563H4.542q.104.792.291 1.542.188.75.479 1.479Zm7.167 7.167q.729.291 1.49.468.76.177 1.531.282v-1.875l-1.562-.334ZM5.312 7.5Zm7.167 7.167Z"/></svg></span></a></li>
                 <li class="i w12"><a class="r mend ccenter g2 w12 main-menu-link text-right" href="<?=$_SESSION["CONFIGURATION"]->getRootPath() . "/login.php"?>">LOGIN<span class="i wauto hauto"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M10 17v-1.5h5.5v-11H10V3h5.5q.625 0 1.062.438Q17 3.875 17 4.5v11q0 .625-.438 1.062Q16.125 17 15.5 17Zm-1.5-3.5-1.062-1.062 1.687-1.688H3v-1.5h6.125L7.438 7.562 8.5 6.5 12 10Z"/></svg></span></a></li>
@@ -50,7 +48,6 @@ require_once(__DIR__ . "/etc/conf.php");
         <div class="i oauto" id="retracted-main-menu-lmd" style="display: none;">
             <div class="c mcenter ccenter w12 hmin">
                 <li class="i w12"><a class="i w12 main-menu-link hover-color-change text-center" href="#atelier">ATELIER</a></li>
-                <!--<li class="i w12"><a class="i w12 main-menu-link hover-color-change text-center" href="#projects">PROJETOS</a></li>-->
                 <li class="i w12"><a class="i w12 main-menu-link hover-color-change text-center" href="#services">SERVIÇOS</a></li>
                 <li class="i w12"><a class="i w12 main-menu-link hover-color-change text-center" href="#contact">CONTATO</a></li>
                 <li class="i w12"><a class="i w12 main-menu-link hover-color-change text-center" href="<?=$_SESSION["CONFIGURATION"]->getRootPath() . "/login.php"?>">LOGIN</a></li>
@@ -61,10 +58,7 @@ require_once(__DIR__ . "/etc/conf.php");
     <header class="c mcenter ccenter w12 ovisible" id="main-banner">
         <span style="min-height: calc(4rem + 40px);"></span>
         <div class="c p6 p12-lmd mcenter ccenter g4 w12 ovisible">
-            <div class="bgLight" style="height: 8rem; width: 8rem; border-radius: 100%;" >
-                <p></p>
-            </div>
-            <!--<img src="./assets/img/Asset-104.png" style="height: 8rem;">-->
+            <img src="./assets/img/atelier_logo_tiny.svg" style="height: 8rem;">
             <h2 class="text-center light">ATELIER ELIZEU MANOEL</h2>
             <a class="btn-banner" href="#contact">Contato</a>
         </div>
