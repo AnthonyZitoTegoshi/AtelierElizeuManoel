@@ -204,11 +204,13 @@ button, input:is([type="button"]) {
 .carousel-previous-button {
   position: relative;
   box-shadow: 0 0 8px 0 var(--dark);
+  z-index: 1;
 }
 
 .carousel-next-button {
   position: relative;
   box-shadow: 0 0 8px 0 var(--dark);
+  z-index: 1;
 }
 
 .carousel-previous-button *, .carousel-next-button * {
