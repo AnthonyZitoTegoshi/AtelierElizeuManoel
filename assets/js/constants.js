@@ -7,3 +7,6 @@ const baseUrl = localhost
 const apiUrl = localhost
     ? "http://localhost/AtelierElizeuManoel/api"
     : "https://hostdeprojetosdoifsp.gru.br/atelier/api";
+
+const internalErrorMessage = "Ocorreu um problema interno nos servidores";
+const unknownErrorMessage = "Algo inesperado aconteceu";

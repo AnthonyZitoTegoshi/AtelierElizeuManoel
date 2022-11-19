@@ -3,16 +3,17 @@
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/etc/constants.php';
 
-use App\Helper\ResponseHelper as ResponseHelper;
-use App\Helper\ValidateHelper as ValidateHelper;
 use Configuration\Server as Server;
 use CoffeeCode\Router\Router as Router;
+use App\Helper\ResponseHelper as ResponseHelper;
 
 try {
     $router = new Router(Server::getApiUrl());
 
     $router->namespace('App\\Controller');
-    $router->post('/login', 'LoginController:create');
+    $router->post('/login', 'LoginController:login');
+    $router->delete('/login', 'LoginController:logout');
+    $router->get('/login', 'LoginController:isLogged');
 
     $router->dispatch();
 

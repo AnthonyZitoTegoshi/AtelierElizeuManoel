@@ -183,7 +183,7 @@ button, input:is([type="button"]) {
 }
 
 #main-banner {
-  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("../img/atelier/atelier_elizeu.webp") no-repeat center;
+  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("../img/atelier_elizeu.webp") no-repeat center;
   background-attachment: fixed;
   background-size: cover;
   min-height: 100vh;
@@ -460,7 +460,7 @@ input.button-sign {
 }
 
 #login-main-banner {
-  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("../img/atelier/login_background.webp") no-repeat center;
+  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("../img/login_background.webp") no-repeat center;
   background-attachment: fixed;
   background-size: cover;
   min-height: 100vh;

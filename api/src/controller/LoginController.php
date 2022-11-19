@@ -8,10 +8,11 @@ use App\Helper\HashHelper as HashHelper;
 use App\Helper\InputHelper as InputHelper;
 use App\Helper\GenerateHelper as GenerateHelper;
 use App\Helper\ResponseHelper as ResponseHelper;
+use App\Helper\ValidateHelper;
 use Configuration\Server;
 
 class LoginController {
-    public function create(array $data): void {
+    public function login(array $data): void {
         $email = $data['email'];
         $password = $data['password'];
 
@@ -59,5 +60,27 @@ class LoginController {
         } else {
             ResponseHelper::send(REQUEST_ERROR, 'Email e/ou senha inválidos');
         }
+    }
+
+    public function logout(array $data): void {
+        $token = $_SERVER['HTTP_TOKEN'];
+        if (ValidateHelper::checkToken($token)) {
+            $hashedToken = HashHelper::encrypt($token, substr($token, 0, 12));
+            $login = (new LoginModel())->find('token = :token', 'token=' . $hashedToken)->fetch();
+            if ($login->destroy()) {
+                ResponseHelper::send(RESPONSE_SUCCESS, 'Usuário deslogado com sucesso');
+            } else {
+                ResponseHelper::send(RESPONSE_ERROR, 'Ocorreu um erro ao deslogar o usuário');
+            }
+        }
+        ResponseHelper::send(REQUEST_ERROR, 'Usuário não está logado');
+    }
+
+    public function isLogged(array $data): void {
+        $token = $_SERVER['HTTP_TOKEN'];
+        if (ValidateHelper::checkToken($token)) {
+            ResponseHelper::send(RESPONSE_SUCCESS, 'Usuário já está logado');
+        }
+        ResponseHelper::send(REQUEST_ERROR, 'Usuário não está logado');
     }
 }

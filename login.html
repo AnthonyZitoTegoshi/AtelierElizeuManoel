@@ -49,16 +49,18 @@
             event.preventDefault();
             $.post(apiUrl + "/login", $(this).serialize())
                 .done(function (data) {
-                    data = $.parseJSON(data);
-                    if (data.status == 1) {
+                    response = $.parseJSON(data);
+                    if (response.status == 1) {
                         $("#error-display").css("display", "none");
                         window.location.href = baseUrl + "/#home";
-                    } else if (data.status == 0) {
-                        $("#error-display").html(data.message).css("display", "block");
+                    } else if (response.status == 0) {
+                        $("#error-display").html(response.message).css("display", "block");
+                    } else {
+                        $("#error-display").html(internalErrorMessage).css("display", "block");
                     }
                 })
                 .fail(function () {
-                    $("#error-display").html("Algo de errado aconteceu").css("display", "block");
+                    $("#error-display").html(unknownErrorMessage).css("display", "block");
                 });
         });
     </script>
