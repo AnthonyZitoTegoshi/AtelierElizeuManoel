@@ -39,7 +39,7 @@ class LoginController {
                     $login->expire_date = $expireDate->format(DEFAULT_DATETIME_FORMAT);
                     if ($login->save()) {
                         setcookie(
-                            'TOKEN',
+                            'token',
                             $token,
                             time() + 60 * 60 * 24 * 3,
                             Server::getCookiesPath(),
