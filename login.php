@@ -45,23 +45,6 @@ if ($sentForm) {
             }
         }
     }
-} else {
-    // !change: Fazer ficar reutilizável aqui
-    if (isset($_COOKIE["TOKEN"])) {
-        $token = $_COOKIE["TOKEN"];
-        $hashedToken = HashHelper::encrypt($token, substr($token, 0, 12));
-        $connection = new DatabaseConnection();
-        $loginDao = new LoginDao();
-        $loginDao->setComplement("WHERE " . $loginDao->getFields()[2] . " = \"$hashedToken\"");
-        $result = $connection->query($loginDao->readQuery(array($loginDao->getFields()[3])));
-        if (count($result) == 1) {
-            $expireDate = DateTime::createFromFormat(ConstantsHelper::getDefaultDateTimeFormat(), $result[0][0]);
-            if (DateTimeHelper::compare($expireDate, new DateTime()) >= 0) {
-                header("Location: " . $_SESSION["CONFIGURATION"]->getRootPath());
-            }
-            $isValidLogin = TRUE;
-        }
-    }
 }
 
 

@@ -3,7 +3,8 @@
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/etc/constants.php';
 
-use App\Helper\ResponseHelper;
+use App\Helper\ResponseHelper as ResponseHelper;
+use App\Helper\ValidateHelper as ValidateHelper;
 use Configuration\Server as Server;
 use CoffeeCode\Router\Router as Router;
 
