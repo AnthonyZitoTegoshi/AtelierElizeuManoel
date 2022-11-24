@@ -36,11 +36,11 @@ CREATE TABLE `logins` (
   UNIQUE KEY `logins_uk_sid` (`sid`),
   UNIQUE KEY `logins_uk_user_sid` (`user_sid`),
   UNIQUE KEY `logins_uk_token` (`token`),
-  CONSTRAINT `logins_ck_created_at` CHECK ((regexp_like(`created_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$',_utf8mb4'c') = 1)),
-  CONSTRAINT `logins_ck_expire_date` CHECK ((regexp_like(`expire_date`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$',_utf8mb4'c') = 1)),
-  CONSTRAINT `logins_ck_sid` CHECK ((regexp_like(`sid`,_utf8mb4'^[A-Za-z0-9]{12}$',_utf8mb4'c') = 1)),
-  CONSTRAINT `logins_ck_token` CHECK ((regexp_like(`token`,_utf8mb4'^[A-Za-z0-9]{64}$',_utf8mb4'c') = 1)),
-  CONSTRAINT `logins_ck_updated_at` CHECK ((regexp_like(`updated_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$',_utf8mb4'c') = 1))
+  CONSTRAINT `logins_ck_created_at` CHECK (`created_at` regexp '^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
+  CONSTRAINT `logins_ck_expire_date` CHECK (`expire_date` regexp '^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
+  CONSTRAINT `logins_ck_sid` CHECK (`sid` regexp '^[A-Za-z0-9]{12}$'),
+  CONSTRAINT `logins_ck_token` CHECK (`token` regexp '^[A-Za-z0-9]{64}$'),
+  CONSTRAINT `logins_ck_updated_at` CHECK (`updated_at` regexp '^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -62,11 +62,11 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_uk_sid` (`sid`),
   UNIQUE KEY `users_uk_email` (`email`),
-  CONSTRAINT `users_ck_created_at` CHECK ((regexp_like(`created_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$',_utf8mb4'c') = 1)),
-  CONSTRAINT `users_ck_email` CHECK ((regexp_like(`email`,_utf8mb4'^[A-Za-z0-9_]+(.[A-Za-z0-9_]+)*@[A-Za-z0-9_]+(.[A-Za-z0-9_]+)+$',_utf8mb4'c') = 1)),
-  CONSTRAINT `users_ck_password` CHECK ((regexp_like(`password`,_utf8mb4'^[a-z0-9]{64}$',_utf8mb4'c') = 1)),
-  CONSTRAINT `users_ck_sid` CHECK ((regexp_like(`sid`,_utf8mb4'^[A-Za-z0-9]{12}$',_utf8mb4'c') = 1)),
-  CONSTRAINT `users_ck_updated_at` CHECK ((regexp_like(`updated_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$',_utf8mb4'c') = 1))
+  CONSTRAINT `users_ck_created_at` CHECK (`created_at` regexp '^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
+  CONSTRAINT `users_ck_email` CHECK (`email` regexp '^[A-Za-z0-9_]+(.[A-Za-z0-9_]+)*@[A-Za-z0-9_]+(.[A-Za-z0-9_]+)+$'),
+  CONSTRAINT `users_ck_password` CHECK (`password` regexp '^[a-z0-9]{64}$'),
+  CONSTRAINT `users_ck_sid` CHECK (`sid` regexp '^[A-Za-z0-9]{12}$'),
+  CONSTRAINT `users_ck_updated_at` CHECK (`updated_at` regexp '^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
