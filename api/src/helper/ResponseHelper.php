@@ -6,7 +6,7 @@ class ResponseHelper {
     static function send(
         int $status,
         string $message,
-        ?string $result = null,
+        array|string|null $result = null,
     ): void {
         echo json_encode([
             'status' => $status,

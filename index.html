@@ -13,6 +13,9 @@
     <span class="r mcenter ccenter w12 h12" id="loading-screen">
         <img src="./assets/img/loading.gif" style="height: 8rem;" draggable="false">
     </span>
+    <script src="./assets/js/jquery-3.6.1.min.js"></script>
+    <script src="./assets/js/constants.js"></script>
+    <script src="./assets/js/main.js"></script>
     <nav class="c mcenter ccenter w12 hmin" id="main-menu">
         <div class="r mbetween ccenter w11-lmd w10-hmd w9-llg w8-hlg ovisible">
             <a class="i wmax main-menu-link" href="#home"><img class="i wauto" style="height: 4rem;" src="./assets/img/atelier_logo.svg" alt="Atelier Elizeu Manoel"></a>
@@ -48,6 +51,77 @@
                 <li class="i w12"><a class="i w12 main-menu-link hover-color-change text-center loginLink" href="./login.html">LOGIN</a></li>
             </div>
         </div>
+        <script>
+            $.get(apiUrl + "/login")
+                    .done(function (data) {
+                        response = $.parseJSON(data);
+                        if (response.status == 1) {
+                            logged = true;
+                            $(".loginLink")
+                                .html("LOGOUT")
+                                .attr("href", "#home")
+                                .on("click", function (event) {
+                                    $.ajax({method: "DELETE", url: apiUrl + "/login"})
+                                    .done(function (data) {
+                                        response = $.parseJSON(data);
+                                        if (response.status == 1) {
+                                            window.location.reload();
+                                        } else if (response.status == 0) {
+                                            alert(response.message);
+                                        } else {
+                                            alert(internalErrorMessage);
+                                        }
+                                    })
+                                    .fail(function (data) {
+                                        alert(unknownErrorMessage);
+                                    });
+                                });
+                            $(".loginLinkWithIcon")
+                                .html("LOGOUT<span class=\"i wauto hauto\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"20\" width=\"20\"><path d=\"M4.5 17q-.625 0-1.062-.438Q3 16.125 3 15.5v-11q0-.625.438-1.062Q3.875 3 4.5 3H10v1.5H4.5v11H10V17Zm9-3.5-1.062-1.062 1.687-1.688H8v-1.5h6.125l-1.687-1.688L13.5 6.5 17 10Z\"/></svg></span>")
+                                .attr("href", "#home")
+                                .on("click", function (event) {
+                                    $.ajax({method: "DELETE", url: apiUrl + "/login"})
+                                    .done(function (data) {
+                                        response = $.parseJSON(data);
+                                        if (response.status == 1) {
+                                            window.location.reload();
+                                        } else if (response.status == 0) {
+                                            alert(response.message);
+                                        } else {
+                                            alert(internalErrorMessage);
+                                        }
+                                    })
+                                    .fail(function (data) {
+                                        alert(unknownErrorMessage);
+                                    });
+                                });
+                        } else if (response.status == 0) {
+                            logged = false;
+                            $(".loginLink").html("LOGIN").attr("href", "./login.html");
+                            $(".loginLinkWithIcon")
+                                .html("LOGIN<span class=\"i wauto hauto\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"20\" width=\"20\"><path d=\"M10 17v-1.5h5.5v-11H10V3h5.5q.625 0 1.062.438Q17 3.875 17 4.5v11q0 .625-.438 1.062Q16.125 17 15.5 17Zm-1.5-3.5-1.062-1.062 1.687-1.688H3v-1.5h6.125L7.438 7.562 8.5 6.5 12 10Z\"/></svg></span>")
+                                .attr("href", "./login.html");
+                        } else {
+                            alert(internalErrorMessage);
+                            logged = false;
+                            $(".loginLink").html("LOGIN").attr("href", "./login.html");
+                            $(".loginLinkWithIcon")
+                                .html("LOGIN<span class=\"i wauto hauto\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"20\" width=\"20\"><path d=\"M10 17v-1.5h5.5v-11H10V3h5.5q.625 0 1.062.438Q17 3.875 17 4.5v11q0 .625-.438 1.062Q16.125 17 15.5 17Zm-1.5-3.5-1.062-1.062 1.687-1.688H3v-1.5h6.125L7.438 7.562 8.5 6.5 12 10Z\"/></svg></span>")
+                                .attr("href", "./login.html");
+                        }
+                    })
+                    .fail(function () {
+                        alert(unknownErrorMessage);
+                        logged = false;
+                        $(".loginLink").html("LOGIN").attr("href", "./login.html");
+                        $(".loginLinkWithIcon")
+                            .html("LOGIN<span class=\"i wauto hauto\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"20\" width=\"20\"><path d=\"M10 17v-1.5h5.5v-11H10V3h5.5q.625 0 1.062.438Q17 3.875 17 4.5v11q0 .625-.438 1.062Q16.125 17 15.5 17Zm-1.5-3.5-1.062-1.062 1.687-1.688H3v-1.5h6.125L7.438 7.562 8.5 6.5 12 10Z\"/></svg></span>")
+                            .attr("href", "./login.html");
+                    })
+                    .always(function () {
+                        getServices();
+                    });
+        </script>
     </nav>
     <div class="marker" id="home"></div>
     <header class="c mcenter ccenter w12 ovisible" id="main-banner">
@@ -83,50 +157,68 @@
     </section>
     <div class="marker" id="services"></div>
     <section class="c mcenter ccenter w12 hmin bgLight">
-        <div class="r p6 p12-lmd mbetween cstretch w12 w11-lmd w10-hmd w8-llg w6-hlg carousel">
+        <div class="r p6 p12-lmd mbetween cstretch w12 w11-lmd w10-hmd w8-llg w6-hlg carousel" id="services-carousel">
             <button class="i wmin hauto ovisible carousel-previous-button" title="Anterior">
                 <svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M27.083 36.667 10.417 20 27.083 3.333l2.542 2.584L15.542 20l14.083 14.083Z"/></svg>
             </button>
             <div class="i w12 hauto oauto carousel-display" data-focused-item="0">
-                <ul class="r mevenly ccenter wmax" style="min-width: 100%;">
-                    <li class="carousel-item" style="width: 16rem;">
-                        <div class="c mcenter ccenter wauto hauto card">
-                            <img class="i w8 hauto text-center card-image" src="./assets/img/atelier_logo_tiny.svg" alt="" draggable="false">
-                            <p class="i title-slin text-center p2">Serviço 1</p>
-                            <p class="i text-info text-center p2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sodales sollicitudin condimentum. Nulla viverra mollis sapien, sed cursus justo lacinia a. Praesent a ante metus. Sed vestibulum malesuada pellentesque.</p>
-                            <!--<a href="https://api.whatsapp.com/send?phone=5511960995554&text=Boa%20tarde!%20Gostaria%20de%20mais%20informações" target="blank" class="btn-card" draggable="false">CONTRATAR</a>-->
-                        </div>
-                    </li>
-                    <li class="carousel-item" style="width: 16rem;">
-                        <div class="c mcenter ccenter wauto hauto card">
-                            <img class="i w8 hauto text-center card-image" src="./assets/img/atelier_logo_tiny.svg" alt="" draggable="false">
-                            <p class="i title-slin text-center p2">Serviço 2</p>
-                            <p class="i text-info text-center p2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sodales sollicitudin condimentum. Nulla viverra mollis sapien, sed cursus justo lacinia a. Praesent a ante metus. Sed vestibulum malesuada pellentesque.</p>
-                            <!--<a href="https://api.whatsapp.com/send?phone=5511960995554&text=Boa%20tarde!%20Gostaria%20de%20mais%20informações" target="blank" class="btn-card" draggable="false">CONTRATAR</a>-->
-                        </div>
-                    </li>
-                    <li class="carousel-item" style="width: 16rem;">
-                        <div class="c mcenter ccenter wauto hauto card">
-                            <img class="i w8 hauto text-center card-image" src="./assets/img/atelier_logo_tiny.svg" alt="" draggable="false">
-                            <p class="i title-slin text-center p2">Serviço 3</p>
-                            <p class="i text-info text-center p2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sodales sollicitudin condimentum. Nulla viverra mollis sapien, sed cursus justo lacinia a. Praesent a ante metus. Sed vestibulum malesuada pellentesque.</p>
-                            <!--<a href="https://api.whatsapp.com/send?phone=5511960995554&text=Boa%20tarde!%20Gostaria%20de%20mais%20informações" target="blank" class="btn-card" draggable="false">CONTRATAR</a>-->
-                        </div>
-                    </li>
-                    <li class="carousel-item" style="width: 16rem;">
-                        <div class="c mcenter ccenter wauto hauto card">
-                            <img class="i w8 hauto text-center card-image" src="./assets/img/atelier_logo_tiny.svg" alt="" draggable="false">
-                            <p class="i title-slin text-center p2">Serviço 4</p>
-                            <p class="i text-info text-center p2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sodales sollicitudin condimentum. Nulla viverra mollis sapien, sed cursus justo lacinia a. Praesent a ante metus. Sed vestibulum malesuada pellentesque.</p>
-                            <!--<a href="https://api.whatsapp.com/send?phone=5511960995554&text=Boa%20tarde!%20Gostaria%20de%20mais%20informações" target="blank" class="btn-card" draggable="false">CONTRATAR</a>-->
-                        </div>
-                    </li>
-                </ul>
+                <ul class="r mevenly ccenter wmax" style="min-width: 100%;"></ul>
             </div>
             <button class="i wmin hauto ovisible carousel-next-button" title="Próximo">
                 <svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="m12.917 36.625-2.542-2.583 14.083-14.084L10.375 5.833l2.542-2.541 16.666 16.666Z"/></svg>
             </button>
         </div>
+        <script>
+            function getServices() {
+                if (logged) {
+                    $("#services-carousel")
+                        .find(".carousel-display")
+                        .children()
+                        .append(
+                            '<li class="c mcenter ccenter carousel-item action-button" style="width: 16rem; height: 16rem;" title="Criar novo serviço">' +
+                                '<div class="c mcenter ccenter wauto hauto card">' +
+                                    '<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M22.5 38V25.5H10v-3h12.5V10h3v12.5H38v3H25.5V38Z"/></svg>' +
+                                '</div>' +
+                            '</li>',
+                        );
+                }
+                $.get(apiUrl + "/service")
+                    .done(function (data) {
+                        response = $.parseJSON(data);
+                        if (response.status == 1) {
+                            response.result.forEach(service => {
+                                $("#services-carousel")
+                                    .find(".carousel-display")
+                                    .children()
+                                    .append(
+                                        '<li class="carousel-item" style="width: 16rem;">' +
+                                            '<div class="c mcenter ccenter wauto hauto card">' +
+                                                '<img class="i w8 hauto text-center card-image" src="./assets/img/services/' + service.image + '" draggable="false">' +
+                                                '<p class="i title-slin text-center p2">' + service.title + '</p>' +
+                                                '<p class="i text-info text-center p2">' + service.description + '</p>' +
+                                            '</div>' +
+                                        '</li>',
+                                    ); 
+                            });
+                        } else if (response.status == 0) {
+                            if (!logged) {
+                                $("#services-carousel").hide();
+                            }
+                        } else {
+                            alert(internalErrorMessage);
+                            if (!logged) {
+                                $("#services-carousel").hide();
+                            }
+                        }
+                    })
+                    .fail(function () {
+                        alert(unknownErrorMessage);
+                        if (!logged) {
+                            $("#services-carousel").hide();
+                        }
+                    });
+                }
+        </script>
     </section>
     <div class="marker" id="contact"></div>
     <section class="c mcenter ccenter w12 hauto bgLight">
@@ -216,73 +308,6 @@
     <a class="whatsapp-button" id="whatsapp-button" href="https://api.whatsapp.com/send?phone=5511960995554&text=Boa%20tarde!%20Gostaria%20de%20mais%20informações" target="_blank" title="Contato por Whatsapp">
         <img class="i" src="./assets/img/whatsapp_logo.webp" alt="Whatsapp">
     </a>
-    <script src="./assets/js/jquery-3.6.1.min.js"></script>
-    <script src="./assets/js/constants.js"></script>
-    <script src="./assets/js/main.js"></script>
-    <script>
-        $.get(apiUrl + "/login")
-                .done(function (data) {
-                    response = $.parseJSON(data);
-                    if (response.status == 1) {
-                        $(".loginLink")
-                            .html("LOGOUT")
-                            .attr("href", "#home")
-                            .on("click", function (event) {
-                                $.ajax({method: "DELETE", url: apiUrl + "/login"})
-                                .done(function (data) {
-                                    response = $.parseJSON(data);
-                                    if (response.status == 1) {
-                                        window.location.reload();
-                                    } else if (response.status == 0) {
-                                        alert(response.message);
-                                    } else {
-                                        alert(internalErrorMessage);
-                                    }
-                                })
-                                .fail(function (data) {
-                                    alert(unknownErrorMessage);
-                                });
-                            });
-                        $(".loginLinkWithIcon")
-                            .html("LOGOUT<span class=\"i wauto hauto\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"20\" width=\"20\"><path d=\"M4.5 17q-.625 0-1.062-.438Q3 16.125 3 15.5v-11q0-.625.438-1.062Q3.875 3 4.5 3H10v1.5H4.5v11H10V17Zm9-3.5-1.062-1.062 1.687-1.688H8v-1.5h6.125l-1.687-1.688L13.5 6.5 17 10Z\"/></svg></span>")
-                            .attr("href", "#home")
-                            .on("click", function (event) {
-                                $.ajax({method: "DELETE", url: apiUrl + "/login"})
-                                .done(function (data) {
-                                    response = $.parseJSON(data);
-                                    if (response.status == 1) {
-                                        window.location.reload();
-                                    } else if (response.status == 0) {
-                                        alert(response.message);
-                                    } else {
-                                        alert(internalErrorMessage);
-                                    }
-                                })
-                                .fail(function (data) {
-                                    alert(unknownErrorMessage);
-                                });
-                            });
-                    } else if (response.status == 0) {
-                        $(".loginLink").html("LOGIN").attr("href", "./login.html");
-                        $(".loginLinkWithIcon")
-                            .html("LOGIN<span class=\"i wauto hauto\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"20\" width=\"20\"><path d=\"M10 17v-1.5h5.5v-11H10V3h5.5q.625 0 1.062.438Q17 3.875 17 4.5v11q0 .625-.438 1.062Q16.125 17 15.5 17Zm-1.5-3.5-1.062-1.062 1.687-1.688H3v-1.5h6.125L7.438 7.562 8.5 6.5 12 10Z\"/></svg></span>")
-                            .attr("href", "./login.html");
-                    } else {
-                        alert(internalErrorMessage);
-                        $(".loginLink").html("LOGIN").attr("href", "./login.html");
-                        $(".loginLinkWithIcon")
-                            .html("LOGIN<span class=\"i wauto hauto\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"20\" width=\"20\"><path d=\"M10 17v-1.5h5.5v-11H10V3h5.5q.625 0 1.062.438Q17 3.875 17 4.5v11q0 .625-.438 1.062Q16.125 17 15.5 17Zm-1.5-3.5-1.062-1.062 1.687-1.688H3v-1.5h6.125L7.438 7.562 8.5 6.5 12 10Z\"/></svg></span>")
-                            .attr("href", "./login.html");
-                    }
-                })
-                .fail(function () {
-                    alert(unknownErrorMessage);
-                    $(".loginLink").html("LOGIN").attr("href", "./login.html");
-                    $(".loginLinkWithIcon")
-                        .html("LOGIN<span class=\"i wauto hauto\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"20\" width=\"20\"><path d=\"M10 17v-1.5h5.5v-11H10V3h5.5q.625 0 1.062.438Q17 3.875 17 4.5v11q0 .625-.438 1.062Q16.125 17 15.5 17Zm-1.5-3.5-1.062-1.062 1.687-1.688H3v-1.5h6.125L7.438 7.562 8.5 6.5 12 10Z\"/></svg></span>")
-                        .attr("href", "./login.html");
-                });
-    </script>
 </body>
 </html>
 

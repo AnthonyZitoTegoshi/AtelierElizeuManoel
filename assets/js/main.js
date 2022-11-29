@@ -23,6 +23,7 @@ window.addEventListener("load", function () {
     setMainFooter();
     setSvgColors();
     adjustWhatsappButton();
+    setActionButtons();
     lastScrollPosition = currentScrollPosition = window.scrollY;
     window.document.getElementById("loading-screen").style.display = "none";
     window.document.body.style.overflow = "";
@@ -488,6 +489,31 @@ function adjustWhatsappButton() {
                 animatingWhatsappButton = true;
             }
         }
+    }
+}
+
+function setActionButtons() {
+    let actionButtons = window.document.getElementsByClassName("action-button");
+    for (let i = 0; i < actionButtons.length; i++) {
+        let actionButton = actionButtons[i];
+        actionButton.addEventListener("mouseenter", function () {
+            actionButton.getElementsByTagName("svg")[0].animate([
+                {fill: dark},
+                {fill: primaryLighter},
+            ], 50, 1);
+            window.setTimeout(function () {
+                actionButton.getElementsByTagName("svg")[0].setAttribute("fill", primaryLighter);
+            }, 50);
+        });
+        actionButton.addEventListener("mouseleave", function () {
+            actionButton.getElementsByTagName("svg")[0].animate([
+                {fill: primaryLighter},
+                {fill: dark},
+            ], 50, 1);
+            window.setTimeout(function () {
+                actionButton.getElementsByTagName("svg")[0].setAttribute("fill", dark);
+            }, 50);
+        });
     }
 }
 

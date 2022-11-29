@@ -8,8 +8,8 @@ use App\Helper\HashHelper as HashHelper;
 use App\Helper\InputHelper as InputHelper;
 use App\Helper\GenerateHelper as GenerateHelper;
 use App\Helper\ResponseHelper as ResponseHelper;
-use App\Helper\ValidateHelper;
-use Configuration\Server;
+use App\Helper\ValidateHelper as ValidateHelper;
+use Configuration\Server as Server;
 
 class LoginController {
     public function login(array $data): void {

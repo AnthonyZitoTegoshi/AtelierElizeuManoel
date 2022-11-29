@@ -13,6 +13,9 @@
     <span class="r mcenter ccenter w12 h12" id="loading-screen">
         <img src="./assets/img/loading.gif" style="height: 8rem;" draggable="false">
     </span>
+    <script src="./assets/js/jquery-3.6.1.min.js"></script>
+    <script src="./assets/js/constants.js"></script>
+    <script src="./assets/js/main.js"></script>
     <main id="login-main-banner" class="c mcenter ccenter w12">
         <section class="c p4 mcenter ccenter cstart-lmd w12 w8-lmd w7-hmd w6-llg w5-hlg ovisible">
             <div class="c mcenter ccenter g2 wauto hauto">
@@ -37,32 +40,29 @@
                         <a class="i wauto hauto ovisible forgot-password-link" href="./#home" tabindex="4">Esqueci minha senha</a>
                     </div>
                     <input class="i submit-button" type="submit" value="Login" tabindex="3">
+                    <script>
+                        $("#form-login").on("submit", function (event) {
+                            event.preventDefault();
+                            $.post(apiUrl + "/login", $(this).serialize())
+                                .done(function (data) {
+                                    response = $.parseJSON(data);
+                                    if (response.status == 1) {
+                                        $("#error-display").css("display", "none");
+                                        window.location.href = baseUrl + "/#home";
+                                    } else if (response.status == 0) {
+                                        $("#error-display").html(response.message).css("display", "block");
+                                    } else {
+                                        $("#error-display").html(internalErrorMessage).css("display", "block");
+                                    }
+                                })
+                                .fail(function () {
+                                    $("#error-display").html(unknownErrorMessage).css("display", "block");
+                                });
+                        });
+                    </script>
                 </form>
             </div>
         </section>
     </main>
-    <script src="./assets/js/jquery-3.6.1.min.js"></script>
-    <script src="./assets/js/constants.js"></script>
-    <script src="./assets/js/main.js"></script>
-    <script>
-        $("#form-login").on("submit", function (event) {
-            event.preventDefault();
-            $.post(apiUrl + "/login", $(this).serialize())
-                .done(function (data) {
-                    response = $.parseJSON(data);
-                    if (response.status == 1) {
-                        $("#error-display").css("display", "none");
-                        window.location.href = baseUrl + "/#home";
-                    } else if (response.status == 0) {
-                        $("#error-display").html(response.message).css("display", "block");
-                    } else {
-                        $("#error-display").html(internalErrorMessage).css("display", "block");
-                    }
-                })
-                .fail(function () {
-                    $("#error-display").html(unknownErrorMessage).css("display", "block");
-                });
-        });
-    </script>
 </body>
 </html>
