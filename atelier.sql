@@ -41,7 +41,7 @@ CREATE TABLE `logins` (
   CONSTRAINT `logins_ck_sid` CHECK (regexp_like(`sid`,_utf8mb4'^[A-Za-z0-9]{12}$')),
   CONSTRAINT `logins_ck_token` CHECK (regexp_like(`token`,_utf8mb4'^[A-Za-z0-9]{64}$')),
   CONSTRAINT `logins_ck_updated_at` CHECK (regexp_like(`updated_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,17 +50,18 @@ CREATE TABLE `logins` (
 
 LOCK TABLES `logins` WRITE;
 /*!40000 ALTER TABLE `logins` DISABLE KEYS */;
+INSERT INTO `logins` VALUES (5,'48CYqoBQhv20','5wR1pgO7DT6f','218d4b202421c90e09801d30546f866268eff14c1100143784df70df414a8c5b','2022-12-01 22:47:52','2022-11-28 22:47:52','2022-11-28 22:47:52');
 /*!40000 ALTER TABLE `logins` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `site_atelier_sections`
+-- Table structure for table `site_services`
 --
 
-DROP TABLE IF EXISTS `site_atelier_sections`;
+DROP TABLE IF EXISTS `site_services`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `site_atelier_sections` (
+CREATE TABLE `site_services` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `image` char(64) COLLATE utf8mb4_general_ci NOT NULL,
   `title` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
@@ -68,21 +69,21 @@ CREATE TABLE `site_atelier_sections` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `site_atelier_sections_uk_image` (`image`),
-  CONSTRAINT `site_atelier_sections_ck_created_at` CHECK (regexp_like(`created_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')),
-  CONSTRAINT `site_atelier_sections_ck_image` CHECK (regexp_like(`image`,_utf8mb4'^[A-Za-z0-9]{64}$')),
-  CONSTRAINT `site_atelier_sections_ck_updated_at` CHECK (regexp_like(`updated_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'))
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  UNIQUE KEY `site_services_uk_image` (`image`),
+  CONSTRAINT `site_services_ck_created_at` CHECK (regexp_like(`created_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')),
+  CONSTRAINT `site_services_ck_image` CHECK (regexp_like(`image`,_utf8mb4'^[A-Za-z0-9.]{64}$')),
+  CONSTRAINT `site_services_ck_updated_at` CHECK (regexp_like(`updated_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'))
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `site_atelier_sections`
+-- Dumping data for table `site_services`
 --
 
-LOCK TABLES `site_atelier_sections` WRITE;
-/*!40000 ALTER TABLE `site_atelier_sections` DISABLE KEYS */;
-INSERT INTO `site_atelier_sections` VALUES (1,'5fd924625f6ab16a19cc9807c7c506ae1813490e4ba675f843d5a10e0baacdb8','Atelier Elizeu Manoel','Refinamento e classe: os motivos que encontrei para a excelência do meu trabalho. Procuro ser um especialista onde atuo, principalmente na criação e ajustes de violinos, violoncellos e violas. Venho me aperfeiçoando no ramo da lutheria há mais de 5 anos e, muito provavelmente, a consistência e o amor pelo trabalho têm me feito um dos melhores que conheço na cidade.','2022-11-19 18:36:32','2022-11-19 18:36:32'),(2,'bcbee97fbb9d59d289bc4127e31020b2d8daf4d4a68349483258cae290c16722','Honra de servir à música','Atenção, meticulosidade, inspiração, harmonia... É como se a música fosse um guia, um caminho na minha vida. E ser responsável pela criação dos instrumentos que a produzem é, definitivamente, é a maior honra que poderia ter. Este sou eu, preparado para solucionar qualquer problema que você tenha no seu instrumento...','2022-11-19 18:38:12','2022-11-19 18:38:12');
-/*!40000 ALTER TABLE `site_atelier_sections` ENABLE KEYS */;
+LOCK TABLES `site_services` WRITE;
+/*!40000 ALTER TABLE `site_services` DISABLE KEYS */;
+INSERT INTO `site_services` VALUES (1,'1kZRFLy0cdkWcnxlFGYZy6KCGCiVMlWLm4Cm2WQTNI9307L04lMwGoymrENw.svg','Título 1','Descrição 1','2022-11-28 20:56:53','2022-11-28 20:56:53'),(2,'1kZRFLy0cdkWcaxlFGYZy6KCGCiVMlWLm4Cm2WQTNI9307L04lMwGoymrENw.svg','Título 1','Descrição 1','2022-11-28 20:56:53','2022-11-28 20:56:53');
+/*!40000 ALTER TABLE `site_services` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -130,4 +131,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-28 20:43:51
+-- Dump completed on 2022-11-28 22:57:28
