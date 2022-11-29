@@ -12,9 +12,11 @@ $password = isset($_POST["password"]) ? $_POST["password"] : "";
 
 $sentForm = isset($_POST["email"]) && isset($_POST["password"]);
 
+
 if ($sentForm) {
     $isValidEmail = InputHelper::isValidEmail($email);
     $isValidPassword = InputHelper::isValidPassword($password);
+
 
 
     if ($isValidEmail && $isValidPassword) {
@@ -29,6 +31,7 @@ if ($sentForm) {
             $userDao->setComplement("WHERE " . $userDao->getFields()[2] . " = \"$email\" AND " . $userDao->getFields()[3] . " = \"$hashedPassword\"");
             if (count($connection->query($userDao->readQuery())) == 1) {
                 // !change: Não permitir mais de um token pro mesmo usuário
+                //$userDao->setComplement("WHERE". $userDao->getFields()[4]. " = \"\"")
                 $tokenId = GenerateHelper::randomId();
                 $token = GenerateHelper::randomToken();
                 $hashedToken = HashHelper::encrypt($token, substr($token, 0, 12));
@@ -42,6 +45,7 @@ if ($sentForm) {
                     header("Location: " . $_SESSION["CONFIGURATION"]->getRootPath());
                 }
                 $isValidLogin = TRUE;
+                
             }
         }
     }

@@ -4,9 +4,9 @@
         private $permissionId;
         private $permissionName; 
         private $permissionType; 
-        private $id;
         
-        function function_name() {
+        
+    function function_name() {
             ;
         }    
     

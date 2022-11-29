@@ -10,9 +10,11 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 // Seta a tabela de usuário e seus campos
-$usersTable = new TableConfiguration("Users", array("id", "name", "email", "password", "userLevel"));
+$usersTable = new TableConfiguration("Users", array("id", "name", "email", "password", "permissionId"));
 // Seta a tabela de logins e seus campos
 $loginsTable = new TableConfiguration("Logins", array("id", "userId", "token", "expireDate"));
+//Seta a tabela de permissões de usuários e seus campos
+$userPermission= new TableConfiguration("UserPermissions", array("permissionId", "permissionName", "permissionType","id"));
 
 // Verifica qual é o local em que o código está sendo executado
 if ($_SERVER["HTTP_HOST"] == "localhost") {

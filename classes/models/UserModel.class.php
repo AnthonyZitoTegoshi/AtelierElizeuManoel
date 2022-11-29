@@ -2,21 +2,21 @@
 
 class UserModel {
     private $id;
-    private $userLevel;
+    private $permissionId;
     private $name;
     private $email;
     private $password;
 
-    function __construct($id, $name, $email, $password, $userLevel) {
+    function __construct($id, $name, $email, $password, $permissionId) {
         $this->setId($id);
         $this->setName($name);
         $this->setEmail($email);
         $this->setPassword($password);
-        $this->setUserLevel($userLevel);
+        $this->setPermissionId($permissionId);
     }
 
     function getValues() {
-        return array($this->getId(), $this->getUserLevel(), $this->getName(), $this->getEmail(), $this->getPassword());
+        return array($this->getId(), $this->getPermissionId(), $this->getName(), $this->getEmail(), $this->getPassword());
     }
 
     function getId() {
@@ -25,11 +25,11 @@ class UserModel {
     function setId($id) {
         $this->id = $id;
     }
-    function setUserLevel($userLevel){
-        $this->id = $userLevel;
+    function setPermissionId($permissionId){
+        $this->permissionId = $permissionId;
     }
-    function getUserLevel() {
-        return $this->userLevel;
+    function getPermissionId() {
+        return $this->permissionId;
     }
     function getName() {
         return $this->name;
@@ -50,5 +50,9 @@ class UserModel {
         $this->password = $password;
     }
 }
+
+$batata = new UserModel(1,2,3,4,5);
+$batata->setPassword(12345);
+
 
 ?>
