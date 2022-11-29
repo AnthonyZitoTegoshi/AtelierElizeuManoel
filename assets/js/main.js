@@ -265,7 +265,7 @@ function setCarousels() {
         var display = carousel.getElementsByClassName("carousel-display")[0];
         var items = display.getElementsByClassName("carousel-item");
         var currentItem = parseInt(display.getAttribute("data-focused-item"));
-        for (var j = 0; j < items.length; j++) {
+        /*for (var j = 0; j < items.length; j++) {
             var cards = items[j].getElementsByClassName("card");
             if (cards.length > 0) {
                 var btnCard = cards[0].getElementsByClassName("btn-card")[0];
@@ -281,7 +281,7 @@ function setCarousels() {
                     }
                 }
             }
-        }
+        }*/
         display.style.overflow = "hidden";
         display.style.cursor = "grab";
         display.onscroll = function () {
@@ -341,7 +341,7 @@ function setCarousels() {
             }
             display.scroll(items[currentItem].offsetLeft - items[0].offsetLeft - display.getBoundingClientRect().width / 2 + items[currentItem].getBoundingClientRect().width / 2, 0);
             display.setAttribute("data-focused-item", currentItem);
-            for (var j = 0; j < items.length; j++) {
+            /*for (var j = 0; j < items.length; j++) {
                 var cards = items[j].getElementsByClassName("card");
                 if (cards.length > 0) {
                     var btnCard = cards[0].getElementsByClassName("btn-card")[0];
@@ -357,7 +357,7 @@ function setCarousels() {
                         }
                     }
                 }
-            }
+            }*/
         });
         carousel.getElementsByClassName("carousel-next-button")[0].addEventListener("click", function () {
             var display = this.parentElement.getElementsByClassName("carousel-display")[0];
@@ -368,7 +368,7 @@ function setCarousels() {
             }
             display.scroll(items[currentItem].offsetLeft - items[0].offsetLeft - display.getBoundingClientRect().width / 2 + items[currentItem].getBoundingClientRect().width / 2, 0);
             display.setAttribute("data-focused-item", currentItem);
-            for (var j = 0; j < items.length; j++) {
+            /*for (var j = 0; j < items.length; j++) {
                 var cards = items[j].getElementsByClassName("card");
                 if (cards.length > 0) {
                     var btnCard = cards[0].getElementsByClassName("btn-card")[0];
@@ -384,7 +384,7 @@ function setCarousels() {
                         }
                     }
                 }
-            }
+            }*/
         });
     }
     window.document.addEventListener("mouseup", function () {
