@@ -360,6 +360,18 @@ button, input:is([type="button"]) {
   border-radius: 99999px;
 }
 
+.card-remove-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  margin: 10px;
+  border-radius: 99999px !important;
+  border-width: 2px !important;
+  border-style: solid !important;
+  padding: 5px;
+}
+
 .btn-card {
   width: 100%;
   padding: 10px 20px;

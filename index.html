@@ -87,19 +87,19 @@
                                 .on("click", async function (event) {
                                     addLoading();
                                     await $.ajax({method: "DELETE", url: apiUrl + "/login"})
-                                    .done(function (data) {
-                                        response = $.parseJSON(data);
-                                        if (response.status == 1) {
-                                            window.location.reload();
-                                        } else if (response.status == 0) {
-                                            alert(response.message);
-                                        } else {
-                                            alert(internalErrorMessage);
-                                        }
-                                    })
-                                    .fail(function (data) {
-                                        alert(unknownErrorMessage);
-                                    });
+                                        .done(function (data) {
+                                            response = $.parseJSON(data);
+                                            if (response.status == 1) {
+                                                window.location.reload();
+                                            } else if (response.status == 0) {
+                                                alert(response.message);
+                                            } else {
+                                                alert(internalErrorMessage);
+                                            }
+                                        })
+                                        .fail(function (data) {
+                                            alert(unknownErrorMessage);
+                                        });
                                     subLoading();
                                 });
                         } else if (response.status == 0) {
@@ -227,9 +227,38 @@
                                                 '<img class="i w8 hauto text-center card-image" src="./assets/img/services/' + service.image + '" draggable="false">' +
                                                 '<p class="i title-slin text-center p2">' + service.title + '</p>' +
                                                 '<p class="i text-info text-center p2">' + service.description + '</p>' +
+                                                '<button class="card-remove-button bordered-action-button"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M5 13v-2h14v2Z"/></svg></button>' +
                                             '</div>' +
                                         '</li>',
-                                    ); 
+                                    );
+                                $("#services-carousel")
+                                    .find(".carousel-display")
+                                    .children()
+                                    .children()
+                                    .last()
+                                    .find(".card-remove-button")
+                                    .on("click", async function () {
+                                        addLoading();
+                                        await $.ajax({
+                                                method: "DELETE",
+                                                url: apiUrl + "/service",
+                                                data: "id=" + service.id,
+                                            })
+                                            .done(function (data) {
+                                                response = $.parseJSON(data);
+                                                if (response.status == 1) {
+                                                    getServices();
+                                                } else if (response.status == 0) {
+                                                    alert(response.message);
+                                                } else {
+                                                    alert(internalErrorMessage);
+                                                }
+                                            })
+                                            .fail(function (data) {
+                                                alert(unknownErrorMessage);
+                                            });
+                                        subLoading();
+                                    });
                             });
                         } else if (response.status == 0) {
                             if (!logged) {

@@ -53,4 +53,23 @@ class ServiceController {
             );
         }
     }
+
+    public function delete(array $data): void {
+        $id = $data['id'];
+        if ($id) {
+            $service = (new ServiceModel())->find('id = :id', 'id=' . $id);
+            if ($service->count() > 0) {
+                $service = $service->fetch();
+                if ($service->destroy()) {
+                    ResponseHelper::send(RESPONSE_SUCCESS, 'Serviço deletado com sucesso');
+                } else {
+                    ResponseHelper::send(RESPONSE_ERROR, 'Ocorreu um erro ao deletar o serviço');
+                }
+            } else {
+                ResponseHelper::send(REQUEST_ERROR, 'Serviço não existe');
+            }
+        } else {
+            ResponseHelper::send(REQUEST_ERROR, 'ID do serviço incorreto');
+        }
+    }
 }
