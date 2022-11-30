@@ -32,4 +32,13 @@ class GenerateHelper {
         }
         return $token;
     }
+
+    static function randomImage(string $extension): string {
+        $options = GenerateHelper::getOptions();
+        $image = '';
+        for ($i = 0; $i < 64 - strlen($extension); $i++) {
+            $image .= $options[random_int(0, count($options) - 1)];
+        }
+        return $image . $extension;
+    }
 }

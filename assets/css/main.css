@@ -58,7 +58,7 @@
 
 * {
   position: relative;
-  transition: outline linear 50ms, border-color linear 50ms, color linear 50ms, background-color linear 50ms, scale linear 50ms;
+  transition: outline linear 50ms, border-color linear 50ms, fill linear 50ms, color linear 50ms, background-color linear 50ms, scale linear 50ms;
   scroll-behavior: smooth;
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
@@ -67,6 +67,30 @@
   line-height: 1.5rem;
   color: var(--dark);
   z-index: 0;
+}
+
+svg {
+  fill: var(--dark);
+}
+
+svg.fill-light {
+  fill: var(--light);
+}
+
+svg.fill-dark {
+  fill: var(--dark);
+}
+
+svg.fill-primary-lighter {
+  fill: var(--primary-lighter);
+}
+
+svg.fill-primary {
+  fill: var(--primary);
+}
+
+svg.fill-primary-darker {
+  fill: var(--primary-darker);
 }
 
 .title {
@@ -155,7 +179,7 @@ button, input:is([type="button"]) {
   color: inherit;
 }
 
-.hover-color-change:hover {
+.hover-color-change:hover, .hover-color-change:focus-within {
   color: var(--light);
   background-color: var(--primary-lighter);
 }
@@ -177,7 +201,7 @@ button, input:is([type="button"]) {
   animation: 100ms ease hover-line-bottom-leave;
 }
 
-.hover-line-bottom:hover::after {
+.hover-line-bottom:hover::after, .hover-line-bottom:focus-within::after {
   width: 100%;
   animation: 100ms ease hover-line-bottom-enter;
 }
@@ -289,7 +313,7 @@ button, input:is([type="button"]) {
   touch-action: manipulation;
 }
 
-.btn-banner:hover {
+.btn-banner:hover, .btn-banner:focus-within {
   background: #F6F9FE;
 }
 
@@ -367,7 +391,7 @@ button, input:is([type="button"]) {
   z-index: 1;
 }
 
-.whatsapp-button:hover {
+.whatsapp-button:hover, .whatsapp-button:focus-within {
   scale: 110%;
 }
 
@@ -774,13 +798,27 @@ input.submit-button:focus-within {
   background-color: #111827;
 }
 
-.action-button {
+.bordered-action-button {
   border-radius: 10px;
   border: 3px dashed var(--dark);
+}
+
+.bordered-action-button, .no-border-action-button {
   cursor: pointer;
 }
 
-.action-button:hover {
+.bordered-action-button > svg, .no-border-action-button > svg {
+  fill: var(--dark);
+}
+
+.bordered-action-button:hover, .bordered-action-button:focus-within {
   border-color: var(--primary-lighter);
   border-style: solid;
+}
+
+.bordered-action-button:hover > svg,
+.no-border-action-button:hover > svg,
+.bordered-action-button:focus-within > svg,
+.no-border-action-button:focus-within > svg {
+  fill: var(--primary-lighter);
 }

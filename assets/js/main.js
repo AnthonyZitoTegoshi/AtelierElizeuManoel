@@ -14,6 +14,27 @@ var waitingToScrollX;
 
 var animatingWhatsappButton = false;
 
+var loadings = 1;
+
+function addLoading() {
+    loadings += 1;
+    if (loadings > 0) {
+        window.document.getElementById("loading-screen").style.display = "";
+        window.document.body.style.overflow = "hidden";
+    }
+}
+
+function subLoading() {
+    loadings -= 1;
+    if (loadings < 0) {
+        loadings = 0;
+    }
+    if (loadings == 0) {
+        window.document.getElementById("loading-screen").style.display = "none";
+        window.document.body.style.overflow = "";
+    }
+}
+
 window.addEventListener("load", function () {
     adjustMainRetractableMenu();
     setRetractorsListeners();
@@ -21,12 +42,9 @@ window.addEventListener("load", function () {
     setCarousels();
     adjustCarousels();
     setMainFooter();
-    setSvgColors();
     adjustWhatsappButton();
-    setActionButtons();
     lastScrollPosition = currentScrollPosition = window.scrollY;
-    window.document.getElementById("loading-screen").style.display = "none";
-    window.document.body.style.overflow = "";
+    subLoading();
 });
 
 window.addEventListener("resize", function () {
@@ -76,28 +94,6 @@ window.addEventListener("scroll", function () {
     }
     adjustWhatsappButton();
 });
-
-function setSvgColors() {
-    var svgs = window.document.getElementsByTagName("svg");
-    for (var i = 0; i < svgs.length; i++) {
-        switch (svgs[i].getAttribute("fill")) {
-            case "light":
-                svgs[i].setAttribute("fill", light);
-                break;
-            case "primary":
-                svgs[i].setAttribute("fill", primary);
-                break;
-            case "primaryDarker":
-                svgs[i].setAttribute("fill", primaryDarker);
-                break;
-            case "primaryLighter":
-                svgs[i].setAttribute("fill", primaryLighter);
-                break;
-            default:
-                svgs[i].setAttribute("fill", dark);
-        }
-    }
-}
 
 function setRetractorsListeners() {
     var retractors = window.document.getElementsByClassName("retractable-menu-retractor");
@@ -489,31 +485,6 @@ function adjustWhatsappButton() {
                 animatingWhatsappButton = true;
             }
         }
-    }
-}
-
-function setActionButtons() {
-    let actionButtons = window.document.getElementsByClassName("action-button");
-    for (let i = 0; i < actionButtons.length; i++) {
-        let actionButton = actionButtons[i];
-        actionButton.addEventListener("mouseenter", function () {
-            actionButton.getElementsByTagName("svg")[0].animate([
-                {fill: dark},
-                {fill: primaryLighter},
-            ], 50, 1);
-            window.setTimeout(function () {
-                actionButton.getElementsByTagName("svg")[0].setAttribute("fill", primaryLighter);
-            }, 50);
-        });
-        actionButton.addEventListener("mouseleave", function () {
-            actionButton.getElementsByTagName("svg")[0].animate([
-                {fill: primaryLighter},
-                {fill: dark},
-            ], 50, 1);
-            window.setTimeout(function () {
-                actionButton.getElementsByTagName("svg")[0].setAttribute("fill", dark);
-            }, 50);
-        });
     }
 }
 

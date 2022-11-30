@@ -41,9 +41,10 @@
                     </div>
                     <input class="i submit-button" type="submit" value="Login" tabindex="3">
                     <script>
-                        $("#form-login").on("submit", function (event) {
+                        $("#form-login").on("submit", async function (event) {
                             event.preventDefault();
-                            $.post(apiUrl + "/login", $(this).serialize())
+                            addLoading();
+                            await $.post(apiUrl + "/login", $(this).serialize())
                                 .done(function (data) {
                                     response = $.parseJSON(data);
                                     if (response.status == 1) {
@@ -58,6 +59,7 @@
                                 .fail(function () {
                                     $("#error-display").html(unknownErrorMessage).css("display", "block");
                                 });
+                            subLoading();
                         });
                     </script>
                 </form>
