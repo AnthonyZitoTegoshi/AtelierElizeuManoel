@@ -60,10 +60,14 @@ class ServiceController {
             $service = (new ServiceModel())->find('id = :id', 'id=' . $id);
             if ($service->count() > 0) {
                 $service = $service->fetch();
-                if ($service->destroy()) {
-                    ResponseHelper::send(RESPONSE_SUCCESS, 'Serviço deletado com sucesso');
+                if (unlink(__DIR__ . '/../../../assets/img/services/' . $service->image)) {
+                    if ($service->destroy()) {
+                        ResponseHelper::send(RESPONSE_SUCCESS, 'Serviço deletado com sucesso');
+                    } else {
+                        ResponseHelper::send(RESPONSE_ERROR, 'Ocorreu um erro ao deletar o serviço');
+                    }
                 } else {
-                    ResponseHelper::send(RESPONSE_ERROR, 'Ocorreu um erro ao deletar o serviço');
+                    ResponseHelper::send(RESPONSE_ERROR, 'Ocorreu um erro ao deletar a imagem do serviço');
                 }
             } else {
                 ResponseHelper::send(REQUEST_ERROR, 'Serviço não existe');
