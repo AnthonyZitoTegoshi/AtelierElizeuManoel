@@ -225,7 +225,7 @@
                                         '<li class="carousel-item" style="width: 16rem;">' +
                                             '<div class="c mcenter ccenter wauto hauto card">' +
                                                 ((logged ? '<button class="c mcenter ccenter w12 hauto masked-input">' : '') + '<img class="i w8 hauto text-center card-image" src="./assets/img/services/' + service.image + '" draggable="false" style="' + (logged ? 'cursor: pointer;">' : '">') + (logged ? '</button>' : '')) +
-                                                (logged ? '<input type="file" name="image" hidden>' : '') + 
+                                                (logged ? '<input type="file" accept="image/png,image/jpg,image/jpeg,image/gif,image/svg+xml,image/webp" name="image" hidden>' : '') + 
                                                 (logged ? '<input class="i title-slin text-center p2 masked-input" name="title" type="text" title="Editar título do serviço" value="' + service.title + '">' : '<p class="i title-slin text-center p2">' + service.title + '</p>') +
                                                 (logged ? '<input class="i text-info text-center p2 masked-input" name="description" type="text" title="Editar descrição do serviço" value="' + service.description + '">' : '<p class="i text-info text-center p2">' + service.description + '</p>') +
                                                 (logged ? '<button class="card-remove-button bordered-action-button" title="Deletar serviço"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M5 10.75v-1.5h10v1.5Z"/></svg></button>' : '') +
@@ -251,7 +251,7 @@
                                         .find("input[name=image]")
                                         .on("change", async function () {
                                             addLoading();
-                                            var reader = new FileReader();
+                                            let reader = new FileReader();
                                             reader.onloadend = async function () {
                                                 await $.ajax({
                                                     method: "PUT",
@@ -274,6 +274,62 @@
                                                 subLoading();
                                             };
                                             reader.readAsDataURL($(this)[0].files[0]);
+                                        });
+                                    $("#services-carousel")
+                                        .find(".carousel-display")
+                                        .children()
+                                        .children()
+                                        .last()
+                                        .find("input[name=title]")
+                                        .on("change", async function () {
+                                            addLoading();
+                                            await $.ajax({
+                                                method: "PUT",
+                                                url: apiUrl + "/service",
+                                                data: "id=" + service.id + "&title=" + $(this).val(),
+                                            })
+                                            .done(function (data) {
+                                                response = $.parseJSON(data);
+                                                if (response.status == 1) {
+                                                    getServices();
+                                                } else if (response.status == 0) {
+                                                    alert(response.message);
+                                                } else {
+                                                    alert(internalErrorMessage);
+                                                }
+                                            })
+                                            .fail(function (data) {
+                                                alert(unknownErrorMessage);
+                                            });
+                                            subLoading();
+                                        });
+                                    $("#services-carousel")
+                                        .find(".carousel-display")
+                                        .children()
+                                        .children()
+                                        .last()
+                                        .find("input[name=description]")
+                                        .on("change", async function () {
+                                            addLoading();
+                                            await $.ajax({
+                                                method: "PUT",
+                                                url: apiUrl + "/service",
+                                                data: "id=" + service.id + "&description=" + $(this).val(),
+                                            })
+                                            .done(function (data) {
+                                                response = $.parseJSON(data);
+                                                if (response.status == 1) {
+                                                    getServices();
+                                                } else if (response.status == 0) {
+                                                    alert(response.message);
+                                                } else {
+                                                    alert(internalErrorMessage);
+                                                }
+                                            })
+                                            .fail(function (data) {
+                                                alert(unknownErrorMessage);
+                                            });
+                                            subLoading();
                                         });
                                     $("#services-carousel")
                                         .find(".carousel-display")
