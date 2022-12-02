@@ -23,6 +23,7 @@ window.addEventListener("load", function () {
     setMainFooter();
     setSvgColors();
     adjustWhatsappButton();
+    setActionButtons();
     lastScrollPosition = currentScrollPosition = window.scrollY;
     window.document.getElementById("loading-screen").style.display = "none";
     window.document.body.style.overflow = "";
@@ -491,6 +492,31 @@ function adjustWhatsappButton() {
     }
 }
 
+function setActionButtons() {
+    let actionButtons = window.document.getElementsByClassName("action-button");
+    for (let i = 0; i < actionButtons.length; i++) {
+        let actionButton = actionButtons[i];
+        actionButton.addEventListener("mouseenter", function () {
+            actionButton.getElementsByTagName("svg")[0].animate([
+                {fill: dark},
+                {fill: primaryLighter},
+            ], 50, 1);
+            window.setTimeout(function () {
+                actionButton.getElementsByTagName("svg")[0].setAttribute("fill", primaryLighter);
+            }, 50);
+        });
+        actionButton.addEventListener("mouseleave", function () {
+            actionButton.getElementsByTagName("svg")[0].animate([
+                {fill: primaryLighter},
+                {fill: dark},
+            ], 50, 1);
+            window.setTimeout(function () {
+                actionButton.getElementsByTagName("svg")[0].setAttribute("fill", dark);
+            }, 50);
+        });
+    }
+}
+
 /* Error popup in login.php */
 
 function ErrorEmailRequired (e) {
@@ -517,3 +543,21 @@ function EmailValid(email) {
 
 buttonConfirm = document.getElementById("email");
 buttonConfirm?.addEventListener("change", ErrorEmailRequired);
+
+function getUserToken() {
+    let cookies = decodeURIComponent(window.document.cookie).split(";");
+    for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i];
+        while (cookie[0] == " ") {
+            cookie = cookie.substring(1);
+        }
+        if (cookie.indexOf("token=") == 0) {
+            return cookie.substring(6);
+        }
+    }
+    return "";
+}
+
+$.ajaxSetup({
+    headers: {"token": getUserToken()}
+});

@@ -36,13 +36,55 @@ CREATE TABLE `logins` (
   UNIQUE KEY `logins_uk_sid` (`sid`),
   UNIQUE KEY `logins_uk_user_sid` (`user_sid`),
   UNIQUE KEY `logins_uk_token` (`token`),
-  CONSTRAINT `logins_ck_created_at` CHECK ((regexp_like(`created_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$',_utf8mb4'c') = 1)),
-  CONSTRAINT `logins_ck_expire_date` CHECK ((regexp_like(`expire_date`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$',_utf8mb4'c') = 1)),
-  CONSTRAINT `logins_ck_sid` CHECK ((regexp_like(`sid`,_utf8mb4'^[A-Za-z0-9]{12}$',_utf8mb4'c') = 1)),
-  CONSTRAINT `logins_ck_token` CHECK ((regexp_like(`token`,_utf8mb4'^[A-Za-z0-9]{64}$',_utf8mb4'c') = 1)),
-  CONSTRAINT `logins_ck_updated_at` CHECK ((regexp_like(`updated_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$',_utf8mb4'c') = 1))
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  CONSTRAINT `logins_ck_created_at` CHECK (regexp_like(`created_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')),
+  CONSTRAINT `logins_ck_expire_date` CHECK (regexp_like(`expire_date`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')),
+  CONSTRAINT `logins_ck_sid` CHECK (regexp_like(`sid`,_utf8mb4'^[A-Za-z0-9]{12}$')),
+  CONSTRAINT `logins_ck_token` CHECK (regexp_like(`token`,_utf8mb4'^[A-Za-z0-9]{64}$')),
+  CONSTRAINT `logins_ck_updated_at` CHECK (regexp_like(`updated_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'))
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `logins`
+--
+
+LOCK TABLES `logins` WRITE;
+/*!40000 ALTER TABLE `logins` DISABLE KEYS */;
+INSERT INTO `logins` VALUES (5,'48CYqoBQhv20','5wR1pgO7DT6f','218d4b202421c90e09801d30546f866268eff14c1100143784df70df414a8c5b','2022-12-01 22:47:52','2022-11-28 22:47:52','2022-11-28 22:47:52');
+/*!40000 ALTER TABLE `logins` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `site_services`
+--
+
+DROP TABLE IF EXISTS `site_services`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `site_services` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `image` char(64) COLLATE utf8mb4_general_ci NOT NULL,
+  `title` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` varchar(1000) COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `site_services_uk_image` (`image`),
+  CONSTRAINT `site_services_ck_created_at` CHECK (regexp_like(`created_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')),
+  CONSTRAINT `site_services_ck_image` CHECK (regexp_like(`image`,_utf8mb4'^[A-Za-z0-9.]{64}$')),
+  CONSTRAINT `site_services_ck_updated_at` CHECK (regexp_like(`updated_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'))
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `site_services`
+--
+
+LOCK TABLES `site_services` WRITE;
+/*!40000 ALTER TABLE `site_services` DISABLE KEYS */;
+INSERT INTO `site_services` VALUES (1,'1kZRFLy0cdkWcnxlFGYZy6KCGCiVMlWLm4Cm2WQTNI9307L04lMwGoymrENw.svg','Título 1','Descrição 1','2022-11-28 20:56:53','2022-11-28 20:56:53'),(2,'1kZRFLy0cdkWcaxlFGYZy6KCGCiVMlWLm4Cm2WQTNI9307L04lMwGoymrENw.svg','Título 1','Descrição 1','2022-11-28 20:56:53','2022-11-28 20:56:53');
+/*!40000 ALTER TABLE `site_services` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
@@ -62,21 +104,23 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_uk_sid` (`sid`),
   UNIQUE KEY `users_uk_email` (`email`),
-  CONSTRAINT `users_ck_created_at` CHECK ((regexp_like(`created_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$',_utf8mb4'c') = 1)),
-  CONSTRAINT `users_ck_email` CHECK ((regexp_like(`email`,_utf8mb4'^[A-Za-z0-9_]+(.[A-Za-z0-9_]+)*@[A-Za-z0-9_]+(.[A-Za-z0-9_]+)+$',_utf8mb4'c') = 1)),
-  CONSTRAINT `users_ck_password` CHECK ((regexp_like(`password`,_utf8mb4'^[a-z0-9]{64}$',_utf8mb4'c') = 1)),
-  CONSTRAINT `users_ck_sid` CHECK ((regexp_like(`sid`,_utf8mb4'^[A-Za-z0-9]{12}$',_utf8mb4'c') = 1)),
-  CONSTRAINT `users_ck_updated_at` CHECK ((regexp_like(`updated_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$',_utf8mb4'c') = 1))
+  CONSTRAINT `users_ck_created_at` CHECK (regexp_like(`created_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')),
+  CONSTRAINT `users_ck_email` CHECK (regexp_like(`email`,_utf8mb4'^[A-Za-z0-9_]+(.[A-Za-z0-9_]+)*@[A-Za-z0-9_]+(.[A-Za-z0-9_]+)+$')),
+  CONSTRAINT `users_ck_password` CHECK (regexp_like(`password`,_utf8mb4'^[a-z0-9]{64}$')),
+  CONSTRAINT `users_ck_sid` CHECK (regexp_like(`sid`,_utf8mb4'^[A-Za-z0-9]{12}$')),
+  CONSTRAINT `users_ck_updated_at` CHECK (regexp_like(`updated_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'))
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping events for database 'atelier'
+-- Dumping data for table `users`
 --
 
---
--- Dumping routines for database 'atelier'
---
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'5wR1pgO7DT6f','Anthony Zito Tegoshi','aztegoshi@gmail.com','4b51396e1d5003baab3589a70e8efaa1ac9e4aa704eacb2fd9c74a172d02c617','2022-11-12 17:02:43','2022-11-12 17:02:43');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -87,4 +131,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-12 18:32:08
+-- Dump completed on 2022-11-28 22:57:28

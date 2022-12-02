@@ -11,6 +11,22 @@ class Server {
         }
     }
 
+    static function getCookiesPath(): string {
+        if ($_SERVER['HTTP_HOST'] == 'localhost') {
+            return '/AtelierElizeuManoel/';
+        } else {
+            return '/atelier/';
+        }
+    }
+    
+    static function getCookiesDomain(): string {
+        if ($_SERVER['HTTP_HOST'] == 'localhost') {
+            return 'localhost';
+        } else {
+            return 'hostdeprojetosdoifsp.gru.br';
+        }
+    }
+
     static function getDatabaseName(): string {
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             return 'atelier';

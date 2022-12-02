@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/structure.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="shortcut icon" href="./assets/img/atelier_logo_tiny.svg" type="image/svg+xml">
+    <title>Atelier Elizeu Manoel - Login</title>
+</head>
+<body style="overflow: hidden;">
+    <span class="r mcenter ccenter w12 h12" id="loading-screen">
+        <img src="./assets/img/loading.gif" style="height: 8rem;" draggable="false">
+    </span>
+
+    <main id="login-main-banner" class="c mcenter ccenter w12">
+        <section class="c p4 mcenter ccenter w12 w8-lmd w7-hmd w6-llg w5-hlg ovisible">
+            <div class="c mcenter ccenter g2 wauto hauto">
+                <a class="i w12 bgLight main-menu-link" style="border-radius: 20px;" href="./#home"><p class="text-center">Criar Novo Registro</p></a>
+                <form class="c p4 mcenter ccenter g4 w12 hauto bgLight" name="form-login" id="form-login" style="border-radius: 20px;" method="post">
+                    <div class="error" id="error-display"></div>
+                    <div class="r g4">
+                        <div class="c">
+                            <p>Grupo</p>
+                            <label class="r mcenter ccenter g1 w12 hauto text-input-wrapper" for="group">
+                                <input class="i text-input" type="group" name="group" id="group" placeholder="Grupo" required>
+                            </label>
+                        </div>
+                        <div class="c">
+                            <p>Nível de Usuário</p>
+                            <label class="r mcenter ccenter g1 w12 hauto text-input-wrapper" for="nivel">
+                                <input class="i text-input" type="nivel" name="nivel" id="nivel" placeholder="Nível" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="error" id="email-error">E-mail inválido</div>
+                    <div class="error" id="email-required">E-mail é obrigatório</div>
+                    <div>
+                        <p>Nome</p>
+                        <label class="r mcenter ccenter g1 w12 hauto text-input-wrapper" for="name">
+                            <input class="i text-input" type="name" name="name" id="name" placeholder="Nome" required>
+                        </label>
+                    </div>
+                    <div>
+                        <p>Email</p>
+                        <label class="r mcenter ccenter g1 w12 hauto text-input-wrapper" for="email">
+                            <input class="i text-input" type="email" name="email" id="email" placeholder="Email" required>
+                        </label>
+                    </div>
+                    <div>
+                        <p>Senha</p>
+                        <label class="r mcenter ccenter g1 w12 hauto text-input-wrapper" for="password">
+                            <input class="i text-input" type="password" name="password" id="password" placeholder="Senha" required>
+                        </label>
+                    </div>
+                    <div>
+                        <p>Confirma Senha</p>
+                        <label class="r mcenter ccenter g1 w12 hauto text-input-wrapper" for="password">
+                            <input class="i text-input" type="password" name="password" id="password" placeholder="Senha" required>
+                        </label>
+                    </div>
+                    <input class="i submit-button" type="submit" value="Register">
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script src="./assets/js/jquery-3.6.1.min.js"></script>
+    <script src="./assets/js/constants.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script>
+        $("#form-login").on("submit", function (event) {
+            event.preventDefault();
+            $.post(apiUrl + "/login", $(this).serialize())
+                .done(function (data) {
+                    response = $.parseJSON(data);
+                    if (response.status == 1) {
+                        $("#error-display").css("display", "none");
+                        window.location.href = baseUrl + "/#home";
+                    } else if (response.status == 0) {
+                        $("#error-display").html(response.message).css("display", "block");
+                    } else {
+                        $("#error-display").html(internalErrorMessage).css("display", "block");
+                    }
+                })
+                .fail(function () {
+                    $("#error-display").html(unknownErrorMessage).css("display", "block");
+                });
+        });
+    </script>
+</body>
+</html>
