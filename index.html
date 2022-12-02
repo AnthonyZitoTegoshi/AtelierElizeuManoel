@@ -56,7 +56,7 @@
             async function verifyLogin() {
                 addLoading();
                 await $.get(apiUrl + "/login")
-                    .done(function (data) {
+                    .done(function (data) {alert(data);
                         response = $.parseJSON(data);
                         if (response.status == 1) {
                             logged = true;
