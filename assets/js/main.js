@@ -14,7 +14,7 @@ var waitingToScrollX;
 
 var animatingWhatsappButton = false;
 
-var loadings = 1;
+var loadings = 0;
 
 function addLoading() {
     loadings += 1;
@@ -30,69 +30,70 @@ function subLoading() {
         loadings = 0;
     }
     if (loadings == 0) {
+        adjustMainRetractableMenu();
+        setRetractorsListeners();
+        adjustRetractableMenus();
+        setCarousels();
+        adjustCarousels();
+        setMainFooter();
+        adjustWhatsappButton();
+        setTextareas();
         window.document.getElementById("loading-screen").style.display = "none";
         window.document.body.style.overflow = "";
     }
 }
 
+addLoading();
+
 window.addEventListener("load", function () {
-    adjustMainRetractableMenu();
-    setRetractorsListeners();
-    adjustRetractableMenus();
-    setCarousels();
-    adjustCarousels();
-    setMainFooter();
-    adjustWhatsappButton();
+    window.addEventListener("resize", function () {
+        adjustMainRetractableMenu();
+        setRetractorsListeners();
+        adjustRetractableMenus();
+        adjustCarousels();
+        setMainFooter();
+        adjustWhatsappButton();
+    });
+    window.addEventListener("scroll", function () {
+        if (lastScrollPosition != null && currentScrollPosition != null && window.document.getElementById("main-menu")) {
+            var mainMenu = window.document.getElementById("main-menu");
+            var mainMenuHeight = mainMenu.getBoundingClientRect().height;
+            if (window.getComputedStyle(window.document.getElementById("retracted-main-menu-lmd")).display != "none") {
+                window.document.getElementById("retracted-main-menu-lmd").style.display = "none";
+                var mainMenuHeight = mainMenu.getBoundingClientRect().height;
+                window.document.getElementById("retracted-main-menu-lmd").style.display = "";
+            }
+            currentScrollPosition = window.scrollY;
+            if (currentScrollPosition > lastScrollPosition && currentScrollPosition > mainMenuHeight) {
+                if ((scrollingDown == false || scrollingDown == null) && window.getComputedStyle(mainMenu).top == "0px") {
+                    var retractedLsmStyle = window.getComputedStyle(window.document.getElementById("retracted-main-menu-lsm"));
+                    var retractedLmdStyle = window.getComputedStyle(window.document.getElementById("retracted-main-menu-lmd"));
+                    if (retractedLsmStyle.display != "none" && retractedLsmStyle.right == "0px" || retractedLmdStyle.display != "none" && retractedLmdStyle.height != "0px") {
+                        mainMenu.getElementsByClassName("retractable-menu-retractor")[0].click();
+                    }
+                    mainMenu.style.top = "-" + mainMenu.getBoundingClientRect().height + "px";
+                    mainMenu.animate([
+                        {top:  "0px"},
+                        {top: "-" + mainMenu.getBoundingClientRect().height + "px"}
+                    ], 100, 1);
+                }
+                scrollingDown = true;
+            } else {
+                if ((scrollingDown == true || scrollingDown == null) && window.getComputedStyle(mainMenu).top != "0px") {
+                    mainMenu.style.top = "0px";
+                    mainMenu.animate([
+                        {top: "-" + mainMenu.getBoundingClientRect().height + "px"},
+                        {top:  "0px"}
+                    ], 100, 1);
+                }
+                scrollingDown = false;
+            }
+            lastScrollPosition = currentScrollPosition;
+        }
+        adjustWhatsappButton();
+    });
     lastScrollPosition = currentScrollPosition = window.scrollY;
     subLoading();
-});
-
-window.addEventListener("resize", function () {
-    adjustMainRetractableMenu();
-    setRetractorsListeners();
-    adjustRetractableMenus();
-    adjustCarousels();
-    setMainFooter();
-    adjustWhatsappButton();
-});
-
-window.addEventListener("scroll", function () {
-    if (lastScrollPosition != null && currentScrollPosition != null && window.document.getElementById("main-menu")) {
-        var mainMenu = window.document.getElementById("main-menu");
-        var mainMenuHeight = mainMenu.getBoundingClientRect().height;
-        if (window.getComputedStyle(window.document.getElementById("retracted-main-menu-lmd")).display != "none") {
-            window.document.getElementById("retracted-main-menu-lmd").style.display = "none";
-            var mainMenuHeight = mainMenu.getBoundingClientRect().height;
-            window.document.getElementById("retracted-main-menu-lmd").style.display = "";
-        }
-        currentScrollPosition = window.scrollY;
-        if (currentScrollPosition > lastScrollPosition && currentScrollPosition > mainMenuHeight) {
-            if ((scrollingDown == false || scrollingDown == null) && window.getComputedStyle(mainMenu).top == "0px") {
-                var retractedLsmStyle = window.getComputedStyle(window.document.getElementById("retracted-main-menu-lsm"));
-                var retractedLmdStyle = window.getComputedStyle(window.document.getElementById("retracted-main-menu-lmd"));
-                if (retractedLsmStyle.display != "none" && retractedLsmStyle.right == "0px" || retractedLmdStyle.display != "none" && retractedLmdStyle.height != "0px") {
-                    mainMenu.getElementsByClassName("retractable-menu-retractor")[0].click();
-                }
-                mainMenu.style.top = "-" + mainMenu.getBoundingClientRect().height + "px";
-                mainMenu.animate([
-                    {top:  "0px"},
-                    {top: "-" + mainMenu.getBoundingClientRect().height + "px"}
-                ], 100, 1);
-            }
-            scrollingDown = true;
-        } else {
-            if ((scrollingDown == true || scrollingDown == null) && window.getComputedStyle(mainMenu).top != "0px") {
-                mainMenu.style.top = "0px";
-                mainMenu.animate([
-                    {top: "-" + mainMenu.getBoundingClientRect().height + "px"},
-                    {top:  "0px"}
-                ], 100, 1);
-            }
-            scrollingDown = false;
-        }
-        lastScrollPosition = currentScrollPosition;
-    }
-    adjustWhatsappButton();
 });
 
 function setRetractorsListeners() {
@@ -486,6 +487,19 @@ function adjustWhatsappButton() {
             }
         }
     }
+}
+
+function setTextareas() {
+    $("textarea").each(function () {
+        var lineHeight = parseInt($(this).css('lineHeight'));
+        $(this).attr("rows", "1");
+        $(this).attr("rows", $(this)[0].scrollHeight / lineHeight);
+    });
+    $("textarea").on("input", function () {
+        var lineHeight = parseInt($(this).css('lineHeight'));
+        $(this).attr("rows", "1");
+        $(this).attr("rows", $(this)[0].scrollHeight / lineHeight);
+    });
 }
 
 /* Error popup in login.php */
