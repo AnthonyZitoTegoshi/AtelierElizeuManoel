@@ -56,7 +56,7 @@
             async function verifyLogin() {
                 addLoading();
                 await $.get(apiUrl + "/login")
-                    .done(function (data) {alert(data);
+                    .done(function (data) {
                         response = $.parseJSON(data);
                         if (response.status == 1) {
                             logged = true;
@@ -226,8 +226,8 @@
                                             '<div class="c mcenter ccenter wauto hauto card">' +
                                                 ((logged ? '<button class="c mcenter ccenter w12 hauto masked-input" title="Editar imagem do serviço">' : '') + '<img class="i w8 hauto text-center card-image" src="./assets/img/services/' + service.image + '" draggable="false" style="' + (logged ? 'cursor: pointer;">' : '">') + (logged ? '</button>' : '')) +
                                                 (logged ? '<input type="file" accept="image/png,image/jpg,image/jpeg,image/gif,image/svg+xml,image/webp" name="image" hidden>' : '') + 
-                                                (logged ? '<textarea class="i title-slin text-center p2 masked-input" name="title" title="Editar título do serviço" rows="1">' + service.title + '</textarea>' : '<pre class="i title-slin text-center p2">' + service.title + '</pre>') +
-                                                (logged ? '<textarea class="i text-info text-center p2 masked-input" name="description" title="Editar descrição do serviço" rows="1">' + service.description + '</textarea>' : '<pre class="i text-info text-center p2">' + service.description + '</pre>') +
+                                                (logged ? '<textarea class="i title-slin text-center p2 masked-input" name="title" title="Editar título do serviço" rows="1" maxlength="100">' + service.title + '</textarea>' : '<pre class="i title-slin text-center p2">' + service.title + '</pre>') +
+                                                (logged ? '<textarea class="i text-info text-center p2 masked-input" name="description" title="Editar descrição do serviço" rows="1" maxlength="1000">' + service.description + '</textarea>' : '<pre class="i text-info text-center p2">' + service.description + '</pre>') +
                                                 (logged ? '<button class="card-remove-button bordered-action-button" title="Deletar serviço"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M5 10.75v-1.5h10v1.5Z"/></svg></button>' : '') +
                                             '</div>' +
                                         '</li>',
