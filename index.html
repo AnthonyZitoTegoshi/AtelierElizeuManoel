@@ -224,7 +224,7 @@
                                     .append(
                                         '<li class="carousel-item" style="width: 16rem;">' +
                                             '<div class="c mcenter ccenter wauto hauto card">' +
-                                                ((logged ? '<button class="c mcenter ccenter w12 hauto masked-input">' : '') + '<img class="i w8 hauto text-center card-image" src="./assets/img/services/' + service.image + '" draggable="false" style="' + (logged ? 'cursor: pointer;">' : '">') + (logged ? '</button>' : '')) +
+                                                ((logged ? '<button class="c mcenter ccenter w12 hauto masked-input" title="Editar imagem do serviço">' : '') + '<img class="i w8 hauto text-center card-image" src="./assets/img/services/' + service.image + '" draggable="false" style="' + (logged ? 'cursor: pointer;">' : '">') + (logged ? '</button>' : '')) +
                                                 (logged ? '<input type="file" accept="image/png,image/jpg,image/jpeg,image/gif,image/svg+xml,image/webp" name="image" hidden>' : '') + 
                                                 (logged ? '<textarea class="i title-slin text-center p2 masked-input" name="title" title="Editar título do serviço" rows="1">' + service.title + '</textarea>' : '<pre class="i title-slin text-center p2">' + service.title + '</pre>') +
                                                 (logged ? '<textarea class="i text-info text-center p2 masked-input" name="description" title="Editar descrição do serviço" rows="1">' + service.description + '</textarea>' : '<pre class="i text-info text-center p2">' + service.description + '</pre>') +
