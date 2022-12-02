@@ -10,7 +10,7 @@ class ImageHelper {
             'jpeg' => 'image/jpeg',
             'gif' => 'image/gif',
             'svg' => 'image/svg+xml',
-            'webp' => 'image/webp',
+            'webp' => 'image/webp'
         ];
     }
 

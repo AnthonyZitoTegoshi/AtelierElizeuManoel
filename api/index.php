@@ -26,14 +26,8 @@ try {
     $router->dispatch();
 
     if ($router->error() !== null) {
-        ResponseHelper::send(
-            REQUEST_ERROR,
-            'Erro ' . $router->error(),
-        );
+        ResponseHelper::send(REQUEST_ERROR, 'Erro ' . $router->error());
     }
 } catch (Throwable $e) {
-    ResponseHelper::send(
-        RESPONSE_ERROR,
-        $e,
-    );
+    ResponseHelper::send(RESPONSE_ERROR, $e);
 }
