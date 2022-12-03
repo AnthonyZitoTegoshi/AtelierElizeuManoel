@@ -69,6 +69,8 @@ class ServiceController {
             $service = (new ServiceModel())->find('id = :id', 'id=' . $id);
             if ($service->count() > 0) {
                 $service = $service->fetch();
+                
+                $oldImage = $service->image;
 
                 if ($image != null) {
                     $imageName = ImageHelper::base64UrlToFile(
@@ -76,14 +78,7 @@ class ServiceController {
                         __DIR__ . '/../../../assets/img/services'
                     );
                     if (is_string($imageName)) {
-                        if (unlink(__DIR__ . '/../../../assets/img/services/' . $service->image)) {
-                            $service->image = $imageName;
-                        } else {
-                            ResponseHelper::send(
-                                RESPONSE_ERROR,
-                                'Não foi possível sobrescrever a antiga imagem'
-                            );
-                        }
+                        $service->image = $imageName;
                     } else {
                         ResponseHelper::send(
                             RESPONSE_ERROR,
@@ -99,6 +94,9 @@ class ServiceController {
                 }
     
                 if ($service->save()) {
+                    if ($service->image != $oldImage) {
+                        unlink(__DIR__ . '/../../../assets/img/services/' . $oldImage);
+                    }
                     ResponseHelper::send(RESPONSE_SUCCESS, 'Serviço alterado com sucesso');
                 } else {
                     ResponseHelper::send(RESPONSE_ERROR, 'Não foi possível alterar o serviço');
