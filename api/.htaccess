@@ -1,6 +1,6 @@
 RewriteEngine On
 Options All -Indexes
-Header set Access-Control-Allow-Origin https://hostdeprojetosdoifsp.gru.br
+Header set Access-Control-Allow-Origin https://www.hostdeprojetosdoifsp.gru.br
 
 # ROUTER HTTPS Redirect
 RewriteCond %{HTTP_HOST} !localhost
