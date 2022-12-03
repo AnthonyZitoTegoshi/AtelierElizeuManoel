@@ -23,6 +23,8 @@ try {
     $router->delete('/service', 'ServiceController:delete');
     $router->get('/service', 'ServiceController:read');
 
+    $router->post('/user/request-password', 'UserController:requestPassword');
+
     $router->dispatch();
 
     if ($router->error() !== null) {

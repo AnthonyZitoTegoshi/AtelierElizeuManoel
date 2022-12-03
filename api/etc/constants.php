@@ -20,6 +20,18 @@ define(
     ]
 );
 
+define(
+    'EMAIL_CONFIG',
+    [
+        'host' => 'smtp.gmail.com',
+        'port' => 587,
+        'encryption' => 'tls',
+        'auth' => true,
+        'username' => 'aztegoshi@gmail.com',
+        'password' => 'kaqixgxmaualevth',
+    ]
+);
+
 define('DEFAULT_DATETIME_FORMAT', 'Y-m-d H:i:s');
 
 define('RESPONSE_ERROR', -1);

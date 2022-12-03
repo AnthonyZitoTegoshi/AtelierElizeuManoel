@@ -29,12 +29,10 @@ class LoginController {
                     if ($login->count() > 0) {
                         $login = $login->fetch();
                     }
-                    $tokenSid = GenerateHelper::randomSid();
                     $token = GenerateHelper::randomToken();
                     $hashedToken = HashHelper::encrypt($token, substr($token, 0, 12));
                     $expireDate = new \DateTime();
                     $expireDate->add(new \DateInterval('P3D'));
-                    $login->sid = $tokenSid;
                     $login->user_sid = $user->sid;
                     $login->token = $hashedToken;
                     $login->expire_date = $expireDate->format(DEFAULT_DATETIME_FORMAT);
