@@ -71,13 +71,13 @@
                                     if (response.status == 1) {
                                         window.location.reload();
                                     } else if (response.status == 0) {
-                                        alert(response.message);
+                                        window.alert(response.message);
                                     } else {
-                                        alert(internalErrorMessage);
+                                        window.alert(internalErrorMessage);
                                     }
                                 })
                                 .fail(function (data) {
-                                    alert(unknownErrorMessage);
+                                    window.alert(unknownErrorMessage);
                                 });
                                 subLoading();
                             });
@@ -92,13 +92,13 @@
                                     if (response.status == 1) {
                                         window.location.reload();
                                     } else if (response.status == 0) {
-                                        alert(response.message);
+                                        window.alert(response.message);
                                     } else {
-                                        alert(internalErrorMessage);
+                                        window.alert(internalErrorMessage);
                                     }
                                 })
                                 .fail(function (data) {
-                                    alert(unknownErrorMessage);
+                                    window.alert(unknownErrorMessage);
                                 });
                                 subLoading();
                             });
@@ -113,13 +113,13 @@
                                     if (response.status == 1) {
                                         window.location.reload();
                                     } else if (response.status == 0) {
-                                        alert(response.message);
+                                        window.alert(response.message);
                                     } else {
-                                        alert(internalErrorMessage);
+                                        window.alert(internalErrorMessage);
                                     }
                                 })
                                 .fail(function (data) {
-                                    alert(unknownErrorMessage);
+                                    window.alert(unknownErrorMessage);
                                 });
                                 subLoading();
                             });
@@ -131,7 +131,7 @@
                             .attr("href", "./login.html");
                         $(".login-link-expanded").html("LOGIN").attr("href", "./login.html");
                     } else {
-                        alert(internalErrorMessage);
+                        window.alert(internalErrorMessage);
                         logged = false;
                         $(".login-link").html("LOGIN").attr("href", "./login.html");
                         $(".login-link-with-icon")
@@ -141,7 +141,7 @@
                     }
                 })
                 .fail(function () {
-                    alert(unknownErrorMessage);
+                    window.alert(unknownErrorMessage);
                     logged = false;
                     $(".login-link").html("LOGIN").attr("href", "./login.html");
                     $(".login-link-with-icon")
@@ -227,11 +227,11 @@
                             if (response.status == 1) {
                                 getServices();
                             } else {
-                                alert(internalErrorMessage);
+                                window.alert(internalErrorMessage);
                             }
                         })
                         .fail(function () {
-                            alert(unknownErrorMessage);
+                            window.alert(unknownErrorMessage);
                         });
                         subLoading();
                     });
@@ -287,13 +287,13 @@
                                             if (response.status == 1) {
                                                 getServices();
                                             } else if (response.status == 0) {
-                                                alert(response.message);
+                                                window.alert(response.message);
                                             } else {
-                                                alert(internalErrorMessage);
+                                                window.alert(internalErrorMessage);
                                             }
                                         })
                                         .fail(function (data) {
-                                            alert(unknownErrorMessage);
+                                            window.alert(unknownErrorMessage);
                                         });
                                         subLoading();
                                     };
@@ -317,13 +317,13 @@
                                         if (response.status == 1) {
                                             getServices();
                                         } else if (response.status == 0) {
-                                            alert(response.message);
+                                            window.alert(response.message);
                                         } else {
-                                            alert(internalErrorMessage);
+                                            window.alert(internalErrorMessage);
                                         }
                                     })
                                     .fail(function (data) {
-                                        alert(unknownErrorMessage);
+                                        window.alert(unknownErrorMessage);
                                     });
                                     subLoading();
                                 });
@@ -345,13 +345,13 @@
                                         if (response.status == 1) {
                                             getServices();
                                         } else if (response.status == 0) {
-                                            alert(response.message);
+                                            window.alert(response.message);
                                         } else {
-                                            alert(internalErrorMessage);
+                                            window.alert(internalErrorMessage);
                                         }
                                     })
                                     .fail(function (data) {
-                                        alert(unknownErrorMessage);
+                                        window.alert(unknownErrorMessage);
                                     });
                                     subLoading();
                                 });
@@ -373,13 +373,13 @@
                                         if (response.status == 1) {
                                             getServices();
                                         } else if (response.status == 0) {
-                                            alert(response.message);
+                                            window.alert(response.message);
                                         } else {
-                                            alert(internalErrorMessage);
+                                            window.alert(internalErrorMessage);
                                         }
                                     })
                                     .fail(function (data) {
-                                        alert(unknownErrorMessage);
+                                        window.alert(unknownErrorMessage);
                                     });
                                     subLoading();
                                 });
@@ -390,14 +390,14 @@
                             $("#services-carousel").hide();
                         }
                     } else {
-                        alert(internalErrorMessage);
+                        window.alert(internalErrorMessage);
                         if (!logged) {
                             $("#services-carousel").hide();
                         }
                     }
                 })
                 .fail(function () {
-                    alert(unknownErrorMessage);
+                    window.alert(unknownErrorMessage);
                     if (!logged) {
                         $("#services-carousel").hide();
                     }
