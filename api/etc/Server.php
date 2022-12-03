@@ -67,7 +67,7 @@ class Server {
         }
     }
 
-    static function getEmailHost(): string {return 'smtp.gmail.com';
+    static function getEmailHost(): string {
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             return 'smtp.gmail.com';
         } else {
@@ -75,7 +75,7 @@ class Server {
         }
     }
 
-    static function getEmailPort(): string {return 465;
+    static function getEmailPort(): string {
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             return 587;
         } else {
@@ -83,7 +83,7 @@ class Server {
         }
     }
 
-    static function getEmailUsername(): string {return 'aztegoshi@gmail.com';
+    static function getEmailUsername(): string {
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             return 'aztegoshi@gmail.com';
         } else {
@@ -91,7 +91,7 @@ class Server {
         }
     }
 
-    static function getEmailPassword(): string {return 'rruvzaoyyeccixbj';
+    static function getEmailPassword(): string {
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             return 'rruvzaoyyeccixbj';
         } else {
