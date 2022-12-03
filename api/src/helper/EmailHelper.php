@@ -6,7 +6,7 @@ use PHPMailer\PHPMailer\PHPMailer as PHPMailer;
 
 class EmailHelper {
     static function send(string $email, string $subject, string $message): bool {
-        $mail = new PHPMailer(true);
+        /*$mail = new PHPMailer(true);
         $mail->isSMTP();
         $mail->Host = EMAIL_CONFIG['host'];
         $mail->SMTPAuth = EMAIL_CONFIG['auth'];
@@ -18,6 +18,13 @@ class EmailHelper {
         $mail->addAddress($email);
         $mail->Subject = $subject;
         $mail->Body = $message;
-        return $mail->send();
+        return $mail->send();*/
+        $headers = [
+            'From' => EMAIL_CONFIG['username'],
+            'MIME-Version' => '1.0',
+            'X-Mailer' => 'PHP/' . phpversion(),
+            'Content-Type' => 'text/html; charset=utf-8'
+        ];
+        return mail($email, $subject, $message, $headers);
     }
 }
