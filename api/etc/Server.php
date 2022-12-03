@@ -67,7 +67,7 @@ class Server {
         }
     }
 
-    static function getEmailHost(): string {
+    static function getEmailHost(): string {return 'mail.hostdeprojetosdoifsp.gru.br';
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             return 'smtp.gmail.com';
         } else {
@@ -75,7 +75,7 @@ class Server {
         }
     }
 
-    static function getEmailPort(): string {
+    static function getEmailPort(): string {return 465;
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             return 587;
         } else {
@@ -83,7 +83,15 @@ class Server {
         }
     }
 
-    static function getEmailUsername(): string {
+    static function getEmailIsSMTP(): string {return false;
+        if ($_SERVER['HTTP_HOST'] == 'localhost') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    static function getEmailUsername(): string {return 'atelier@hostdeprojetosdsoifsp.gru.br';
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             return 'aztegoshi@gmail.com';
         } else {
@@ -91,7 +99,7 @@ class Server {
         }
     }
 
-    static function getEmailPassword(): string {
+    static function getEmailPassword(): string {return 'mnDvR4zZZ4V5chH';
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             return 'rruvzaoyyeccixbj';
         } else {

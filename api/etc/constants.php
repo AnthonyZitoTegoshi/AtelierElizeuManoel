@@ -26,7 +26,7 @@ define(
         'host' => Server::getEmailHost(),
         'port' => Server::getEmailPort(),
         'encryption' => 'tls',
-        'auth' => true,
+        'auth' => Server::getEmailIsSMTP(),
         'username' => Server::getEmailUsername(),
         'password' => Server::getEmailPassword()
     ]
