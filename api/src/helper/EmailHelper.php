@@ -9,7 +9,7 @@ class EmailHelper {
         $mail = new PHPMailer(true);
         $mail->isSMTP();
         $mail->SMTPOptions = array(
-            'tls' => array(
+            'ssl' => array(
                 'verify_peer' => false,
                 'verify_peer_name' => false,
                 'allow_self_signed' => true
