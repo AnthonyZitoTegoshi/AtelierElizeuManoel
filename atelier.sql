@@ -36,11 +36,11 @@ CREATE TABLE `logins` (
   UNIQUE KEY `logins_uk_sid` (`sid`),
   UNIQUE KEY `logins_uk_user_sid` (`user_sid`),
   UNIQUE KEY `logins_uk_token` (`token`),
-  CONSTRAINT `logins_ck_created_at` CHECK (regexp_like(`created_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')),
-  CONSTRAINT `logins_ck_expire_date` CHECK (regexp_like(`expire_date`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')),
-  CONSTRAINT `logins_ck_sid` CHECK (regexp_like(`sid`,_utf8mb4'^[A-Za-z0-9]{12}$')),
-  CONSTRAINT `logins_ck_token` CHECK (regexp_like(`token`,_utf8mb4'^[A-Za-z0-9]{64}$')),
-  CONSTRAINT `logins_ck_updated_at` CHECK (regexp_like(`updated_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'))
+  CONSTRAINT `logins_ck_created_at` CHECK (`created_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
+  CONSTRAINT `logins_ck_expire_date` CHECK (`expire_date` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
+  CONSTRAINT `logins_ck_sid` CHECK (`sid` regexp _utf8mb4'^[A-Za-z0-9]{12}$'),
+  CONSTRAINT `logins_ck_token` CHECK (`token` regexp _utf8mb4'^[A-Za-z0-9]{64}$'),
+  CONSTRAINT `logins_ck_updated_at` CHECK (`updated_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -70,9 +70,9 @@ CREATE TABLE `site_services` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `site_services_uk_image` (`image`),
-  CONSTRAINT `site_services_ck_created_at` CHECK (regexp_like(`created_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')),
-  CONSTRAINT `site_services_ck_image` CHECK (regexp_like(`image`,_utf8mb4'^[A-Za-z0-9.]{64}$')),
-  CONSTRAINT `site_services_ck_updated_at` CHECK (regexp_like(`updated_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'))
+  CONSTRAINT `site_services_ck_created_at` CHECK (`created_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
+  CONSTRAINT `site_services_ck_image` CHECK (`image` regexp _utf8mb4'^[A-Za-z0-9.]{64}$'),
+  CONSTRAINT `site_services_ck_updated_at` CHECK (`updated_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -85,6 +85,44 @@ LOCK TABLES `site_services` WRITE;
 INSERT INTO `site_services` VALUES (1,'1kZRFLy0cdkWcnxlFGYZy6KCGCiVMlWLm4Cm2WQTNI9307L04lMwGoymrENw.svg','Título 1','Descrição 1','2022-11-28 20:56:53','2022-11-28 20:56:53'),(2,'1kZRFLy0cdkWcaxlFGYZy6KCGCiVMlWLm4Cm2WQTNI9307L04lMwGoymrENw.svg','Título 1','Descrição 1','2022-11-28 20:56:53','2022-11-28 20:56:53');
 /*!40000 ALTER TABLE `site_services` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `UserPermissions`
+--
+
+DROP TABLE IF EXISTS `UserPermissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `UserPermissions` (
+  `permissionId` int NOT NULL AUTO_INCREMENT,
+  `permissionName` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `permissionType` varchar(20) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '00000000000',
+  PRIMARY KEY (`permissionId`,`permissionType`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `UserPermissions`
+--
+
+
+--
+-- Dumping data for table `UserPermissions`
+--
+
+LOCK TABLES `UserPermissions` WRITE;
+/*!40000 ALTER TABLE `UserPermissions` DISABLE KEYS */;
+INSERT INTO `UserPermissions` VALUES 
+(0,'Alterar Menu-Logo','10000000'),
+(1,'Alterar Banner-img','01000000'),
+(2,'Alterar Banner-text','00100000'),
+(3,'Alterar Banner-Logo','00010000'),
+(4,'Modificar 1# Section','00001000'),
+(5,'Alterar 2# Section','00000100'),
+(6,'Nenhuma Permissão','00000000');
+/*!40000 ALTER TABLE `UserPermissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
 
 --
 -- Table structure for table `users`
@@ -104,11 +142,11 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_uk_sid` (`sid`),
   UNIQUE KEY `users_uk_email` (`email`),
-  CONSTRAINT `users_ck_created_at` CHECK (regexp_like(`created_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')),
-  CONSTRAINT `users_ck_email` CHECK (regexp_like(`email`,_utf8mb4'^[A-Za-z0-9_]+(.[A-Za-z0-9_]+)*@[A-Za-z0-9_]+(.[A-Za-z0-9_]+)+$')),
-  CONSTRAINT `users_ck_password` CHECK (regexp_like(`password`,_utf8mb4'^[a-z0-9]{64}$')),
-  CONSTRAINT `users_ck_sid` CHECK (regexp_like(`sid`,_utf8mb4'^[A-Za-z0-9]{12}$')),
-  CONSTRAINT `users_ck_updated_at` CHECK (regexp_like(`updated_at`,_utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'))
+  CONSTRAINT `users_ck_created_at` CHECK (`created_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
+  CONSTRAINT `users_ck_email` CHECK (`email` regexp _utf8mb4'^[A-Za-z0-9_]+(.[A-Za-z0-9_]+)*@[A-Za-z0-9_]+(.[A-Za-z0-9_]+)+$'),
+  CONSTRAINT `users_ck_password` CHECK (`password` regexp _utf8mb4'^[a-z0-9]{64}$'),
+  CONSTRAINT `users_ck_sid` CHECK (`sid` regexp _utf8mb4'^[A-Za-z0-9]{12}$'),
+  CONSTRAINT `users_ck_updated_at` CHECK (`updated_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

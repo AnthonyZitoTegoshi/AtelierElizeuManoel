@@ -784,3 +784,15 @@ input.submit-button:focus-within {
   border-color: var(--primary-lighter);
   border-style: solid;
 }
+
+.container-overflow{
+  height: 120px;
+  overflow-y: scroll;
+  border: solid black 1px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.none{
+  display: none;
+}

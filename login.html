@@ -45,6 +45,7 @@
                             event.preventDefault();
                             $.post(apiUrl + "/login", $(this).serialize())
                                 .done(function (data) {
+                                    console.log(data);
                                     response = $.parseJSON(data);
                                     if (response.status == 1) {
                                         $("#error-display").css("display", "none");
@@ -55,8 +56,9 @@
                                         $("#error-display").html(internalErrorMessage).css("display", "block");
                                     }
                                 })
-                                .fail(function () {
+                                .fail(function (data) {
                                     $("#error-display").html(unknownErrorMessage).css("display", "block");
+                                    console.log(data);
                                 });
                         });
                     </script>

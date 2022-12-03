@@ -23,6 +23,12 @@ try {
     $router->delete('/service', 'ServiceController:delete');
     $router->get('/service', 'ServiceController:read');
 
+    $router->post('/user', 'UserController:add');
+    $router->get('/user', 'UserController:view');
+    
+    
+    
+
     $router->dispatch();
 
     if ($router->error() !== null) {
