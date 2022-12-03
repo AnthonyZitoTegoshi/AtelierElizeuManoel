@@ -75,7 +75,7 @@ class Server {
         }
     }
 
-    static function getEmailPort(): string {
+    static function getEmailPort(): string {return 465;
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             return 587;
         } else {
