@@ -71,7 +71,7 @@ class Server {
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             return 'smtp.gmail.com';
         } else {
-            return 'mail.hostdeprojetosdoifsp.gru.br';
+            return 'mail.hostdeprojetosdoifsp.gru.bra';
         }
     }
 
