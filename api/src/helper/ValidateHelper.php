@@ -12,7 +12,7 @@ class ValidateHelper {
             $login = $login->fetch();
             $expireDate = \DateTime::createFromFormat(
                 DEFAULT_DATETIME_FORMAT,
-                $login->expire_date,
+                $login->expire_date
             );
             if ($expireDate >= new \DateTime()) {
                 return true;

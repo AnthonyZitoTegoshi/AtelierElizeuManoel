@@ -10,6 +10,7 @@
     },
     "require": {
         "coffeecode/router": "2.0.*",
-        "coffeecode/datalayer": "2.0.*"
+        "coffeecode/datalayer": "2.0.*",
+        "phpmailer/phpmailer": "^6.6"
     }
 }

@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `atelier` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `atelier`;
+CREATE DATABASE  IF NOT EXISTS `hostdeprojetos_atelier` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `hostdeprojetos_atelier`;
 -- MySQL dump 10.13  Distrib 8.0.29, for Linux (x86_64)
 --
--- Host: localhost    Database: atelier
+-- Host: localhost    Database: hostdeprojetos_atelier
 -- ------------------------------------------------------
 -- Server version	8.0.31-0ubuntu0.22.04.1
 

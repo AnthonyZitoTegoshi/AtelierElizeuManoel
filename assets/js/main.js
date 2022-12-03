@@ -14,90 +14,87 @@ var waitingToScrollX;
 
 var animatingWhatsappButton = false;
 
-window.addEventListener("load", function () {
-    adjustMainRetractableMenu();
-    setRetractorsListeners();
-    adjustRetractableMenus();
-    setCarousels();
-    adjustCarousels();
-    setMainFooter();
-    setSvgColors();
-    adjustWhatsappButton();
-    setActionButtons();
-    lastScrollPosition = currentScrollPosition = window.scrollY;
-    window.document.getElementById("loading-screen").style.display = "none";
-    window.document.body.style.overflow = "";
-});
+var loadings = 0;
 
-window.addEventListener("resize", function () {
-    adjustMainRetractableMenu();
-    setRetractorsListeners();
-    adjustRetractableMenus();
-    adjustCarousels();
-    setMainFooter();
-    adjustWhatsappButton();
-});
-
-window.addEventListener("scroll", function () {
-    if (lastScrollPosition != null && currentScrollPosition != null && window.document.getElementById("main-menu")) {
-        var mainMenu = window.document.getElementById("main-menu");
-        var mainMenuHeight = mainMenu.getBoundingClientRect().height;
-        if (window.getComputedStyle(window.document.getElementById("retracted-main-menu-lmd")).display != "none") {
-            window.document.getElementById("retracted-main-menu-lmd").style.display = "none";
-            var mainMenuHeight = mainMenu.getBoundingClientRect().height;
-            window.document.getElementById("retracted-main-menu-lmd").style.display = "";
-        }
-        currentScrollPosition = window.scrollY;
-        if (currentScrollPosition > lastScrollPosition && currentScrollPosition > mainMenuHeight) {
-            if ((scrollingDown == false || scrollingDown == null) && window.getComputedStyle(mainMenu).top == "0px") {
-                var retractedLsmStyle = window.getComputedStyle(window.document.getElementById("retracted-main-menu-lsm"));
-                var retractedLmdStyle = window.getComputedStyle(window.document.getElementById("retracted-main-menu-lmd"));
-                if (retractedLsmStyle.display != "none" && retractedLsmStyle.right == "0px" || retractedLmdStyle.display != "none" && retractedLmdStyle.height != "0px") {
-                    mainMenu.getElementsByClassName("retractable-menu-retractor")[0].click();
-                }
-                mainMenu.style.top = "-" + mainMenu.getBoundingClientRect().height + "px";
-                mainMenu.animate([
-                    {top:  "0px"},
-                    {top: "-" + mainMenu.getBoundingClientRect().height + "px"}
-                ], 100, 1);
-            }
-            scrollingDown = true;
-        } else {
-            if ((scrollingDown == true || scrollingDown == null) && window.getComputedStyle(mainMenu).top != "0px") {
-                mainMenu.style.top = "0px";
-                mainMenu.animate([
-                    {top: "-" + mainMenu.getBoundingClientRect().height + "px"},
-                    {top:  "0px"}
-                ], 100, 1);
-            }
-            scrollingDown = false;
-        }
-        lastScrollPosition = currentScrollPosition;
-    }
-    adjustWhatsappButton();
-});
-
-function setSvgColors() {
-    var svgs = window.document.getElementsByTagName("svg");
-    for (var i = 0; i < svgs.length; i++) {
-        switch (svgs[i].getAttribute("fill")) {
-            case "light":
-                svgs[i].setAttribute("fill", light);
-                break;
-            case "primary":
-                svgs[i].setAttribute("fill", primary);
-                break;
-            case "primaryDarker":
-                svgs[i].setAttribute("fill", primaryDarker);
-                break;
-            case "primaryLighter":
-                svgs[i].setAttribute("fill", primaryLighter);
-                break;
-            default:
-                svgs[i].setAttribute("fill", dark);
-        }
+function addLoading() {
+    loadings += 1;
+    if (loadings > 0) {
+        window.document.getElementById("loading-screen").style.display = "";
+        window.document.body.style.overflow = "hidden";
     }
 }
+
+function subLoading() {
+    loadings -= 1;
+    if (loadings < 0) {
+        loadings = 0;
+    }
+    if (loadings == 0) {
+        adjustMainRetractableMenu();
+        setRetractorsListeners();
+        adjustRetractableMenus();
+        setCarousels();
+        adjustCarousels();
+        setMainFooter();
+        adjustWhatsappButton();
+        setTextareas();
+        window.document.getElementById("loading-screen").style.display = "none";
+        window.document.body.style.overflow = "";
+    }
+}
+
+addLoading();
+
+window.addEventListener("load", function () {
+    window.addEventListener("resize", function () {
+        adjustMainRetractableMenu();
+        setRetractorsListeners();
+        adjustRetractableMenus();
+        adjustCarousels();
+        setMainFooter();
+        adjustWhatsappButton();
+    });
+    window.addEventListener("scroll", function () {
+        if (lastScrollPosition != null && currentScrollPosition != null && window.document.getElementById("main-menu")) {
+            var mainMenu = window.document.getElementById("main-menu");
+            var mainMenuHeight = mainMenu.getBoundingClientRect().height;
+            if (window.getComputedStyle(window.document.getElementById("retracted-main-menu-lmd")).display != "none") {
+                window.document.getElementById("retracted-main-menu-lmd").style.display = "none";
+                var mainMenuHeight = mainMenu.getBoundingClientRect().height;
+                window.document.getElementById("retracted-main-menu-lmd").style.display = "";
+            }
+            currentScrollPosition = window.scrollY;
+            if (currentScrollPosition > lastScrollPosition && currentScrollPosition > mainMenuHeight) {
+                if ((scrollingDown == false || scrollingDown == null) && window.getComputedStyle(mainMenu).top == "0px") {
+                    var retractedLsmStyle = window.getComputedStyle(window.document.getElementById("retracted-main-menu-lsm"));
+                    var retractedLmdStyle = window.getComputedStyle(window.document.getElementById("retracted-main-menu-lmd"));
+                    if (retractedLsmStyle.display != "none" && retractedLsmStyle.right == "0px" || retractedLmdStyle.display != "none" && retractedLmdStyle.height != "0px") {
+                        mainMenu.getElementsByClassName("retractable-menu-retractor")[0].click();
+                    }
+                    mainMenu.style.top = "-" + mainMenu.getBoundingClientRect().height + "px";
+                    mainMenu.animate([
+                        {top:  "0px"},
+                        {top: "-" + mainMenu.getBoundingClientRect().height + "px"}
+                    ], 100, 1);
+                }
+                scrollingDown = true;
+            } else {
+                if ((scrollingDown == true || scrollingDown == null) && window.getComputedStyle(mainMenu).top != "0px") {
+                    mainMenu.style.top = "0px";
+                    mainMenu.animate([
+                        {top: "-" + mainMenu.getBoundingClientRect().height + "px"},
+                        {top:  "0px"}
+                    ], 100, 1);
+                }
+                scrollingDown = false;
+            }
+            lastScrollPosition = currentScrollPosition;
+        }
+        adjustWhatsappButton();
+    });
+    lastScrollPosition = currentScrollPosition = window.scrollY;
+    subLoading();
+});
 
 function setRetractorsListeners() {
     var retractors = window.document.getElementsByClassName("retractable-menu-retractor");
@@ -265,7 +262,7 @@ function setCarousels() {
         var display = carousel.getElementsByClassName("carousel-display")[0];
         var items = display.getElementsByClassName("carousel-item");
         var currentItem = parseInt(display.getAttribute("data-focused-item"));
-        for (var j = 0; j < items.length; j++) {
+        /*for (var j = 0; j < items.length; j++) {
             var cards = items[j].getElementsByClassName("card");
             if (cards.length > 0) {
                 var btnCard = cards[0].getElementsByClassName("btn-card")[0];
@@ -281,7 +278,7 @@ function setCarousels() {
                     }
                 }
             }
-        }
+        }*/
         display.style.overflow = "hidden";
         display.style.cursor = "grab";
         display.onscroll = function () {
@@ -341,7 +338,7 @@ function setCarousels() {
             }
             display.scroll(items[currentItem].offsetLeft - items[0].offsetLeft - display.getBoundingClientRect().width / 2 + items[currentItem].getBoundingClientRect().width / 2, 0);
             display.setAttribute("data-focused-item", currentItem);
-            for (var j = 0; j < items.length; j++) {
+            /*for (var j = 0; j < items.length; j++) {
                 var cards = items[j].getElementsByClassName("card");
                 if (cards.length > 0) {
                     var btnCard = cards[0].getElementsByClassName("btn-card")[0];
@@ -357,7 +354,7 @@ function setCarousels() {
                         }
                     }
                 }
-            }
+            }*/
         });
         carousel.getElementsByClassName("carousel-next-button")[0].addEventListener("click", function () {
             var display = this.parentElement.getElementsByClassName("carousel-display")[0];
@@ -368,7 +365,7 @@ function setCarousels() {
             }
             display.scroll(items[currentItem].offsetLeft - items[0].offsetLeft - display.getBoundingClientRect().width / 2 + items[currentItem].getBoundingClientRect().width / 2, 0);
             display.setAttribute("data-focused-item", currentItem);
-            for (var j = 0; j < items.length; j++) {
+            /*for (var j = 0; j < items.length; j++) {
                 var cards = items[j].getElementsByClassName("card");
                 if (cards.length > 0) {
                     var btnCard = cards[0].getElementsByClassName("btn-card")[0];
@@ -384,7 +381,7 @@ function setCarousels() {
                         }
                     }
                 }
-            }
+            }*/
         });
     }
     window.document.addEventListener("mouseup", function () {
@@ -492,29 +489,17 @@ function adjustWhatsappButton() {
     }
 }
 
-function setActionButtons() {
-    let actionButtons = window.document.getElementsByClassName("action-button");
-    for (let i = 0; i < actionButtons.length; i++) {
-        let actionButton = actionButtons[i];
-        actionButton.addEventListener("mouseenter", function () {
-            actionButton.getElementsByTagName("svg")[0].animate([
-                {fill: dark},
-                {fill: primaryLighter},
-            ], 50, 1);
-            window.setTimeout(function () {
-                actionButton.getElementsByTagName("svg")[0].setAttribute("fill", primaryLighter);
-            }, 50);
-        });
-        actionButton.addEventListener("mouseleave", function () {
-            actionButton.getElementsByTagName("svg")[0].animate([
-                {fill: primaryLighter},
-                {fill: dark},
-            ], 50, 1);
-            window.setTimeout(function () {
-                actionButton.getElementsByTagName("svg")[0].setAttribute("fill", dark);
-            }, 50);
-        });
-    }
+function setTextareas() {
+    $("textarea").each(function () {
+        var lineHeight = parseInt($(this).css('lineHeight'));
+        $(this).attr("rows", "1");
+        $(this).attr("rows", $(this)[0].scrollHeight / lineHeight);
+    });
+    $("textarea").on("input", function () {
+        var lineHeight = parseInt($(this).css('lineHeight'));
+        $(this).attr("rows", "1");
+        $(this).attr("rows", $(this)[0].scrollHeight / lineHeight);
+    });
 }
 
 /* Error popup in login.php */
@@ -559,5 +544,5 @@ function getUserToken() {
 }
 
 $.ajaxSetup({
-    headers: {"token": getUserToken()}
+    headers: {"Token": getUserToken()}
 });

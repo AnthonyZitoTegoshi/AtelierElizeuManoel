@@ -20,6 +20,18 @@ define(
     ]
 );
 
+define(
+    'EMAIL_CONFIG',
+    [
+        'host' => Server::getEmailHost(),
+        'port' => Server::getEmailPort(),
+        'encryption' => 'tls',
+        'auth' => true,
+        'username' => Server::getEmailUsername(),
+        'password' => Server::getEmailPassword()
+    ]
+);
+
 define('DEFAULT_DATETIME_FORMAT', 'Y-m-d H:i:s');
 
 define('RESPONSE_ERROR', -1);

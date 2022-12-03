@@ -1,7 +1,13 @@
 RewriteEngine On
 Options All -Indexes
 
-## ROUTER HTTPS Redirect
+# ROUTER WWW Accept
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin https://www.hostdeprojetosdoifsp.gru.br
+    Header set Access-Control-Allow-Headers *
+</IfModule>
+
+# ROUTER HTTPS Redirect
 RewriteCond %{HTTP_HOST} !localhost
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteCond %{HTTPS} off

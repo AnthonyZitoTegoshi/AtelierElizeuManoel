@@ -11,6 +11,14 @@ class Server {
         }
     }
 
+    static function getRootUrl(): string {
+        if ($_SERVER['HTTP_HOST'] == 'localhost') {
+            return 'http://localhost/AtelierElizeuManoel';
+        } else {
+            return 'https://hostdeprojetosdoifsp.gru.br/atelier';
+        }
+    }
+
     static function getCookiesPath(): string {
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             return '/AtelierElizeuManoel/';
@@ -39,7 +47,7 @@ class Server {
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             return 'localhost';
         } else {
-            return 'hostdeprojetosdoifsp'; // !change
+            return '51.79.72.47';
         }
     }
 
@@ -56,6 +64,38 @@ class Server {
             return 'Thiluma@37';
         } else {
             return 'wT8p8antps9tumT';
+        }
+    }
+
+    static function getEmailHost(): string {
+        if ($_SERVER['HTTP_HOST'] == 'localhost') {
+            return 'smtp.gmail.com';
+        } else {
+            return 'mail.hostdeprojetosdoifsp.gru.br';
+        }
+    }
+
+    static function getEmailPort(): string {
+        if ($_SERVER['HTTP_HOST'] == 'localhost') {
+            return 587;
+        } else {
+            return 465;
+        }
+    }
+
+    static function getEmailUsername(): string {
+        if ($_SERVER['HTTP_HOST'] == 'localhost') {
+            return 'aztegoshi@gmail.com';
+        } else {
+            return 'atelier@hostdeprojetosdsoifsp.gru.br';
+        }
+    }
+
+    static function getEmailPassword(): string {
+        if ($_SERVER['HTTP_HOST'] == 'localhost') {
+            return 'rruvzaoyyeccixbj';
+        } else {
+            return 'mnDvR4zZZ4V5chH';
         }
     }
 }
