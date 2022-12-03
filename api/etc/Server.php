@@ -87,7 +87,7 @@ class Server {
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             return 'aztegoshi@gmail.com';
         } else {
-            return 'atelier@hostdeprojetosdoifsp.gru.br';
+            return 'atelier@hostdeprojetosdsoifsp.gru.br';
         }
     }
 
