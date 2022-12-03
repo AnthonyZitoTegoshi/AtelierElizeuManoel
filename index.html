@@ -368,7 +368,7 @@
                                                     url: apiUrl + "/service",
                                                     data: "id=" + service.id,
                                                 })
-                                                .done(function (data) {alert(data);
+                                                .done(function (data) {
                                                     response = $.parseJSON(data);
                                                     if (response.status == 1) {
                                                         getServices();
