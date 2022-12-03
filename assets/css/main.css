@@ -215,6 +215,26 @@ button, input:is([type="button"]) {
   animation: 100ms ease hover-line-bottom-enter;
 }
 
+.login-link {
+  margin: 0 20px;
+  border-radius: 10px;
+  color: var(--light) !important;
+  background-color: var(--primary-darker);
+}
+
+.login-link:hover, .login-link:focus-within {
+  background-color: var(--primary-lighter);
+}
+
+.login-link-expanded {
+  color: var(--light) !important;
+  background-color: var(--primary-darker);
+}
+
+.login-link-expanded:hover, .login-link-expanded:focus-within {
+  background-color: var(--primary-lighter);
+}
+
 #main-banner {
   background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("../img/atelier_elizeu.webp") no-repeat center;
   background-attachment: fixed;
