@@ -26,7 +26,7 @@ class Connect
         $dbConf = $database ?? DATA_LAYER_CONFIG;
         $dbName = "{$dbConf["driver"]}-{$dbConf["dbname"]}@{$dbConf["host"]}";
         
-        if (empty(self::$instance[$dbName])) {
+        if (empty(self::$instance[$dbName])) {echo "asdaqwgqgwg";
             try {
                 self::$instance[$dbName] = new PDO(
                     $dbConf["driver"] . ":host=" . $dbConf["host"] . ";dbname=" . $dbConf["dbname"] . ";port=" . $dbConf["port"],
