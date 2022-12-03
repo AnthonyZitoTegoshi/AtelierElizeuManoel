@@ -56,102 +56,102 @@
             async function verifyLogin() {
                 addLoading();
                 await $.get(apiUrl + "/login")
-                    .done(function (data) {
-                        response = $.parseJSON(data);
-                        if (response.status == 1) {
-                            logged = true;
-                            $(".login-link")
-                                .html("LOGOUT")
-                                .attr("href", "#home")
-                                .on("click", async function (event) {
-                                    addLoading();
-                                    await $.ajax({method: "DELETE", url: apiUrl + "/login"})
-                                    .done(function (data) {
-                                        response = $.parseJSON(data);
-                                        if (response.status == 1) {
-                                            window.location.reload();
-                                        } else if (response.status == 0) {
-                                            alert(response.message);
-                                        } else {
-                                            alert(internalErrorMessage);
-                                        }
-                                    })
-                                    .fail(function (data) {
-                                        alert(unknownErrorMessage);
-                                    });
-                                    subLoading();
+                .done(function (data) {
+                    response = $.parseJSON(data);
+                    if (response.status == 1) {
+                        logged = true;
+                        $(".login-link")
+                            .html("LOGOUT")
+                            .attr("href", "#home")
+                            .on("click", async function (event) {
+                                addLoading();
+                                await $.ajax({method: "DELETE", url: apiUrl + "/login"})
+                                .done(function (data) {
+                                    response = $.parseJSON(data);
+                                    if (response.status == 1) {
+                                        window.location.reload();
+                                    } else if (response.status == 0) {
+                                        alert(response.message);
+                                    } else {
+                                        alert(internalErrorMessage);
+                                    }
+                                })
+                                .fail(function (data) {
+                                    alert(unknownErrorMessage);
                                 });
-                            $(".login-link-with-icon")
-                                .html("LOGOUT<span class=\"i wauto hauto\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"20\" width=\"20\"><path d=\"M4.5 17q-.625 0-1.062-.438Q3 16.125 3 15.5v-11q0-.625.438-1.062Q3.875 3 4.5 3H10v1.5H4.5v11H10V17Zm9-3.5-1.062-1.062 1.687-1.688H8v-1.5h6.125l-1.687-1.688L13.5 6.5 17 10Z\"/></svg></span>")
-                                .attr("href", "#home")
-                                .on("click", async function (event) {
-                                    addLoading();
-                                    await $.ajax({method: "DELETE", url: apiUrl + "/login"})
-                                        .done(function (data) {
-                                            response = $.parseJSON(data);
-                                            if (response.status == 1) {
-                                                window.location.reload();
-                                            } else if (response.status == 0) {
-                                                alert(response.message);
-                                            } else {
-                                                alert(internalErrorMessage);
-                                            }
-                                        })
-                                        .fail(function (data) {
-                                            alert(unknownErrorMessage);
-                                        });
-                                    subLoading();
+                                subLoading();
+                            });
+                        $(".login-link-with-icon")
+                            .html("LOGOUT<span class=\"i wauto hauto\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"20\" width=\"20\"><path d=\"M4.5 17q-.625 0-1.062-.438Q3 16.125 3 15.5v-11q0-.625.438-1.062Q3.875 3 4.5 3H10v1.5H4.5v11H10V17Zm9-3.5-1.062-1.062 1.687-1.688H8v-1.5h6.125l-1.687-1.688L13.5 6.5 17 10Z\"/></svg></span>")
+                            .attr("href", "#home")
+                            .on("click", async function (event) {
+                                addLoading();
+                                await $.ajax({method: "DELETE", url: apiUrl + "/login"})
+                                .done(function (data) {
+                                    response = $.parseJSON(data);
+                                    if (response.status == 1) {
+                                        window.location.reload();
+                                    } else if (response.status == 0) {
+                                        alert(response.message);
+                                    } else {
+                                        alert(internalErrorMessage);
+                                    }
+                                })
+                                .fail(function (data) {
+                                    alert(unknownErrorMessage);
                                 });
-                            $(".login-link-expanded")
-                                .html("LOGOUT")
-                                .attr("href", "#home")
-                                .on("click", async function (event) {
-                                    addLoading();
-                                    await $.ajax({method: "DELETE", url: apiUrl + "/login"})
-                                    .done(function (data) {
-                                        response = $.parseJSON(data);
-                                        if (response.status == 1) {
-                                            window.location.reload();
-                                        } else if (response.status == 0) {
-                                            alert(response.message);
-                                        } else {
-                                            alert(internalErrorMessage);
-                                        }
-                                    })
-                                    .fail(function (data) {
-                                        alert(unknownErrorMessage);
-                                    });
-                                    subLoading();
+                                subLoading();
+                            });
+                        $(".login-link-expanded")
+                            .html("LOGOUT")
+                            .attr("href", "#home")
+                            .on("click", async function (event) {
+                                addLoading();
+                                await $.ajax({method: "DELETE", url: apiUrl + "/login"})
+                                .done(function (data) {
+                                    response = $.parseJSON(data);
+                                    if (response.status == 1) {
+                                        window.location.reload();
+                                    } else if (response.status == 0) {
+                                        alert(response.message);
+                                    } else {
+                                        alert(internalErrorMessage);
+                                    }
+                                })
+                                .fail(function (data) {
+                                    alert(unknownErrorMessage);
                                 });
-                        } else if (response.status == 0) {
-                            logged = false;
-                            $(".login-link").html("LOGIN").attr("href", "./login.html");
-                            $(".login-link-with-icon")
-                                .html("LOGIN<span class=\"i wauto hauto\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"20\" width=\"20\"><path d=\"M10 17v-1.5h5.5v-11H10V3h5.5q.625 0 1.062.438Q17 3.875 17 4.5v11q0 .625-.438 1.062Q16.125 17 15.5 17Zm-1.5-3.5-1.062-1.062 1.687-1.688H3v-1.5h6.125L7.438 7.562 8.5 6.5 12 10Z\"/></svg></span>")
-                                .attr("href", "./login.html");
-                            $(".login-link-expanded").html("LOGIN").attr("href", "./login.html");
-                        } else {
-                            alert(internalErrorMessage);
-                            logged = false;
-                            $(".login-link").html("LOGIN").attr("href", "./login.html");
-                            $(".login-link-with-icon")
-                                .html("LOGIN<span class=\"i wauto hauto\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"20\" width=\"20\"><path d=\"M10 17v-1.5h5.5v-11H10V3h5.5q.625 0 1.062.438Q17 3.875 17 4.5v11q0 .625-.438 1.062Q16.125 17 15.5 17Zm-1.5-3.5-1.062-1.062 1.687-1.688H3v-1.5h6.125L7.438 7.562 8.5 6.5 12 10Z\"/></svg></span>")
-                                .attr("href", "./login.html");
-                            $(".login-link-expanded").html("LOGIN").attr("href", "./login.html");
-                        }
-                    })
-                    .fail(function () {
-                        alert(unknownErrorMessage);
+                                subLoading();
+                            });
+                    } else if (response.status == 0) {
                         logged = false;
                         $(".login-link").html("LOGIN").attr("href", "./login.html");
                         $(".login-link-with-icon")
                             .html("LOGIN<span class=\"i wauto hauto\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"20\" width=\"20\"><path d=\"M10 17v-1.5h5.5v-11H10V3h5.5q.625 0 1.062.438Q17 3.875 17 4.5v11q0 .625-.438 1.062Q16.125 17 15.5 17Zm-1.5-3.5-1.062-1.062 1.687-1.688H3v-1.5h6.125L7.438 7.562 8.5 6.5 12 10Z\"/></svg></span>")
                             .attr("href", "./login.html");
                         $(".login-link-expanded").html("LOGIN").attr("href", "./login.html");
-                    })
-                    .always(function () {
-                        getServices();
-                    });
+                    } else {
+                        alert(internalErrorMessage);
+                        logged = false;
+                        $(".login-link").html("LOGIN").attr("href", "./login.html");
+                        $(".login-link-with-icon")
+                            .html("LOGIN<span class=\"i wauto hauto\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"20\" width=\"20\"><path d=\"M10 17v-1.5h5.5v-11H10V3h5.5q.625 0 1.062.438Q17 3.875 17 4.5v11q0 .625-.438 1.062Q16.125 17 15.5 17Zm-1.5-3.5-1.062-1.062 1.687-1.688H3v-1.5h6.125L7.438 7.562 8.5 6.5 12 10Z\"/></svg></span>")
+                            .attr("href", "./login.html");
+                        $(".login-link-expanded").html("LOGIN").attr("href", "./login.html");
+                    }
+                })
+                .fail(function () {
+                    alert(unknownErrorMessage);
+                    logged = false;
+                    $(".login-link").html("LOGIN").attr("href", "./login.html");
+                    $(".login-link-with-icon")
+                        .html("LOGIN<span class=\"i wauto hauto\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"20\" width=\"20\"><path d=\"M10 17v-1.5h5.5v-11H10V3h5.5q.625 0 1.062.438Q17 3.875 17 4.5v11q0 .625-.438 1.062Q16.125 17 15.5 17Zm-1.5-3.5-1.062-1.062 1.687-1.688H3v-1.5h6.125L7.438 7.562 8.5 6.5 12 10Z\"/></svg></span>")
+                        .attr("href", "./login.html");
+                    $(".login-link-expanded").html("LOGIN").attr("href", "./login.html");
+                })
+                .always(function () {
+                    getServices();
+                });
                 subLoading();
             }
         </script>
@@ -222,189 +222,189 @@
                     $("#add-service-button").on("click", async function () {
                         addLoading();
                         await $.post(apiUrl + "/service")
-                            .done(function (data) {
-                                response = $.parseJSON(data);
-                                if (response.status == 1) {
-                                    getServices();
-                                } else {
-                                    alert(internalErrorMessage);
-                                }
-                            })
-                            .fail(function () {
-                                alert(unknownErrorMessage);
-                            });
+                        .done(function (data) {
+                            response = $.parseJSON(data);
+                            if (response.status == 1) {
+                                getServices();
+                            } else {
+                                alert(internalErrorMessage);
+                            }
+                        })
+                        .fail(function () {
+                            alert(unknownErrorMessage);
+                        });
                         subLoading();
                     });
                 }
                 addLoading();
                 await $.get(apiUrl + "/service")
-                    .done(function (data) {
-                        response = $.parseJSON(data);
-                        if (response.status == 1) {
-                            response.result.forEach(service => {
+                .done(function (data) {
+                    response = $.parseJSON(data);
+                    if (response.status == 1) {
+                        response.result.forEach(service => {
+                            $("#services-carousel")
+                            .find(".carousel-display")
+                            .children()
+                            .append(
+                                '<li class="carousel-item" style="width: 16rem;">' +
+                                    '<div class="c mcenter ccenter wauto hauto card">' +
+                                        ((logged ? '<button class="c mcenter ccenter w12 hauto masked-input" title="Editar imagem do serviço">' : '') + '<img class="i w8 hauto text-center card-image" src="./assets/img/services/' + service.image + '" draggable="false" style="' + (logged ? 'cursor: pointer;">' : '">') + (logged ? '</button>' : '')) +
+                                        (logged ? '<input type="file" accept="image/png,image/jpg,image/jpeg,image/gif,image/svg+xml,image/webp" name="image" hidden>' : '') + 
+                                        (logged ? '<textarea class="i title-slin text-center p2 masked-input" name="title" title="Editar título do serviço" rows="1" maxlength="100">' + service.title + '</textarea>' : '<pre class="i title-slin text-center p2">' + service.title + '</pre>') +
+                                        (logged ? '<textarea class="i text-info text-center p2 masked-input" name="description" title="Editar descrição do serviço" rows="1" maxlength="1000">' + service.description + '</textarea>' : '<pre class="i text-info text-center p2">' + service.description + '</pre>') +
+                                        (logged ? '<button class="card-remove-button bordered-action-button" title="Deletar serviço"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M5 10.75v-1.5h10v1.5Z"/></svg></button>' : '') +
+                                    '</div>' +
+                                '</li>',
+                            );
+                            if (logged) {
                                 $("#services-carousel")
-                                    .find(".carousel-display")
-                                    .children()
-                                    .append(
-                                        '<li class="carousel-item" style="width: 16rem;">' +
-                                            '<div class="c mcenter ccenter wauto hauto card">' +
-                                                ((logged ? '<button class="c mcenter ccenter w12 hauto masked-input" title="Editar imagem do serviço">' : '') + '<img class="i w8 hauto text-center card-image" src="./assets/img/services/' + service.image + '" draggable="false" style="' + (logged ? 'cursor: pointer;">' : '">') + (logged ? '</button>' : '')) +
-                                                (logged ? '<input type="file" accept="image/png,image/jpg,image/jpeg,image/gif,image/svg+xml,image/webp" name="image" hidden>' : '') + 
-                                                (logged ? '<textarea class="i title-slin text-center p2 masked-input" name="title" title="Editar título do serviço" rows="1" maxlength="100">' + service.title + '</textarea>' : '<pre class="i title-slin text-center p2">' + service.title + '</pre>') +
-                                                (logged ? '<textarea class="i text-info text-center p2 masked-input" name="description" title="Editar descrição do serviço" rows="1" maxlength="1000">' + service.description + '</textarea>' : '<pre class="i text-info text-center p2">' + service.description + '</pre>') +
-                                                (logged ? '<button class="card-remove-button bordered-action-button" title="Deletar serviço"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M5 10.75v-1.5h10v1.5Z"/></svg></button>' : '') +
-                                            '</div>' +
-                                        '</li>',
-                                    );
-                                if (logged) {
-                                    $("#services-carousel")
-                                        .find(".carousel-display")
-                                        .children()
-                                        .children()
-                                        .last()
-                                        .find(".card-image")
-                                        .parent()
-                                        .on("click", function () {
-                                            $(this).next("input").click();
+                                .find(".carousel-display")
+                                .children()
+                                .children()
+                                .last()
+                                .find(".card-image")
+                                .parent()
+                                .on("click", function () {
+                                    $(this).next("input").click();
+                                });
+                                $("#services-carousel")
+                                .find(".carousel-display")
+                                .children()
+                                .children()
+                                .last()
+                                .find("input[name=image]")
+                                .on("change", async function () {
+                                    addLoading();
+                                    let reader = new FileReader();
+                                    reader.onloadend = async function () {
+                                        await $.ajax({
+                                            method: "PUT",
+                                            url: apiUrl + "/service",
+                                            data: "id=" + service.id + "&image=" + reader.result,
+                                        })
+                                        .done(function (data) {
+                                            response = $.parseJSON(data);
+                                            if (response.status == 1) {
+                                                getServices();
+                                            } else if (response.status == 0) {
+                                                alert(response.message);
+                                            } else {
+                                                alert(internalErrorMessage);
+                                            }
+                                        })
+                                        .fail(function (data) {
+                                            alert(unknownErrorMessage);
                                         });
-                                    $("#services-carousel")
-                                        .find(".carousel-display")
-                                        .children()
-                                        .children()
-                                        .last()
-                                        .find("input[name=image]")
-                                        .on("change", async function () {
-                                            addLoading();
-                                            let reader = new FileReader();
-                                            reader.onloadend = async function () {
-                                                await $.ajax({
-                                                    method: "PUT",
-                                                    url: apiUrl + "/service",
-                                                    data: "id=" + service.id + "&image=" + reader.result,
-                                                })
-                                                .done(function (data) {
-                                                    response = $.parseJSON(data);
-                                                    if (response.status == 1) {
-                                                        getServices();
-                                                    } else if (response.status == 0) {
-                                                        alert(response.message);
-                                                    } else {
-                                                        alert(internalErrorMessage);
-                                                    }
-                                                })
-                                                .fail(function (data) {
-                                                    alert(unknownErrorMessage);
-                                                });
-                                                subLoading();
-                                            };
-                                            reader.readAsDataURL($(this)[0].files[0]);
-                                        });
-                                    $("#services-carousel")
-                                        .find(".carousel-display")
-                                        .children()
-                                        .children()
-                                        .last()
-                                        .find("textarea[name=title]")
-                                        .on("change", async function () {
-                                            addLoading();
-                                            await $.ajax({
-                                                method: "PUT",
-                                                url: apiUrl + "/service",
-                                                data: "id=" + service.id + "&title=" + $(this).val(),
-                                            })
-                                            .done(function (data) {
-                                                response = $.parseJSON(data);
-                                                if (response.status == 1) {
-                                                    getServices();
-                                                } else if (response.status == 0) {
-                                                    alert(response.message);
-                                                } else {
-                                                    alert(internalErrorMessage);
-                                                }
-                                            })
-                                            .fail(function (data) {
-                                                alert(unknownErrorMessage);
-                                            });
-                                            subLoading();
-                                        });
-                                    $("#services-carousel")
-                                        .find(".carousel-display")
-                                        .children()
-                                        .children()
-                                        .last()
-                                        .find("textarea[name=description]")
-                                        .on("change", async function () {
-                                            addLoading();
-                                            await $.ajax({
-                                                method: "PUT",
-                                                url: apiUrl + "/service",
-                                                data: "id=" + service.id + "&description=" + $(this).val(),
-                                            })
-                                            .done(function (data) {
-                                                response = $.parseJSON(data);
-                                                if (response.status == 1) {
-                                                    getServices();
-                                                } else if (response.status == 0) {
-                                                    alert(response.message);
-                                                } else {
-                                                    alert(internalErrorMessage);
-                                                }
-                                            })
-                                            .fail(function (data) {
-                                                alert(unknownErrorMessage);
-                                            });
-                                            subLoading();
-                                        });
-                                    $("#services-carousel")
-                                        .find(".carousel-display")
-                                        .children()
-                                        .children()
-                                        .last()
-                                        .find(".card-remove-button")
-                                        .on("click", async function () {
-                                            addLoading();
-                                            await $.ajax({
-                                                    method: "DELETE",
-                                                    url: apiUrl + "/service",
-                                                    data: "id=" + service.id,
-                                                })
-                                                .done(function (data) {
-                                                    response = $.parseJSON(data);
-                                                    if (response.status == 1) {
-                                                        getServices();
-                                                    } else if (response.status == 0) {
-                                                        alert(response.message);
-                                                    } else {
-                                                        alert(internalErrorMessage);
-                                                    }
-                                                })
-                                                .fail(function (data) {
-                                                    alert(unknownErrorMessage);
-                                                });
-                                            subLoading();
-                                        });
-                                }
-                            });
-                        } else if (response.status == 0) {
-                            if (!logged) {
-                                $("#services-carousel").hide();
+                                        subLoading();
+                                    };
+                                    reader.readAsDataURL($(this)[0].files[0]);
+                                });
+                                $("#services-carousel")
+                                .find(".carousel-display")
+                                .children()
+                                .children()
+                                .last()
+                                .find("textarea[name=title]")
+                                .on("change", async function () {
+                                    addLoading();
+                                    await $.ajax({
+                                        method: "PUT",
+                                        url: apiUrl + "/service",
+                                        data: "id=" + service.id + "&title=" + $(this).val(),
+                                    })
+                                    .done(function (data) {
+                                        response = $.parseJSON(data);
+                                        if (response.status == 1) {
+                                            getServices();
+                                        } else if (response.status == 0) {
+                                            alert(response.message);
+                                        } else {
+                                            alert(internalErrorMessage);
+                                        }
+                                    })
+                                    .fail(function (data) {
+                                        alert(unknownErrorMessage);
+                                    });
+                                    subLoading();
+                                });
+                                $("#services-carousel")
+                                .find(".carousel-display")
+                                .children()
+                                .children()
+                                .last()
+                                .find("textarea[name=description]")
+                                .on("change", async function () {
+                                    addLoading();
+                                    await $.ajax({
+                                        method: "PUT",
+                                        url: apiUrl + "/service",
+                                        data: "id=" + service.id + "&description=" + $(this).val(),
+                                    })
+                                    .done(function (data) {
+                                        response = $.parseJSON(data);
+                                        if (response.status == 1) {
+                                            getServices();
+                                        } else if (response.status == 0) {
+                                            alert(response.message);
+                                        } else {
+                                            alert(internalErrorMessage);
+                                        }
+                                    })
+                                    .fail(function (data) {
+                                        alert(unknownErrorMessage);
+                                    });
+                                    subLoading();
+                                });
+                                $("#services-carousel")
+                                .find(".carousel-display")
+                                .children()
+                                .children()
+                                .last()
+                                .find(".card-remove-button")
+                                .on("click", async function () {
+                                    addLoading();
+                                    await $.ajax({
+                                        method: "DELETE",
+                                        url: apiUrl + "/service",
+                                        data: "id=" + service.id,
+                                    })
+                                    .done(function (data) {
+                                        response = $.parseJSON(data);
+                                        if (response.status == 1) {
+                                            getServices();
+                                        } else if (response.status == 0) {
+                                            alert(response.message);
+                                        } else {
+                                            alert(internalErrorMessage);
+                                        }
+                                    })
+                                    .fail(function (data) {
+                                        alert(unknownErrorMessage);
+                                    });
+                                    subLoading();
+                                });
                             }
-                        } else {
-                            alert(internalErrorMessage);
-                            if (!logged) {
-                                $("#services-carousel").hide();
-                            }
-                        }
-                    })
-                    .fail(function () {
-                        alert(unknownErrorMessage);
+                        });
+                    } else if (response.status == 0) {
                         if (!logged) {
                             $("#services-carousel").hide();
                         }
-                    });
-                    adjustCarousels();
-                    subLoading();
-                }
+                    } else {
+                        alert(internalErrorMessage);
+                        if (!logged) {
+                            $("#services-carousel").hide();
+                        }
+                    }
+                })
+                .fail(function () {
+                    alert(unknownErrorMessage);
+                    if (!logged) {
+                        $("#services-carousel").hide();
+                    }
+                });
+                adjustCarousels();
+                subLoading();
+            }
         </script>
     </section>
     <div class="marker" id="contact"></div>
