@@ -79,7 +79,7 @@ class Server {
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             return 587;
         } else {
-            return 465;
+            return 4650;
         }
     }
 
@@ -87,7 +87,7 @@ class Server {
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             return 'aztegoshi@gmail.com';
         } else {
-            return 'ateliera@hostdeprojetosdsoifsp.gru.br';
+            return 'atelier@hostdeprojetosdsoifsp.gru.br';
         }
     }
 
