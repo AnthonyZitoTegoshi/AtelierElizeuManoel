@@ -36,6 +36,7 @@ class Connect
                 );
                 print_r(self::$instance[$dbName]);
             } catch (PDOException $exception) {
+                print_r($exception);
                 self::$error = $exception;
             }
         }
