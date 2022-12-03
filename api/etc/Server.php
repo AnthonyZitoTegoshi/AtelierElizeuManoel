@@ -66,4 +66,36 @@ class Server {
             return 'wT8p8antps9tumT';
         }
     }
+
+    static function getEmailHost(): string {
+        if ($_SERVER['HTTP_HOST'] == 'localhost') {
+            return 'smtp.gmail.com';
+        } else {
+            return 'mail.hostdeprojetosdoifsp.gru.br';
+        }
+    }
+
+    static function getEmailPort(): string {
+        if ($_SERVER['HTTP_HOST'] == 'localhost') {
+            return 587;
+        } else {
+            return 465;
+        }
+    }
+
+    static function getEmailUsername(): string {
+        if ($_SERVER['HTTP_HOST'] == 'localhost') {
+            return 'aztegoshi@gmail.com';
+        } else {
+            return 'atelier@hostdeprojetosdoifsp.gru.br';
+        }
+    }
+
+    static function getEmailPassword(): string {
+        if ($_SERVER['HTTP_HOST'] == 'localhost') {
+            return 'rruvzaoyyeccixbj';
+        } else {
+            return 'mnDvR4zZZ4V5chH';
+        }
+    }
 }

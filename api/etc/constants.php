@@ -23,12 +23,12 @@ define(
 define(
     'EMAIL_CONFIG',
     [
-        'host' => 'smtp.gmail.com',
-        'port' => 587,
+        'host' => Server::getEmailHost(),
+        'port' => Server::getEmailPort(),
         'encryption' => 'tls',
         'auth' => true,
-        'username' => 'aztegoshi@gmail.com',
-        'password' => 'rruvzaoyyeccixbj'
+        'username' => Server::getEmailUsername(),
+        'password' => Server::getEmailPassword()
     ]
 );
 
