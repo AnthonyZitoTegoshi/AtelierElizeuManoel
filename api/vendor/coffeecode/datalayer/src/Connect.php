@@ -26,7 +26,7 @@ class Connect
         $dbConf = $database ?? DATA_LAYER_CONFIG;
         $dbName = "{$dbConf["driver"]}-{$dbConf["dbname"]}@{$dbConf["host"]}";
         
-        if (empty(self::$instance[$dbName])) {echo $dbName;
+        if (empty(self::$instance[$dbName])) {
             try {
                 self::$instance[$dbName] = new PDO(
                     $dbConf["driver"] . ":host=" . $dbConf["host"] . ";dbname=" . $dbConf["dbname"] . ";port=" . $dbConf["port"],
@@ -34,6 +34,7 @@ class Connect
                     $dbConf["passwd"],
                     $dbConf["options"]
                 );
+                print_r(self::$instance[$dbName]);
             } catch (PDOException $exception) {
                 self::$error = $exception;
             }
