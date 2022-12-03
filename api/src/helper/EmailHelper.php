@@ -10,6 +10,7 @@ class EmailHelper {
             $mail = new PHPMailer(true);
             $mail->isSMTP();
             $mail->CharSet = 'utf-8';
+            $mail->ContentType = 'text/html';
             $mail->Host = EMAIL_CONFIG['host'];
             $mail->SMTPAuth = EMAIL_CONFIG['auth'];
             $mail->Username = EMAIL_CONFIG['username'];
