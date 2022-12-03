@@ -79,7 +79,7 @@ class Server {
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             return 587;
         } else {
-            return 4650;
+            return 465;
         }
     }
 
