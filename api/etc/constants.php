@@ -28,7 +28,7 @@ define(
         'encryption' => 'tls',
         'auth' => true,
         'username' => 'aztegoshi@gmail.com',
-        'password' => 'kaqixgxmaualevth',
+        'password' => 'rruvzaoyyeccixbj'
     ]
 );
 
