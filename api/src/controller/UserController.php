@@ -40,7 +40,7 @@
             if (!InputHelper::isValidPassword($data['password']) && $data['password'] != $data['passwordConfirm']) {
                 ResponseHelper::send(REQUEST_ERROR, 'Password is invalid');
             }
-            $user->permissionType = $data['permission'];
+            $user->permission_type = $data['permission'];
             if($user->save()){
                 ResponseHelper::send(RESPONSE_SUCCESS, 'O cadastro foi concluído');
             } 
