@@ -9,7 +9,6 @@ use CoffeeCode\Router\Router as Router;
 use App\Helper\ResponseHelper as ResponseHelper;
 
 try {
-    /*print_r(get_loaded_extensions());/**/
     /*echo GenerateHelper::randomToken();/**/
     $router = new Router(Server::getApiUrl());
 

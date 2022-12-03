@@ -39,7 +39,7 @@ class Server {
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
             return 'localhost';
         } else {
-            return 'hostdeprojetosdoifsp'; // !change
+            return '51.79.72.47'; // !change
         }
     }
 
