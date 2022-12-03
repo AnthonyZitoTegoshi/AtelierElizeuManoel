@@ -34,7 +34,6 @@ class Connect
                     $dbConf["passwd"],
                     $dbConf["options"]
                 );
-                print_r(self::$instance[$dbName]);
             } catch (PDOException $exception) {
                 self::$error = $exception;
             }
