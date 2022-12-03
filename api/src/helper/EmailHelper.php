@@ -25,7 +25,7 @@ class EmailHelper {
                 'From' => 'Atelier Elizeu Manoel <' . EMAIL_CONFIG['username'] . '>',
                 'MIME-Version' => '1.0',
                 'X-Mailer' => 'PHP/' . phpversion(),
-                'Content-Type' => 'text/plain; charset=utf-8'
+                'Content-Type' => 'text/html; charset=utf-8'
             ];
             return mail($email, $subject, $message, $headers);
         }
