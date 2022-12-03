@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `hostdeprojetos_atelier` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `hostdeprojetos_atelier`;
+CREATE DATABASE  IF NOT EXISTS `atelier` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `atelier`;
 -- MySQL dump 10.13  Distrib 8.0.29, for Linux (x86_64)
 --
 -- Host: localhost    Database: hostdeprojetos_atelier
@@ -137,6 +137,7 @@ CREATE TABLE `users` (
   `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   `email` varchar(500) COLLATE utf8mb4_general_ci NOT NULL,
   `password` char(64) COLLATE utf8mb4_general_ci NOT NULL,
+  `permission_type`char(5) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '00000' ,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
@@ -146,6 +147,7 @@ CREATE TABLE `users` (
   CONSTRAINT `users_ck_email` CHECK (`email` regexp _utf8mb4'^[A-Za-z0-9_]+(.[A-Za-z0-9_]+)*@[A-Za-z0-9_]+(.[A-Za-z0-9_]+)+$'),
   CONSTRAINT `users_ck_password` CHECK (`password` regexp _utf8mb4'^[a-z0-9]{64}$'),
   CONSTRAINT `users_ck_sid` CHECK (`sid` regexp _utf8mb4'^[A-Za-z0-9]{12}$'),
+  CONSTRAINT `users_ck_permission_type` CHECK (`permission_type` regexp _utf8mb4 '^[01]{5}$'),
   CONSTRAINT `users_ck_updated_at` CHECK (`updated_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -156,7 +158,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'5wR1pgO7DT6f','Anthony Zito Tegoshi','aztegoshi@gmail.com','4b51396e1d5003baab3589a70e8efaa1ac9e4aa704eacb2fd9c74a172d02c617','2022-11-12 17:02:43','2022-11-12 17:02:43');
+INSERT INTO `users` VALUES (1,'5wR1pgO7DT6f','Anthony Zito Tegoshi','aztegoshi@gmail.com','4b51396e1d5003baab3589a70e8efaa1ac9e4aa704eacb2fd9c74a172d02c617','10000','2022-11-12 17:02:43','2022-11-12 17:02:43');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
