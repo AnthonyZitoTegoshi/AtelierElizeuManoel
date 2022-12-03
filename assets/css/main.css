@@ -219,16 +219,12 @@ button, input:is([type="button"]) {
   margin: 0 20px;
   border-radius: 10px;
   color: var(--light) !important;
-  background-color: var(--primary-darker);
-}
-
-.login-link:hover, .login-link:focus-within {
   background-color: var(--primary-lighter);
 }
 
 .login-link-expanded {
   color: var(--light) !important;
-  background-color: var(--primary-darker);
+  background-color: var(--dark);
 }
 
 .login-link-expanded:hover, .login-link-expanded:focus-within {
