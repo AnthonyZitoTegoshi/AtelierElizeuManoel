@@ -22,7 +22,7 @@ class EmailHelper {
             return $mail->send();
         } else {
             $headers = [
-                'From' => 'Atelier Elizeu Manoel <' . EMAIL_CONFIG['username'] . '>',
+                'From' => 'Atelier Elizeu Manoel \<' . EMAIL_CONFIG['username'] . '\>',
                 'MIME-Version' => '1.0',
                 'X-Mailer' => 'PHP/' . phpversion(),
                 'Content-Type' => 'text/html; charset=utf-8'
