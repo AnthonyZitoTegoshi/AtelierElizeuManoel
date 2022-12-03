@@ -536,7 +536,7 @@ function getUserToken() {
         while (cookie[0] == " ") {
             cookie = cookie.substring(1);
         }
-        if (cookie.indexOf("token=") == 0) {
+        if (cookie.indexOf("Token=") == 0) {
             return cookie.substring(6);
         }
     }
@@ -544,5 +544,5 @@ function getUserToken() {
 }
 
 $.ajaxSetup({
-    headers: {"token": getUserToken()}
+    headers: {"Token": getUserToken()}
 });
