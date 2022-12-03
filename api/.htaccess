@@ -1,5 +1,6 @@
 RewriteEngine On
 Options All -Indexes
+Header set Access-Control-Allow-Origin 'origin-list'
 
 # ROUTER HTTPS Redirect
 RewriteCond %{HTTP_HOST} !localhost
