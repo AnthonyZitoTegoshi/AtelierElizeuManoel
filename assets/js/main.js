@@ -544,5 +544,8 @@ function getUserToken() {
 }
 
 $.ajaxSetup({
-    headers: {"token": getUserToken()}
+    headers: {
+        "Access-Control-Allow-Origin": "*",
+        "token": getUserToken()
+    }
 });
