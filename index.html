@@ -21,7 +21,7 @@
         async function startPage() {
             addLoading();
             await $.get(apiUrl + "/login")
-            .done(function (data) {
+            .done(function (data) {alert(data);
                 response = $.parseJSON(data);
                 if (response.status == 1) {
                     logged = true;
@@ -90,7 +90,7 @@
                     .on("click", async function (event) {
                         addLoading();
                         await $.ajax({method: "DELETE", url: apiUrl + "/login"})
-                        .done(function (data) {
+                        .done(function (data) {alert(data);
                             response = $.parseJSON(data);
                             if (response.status == 1) {
                                 window.location.reload();
@@ -111,7 +111,7 @@
                     .on("click", async function (event) {
                         addLoading();
                         await $.ajax({method: "DELETE", url: apiUrl + "/login"})
-                        .done(function (data) {
+                        .done(function (data) {alert(data);
                             response = $.parseJSON(data);
                             if (response.status == 1) {
                                 window.location.reload();
@@ -132,7 +132,7 @@
                     .on("click", async function (event) {
                         addLoading();
                         await $.ajax({method: "DELETE", url: apiUrl + "/login"})
-                        .done(function (data) {
+                        .done(function (data) {alert(data);
                             response = $.parseJSON(data);
                             if (response.status == 1) {
                                 window.location.reload();
@@ -168,7 +168,7 @@
                 async function getBanner() {
                     addLoading();
                     await $.get(apiUrl + "/image/atelier-banner")
-                    .done(function (data) {
+                    .done(function (data) {alert(data);
                         response = $.parseJSON(data);
                         if (response.status == 1) {
                             $("#main-banner")
@@ -208,7 +208,7 @@
                                             url: apiUrl + "/image/atelier-banner",
                                             data: "image=" + reader.result,
                                         })
-                                        .done(function (data) {
+                                        .done(function (data) {alert(data);
                                             response = $.parseJSON(data);
                                             if (response.status == 1) {
                                                 getBanner();
@@ -238,7 +238,7 @@
                 async function getLogoIcon() {
                     addLoading();
                     await $.get(apiUrl + "/image/atelier-logo-icon")
-                    .done(function (data) {
+                    .done(function (data) {alert(data);
                         response = $.parseJSON(data);
                         if (response.status == 1) {
                             $("[data-atelier-logo-icon=true]").attr("src", "./assets/img/" + response.result);
@@ -280,7 +280,7 @@
                                             url: apiUrl + "/image/atelier-logo-icon",
                                             data: "image=" + reader.result,
                                         })
-                                        .done(function (data) {
+                                        .done(function (data) {alert(data);
                                             response = $.parseJSON(data);
                                             if (response.status == 1) {
                                                 getLogoIcon();
@@ -367,7 +367,7 @@
                     $("#add-service-button").on("click", async function () {
                         addLoading();
                         await $.post(apiUrl + "/service")
-                        .done(function (data) {
+                        .done(function (data) {alert(data);
                             response = $.parseJSON(data);
                             if (response.status == 1) {
                                 getServices();
@@ -383,7 +383,7 @@
                 }
                 addLoading();
                 await $.get(apiUrl + "/service")
-                .done(function (data) {
+                .done(function (data) {alert(data);
                     response = $.parseJSON(data);
                     if (response.status == 1) {
                         response.result.forEach(service => {
@@ -427,7 +427,7 @@
                                             url: apiUrl + "/service",
                                             data: "id=" + service.id + "&image=" + reader.result,
                                         })
-                                        .done(function (data) {
+                                        .done(function (data) {alert(data);
                                             response = $.parseJSON(data);
                                             if (response.status == 1) {
                                                 getServices();
@@ -457,7 +457,7 @@
                                         url: apiUrl + "/service",
                                         data: "id=" + service.id + "&title=" + $(this).val(),
                                     })
-                                    .done(function (data) {
+                                    .done(function (data) {alert(data);
                                         response = $.parseJSON(data);
                                         if (response.status == 1) {
                                             getServices();
@@ -485,7 +485,7 @@
                                         url: apiUrl + "/service",
                                         data: "id=" + service.id + "&description=" + $(this).val(),
                                     })
-                                    .done(function (data) {
+                                    .done(function (data) {alert(data);
                                         response = $.parseJSON(data);
                                         if (response.status == 1) {
                                             getServices();
@@ -513,7 +513,7 @@
                                         url: apiUrl + "/service",
                                         data: "id=" + service.id,
                                     })
-                                    .done(function (data) {
+                                    .done(function (data) {alert(data);
                                         response = $.parseJSON(data);
                                         if (response.status == 1) {
                                             getServices();
@@ -574,7 +574,7 @@
                     async function getLogo() {
                         addLoading();
                         await $.get(apiUrl + "/image/atelier-logo")
-                        .done(function (data) {
+                        .done(function (data) {alert(data);
                             response = $.parseJSON(data);
                             if (response.status == 1) {
                                 $("[data-atelier-logo=true]").attr("src", "./assets/img/" + response.result);
@@ -643,7 +643,7 @@
                                                 url: apiUrl + "/image/atelier-logo",
                                                 data: "image=" + reader.result,
                                             })
-                                            .done(function (data) {
+                                            .done(function (data) {alert(data);
                                                 response = $.parseJSON(data);
                                                 if (response.status == 1) {
                                                     getLogo();
