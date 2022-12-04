@@ -37,8 +37,10 @@
                 logged = false;
             })
             .always(function () {
-                getLogo();
                 getLogged();
+                getLogo();
+                getLogoIcon();
+                getBanner();
                 getServices();
             });
             subLoading();
@@ -46,7 +48,7 @@
     </script>
     <nav class="c mcenter ccenter w12 hmin" id="main-menu">
         <div class="r mbetween ccenter w11-lmd w10-hmd w9-llg w8-hlg ovisible">
-            <a class="i wmax main-menu-link" href="#home"><img class="i wauto" style="height: 4rem;" src="./assets/img/atelier_logo.svg" alt="Atelier Elizeu Manoel"></a>
+            <a class="i wmax main-menu-link" href="#home"><img class="i wauto" style="height: 4rem;" data-atelier-logo="true" alt="Atelier Elizeu Manoel"></a>
             <ul class="r mend ccenter wauto retractable-menu">
                 <li class="i wmax"><a class="i wmax main-menu-link hover-line-bottom retractable-menu-option" href="#atelier">ATELIER</a></li>
                 <li class="i wmax"><a class="i wmax main-menu-link hover-line-bottom retractable-menu-option" href="#services">SERVIÇOS</a></li>
@@ -158,10 +160,154 @@
     <div class="marker" id="home"></div>
     <header class="c mcenter ccenter w12 ovisible" id="main-banner">
         <span style="min-height: calc(4rem + 40px);"></span>
-        <div class="c p6 p12-lmd mcenter ccenter g4 w12 ovisible">
-            <img src="./assets/img/atelier_logo_icon.svg" style="height: 8rem;">
+        <div class="c p6 p12-lmd mcenter ccenter g4 w12 ovisible" data-main-banner="true">
+            <img src="" data-atelier-logo-icon="true" style="height: 8rem;">
             <h2 class="text-center light">ATELIER ELIZEU MANOEL</h2>
             <a class="btn-banner" href="#contact">Contato</a>
+            <script>
+                async function getBanner() {
+                    addLoading();
+                    await $.get(apiUrl + "/image/atelier-banner")
+                    .done(function (data) {
+                        response = $.parseJSON(data);
+                        if (response.status == 1) {
+                            $("#main-banner")
+                            .css(
+                                "background",
+                                "linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('./assets/img/" + response.result + "?timestamp=" + new Date().getTime() + "')"
+                            );
+                            $("#main-banner")
+                            .parent("button")
+                            .after()
+                            .remove('[name="atelier-banner"]');
+                            $("#main-banner")
+                            .parent("button")
+                            .children()
+                            .unwrap();
+                            if (logged) {
+                                $("#main-banner")
+                                .wrap('<button class="c mcenter ccenter w12 hauto masked-input-no-decoration" title="Editar banner" style="cursor: pointer;"></button>');
+                                $('<input type="file" accept="image/png,image/jpg,image/jpeg,image/gif,image/svg+xml,image/webp" name="atelier-banner" hidden>')
+                                .insertAfter(
+                                    $("#main-banner")
+                                    .parent("button")
+                                );
+                                $("#main-banner")
+                                .parent("button")
+                                .on("click", function (event) {
+                                    if ($(event.target).attr("data-main-banner") == "true") {
+                                        $(this).next("input").click();
+                                    }
+                                });
+                                $('[name="atelier-banner"]').on("change", async function () {
+                                    addLoading();
+                                    let reader = new FileReader();
+                                    reader.onloadend = async function () {
+                                        await $.ajax({
+                                            method: "PUT",
+                                            url: apiUrl + "/image/atelier-banner",
+                                            data: "image=" + reader.result,
+                                        })
+                                        .done(function (data) {
+                                            response = $.parseJSON(data);
+                                            if (response.status == 1) {
+                                                getBanner();
+                                            } else if (response.status == 0) {
+                                                window.alert(response.message);
+                                            } else {
+                                                window.alert(internalErrorMessage);
+                                            }
+                                        })
+                                        .fail(function (data) {
+                                            window.alert(unknownErrorMessage);
+                                        });
+                                        subLoading();
+                                    };
+                                    reader.readAsDataURL($(this)[0].files[0]);
+                                });
+                            }
+                            subLoading();
+                        } else if (response.status == -1) {
+                            window.alert(internalErrorMessage);
+                        }
+                    })
+                    .fail(function () {
+                        window.alert(unknownErrorMessage);
+                    });
+                }
+                async function getLogoIcon() {
+                    addLoading();
+                    await $.get(apiUrl + "/image/atelier-logo-icon")
+                    .done(function (data) {
+                        response = $.parseJSON(data);
+                        if (response.status == 1) {
+                            $("[data-atelier-logo-icon=true]").attr("src", "./assets/img/" + response.result);
+                            $("#main-banner")
+                            .find('[data-atelier-logo-icon=true]')
+                            .parent("button")
+                            .after()
+                            .remove('[name="atelier-logo-icon"]');
+                            $("#main-banner")
+                            .find('[data-atelier-logo-icon=true]')
+                            .parent("button")
+                            .children()
+                            .unwrap();
+                            $('[data-atelier-logo-icon=true]')
+                            .removeAttr("src")
+                            .attr("src", "./assets/img/" + response.result + "?timestamp=" + new Date().getTime());
+                            if (logged) {
+                                $("#main-banner")
+                                .find('[data-atelier-logo-icon=true]')
+                                .wrap('<button class="c mcenter ccenter wauto hauto masked-input" title="Editar logo de ícone" style="cursor: pointer;"></button>');
+                                $('<input type="file" accept="image/png,image/jpg,image/jpeg,image/gif,image/svg+xml,image/webp" name="atelier-logo-icon" hidden>')
+                                .insertAfter(
+                                    $("#main-banner")
+                                    .find('[data-atelier-logo-icon=true]')
+                                    .parent("button")
+                                );
+                                $("#main-banner")
+                                .find('[data-atelier-logo-icon=true]')
+                                .parent("button")
+                                .on("click", function () {
+                                    $(this).next("input").click();
+                                });
+                                $('[name="atelier-logo-icon"]').on("change", async function () {
+                                    addLoading();
+                                    let reader = new FileReader();
+                                    reader.onloadend = async function () {
+                                        await $.ajax({
+                                            method: "PUT",
+                                            url: apiUrl + "/image/atelier-logo-icon",
+                                            data: "image=" + reader.result,
+                                        })
+                                        .done(function (data) {
+                                            response = $.parseJSON(data);
+                                            if (response.status == 1) {
+                                                getLogoIcon();
+                                            } else if (response.status == 0) {
+                                                window.alert(response.message);
+                                            } else {
+                                                window.alert(internalErrorMessage);
+                                            }
+                                        })
+                                        .fail(function (data) {
+                                            window.alert(unknownErrorMessage);
+                                        });
+                                        subLoading();
+                                    };
+                                    reader.readAsDataURL($(this)[0].files[0]);
+                                });
+                            }
+                            subLoading();
+                        } else if (response.status == -1) {
+                            window.alert(internalErrorMessage);
+                        }
+                    })
+                    .fail(function () {
+                        window.alert(unknownErrorMessage);
+                    });
+                }
+            </script>
         </div>
     </header>
     <div class="marker" id="atelier"></div>
@@ -410,7 +556,7 @@
     <section class="c mcenter ccenter w12 hauto bgLight">
         <div class="c p6 p12-lmd r-lmd mcenter ccenter cstretch-lmd g6 g12-lmd w12 w11-lmd w10-hmd w8-llg w6-hlg hauto">
             <div class="c mbetween ccenter g4 g6-lmd w12 w6-lmd hauto">
-                <h2 class="c mcenter ccenter w12 hauto"><img class="i wauto" style="height: 4rem;" src="./assets/img/atelier_logo.svg" alt="Atelier Elizeu Manoel"></h2>
+                <h2 class="c mcenter ccenter w12 hauto"><img class="i wauto" style="height: 4rem;" data-atelier-logo="true" alt="Atelier Elizeu Manoel"></h2>
                 <hr class="i w12 hauto dark">
                 <div class="c mcenter ccenter g4 w12 hauto">
                     <h3 class="i w12 hauto title-slin">Whatsapp</h3>
@@ -425,96 +571,108 @@
                 </div>
                 <hr class="i w12 hauto dark">
                 <script>
-                    function getLogo() {
+                    async function getLogo() {
                         addLoading();
-                        $("#main-menu")
-                        .find('[src^="./assets/img/atelier_logo.svg"]')
-                        .parent("a")
-                        .parent("button")
-                        .after()
-                        .remove('[name="atelier-logo"]');
-                        $("#main-menu")
-                        .find('[src^="./assets/img/atelier_logo.svg"]')
-                        .parent("a")
-                        .parent("button")
-                        .children()
-                        .unwrap();
-                        $("#contact")
-                        .next()
-                        .find('[src^="./assets/img/atelier_logo.svg"]')
-                        .parent("button")
-                        .children()
-                        .unwrap();
-                        $('[src^="./assets/img/atelier_logo.svg"]')
-                        .removeAttr("src")
-                        .attr("src", "./assets/img/atelier_logo.svg?timestamp=" + new Date().getTime());
-                        if (logged) {
-                            $("#main-menu")
-                            .find('[src^="./assets/img/atelier_logo.svg"]')
-                            .parent("a")
-                            .wrap('<button class="c mcenter ccenter wauto hauto masked-input" title="Editar logo" style="cursor: pointer;"></button>');
-                            $("#contact")
-                            .next()
-                            .find('[src^="./assets/img/atelier_logo.svg"]')
-                            .wrap('<button class="c mcenter ccenter wauto hauto masked-input" title="Editar logo" style="cursor: pointer;"></button>');
-                            $('<input type="file" accept="image/svg+xml" name="atelier-logo" hidden>')
-                            .insertAfter(
+                        await $.get(apiUrl + "/image/atelier-logo")
+                        .done(function (data) {
+                            response = $.parseJSON(data);
+                            if (response.status == 1) {
+                                $("[data-atelier-logo=true]").attr("src", "./assets/img/" + response.result);
                                 $("#main-menu")
-                                .find('[src^="./assets/img/atelier_logo.svg"]')
+                                .find('[data-atelier-logo=true]')
                                 .parent("a")
                                 .parent("button")
-                            );
-                            $("#main-menu")
-                            .find('[src^="./assets/img/atelier_logo.svg"]')
-                            .parent("a")
-                            .parent("button")
-                            .on("click", function () {
-                                $(this).next("input").click();
-                            });
-                            $("#contact")
-                            .next()
-                            .find('[src^="./assets/img/atelier_logo.svg"]')
-                            .parent("button")
-                            .on("click", function () {
+                                .after()
+                                .remove('[name="atelier-logo"]');
                                 $("#main-menu")
-                                .find('[src^="./assets/img/atelier_logo.svg"]')
+                                .find('[data-atelier-logo=true]')
                                 .parent("a")
                                 .parent("button")
-                                .next("input")
-                                .click();
-                            });
-                            $('[name="atelier-logo"]').on("change", async function () {
-                                addLoading();
-                                let reader = new FileReader();
-                                reader.onloadend = async function () {
-                                    await $.ajax({
-                                        method: "PUT",
-                                        url: apiUrl + "/image/atelier-logo",
-                                        data: "image=" + reader.result,
-                                    })
-                                    .done(function (data) {
-                                        response = $.parseJSON(data);
-                                        if (response.status == 1) {
-                                            getLogo();
-                                        } else if (response.status == 0) {
-                                            window.alert(response.message);
-                                        } else {
-                                            window.alert(internalErrorMessage);
-                                        }
-                                    })
-                                    .fail(function (data) {
-                                        window.alert(unknownErrorMessage);
+                                .children()
+                                .unwrap();
+                                $("#contact")
+                                .next()
+                                .find('[data-atelier-logo=true]')
+                                .parent("button")
+                                .children()
+                                .unwrap();
+                                $('[data-atelier-logo=true]')
+                                .removeAttr("src")
+                                .attr("src", "./assets/img/" + response.result + "?timestamp=" + new Date().getTime());
+                                if (logged) {
+                                    $("#main-menu")
+                                    .find('[data-atelier-logo=true]')
+                                    .parent("a")
+                                    .wrap('<button class="c mcenter ccenter wauto hauto masked-input" title="Editar logo" style="cursor: pointer;"></button>');
+                                    $("#contact")
+                                    .next()
+                                    .find('[data-atelier-logo=true]')
+                                    .wrap('<button class="c mcenter ccenter wauto hauto masked-input" title="Editar logo" style="cursor: pointer;"></button>');
+                                    $('<input type="file" accept="image/png,image/jpg,image/jpeg,image/gif,image/svg+xml,image/webp" name="atelier-logo" hidden>')
+                                    .insertAfter(
+                                        $("#main-menu")
+                                        .find('[data-atelier-logo=true]')
+                                        .parent("a")
+                                        .parent("button")
+                                    );
+                                    $("#main-menu")
+                                    .find('[data-atelier-logo=true]')
+                                    .parent("a")
+                                    .parent("button")
+                                    .on("click", function () {
+                                        $(this).next("input").click();
                                     });
+                                    $("#contact")
+                                    .next()
+                                    .find('[data-atelier-logo=true]')
+                                    .parent("button")
+                                    .on("click", function () {
+                                        $("#main-menu")
+                                        .find('[data-atelier-logo=true]')
+                                        .parent("a")
+                                        .parent("button")
+                                        .next("input")
+                                        .click();
+                                    });
+                                    $('[name="atelier-logo"]').on("change", async function () {
+                                        addLoading();
+                                        let reader = new FileReader();
+                                        reader.onloadend = async function () {
+                                            await $.ajax({
+                                                method: "PUT",
+                                                url: apiUrl + "/image/atelier-logo",
+                                                data: "image=" + reader.result,
+                                            })
+                                            .done(function (data) {
+                                                response = $.parseJSON(data);
+                                                if (response.status == 1) {
+                                                    getLogo();
+                                                } else if (response.status == 0) {
+                                                    window.alert(response.message);
+                                                } else {
+                                                    window.alert(internalErrorMessage);
+                                                }
+                                            })
+                                            .fail(function (data) {
+                                                window.alert(unknownErrorMessage);
+                                            });
+                                            subLoading();
+                                        };
+                                        reader.readAsDataURL($(this)[0].files[0]);
+                                    });
+                                }
+                                $("#main-menu")
+                                .find('[data-atelier-logo=true]')
+                                .on("load", function () {
                                     subLoading();
-                                };
-                                reader.readAsDataURL($(this)[0].files[0]);
-                            });
-                        }
-                        $("#main-menu")
-                        .find('[src^="./assets/img/atelier_logo.svg"]')
-                        .on("load", function () {
-                            adjustRetractableMenus();
-                            subLoading();
+                                });
+                                subLoading();
+                            } else if (response.status == -1) {
+                                window.alert(internalErrorMessage);
+                            }
+                        })
+                        .fail(function () {
+                            window.alert(unknownErrorMessage);
                         });
                     }
                 </script>
