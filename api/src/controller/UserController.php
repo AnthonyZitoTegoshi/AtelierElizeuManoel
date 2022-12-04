@@ -67,6 +67,18 @@ class UserController {
                 );
                 if ($passwordRequest->count() > 0) {
                     $passwordRequest = $passwordRequest->fetch();
+                    $updatedAt = \DateTime::createFromFormat(
+                        DEFAULT_DATETIME_FORMAT,
+                        $passwordRequest->updated_at
+                    );
+                    if ($updatedAt > (new \DateTime())->sub(
+                        new \DateInterval('P0Y0M0DT0H1M')
+                    )) {
+                        ResponseHelper::send(
+                            REQUEST_ERROR,
+                            'Espere ao menos 1 minuto para poder requisitar nova redefinição de senha'
+                        );
+                    }
                 }
                 $passwordRequest->email = $email;
                 $passwordRequest->token = $hashedToken;
