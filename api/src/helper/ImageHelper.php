@@ -24,8 +24,12 @@ class ImageHelper {
         }
     }
 
-    static function base64UrlToFile(string $base64Url, ?string $path): string|false {
-        $parts = explode(',', $base64Url);
+    static function base64UrlToFile(
+        string $base64Url,
+        ?string $path,
+        ?string $requiredExtension
+    ): string|false {
+        $parts = explode(',', str_replace(' ', '+', $base64Url));
 
         $image = ImageHelper::fromBase64($parts[1]);
 
@@ -34,10 +38,24 @@ class ImageHelper {
         $mimeType = substr($parts[0], $mimeTypeBegin, $mimeTypeEnd - $mimeTypeBegin);
 
         $extension = array_search($mimeType, ImageHelper::supportedMimeTypes());
+        if ($extension != $requiredExtension && $requiredExtension != null) {
+            return false;
+        }
 
         if ($image && is_string($extension)) {
             $imageName = GenerateHelper::randomImage('.' . $extension);
-            if (file_put_contents($path . '/' . $imageName, $image)) {
+
+            $fullPath = '';
+            if ($path == null) {
+                $fullPath .= './' . $imageName;
+            } else if ($path[strlen($path) - 1] == '/') {
+                $fullPath .= $path . $imageName;
+            } else {
+                $fullPath = $path;
+                $imageName = substr($fullPath, strrpos($fullPath, '/'));
+            }
+
+            if (file_put_contents($fullPath, $image)) {
                 return $imageName;
             } else {
                 return false;

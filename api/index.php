@@ -28,6 +28,10 @@ try {
     $router->post('/user/request-password', 'UserController:requestPassword');
     $router->put('/user/reset-password', 'UserController:resetPassword');
 
+    $router->put('/image/atelier-logo', 'ImageController:updateLogo');
+    $router->put('/image/atelier-logo-icon', 'ImageController:updateLogoIcon');
+    $router->put('/image/atelier-banner', 'ImageController:updateBanner');
+
     $router->dispatch();
 
     if ($router->error() !== null) {
