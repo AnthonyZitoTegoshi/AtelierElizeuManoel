@@ -75,7 +75,7 @@ class SiteServiceController {
                 if ($image != null) {
                     $imageName = ImageHelper::base64UrlToFile(
                         $image,
-                        __DIR__ . '/../../../assets/img/services'
+                        __DIR__ . '/../../../assets/img/services/'
                     );
                     if (is_string($imageName)) {
                         $service->image = $imageName;
