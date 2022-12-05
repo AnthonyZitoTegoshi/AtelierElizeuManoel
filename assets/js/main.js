@@ -40,6 +40,7 @@ function subLoading() {
         setMainFooter();
         adjustWhatsappButton();
         setTextareas();
+        setTextsWordBreak();
         window.document.getElementById("loading-screen").style.display = "none";
         window.document.body.style.overflow = "";
     }
@@ -56,6 +57,7 @@ window.addEventListener("load", function () {
         setMainFooter();
         adjustWhatsappButton();
         setTextareas();
+        setTextsWordBreak();
     });
     window.addEventListener("scroll", function () {
         if (lastScrollPosition != null && currentScrollPosition != null && window.document.getElementById("main-menu")) {
@@ -502,6 +504,15 @@ function setTextareas() {
         var lineHeight = parseInt($(this).css('lineHeight'));
         $(this).attr("rows", "1");
         $(this).attr("rows", $(this)[0].scrollHeight / lineHeight);
+    });
+}
+
+function setTextsWordBreak() {
+    $("*").each(function () {
+        $(this).css("word-break", "normal");
+        if ($(this)[0].scrollWidth > $(this)[0].clientWidth) {
+            $(this).css("word-break", "break-all");
+        }
     });
 }
 
