@@ -41,6 +41,7 @@
                 getLogo();
                 getLogoIcon();
                 getBanner();
+                getAtelier();
                 getServices();
             });
             subLoading();
@@ -312,20 +313,207 @@
     </header>
     <div class="marker" id="atelier"></div>
     <section class="c p6 p12-lmd mcenter ccenter g12 w12 hmin bgLight">
-        <div class="c r-lmd mcenter ccenter cstart-lmd g4 g6-lmd w12 w11-lmd w10-hmd w8-llg w6-hlg ovisible">
-            <img class="i w12 w6-lmd hauto ovisible text-center" style="max-width: 32rem;" src="./assets/img/atelier/5fd924625f6ab16a19cc9807c7c506ae1813490e4ba675f843d5a10e0baacdb8.webp" alt="(Foto do Elizeu Manoel trabalhando)">
-            <div class="c mcenter ccenter g4 g6-lmd w12 w6-lmd hauto">
-                <h2 class="i w12 hauto title">Atelier Elizeu Manoel</h2>
-                <p class="text-info">Refinamento e classe: os motivos que encontrei para a excelência do meu trabalho. Procuro ser um especialista onde atuo, principalmente na criação e ajustes de violinos, violoncellos e violas. Venho me aperfeiçoando no ramo da lutheria há mais de 5 anos e, muito provavelmente, a consistência e o amor pelo trabalho têm me feito um dos melhores que conheço na cidade.</p>
-            </div>
-        </div>
-        <div class="c r-lmd mcenter ccenter cstart-lmd g4 g6-lmd w12 w11-lmd w10-hmd w8-llg w6-hlg ovisible">
-            <div class="c mcenter ccenter g4 g6-lmd o2 o1-lmd w12 w6-lmd hauto">
-                <h2 class="i w12 hauto title">Honra de servir à música</h2>
-                <p class="text-info">Atenção, meticulosidade, inspiração, harmonia... É como se a música fosse um guia, um caminho na minha vida. E ser responsável pela criação dos instrumentos que a produzem é, definitivamente, é a maior honra que poderia ter. Este sou eu, preparado para solucionar qualquer problema que você tenha no seu instrumento...</p>
-            </div>
-            <img class="i o1 o2-lmd w12 w6-lmd hauto ovisible text-center" style="max-width: 32rem;" src="./assets/img/atelier/bcbee97fbb9d59d289bc4127e31020b2d8daf4d4a68349483258cae290c16722.webp" alt="(Foto do Elizeu Manoel trabalhando)">
-        </div>
+        <script>
+            async function getAtelier() {
+                $("#atelier")
+                .next()
+                .children()
+                .remove();
+                addLoading();
+                await $.get(apiUrl + "/atelier")
+                .done(function (data) {
+                    response = $.parseJSON(data);
+                    if (response.status == 1) {
+                        for (let i = 0; i < response.result.length; i++) {
+                            var atelier = response.result[i];
+                            var inverted = i % 2 != 0;
+                            $("#atelier")
+                            .next()
+                            .append(
+                                '<div class="c r-lmd mcenter ccenter cstart-lmd g4 g6-lmd w12 w11-lmd w10-hmd w8-llg w6-hlg ovisible">' +
+                                    ((logged ? '<button class="c mcenter ccenter ' + (inverted ? 'o1 o2-lmd ' : 'o1 ') + 'w12 w6-lmd hauto masked-input" title="Editar imagem da seção atelier" style="cursor: pointer; border-radius: 0">' : '') + '<img class="i text-center' + (logged ? '' : 'o1 o2-lmd w12 w6-lmd hauto ovisible') + '" style="max-width: 32rem;" src="./assets/img/atelier/' + atelier.image + '" alt="(Imagem)">' + (logged ? '</button>' : '')) +
+                                    (logged ? '<input type="file" accept="image/png,image/jpg,image/jpeg,image/gif,image/svg+xml,image/webp" name="image" hidden>' : '') +
+                                    '<div class="c mcenter ccenter g4 g6-lmd ' + (inverted ? 'o2 o1-lmd ' : 'o2 ') + ' w12 w6-lmd hauto">' +
+                                        (logged ? '<textarea class="i title masked-input" name="title" title="Editar título da seção atelier" rows="1" maxlength="200">' + atelier.title + '</textarea>' : '<p class="i title">' + atelier.title + '</p>') +
+                                        (logged ? '<textarea class="i text-info masked-input" name="description" title="Editar descrição da seção atelier" rows="1" maxlength="2000">' + atelier.description + '</textarea>' : '<p class="i text-info">' + atelier.description + '</p>') +
+                                    '</div>' +
+                                    (logged ? '<button class="card-remove-button bordered-action-button" title="Deletar seção atelier"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M5 13v-2h14v2Z"/></svg></button>' : '') +
+                                '</div>'
+                            );
+                            if (logged) {
+                                $("#atelier")
+                                .next()
+                                .children()
+                                .last()
+                                .find("img")
+                                .parent()
+                                .on("click", function () {
+                                    $(this).next("input").click();
+                                });
+                                $("#atelier")
+                                .next()
+                                .children()
+                                .last()
+                                .find("input[name=image]")
+                                .on("change", async function () {
+                                    addLoading();
+                                    let reader = new FileReader();
+                                    reader.onloadend = async function () {
+                                        await $.ajax({
+                                            method: "PUT",
+                                            url: apiUrl + "/atelier",
+                                            data: "id=" + atelier.id + "&image=" + reader.result,
+                                        })
+                                        .done(function (data) {
+                                            response = $.parseJSON(data);
+                                            if (response.status == 1) {
+                                                getAtelier();
+                                            } else if (response.status == 0) {
+                                                window.alert(response.message);
+                                            } else {
+                                                window.alert(internalErrorMessage);
+                                            }
+                                        })
+                                        .fail(function (data) {
+                                            window.alert(unknownErrorMessage);
+                                        });
+                                        subLoading();
+                                    };
+                                    reader.readAsDataURL($(this)[0].files[0]);
+                                });
+                                $("#atelier")
+                                .next()
+                                .children()
+                                .last()
+                                .find("textarea[name=title]")
+                                .on("change", async function () {
+                                    addLoading();
+                                    await $.ajax({
+                                        method: "PUT",
+                                        url: apiUrl + "/atelier",
+                                        data: "id=" + atelier.id + "&title=" + $(this).val(),
+                                    })
+                                    .done(function (data) {
+                                        response = $.parseJSON(data);
+                                        if (response.status == 1) {
+                                            getAtelier();
+                                        } else if (response.status == 0) {
+                                            window.alert(response.message);
+                                        } else {
+                                            window.alert(internalErrorMessage);
+                                        }
+                                    })
+                                    .fail(function (data) {
+                                        window.alert(unknownErrorMessage);
+                                    });
+                                    subLoading();
+                                });
+                                $("#atelier")
+                                .next()
+                                .children()
+                                .last()
+                                .find("textarea[name=description]")
+                                .on("change", async function () {
+                                    addLoading();
+                                    await $.ajax({
+                                        method: "PUT",
+                                        url: apiUrl + "/atelier",
+                                        data: "id=" + atelier.id + "&description=" + $(this).val(),
+                                    })
+                                    .done(function (data) {
+                                        response = $.parseJSON(data);
+                                        if (response.status == 1) {
+                                            getAtelier();
+                                        } else if (response.status == 0) {
+                                            window.alert(response.message);
+                                        } else {
+                                            window.alert(internalErrorMessage);
+                                        }
+                                    })
+                                    .fail(function (data) {
+                                        window.alert(unknownErrorMessage);
+                                    });
+                                    subLoading();
+                                });
+                                $("#atelier")
+                                .next()
+                                .children()
+                                .last()
+                                .find(".card-remove-button")
+                                .on("click", async function () {
+                                    addLoading();
+                                    await $.ajax({
+                                        method: "DELETE",
+                                        url: apiUrl + "/atelier",
+                                        data: "id=" + atelier.id,
+                                    })
+                                    .done(function (data) {
+                                        response = $.parseJSON(data);
+                                        if (response.status == 1) {
+                                            getAtelier();
+                                        } else if (response.status == 0) {
+                                            window.alert(response.message);
+                                        } else {
+                                            window.alert(internalErrorMessage);
+                                        }
+                                    })
+                                    .fail(function (data) {
+                                        window.alert(unknownErrorMessage);
+                                    });
+                                    subLoading();
+                                });
+                            }
+                        }
+                    } else if (response.status == 0) {
+                        if (!logged) {
+                            $("#atelier").next().remove();
+                            $('[href="#atelier"]').remove();
+                        }
+                    } else {
+                        window.alert(internalErrorMessage);
+                        if (!logged) {
+                            $("#atelier").next().remove();
+                            $('[href="#atelier"]').remove();
+                        }
+                    }
+                })
+                .fail(function () {
+                    window.alert(unknownErrorMessage);
+                    if (!logged) {
+                        $("#atelier").next().remove();
+                        $('[href="#atelier"]').remove();
+                    }
+                });
+                if (logged) {
+                    $("#atelier")
+                    .next()
+                    .append(
+                        '<div class="c r-lmd mcenter ccenter cstart-lmd g4 g6-lmd w12 w11-lmd w10-hmd w8-llg w6-hlg ovisible">' +
+                            '<button class="c mcenter ccenter card bordered-action-button" id="add-atelier-button" style="width: calc(100% - 40px); height: calc(100% - 40px); padding: 40px;" title="Criar nova seção atelier">' +
+                                '<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M22.5 38V25.5H10v-3h12.5V10h3v12.5H38v3H25.5V38Z"/></svg>' +
+                            '</button>' +
+                        '</div>'
+                    );
+                    $("#add-atelier-button").on("click", async function () {
+                        addLoading();
+                        await $.post(apiUrl + "/atelier")
+                        .done(function (data) {
+                            response = $.parseJSON(data);
+                            if (response.status == 1) {
+                                getAtelier();
+                            } else {
+                                window.alert(internalErrorMessage);
+                            }
+                        })
+                        .fail(function () {
+                            window.alert(unknownErrorMessage);
+                        });
+                        subLoading();
+                    });
+                }
+                subLoading();
+            }
+        </script>
     </section>
     <section class="c p6 p12-lmd mcenter ccenter w12 hmin bgDark">
         <div class="c mcenter ccenter g4 g6-lmd w12 w11-lmd w10-hmd w8-llg w6-hlg hauto ovisible">
@@ -532,19 +720,22 @@
                         });
                     } else if (response.status == 0) {
                         if (!logged) {
-                            $("#services-carousel").hide();
+                            $("#services-carousel").remove();
+                            $('[href="#services"]').remove();
                         }
                     } else {
                         window.alert(internalErrorMessage);
                         if (!logged) {
-                            $("#services-carousel").hide();
+                            $("#services-carousel").remove();
+                            $('[href="#services"]').remove();
                         }
                     }
                 })
                 .fail(function () {
                     window.alert(unknownErrorMessage);
                     if (!logged) {
-                        $("#services-carousel").hide();
+                        $("#services-carousel").remove();
+                        $('[href="#services"]').remove();
                     }
                 });
                 adjustCarousels();

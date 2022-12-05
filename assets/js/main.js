@@ -55,6 +55,7 @@ window.addEventListener("load", function () {
         adjustCarousels();
         setMainFooter();
         adjustWhatsappButton();
+        setTextareas();
     });
     window.addEventListener("scroll", function () {
         if (lastScrollPosition != null && currentScrollPosition != null && window.document.getElementById("main-menu")) {

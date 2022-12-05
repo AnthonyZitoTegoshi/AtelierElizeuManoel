@@ -401,6 +401,8 @@ button, input:is([type="button"]) {
   border-width: 2px !important;
   border-style: solid !important;
   padding: 5px;
+  background-color: var(--light);
+  z-index: 1;
 }
 
 .btn-card {

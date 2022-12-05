@@ -17,6 +17,11 @@ try {
     $router->post('/login', 'LoginController:login');
     $router->delete('/login', 'LoginController:logout');
     $router->get('/login', 'LoginController:isLogged');
+
+    $router->post('/atelier', 'SiteAtelierController:create');
+    $router->put('/atelier', 'SiteAtelierController:update');
+    $router->delete('/atelier', 'SiteAtelierController:delete');
+    $router->get('/atelier', 'SiteAtelierController:read');
     
     $router->post('/service', 'SiteServiceController:create');
     $router->put('/service', 'SiteServiceController:update');
