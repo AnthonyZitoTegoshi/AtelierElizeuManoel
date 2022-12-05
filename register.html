@@ -19,7 +19,7 @@ use Configuration\Server;
     </span>
 
     <main id="login-main-banner" class="c mcenter ccenter w12">
-        <section class="c p4 mcenter ccenter w12 w8-lmd w7-hmd w6-llg w5-hlg ovisible">
+        <section class="c p4 mcenter ccenter w12 w8-lmd w7-hmd w6-llg w5-hlg ovisible ">
             <div class="c mcenter ccenter g2 wauto hauto">
                 <a class="i w12 bgLight main-menu-link" style="border-radius: 20px;" href="./#home"><p class="text-center">Criar Novo Registro</p></a>
                 <form action="" class="c p4 mcenter ccenter g4 w12 hauto bgLight" name="frmRegister" id="frmRegister" style="border-radius: 20px;" method="post">
@@ -101,7 +101,17 @@ use Configuration\Server;
                 </form>
             </div>
         </section>
+
+        <section class="c g10 p2 mcenter ccenter w10 bgLight ">
+            <div class="r p4 bgLight mcenter ccenter w6 ">
+             <h5>Usuários Cadastrados</h5>
+            </div>
+         </section>
     </main>
+
+    
+
+
 
     <script src="./assets/js/jquery-3.6.1.min.js"></script>
     <script src="./assets/js/constants.js"></script>
@@ -126,20 +136,21 @@ use Configuration\Server;
 
             event.preventDefault();
             $.post(apiUrl + "/user", $(this).serialize())
-                .done(function (data) {
-                    response = $.parseJSON(data);
-                    if (response.status == 1) {
-                        $("#error-display").css("display", "none");
-                        window.location.href = baseUrl + "/#home";
-                    } else if (response.status == 0) {
-                        $("#error-display").html(response.message).css("display", "block");
-                    } else {
-                        $("#error-display").html(internalErrorMessage).css("display", "block");
-                    }
-                })
-                .fail(function () {
-                    $("#error-display").html(unknownErrorMessage).css("display", "block");
-                });
+            .done(function (data) {
+                console.log(data);
+                response = $.parseJSON(data);
+                if (response.status == 1) {
+                    $("#error-display").css("display", "none");
+                    window.location.href = baseUrl + "/#home";
+                } else if (response.status == 0) {
+                    $("#error-display").html(response.message).css("display", "block");
+                } else {
+                    $("#error-display").html(internalErrorMessage).css("display", "block");
+                }
+            })
+            .fail(function () {
+                $("#error-display").html(unknownErrorMessage).css("display", "block");
+            });
         });
     </script>
 </body>

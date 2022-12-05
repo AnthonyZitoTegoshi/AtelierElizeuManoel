@@ -53,7 +53,7 @@ class Server {
 
     static function getDatabaseUser(): string {
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
-            return 'root';
+            return 'anthony';
         } else {
             return 'hostdeprojetos_atelier';
         }
@@ -61,7 +61,7 @@ class Server {
 
     static function getDatabasePassword(): string {
         if ($_SERVER['HTTP_HOST'] == 'localhost') {
-            return 'Thiluma@37';
+            return '123456';
         } else {
             return 'wT8p8antps9tumT';
         }

@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `atelier` /*!40100 DEFAULT CHARACTER SET utf8mb4 
 USE `atelier`;
 -- MySQL dump 10.13  Distrib 8.0.29, for Linux (x86_64)
 --
--- Host: localhost    Database: hostdeprojetos_atelier
+-- Host: localhost    Database: atelier
 -- ------------------------------------------------------
 -- Server version	8.0.31-0ubuntu0.22.04.1
 
