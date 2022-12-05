@@ -26,19 +26,16 @@ DROP TABLE IF EXISTS `logins`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `logins` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `sid` char(12) COLLATE utf8mb4_general_ci NOT NULL,
   `user_sid` char(12) COLLATE utf8mb4_general_ci NOT NULL,
   `token` char(64) COLLATE utf8mb4_general_ci NOT NULL,
   `expire_date` datetime NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `logins_uk_sid` (`sid`),
   UNIQUE KEY `logins_uk_user_sid` (`user_sid`),
   UNIQUE KEY `logins_uk_token` (`token`),
   CONSTRAINT `logins_ck_created_at` CHECK (`created_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
   CONSTRAINT `logins_ck_expire_date` CHECK (`expire_date` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
-  CONSTRAINT `logins_ck_sid` CHECK (`sid` regexp _utf8mb4'^[A-Za-z0-9]{12}$'),
   CONSTRAINT `logins_ck_token` CHECK (`token` regexp _utf8mb4'^[A-Za-z0-9]{64}$'),
   CONSTRAINT `logins_ck_updated_at` CHECK (`updated_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

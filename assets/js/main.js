@@ -30,6 +30,8 @@ function subLoading() {
         loadings = 0;
     }
     if (loadings == 0) {
+        window.document.getElementById("loading-screen").style.display = "";
+        window.document.body.style.overflow = "hidden";
         adjustMainRetractableMenu();
         setRetractorsListeners();
         adjustRetractableMenus();
