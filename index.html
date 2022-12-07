@@ -85,69 +85,76 @@
         </div>
         <script>
             async function getLogged() {
+                let initialPosition = window.scrollY;
                 if (logged) {
                     $(".login-link")
                     .html("LOGOUT")
                     .attr("href", "#home")
                     .on("click", async function (event) {
-                        addLoading();
-                        await $.ajax({method: "DELETE", url: apiUrl + "/login"})
-                        .done(function (data) {
-                            let response = $.parseJSON(data);
-                            if (response.status == 1) {
-                                window.location.reload();
-                            } else if (response.status == 0) {
-                                window.alert(response.message);
-                            } else {
-                                window.alert(internalErrorMessage);
-                            }
-                        })
-                        .fail(function (data) {
-                            window.alert(unknownErrorMessage);
-                        });
-                        subLoading();
+                        if (window.confirm("Você realmente deseja deslogar?")) {
+                            addLoading();
+                            await $.ajax({method: "DELETE", url: apiUrl + "/login"})
+                            .done(function (data) {
+                                let response = $.parseJSON(data);
+                                if (response.status == 1) {
+                                    window.location.reload();
+                                } else if (response.status == 0) {
+                                    window.alert(response.message);
+                                } else {
+                                    window.alert(internalErrorMessage);
+                                }
+                            })
+                            .fail(function (data) {
+                                window.alert(unknownErrorMessage);
+                            });
+                            subLoading();
+                        }
                     });
                     $(".login-link-with-icon")
                     .html("LOGOUT<span class=\"i wauto hauto\"><svg xmlns=\"http://www.w3.org/2000/svg\" height=\"20\" width=\"20\"><path d=\"M4.5 17q-.625 0-1.062-.438Q3 16.125 3 15.5v-11q0-.625.438-1.062Q3.875 3 4.5 3H10v1.5H4.5v11H10V17Zm9-3.5-1.062-1.062 1.687-1.688H8v-1.5h6.125l-1.687-1.688L13.5 6.5 17 10Z\"/></svg></span>")
                     .attr("href", "#home")
                     .on("click", async function (event) {
-                        addLoading();
-                        await $.ajax({method: "DELETE", url: apiUrl + "/login"})
-                        .done(function (data) {
-                            let response = $.parseJSON(data);
-                            if (response.status == 1) {
-                                window.location.reload();
-                            } else if (response.status == 0) {
-                                window.alert(response.message);
-                            } else {
-                                window.alert(internalErrorMessage);
-                            }
-                        })
-                        .fail(function (data) {
-                            window.alert(unknownErrorMessage);
-                        });
-                        subLoading();
+                        if (window.confirm("Você realmente deseja deslogar?")) {
+                            addLoading();
+                            await $.ajax({method: "DELETE", url: apiUrl + "/login"})
+                            .done(function (data) {
+                                let response = $.parseJSON(data);
+                                if (response.status == 1) {
+                                    window.location.reload();
+                                } else if (response.status == 0) {
+                                    window.alert(response.message);
+                                } else {
+                                    window.alert(internalErrorMessage);
+                                }
+                            })
+                            .fail(function (data) {
+                                window.alert(unknownErrorMessage);
+                            });
+                            subLoading();
+                        }
                     });
                     $(".login-link-expanded")
                     .html("LOGOUT")
                     .attr("href", "#home")
                     .on("click", async function (event) {
-                        addLoading();
-                        await $.ajax({method: "DELETE", url: apiUrl + "/login"})
-                        .done(function (data) {
-                            let response = $.parseJSON(data);
-                            if (response.status == 1) {
-                                window.location.reload();
-                            } else if (response.status == 0) {
-                                window.alert(response.message);
-                            } else {
-                                window.alert(internalErrorMessage);
-                            }
-                        })
-                        .fail(function (data) {
-                            window.alert(unknownErrorMessage);
-                        });
-                        subLoading();
+                        if (window.confirm("Você realmente deseja deslogar?")) {
+                            addLoading();
+                            await $.ajax({method: "DELETE", url: apiUrl + "/login"})
+                            .done(function (data) {
+                                let response = $.parseJSON(data);
+                                if (response.status == 1) {
+                                    window.location.reload();
+                                } else if (response.status == 0) {
+                                    window.alert(response.message);
+                                } else {
+                                    window.alert(internalErrorMessage);
+                                }
+                            })
+                            .fail(function (data) {
+                                window.alert(unknownErrorMessage);
+                            });
+                            subLoading();
+                        }
                     });
                 } else {
                     $(".login-link").html("LOGIN").attr("href", "./login.html");
@@ -156,6 +163,9 @@
                     .attr("href", "./login.html");
                     $(".login-link-expanded").html("LOGIN").attr("href", "./login.html");
                 }
+                $("*").css("scroll-behavior", "auto");
+                window.scroll(0, initialPosition);
+                $("*").css("scroll-behavior", "");
             }
         </script>
     </nav>
@@ -168,6 +178,7 @@
             <a class="btn-banner" href="#contact">Contato</a>
             <script>
                 async function getBanner() {
+                    let initialPosition = window.scrollY;
                     addLoading();
                     await $.get(apiUrl + "/image/atelier-banner")
                     .done(function (data) {
@@ -197,8 +208,17 @@
                                 $("#main-banner")
                                 .parent("button")
                                 .on("click", function (event) {
-                                    if ($(event.target).attr("data-main-banner") == "true") {
-                                        $(this).next("input").click();
+                                    if ($(event.target).attr("data-main-banner") == "true" || $(event.target).attr("id") == "main-banner") {
+                                        $("body").append(
+                                            '<button id="floating-action-button" class="bordered-action-button" style="top: ' + event.pageY + 'px; left: ' + event.pageX + 'px;">Trocar banner</button>'
+                                        );
+                                        $("#floating-action-button").on("click", function () {
+                                            $(this).remove();
+                                            $("#main-banner")
+                                            .parent("button")
+                                            .next("input")
+                                            .click();
+                                        });
                                     }
                                 });
                                 $('[name="atelier-banner"]').on("change", async function () {
@@ -236,8 +256,12 @@
                     .fail(function () {
                         window.alert(unknownErrorMessage);
                     });
+                    $("*").css("scroll-behavior", "auto");
+                    window.scroll(0, initialPosition);
+                    $("*").css("scroll-behavior", "");
                 }
                 async function getLogoIcon() {
+                    let initialPosition = window.scrollY;
                     addLoading();
                     await $.get(apiUrl + "/image/atelier-logo-icon")
                     .done(function (data) {
@@ -270,8 +294,18 @@
                                 $("#main-banner")
                                 .find('[data-atelier-logo-icon=true]')
                                 .parent("button")
-                                .on("click", function () {
-                                    $(this).next("input").click();
+                                .on("click", function (event) {
+                                    $("body").append(
+                                        '<button id="floating-action-button" class="bordered-action-button" style="top: ' + event.pageY + 'px; left: ' + event.pageX + 'px;">Trocar logo de ícone</button>'
+                                    );
+                                    $("#floating-action-button").on("click", function () {
+                                        $(this).remove();
+                                        $("#main-banner")
+                                        .find('[data-atelier-logo-icon=true]')
+                                        .parent("button")
+                                        .next("input")
+                                        .click();
+                                    });
                                 });
                                 $('[name="atelier-logo-icon"]').on("change", async function () {
                                     addLoading();
@@ -308,6 +342,9 @@
                     .fail(function () {
                         window.alert(unknownErrorMessage);
                     });
+                    $("*").css("scroll-behavior", "auto");
+                    window.scroll(0, initialPosition);
+                    $("*").css("scroll-behavior", "");
                 }
             </script>
         </div>
@@ -316,6 +353,7 @@
     <section class="c p6 p12-lmd mcenter ccenter g12 w12 hmin bgLight">
         <script>
             async function getAtelier() {
+                let initialPosition = window.scrollY;
                 $("#atelier")
                 .next()
                 .children()
@@ -348,8 +386,15 @@
                                 .last()
                                 .find("img")
                                 .parent()
-                                .on("click", function () {
-                                    $(this).next("input").click();
+                                .on("click", function (event) {
+                                    $("body").append(
+                                        '<button id="floating-action-button" class="bordered-action-button" style="top: ' + event.pageY + 'px; left: ' + event.pageX + 'px;">Trocar imagem</button>'
+                                    );
+                                    let input = $(this).next("input");
+                                    $("#floating-action-button").on("click", function () {
+                                        $(this).remove();
+                                        input.click();
+                                    });
                                 });
                                 $("#atelier")
                                 .next()
@@ -442,26 +487,28 @@
                                 .last()
                                 .find(".card-remove-button")
                                 .on("click", async function () {
-                                    addLoading();
-                                    await $.ajax({
-                                        method: "DELETE",
-                                        url: apiUrl + "/atelier",
-                                        data: "id=" + atelier.id,
-                                    })
-                                    .done(function (data) {
-                                        let response = $.parseJSON(data);
-                                        if (response.status == 1) {
-                                            getAtelier();
-                                        } else if (response.status == 0) {
-                                            window.alert(response.message);
-                                        } else {
-                                            window.alert(internalErrorMessage);
-                                        }
-                                    })
-                                    .fail(function (data) {
-                                        window.alert(unknownErrorMessage);
-                                    });
-                                    subLoading();
+                                    if (window.confirm("Você realmente deseja remover a seção atelier?")) {
+                                        addLoading();
+                                        await $.ajax({
+                                            method: "DELETE",
+                                            url: apiUrl + "/atelier",
+                                            data: "id=" + atelier.id,
+                                        })
+                                        .done(function (data) {
+                                            let response = $.parseJSON(data);
+                                            if (response.status == 1) {
+                                                getAtelier();
+                                            } else if (response.status == 0) {
+                                                window.alert(response.message);
+                                            } else {
+                                                window.alert(internalErrorMessage);
+                                            }
+                                        })
+                                        .fail(function (data) {
+                                            window.alert(unknownErrorMessage);
+                                        });
+                                        subLoading();
+                                    }
                                 });
                             }
                         }
@@ -495,24 +542,33 @@
                             '</button>' +
                         '</div>'
                     );
-                    $("#add-atelier-button").on("click", async function () {
-                        addLoading();
-                        await $.post(apiUrl + "/atelier")
-                        .done(function (data) {
-                            let response = $.parseJSON(data);
-                            if (response.status == 1) {
-                                getAtelier();
-                            } else {
-                                window.alert(internalErrorMessage);
-                            }
-                        })
-                        .fail(function () {
-                            window.alert(unknownErrorMessage);
+                    $("#add-atelier-button").on("click", async function (event) {
+                        $("body").append(
+                            '<button id="floating-action-button" class="bordered-action-button" style="top: ' + event.pageY + 'px; left: ' + event.pageX + 'px;">Adicionar seção</button>'
+                        );
+                        $("#floating-action-button").on("click", async function () {
+                            $(this).remove();
+                            addLoading();
+                            await $.post(apiUrl + "/atelier")
+                            .done(function (data) {
+                                let response = $.parseJSON(data);
+                                if (response.status == 1) {
+                                    getAtelier();
+                                } else {
+                                    window.alert(internalErrorMessage);
+                                }
+                            })
+                            .fail(function () {
+                                window.alert(unknownErrorMessage);
+                            });
+                            subLoading();
                         });
-                        subLoading();
                     });
                 }
                 subLoading();
+                $("*").css("scroll-behavior", "auto");
+                window.scroll(0, initialPosition);
+                $("*").css("scroll-behavior", "");
             }
         </script>
     </section>
@@ -520,6 +576,7 @@
         <div class="c mcenter ccenter g4 g6-lmd w12 w11-lmd w10-hmd w8-llg w6-hlg hauto ovisible">
             <script>
                 async function getPhrase() {
+                    let initialPosition = window.scrollY;
                     $("#phrase")
                     .children()
                     .children()
@@ -574,6 +631,9 @@
                         $("#phrase").remove();
                     });
                     subLoading();
+                    $("*").css("scroll-behavior", "auto");
+                    window.scroll(0, initialPosition);
+                    $("*").css("scroll-behavior", "");
                 }
             </script>
         </div>
@@ -593,6 +653,7 @@
         </div>
         <script>
             async function getServices() {
+                let initialPosition = window.scrollY;
                 $("#services-carousel")
                     .find(".carousel-display")
                     .children()
@@ -609,21 +670,27 @@
                                 '</button>' +
                             '</li>',
                         );
-                    $("#add-service-button").on("click", async function () {
-                        addLoading();
-                        await $.post(apiUrl + "/service")
-                        .done(function (data) {
-                            let response = $.parseJSON(data);
-                            if (response.status == 1) {
-                                getServices();
-                            } else {
-                                window.alert(internalErrorMessage);
-                            }
-                        })
-                        .fail(function () {
-                            window.alert(unknownErrorMessage);
+                    $("#add-service-button").on("click", async function (event) {
+                        $("body").append(
+                            '<button id="floating-action-button" class="bordered-action-button" style="top: ' + event.pageY + 'px; left: ' + event.pageX + 'px;">Adicionar serviço</button>'
+                        );
+                        $("#floating-action-button").on("click", async function () {
+                            $(this).remove();
+                            addLoading();
+                            await $.post(apiUrl + "/service")
+                            .done(function (data) {
+                                let response = $.parseJSON(data);
+                                if (response.status == 1) {
+                                    getServices();
+                                } else {
+                                    window.alert(internalErrorMessage);
+                                }
+                            })
+                            .fail(function () {
+                                window.alert(unknownErrorMessage);
+                            });
+                            subLoading();
                         });
-                        subLoading();
                     });
                 }
                 addLoading();
@@ -655,7 +722,14 @@
                                 .find(".card-image")
                                 .parent()
                                 .on("click", function () {
-                                    $(this).next("input").click();
+                                    $("body").append(
+                                        '<button id="floating-action-button" class="bordered-action-button" style="top: ' + event.pageY + 'px; left: ' + event.pageX + 'px;">Trocar imagem</button>'
+                                    );
+                                    let input = $(this).next("input");
+                                    $("#floating-action-button").on("click", async function () {
+                                        $(this).remove();
+                                        input.click();
+                                    });
                                 });
                                 $("#services-carousel")
                                 .find(".carousel-display")
@@ -752,26 +826,28 @@
                                 .last()
                                 .find(".card-remove-button")
                                 .on("click", async function () {
-                                    addLoading();
-                                    await $.ajax({
-                                        method: "DELETE",
-                                        url: apiUrl + "/service",
-                                        data: "id=" + service.id,
-                                    })
-                                    .done(function (data) {
-                                        let response = $.parseJSON(data);
-                                        if (response.status == 1) {
-                                            getServices();
-                                        } else if (response.status == 0) {
-                                            window.alert(response.message);
-                                        } else {
-                                            window.alert(internalErrorMessage);
-                                        }
-                                    })
-                                    .fail(function (data) {
-                                        window.alert(unknownErrorMessage);
-                                    });
-                                    subLoading();
+                                    if (window.confirm("Você realmente deseja deletar o serviço?")) {
+                                        addLoading();
+                                        await $.ajax({
+                                            method: "DELETE",
+                                            url: apiUrl + "/service",
+                                            data: "id=" + service.id,
+                                        })
+                                        .done(function (data) {
+                                            let response = $.parseJSON(data);
+                                            if (response.status == 1) {
+                                                getServices();
+                                            } else if (response.status == 0) {
+                                                window.alert(response.message);
+                                            } else {
+                                                window.alert(internalErrorMessage);
+                                            }
+                                        })
+                                        .fail(function (data) {
+                                            window.alert(unknownErrorMessage);
+                                        });
+                                        subLoading();
+                                    }
                                 });
                             }
                         });
@@ -797,6 +873,9 @@
                 });
                 adjustCarousels();
                 subLoading();
+                $("*").css("scroll-behavior", "auto");
+                window.scroll(0, initialPosition);
+                $("*").css("scroll-behavior", "");
             }
         </script>
     </section>
@@ -820,6 +899,7 @@
                 <hr class="i w12 hauto dark">
                 <script>
                     async function getLogo() {
+                        let initialPosition = window.scrollY;
                         addLoading();
                         await $.get(apiUrl + "/image/atelier-logo")
                         .done(function (data) {
@@ -868,19 +948,32 @@
                                     .parent("a")
                                     .parent("button")
                                     .on("click", function () {
-                                        $(this).next("input").click();
+                                        $("body").append(
+                                            '<button id="floating-action-button" class="bordered-action-button" style="top: ' + event.pageY + 'px; left: ' + event.pageX + 'px; z-index: 99999; position: fixed;">Trocar logo</button>'
+                                        );
+                                        let input = $(this).next("input");
+                                        $("#floating-action-button").on("click", function () {
+                                            $(this).remove();
+                                            input.click();
+                                        });
                                     });
                                     $("#contact")
                                     .next()
                                     .find('[data-atelier-logo=true]')
                                     .parent("button")
                                     .on("click", function () {
-                                        $("#main-menu")
-                                        .find('[data-atelier-logo=true]')
-                                        .parent("a")
-                                        .parent("button")
-                                        .next("input")
-                                        .click();
+                                        $("body").append(
+                                            '<button id="floating-action-button" class="bordered-action-button" style="top: ' + event.pageY + 'px; left: ' + event.pageX + 'px;">Trocar logo</button>'
+                                        );
+                                        let input = $("#main-menu")
+                                                    .find('[data-atelier-logo=true]')
+                                                    .parent("a")
+                                                    .parent("button")
+                                                    .next("input");
+                                        $("#floating-action-button").on("click", function () {
+                                            $(this).remove();
+                                            input.click();
+                                        });
                                     });
                                     $('[name="atelier-logo"]').on("change", async function () {
                                         addLoading();
@@ -922,6 +1015,9 @@
                         .fail(function () {
                             window.alert(unknownErrorMessage);
                         });
+                        $("*").css("scroll-behavior", "auto");
+                        window.scroll(0, initialPosition);
+                        $("*").css("scroll-behavior", "");
                     }
                 </script>
             </div>

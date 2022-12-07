@@ -49,6 +49,11 @@ function subLoading() {
 addLoading();
 
 window.addEventListener("load", function () {
+    $("body").on("mousedown", function (event) {
+        if ($(event.target).attr("id") != "floating-action-button") {
+            $("#floating-action-button").remove();
+        }
+    });
     window.addEventListener("resize", function () {
         adjustMainRetractableMenu();
         setRetractorsListeners();

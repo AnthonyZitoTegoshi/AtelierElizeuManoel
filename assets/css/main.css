@@ -69,6 +69,10 @@
   z-index: 0;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 button {
   margin: 0;
   padding: 0;
@@ -675,7 +679,6 @@ input.submit-button:focus-within {
   position: relative;
 }
 
-
 .sign{
   border: none;
   font-family: 'Roboto', sans-serif;
@@ -892,4 +895,13 @@ input.submit-button:focus-within {
   border: solid black 1px;
   border-radius: 10px;
   padding: 10px;
+}
+
+#floating-action-button {
+  position: absolute;
+  border-width: 2px !important;
+  border-style: solid !important;
+  padding: 10px 20px;
+  background-color: var(--light);
+  z-index: 1;
 }
