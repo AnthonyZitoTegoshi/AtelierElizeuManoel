@@ -14,6 +14,9 @@ try {
 
     $router->namespace('App\\Controller');
 
+    $router->put('/color', 'SiteColorController:update');
+    $router->get('/color', 'SiteColorController:read');
+
     $router->post('/login', 'LoginController:login');
     $router->delete('/login', 'LoginController:logout');
     $router->get('/login', 'LoginController:isLogged');

@@ -1,9 +1,3 @@
-const dark = "#260101";
-const light = "#f2f2f2";
-const primary = "#a63f03";
-const primaryDarker = "#731702";
-const primaryLighter = "#d97904";
-
 var lastScrollPosition, currentScrollPosition;
 var scrollingDown;
 
@@ -272,23 +266,6 @@ function setCarousels() {
         var display = carousel.getElementsByClassName("carousel-display")[0];
         var items = display.getElementsByClassName("carousel-item");
         var currentItem = parseInt(display.getAttribute("data-focused-item"));
-        /*for (var j = 0; j < items.length; j++) {
-            var cards = items[j].getElementsByClassName("card");
-            if (cards.length > 0) {
-                var btnCard = cards[0].getElementsByClassName("btn-card")[0];
-                if (j == currentItem) {
-                    cards[0].style.borderColor = primaryLighter;
-                    if (btnCard) {
-                        btnCard.style.backgroundColor = primaryLighter;
-                    }
-                } else {
-                    cards[0].style.borderColor = "";
-                    if (btnCard) {
-                        btnCard.style.backgroundColor = dark;
-                    }
-                }
-            }
-        }*/
         display.style.overflow = "hidden";
         display.style.cursor = "grab";
         display.onscroll = function () {
@@ -348,23 +325,6 @@ function setCarousels() {
             }
             display.scroll(items[currentItem].offsetLeft - items[0].offsetLeft - display.getBoundingClientRect().width / 2 + items[currentItem].getBoundingClientRect().width / 2, 0);
             display.setAttribute("data-focused-item", currentItem);
-            /*for (var j = 0; j < items.length; j++) {
-                var cards = items[j].getElementsByClassName("card");
-                if (cards.length > 0) {
-                    var btnCard = cards[0].getElementsByClassName("btn-card")[0];
-                    if (j == currentItem) {
-                        cards[0].style.borderColor = primaryLighter;
-                        if (btnCard) {
-                            btnCard.style.backgroundColor = primaryLighter;
-                        }
-                    } else {
-                        cards[0].style.borderColor = "";
-                        if (btnCard) {
-                            btnCard.style.backgroundColor = dark;
-                        }
-                    }
-                }
-            }*/
         });
         carousel.getElementsByClassName("carousel-next-button")[0].addEventListener("click", function () {
             var display = this.parentElement.getElementsByClassName("carousel-display")[0];
@@ -375,23 +335,6 @@ function setCarousels() {
             }
             display.scroll(items[currentItem].offsetLeft - items[0].offsetLeft - display.getBoundingClientRect().width / 2 + items[currentItem].getBoundingClientRect().width / 2, 0);
             display.setAttribute("data-focused-item", currentItem);
-            /*for (var j = 0; j < items.length; j++) {
-                var cards = items[j].getElementsByClassName("card");
-                if (cards.length > 0) {
-                    var btnCard = cards[0].getElementsByClassName("btn-card")[0];
-                    if (j == currentItem) {
-                        cards[0].style.borderColor = primaryLighter;
-                        if (btnCard) {
-                            btnCard.style.backgroundColor = primaryLighter;
-                        }
-                    } else {
-                        cards[0].style.borderColor = "";
-                        if (btnCard) {
-                            btnCard.style.backgroundColor = dark;
-                        }
-                    }
-                }
-            }*/
         });
     }
     window.document.addEventListener("mouseup", function () {
@@ -560,6 +503,13 @@ function getUserToken() {
         }
     }
     return "";
+}
+
+function parseCssVariable(variable) {
+    result = variable.slice(2);
+    result = result.replaceAll("-", " ");
+    result = result[0].toUpperCase() + result.slice(1);
+    return result;
 }
 
 $.ajaxSetup({

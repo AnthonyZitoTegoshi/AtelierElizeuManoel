@@ -36,7 +36,7 @@ class SiteAtelierController {
             $imageName = GenerateHelper::randomImage('.svg');
             if (file_put_contents(
                      __DIR__ . '/../../../assets/img/atelier/' . $imageName,
-                    file_get_contents(__DIR__ . '/../../../assets/img/backup/atelier_image.webp')
+                    file_get_contents(__DIR__ . '/../../../assets/img/backup/atelier_image_1.webp')
             )) {
                 $atelier = new SiteAtelierModel();
                 $atelier->image = $imageName;

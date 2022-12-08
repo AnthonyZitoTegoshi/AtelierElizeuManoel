@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use App\Helper\ValidateHelper as ValidateHelper;
 use App\Model\SitePhraseModel as SitePhraseModel;
-use App\Helper\GenerateHelper as GenerateHelper;
-use App\Helper\ImageHelper;
 use App\Helper\ResponseHelper as ResponseHelper;
 
 class SitePhraseController {

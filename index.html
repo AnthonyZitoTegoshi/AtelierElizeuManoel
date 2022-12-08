@@ -37,6 +37,7 @@
                 logged = false;
             })
             .always(function () {
+                getColors();
                 getLogged();
                 getLogo();
                 getLogoIcon();
@@ -171,7 +172,7 @@
     </nav>
     <div class="marker" id="home"></div>
     <header class="c mcenter ccenter w12 ovisible" id="main-banner">
-        <span style="min-height: calc(4rem + 40px);"></span>
+        <div style="min-height: calc(4rem + 40px);"></div>
         <div class="c p6 p12-lmd mcenter ccenter g4 w12 ovisible" data-main-banner="true">
             <img src="" data-atelier-logo-icon="true" style="height: 8rem;">
             <h2 class="text-center light">ATELIER ELIZEU MANOEL</h2>
@@ -1005,6 +1006,8 @@
                                 $("#main-menu")
                                 .find('[data-atelier-logo=true]')
                                 .on("load", function () {
+                                    addLoading();
+                                    adjustRetractableMenus();
                                     subLoading();
                                 });
                                 subLoading();
@@ -1090,6 +1093,107 @@
     <a class="whatsapp-button" id="whatsapp-button" href="https://api.whatsapp.com/send?phone=5511960995554&text=Boa%20tarde!%20Gostaria%20de%20mais%20informações" target="_blank" title="Contato por Whatsapp">
         <img class="i" src="./assets/img/whatsapp_logo.webp" alt="Whatsapp">
     </a>
+    <script>
+        async function getColors() {
+            addLoading();
+            $("#color-palette").remove();
+            await $.get(apiUrl + "/color")
+            .done(function (data) {
+                let response = $.parseJSON(data);
+                if (response.status == 1) {
+                    let colors = response.result;
+                    if (logged) {
+                        $("body").append(
+                            '<section id="color-palette">' +
+                                '<div class="c p4 mcenter ccenter g4 wauto hauto bgLight oauto" style="min-height: 64px;" data-main-child="true"></div>' +
+                                '<button id="color-palette-button" class="no-border-action-button r mcenter ccenter wauto hauto bgLight" data-hidden-palette="false"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m12 15.375-6-6 1.4-1.4 4.6 4.6 4.6-4.6 1.4 1.4Z"/></svg></button>' +
+                            '</section>'
+                        );
+                    }
+                    for (let i = 0; i < colors.length; i++) {
+                        let color = colors[i];
+                        window.document.body.style.setProperty(color.name, color.value);
+                        if (logged) {
+                            $("#color-palette").children("[data-main-child=true]").append(
+                                '<div class="r mbetween ccenter g2 ovisible">' +
+                                    '<p class="i wauto hauto text-info">' + parseCssVariable(color.name) + ': </p>' +
+                                    '<div class="r mcenter ccenter g1 wauto hauto ovisible">' +
+                                        '<input type="text" name="color" class="i wauto hauto text-info text-right masked-input" value="' + color.value + '" maxlength="7" size="7" title="Alterar cor">' +
+                                        '<div class="color" style="background-color: ' + color.value + ';"></div>' +
+                                    '</div>' +
+                                '</div>'
+                            );
+                            $("#color-palette")
+                            .children("[data-main-child=true]")
+                            .children()
+                            .last()
+                            .find(".color")
+                            .on("click", function () {
+                                $(this).prev().focus();
+                            });
+                            $("#color-palette")
+                            .children("[data-main-child=true]")
+                            .children()
+                            .last()
+                            .find("input[name=color]")
+                            .on("change", async function () {
+                                addLoading();
+                                await $.ajax({
+                                    method: "PUT",
+                                    url: apiUrl + "/color",
+                                    data: "id=" + color.id + "&value=" + $(this).val(),
+                                })
+                                .done(function (data) {
+                                    let response = $.parseJSON(data);
+                                    if (response.status == 1) {
+                                        getColors();
+                                    } else if (response.status == 0) {
+                                        window.alert(response.message);
+                                    } else {
+                                        window.alert(internalErrorMessage);
+                                    }
+                                })
+                                .fail(function (data) {
+                                    window.alert(unknownErrorMessage);
+                                });
+                                subLoading();
+                            });
+                        }
+                    }
+                    if (logged) {
+                        $("#color-palette-button").children().css("transform", "rotate(90deg)");
+                        $("#color-palette-button").on("click", function () {
+                            if ($(this).attr("data-hidden-palette") == "true") {
+                                $("#color-palette")
+                                .animate({
+                                    transform: "translate(0, -50%)",
+                                }, 100, function () {
+                                    $(this).css("transform", "translate(0, -50%)");
+                                });
+                                $(this).children().css("transform", "rotate(90deg)");
+                                $(this).attr("data-hidden-palette", "false");
+                            } else {
+                                $("#color-palette")
+                                .animate({
+                                    transform: "translate(-100%, -50%)",
+                                }, 100, function () {
+                                    $(this).css("transform", "translate(-100%, -50%)");
+                                });
+                                $(this).children().css("transform", "rotate(-90deg)");
+                                $(this).attr("data-hidden-palette", "true");
+                            }
+                        });
+                    }
+                    subLoading();
+                } else if (response.status == -1) {
+                    window.alert(internalErrorMessage);
+                }
+            })
+            .fail(function () {
+                window.alert(unknownErrorMessage);
+            });
+        }
+    </script>
 </body>
 </html>
 
