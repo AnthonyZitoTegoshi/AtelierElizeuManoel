@@ -45,6 +45,7 @@ try {
     $router->get('/user', 'UserController:view');
     $router->post('/user/request-password', 'UserController:requestPassword');
     $router->put('/user/reset-password', 'UserController:resetPassword');
+    $router->get('/user/permission', 'UserController:getPermissions');
 
     $router->dispatch();
 

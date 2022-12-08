@@ -29,23 +29,38 @@
                     logged = false;
                 } else {
                     window.alert(internalErrorMessage);
-                    logged = false;
+                    logged = false; 
                 }
             })
             .fail(function () {
                 window.alert(unknownErrorMessage);
                 logged = false;
-            })
-            .always(function () {
-                getColors();
-                getLogged();
-                getLogo();
-                getLogoIcon();
-                getBanner();
-                getAtelier();
-                getPhrase();
-                getServices();
             });
+            if (logged) {
+                await $.get(apiUrl + "/user/permission")
+                .done(function (data) {
+                    let response = $.parseJSON(data);
+                    if (response.status == 1) {
+                        permissions = response.result;
+                    } else if (response.status == 0) {
+                        permissions = "00000";
+                    } else {
+                        window.alert(internalErrorMessage);
+                        permissions = "00000";
+                    }
+                })
+                .fail(function () {
+                    window.alert(unknownErrorMessage);
+                });
+            }
+            getColors();
+            getLogged();
+            getLogo();
+            getLogoIcon();
+            getBanner();
+            getAtelier();
+            getPhrase();
+            getServices();
             subLoading();
         }
     </script>
@@ -198,7 +213,7 @@
                             .parent("button")
                             .children()
                             .unwrap();
-                            if (logged) {
+                            if (logged && permissions[editElementPermission] == "1") {
                                 $("#main-banner")
                                 .wrap('<button class="c mcenter ccenter w12 hauto masked-input-no-decoration" title="Editar banner" style="cursor: pointer;"></button>');
                                 $('<input type="file" accept="image/png,image/jpg,image/jpeg,image/gif,image/svg+xml,image/webp" name="atelier-banner" hidden>')
@@ -282,7 +297,7 @@
                             $('[data-atelier-logo-icon=true]')
                             .removeAttr("src")
                             .attr("src", "./assets/img/" + response.result + "?timestamp=" + new Date().getTime());
-                            if (logged) {
+                            if (logged && permissions[editElementPermission] == "1") {
                                 $("#main-banner")
                                 .find('[data-atelier-logo-icon=true]')
                                 .wrap('<button class="c mcenter ccenter wauto hauto masked-input" title="Editar logo de ícone" style="cursor: pointer;"></button>');
@@ -371,16 +386,16 @@
                             .next()
                             .append(
                                 '<div class="c r-lmd mcenter ccenter cstart-lmd g4 g6-lmd w12 w11-lmd w10-hmd w8-llg w6-hlg ovisible">' +
-                                    ((logged ? '<button class="c mcenter ccenter ' + (inverted ? 'o1 o2-lmd ' : 'o1 ') + 'w12 w6-lmd hauto masked-input" title="Editar imagem da seção atelier" style="cursor: pointer; border-radius: 0">' : '') + '<img class="i text-center' + (logged ? '' : 'o1 o2-lmd w12 w6-lmd hauto ovisible') + '" style="max-width: 32rem;" src="./assets/img/atelier/' + atelier.image + '" alt="(Imagem)">' + (logged ? '</button>' : '')) +
-                                    (logged ? '<input type="file" accept="image/png,image/jpg,image/jpeg,image/gif,image/svg+xml,image/webp" name="image" hidden>' : '') +
+                                    ((logged && permissions[editElementPermission] == "1" ? '<button class="c mcenter ccenter ' + (inverted ? 'o1 o2-lmd ' : 'o1 ') + 'w12 w6-lmd hauto masked-input" title="Editar imagem da seção atelier" style="cursor: pointer; border-radius: 0">' : '') + '<img class="i text-center' + (logged && permissions[editElementPermission] == "1" ? '' : 'o1 o2-lmd w12 w6-lmd hauto ovisible') + '" style="max-width: 32rem;" src="./assets/img/atelier/' + atelier.image + '" alt="(Imagem)">' + (logged && permissions[editElementPermission] == "1" ? '</button>' : '')) +
+                                    (logged && permissions[editElementPermission] == "1" ? '<input type="file" accept="image/png,image/jpg,image/jpeg,image/gif,image/svg+xml,image/webp" name="image" hidden>' : '') +
                                     '<div class="c mcenter ccenter g4 g6-lmd ' + (inverted ? 'o2 o1-lmd ' : 'o2 ') + ' w12 w6-lmd hauto">' +
-                                        (logged ? '<textarea class="i title masked-input" name="title" title="Editar título da seção atelier" rows="1" maxlength="200">' + atelier.title + '</textarea>' : '<p class="i title">' + atelier.title + '</p>') +
-                                        (logged ? '<textarea class="i text-info masked-input" name="description" title="Editar descrição da seção atelier" rows="1" maxlength="2000">' + atelier.description + '</textarea>' : '<p class="i text-info">' + atelier.description + '</p>') +
+                                        (logged && permissions[editElementPermission] == "1" ? '<textarea class="i title masked-input" name="title" title="Editar título da seção atelier" rows="1" maxlength="200">' + atelier.title + '</textarea>' : '<p class="i title">' + atelier.title + '</p>') +
+                                        (logged && permissions[editElementPermission] == "1" ? '<textarea class="i text-info masked-input" name="description" title="Editar descrição da seção atelier" rows="1" maxlength="2000">' + atelier.description + '</textarea>' : '<p class="i text-info">' + atelier.description + '</p>') +
                                     '</div>' +
-                                    (logged ? '<button class="card-remove-button bordered-action-button" title="Deletar seção atelier"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M5 13v-2h14v2Z"/></svg></button>' : '') +
+                                    (logged && permissions[editElementPermission] == "1" ? '<button class="card-remove-button bordered-action-button" title="Deletar seção atelier"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M5 13v-2h14v2Z"/></svg></button>' : '') +
                                 '</div>'
                             );
-                            if (logged) {
+                            if (logged && permissions[editElementPermission] == "1") {
                                 $("#atelier")
                                 .next()
                                 .children()
@@ -514,13 +529,13 @@
                             }
                         }
                     } else if (response.status == 0) {
-                        if (!logged) {
+                        if (!logged || permissions[editElementPermission] != "1") {
                             $("#atelier").next().remove();
                             $('[href="#atelier"]').remove();
                         }
                     } else {
                         window.alert(internalErrorMessage);
-                        if (!logged) {
+                        if (!logged || permissions[editElementPermission] != "1") {
                             $("#atelier").next().remove();
                             $('[href="#atelier"]').remove();
                         }
@@ -528,12 +543,12 @@
                 })
                 .fail(function () {
                     window.alert(unknownErrorMessage);
-                    if (!logged) {
+                    if (!logged || permissions[editElementPermission] != "1") {
                         $("#atelier").next().remove();
                         $('[href="#atelier"]').remove();
                     }
                 });
-                if (logged) {
+                if (logged && permissions[createElementPermission] == "1") {
                     $("#atelier")
                     .next()
                     .append(
@@ -590,10 +605,10 @@
                             $("#phrase")
                             .children()
                             .append(
-                                (logged ? '<textarea class="i text-info light masked-input" style="font-style: italic;" name="text" title="Editar frase" rows="1" maxlength="1000">' + response.result.text + '</textarea>' : '<p class="text-info light" style="font-style: italic;">&ldquo;' + response.result.text + '&rdquo;</p>') +
+                                (logged && permissions[editElementPermission] == "1" ? '<textarea class="i text-info light masked-input" style="font-style: italic;" name="text" title="Editar frase" rows="1" maxlength="1000">' + response.result.text + '</textarea>' : '<p class="text-info light" style="font-style: italic;">&ldquo;' + response.result.text + '&rdquo;</p>') +
                                 '<p class="text-info light">&mdash; Elizeu Manoel da Silva &mdash;</p>'
                             );
-                            if (logged) {
+                            if (logged && permissions[editElementPermission] == "1") {
                                 $("#phrase")
                                 .children()
                                 .find("textarea[name=text]")
@@ -660,7 +675,7 @@
                     .children()
                     .children()
                     .remove();
-                if (logged) {
+                if (logged && permissions[createElementPermission] == "1") {
                     $("#services-carousel")
                         .find(".carousel-display")
                         .children()
@@ -706,15 +721,15 @@
                             .append(
                                 '<li class="carousel-item" style="width: 16rem;">' +
                                     '<div class="c mcenter ccenter wauto hauto card">' +
-                                        ((logged ? '<button class="c mcenter ccenter w12 hauto masked-input" title="Editar imagem do serviço">' : '') + '<img class="i w8 hauto text-center card-image" src="./assets/img/services/' + service.image + '" draggable="false" style="' + (logged ? 'cursor: pointer;">' : '">') + (logged ? '</button>' : '')) +
-                                        (logged ? '<input type="file" accept="image/png,image/jpg,image/jpeg,image/gif,image/svg+xml,image/webp" name="image" hidden>' : '') + 
-                                        (logged ? '<textarea class="i title-slin text-center p2 masked-input" name="title" title="Editar título do serviço" rows="1" maxlength="100">' + service.title + '</textarea>' : '<p class="i title-slin text-center p2">' + service.title + '</p>') +
-                                        (logged ? '<textarea class="i text-info text-center p2 masked-input" name="description" title="Editar descrição do serviço" rows="1" maxlength="1000">' + service.description + '</textarea>' : '<p class="i text-info text-center p2">' + service.description + '</p>') +
-                                        (logged ? '<button class="card-remove-button bordered-action-button" title="Deletar serviço"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M5 10.75v-1.5h10v1.5Z"/></svg></button>' : '') +
+                                        ((logged && permissions[editElementPermission] == "1" ? '<button class="c mcenter ccenter w12 hauto masked-input" title="Editar imagem do serviço">' : '') + '<img class="i w8 hauto text-center card-image" src="./assets/img/services/' + service.image + '" draggable="false" style="' + (logged && permissions[editElementPermission] == "1" ? 'cursor: pointer;">' : '">') + (logged && permissions[editElementPermission] == "1" ? '</button>' : '')) +
+                                        (logged && permissions[editElementPermission] == "1" ? '<input type="file" accept="image/png,image/jpg,image/jpeg,image/gif,image/svg+xml,image/webp" name="image" hidden>' : '') + 
+                                        (logged && permissions[editElementPermission] == "1" ? '<textarea class="i title-slin text-center p2 masked-input" name="title" title="Editar título do serviço" rows="1" maxlength="100">' + service.title + '</textarea>' : '<p class="i title-slin text-center p2">' + service.title + '</p>') +
+                                        (logged && permissions[editElementPermission] == "1" ? '<textarea class="i text-info text-center p2 masked-input" name="description" title="Editar descrição do serviço" rows="1" maxlength="1000">' + service.description + '</textarea>' : '<p class="i text-info text-center p2">' + service.description + '</p>') +
+                                        (logged && permissions[editElementPermission] == "1" ? '<button class="card-remove-button bordered-action-button" title="Deletar serviço"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M5 10.75v-1.5h10v1.5Z"/></svg></button>' : '') +
                                     '</div>' +
                                 '</li>',
                             );
-                            if (logged) {
+                            if (logged && permissions[editElementPermission] == "1") {
                                 $("#services-carousel")
                                 .find(".carousel-display")
                                 .children()
@@ -853,13 +868,13 @@
                             }
                         });
                     } else if (response.status == 0) {
-                        if (!logged) {
+                        if (!logged || permissions[editElementPermission] != "1") {
                             $("#services-carousel").remove();
                             $('[href="#services"]').remove();
                         }
                     } else {
                         window.alert(internalErrorMessage);
-                        if (!logged) {
+                        if (!logged || permissions[editElementPermission] != "1") {
                             $("#services-carousel").remove();
                             $('[href="#services"]').remove();
                         }
@@ -867,7 +882,7 @@
                 })
                 .fail(function () {
                     window.alert(unknownErrorMessage);
-                    if (!logged) {
+                    if (!logged || permissions[editElementPermission] != "1") {
                         $("#services-carousel").remove();
                         $('[href="#services"]').remove();
                     }
@@ -928,7 +943,7 @@
                                 $('[data-atelier-logo=true]')
                                 .removeAttr("src")
                                 .attr("src", "./assets/img/" + response.result + "?timestamp=" + new Date().getTime());
-                                if (logged) {
+                                if (logged && permissions[editElementPermission] == "1") {
                                     $("#main-menu")
                                     .find('[data-atelier-logo=true]')
                                     .parent("a")
@@ -950,7 +965,7 @@
                                     .parent("button")
                                     .on("click", function () {
                                         $("body").append(
-                                            '<button id="floating-action-button" class="bordered-action-button" style="top: ' + event.pageY + 'px; left: ' + event.pageX + 'px; z-index: 99999; position: fixed;">Trocar logo</button>'
+                                            '<button id="floating-action-button" class="bordered-action-button" style="top: ' + event.clientY + 'px; left: ' + event.clientX + 'px; z-index: 99999; position: fixed;">Trocar logo</button>'
                                         );
                                         let input = $(this).next("input");
                                         $("#floating-action-button").on("click", function () {
@@ -1102,7 +1117,7 @@
                 let response = $.parseJSON(data);
                 if (response.status == 1) {
                     let colors = response.result;
-                    if (logged) {
+                    if (logged && permissions[colorPalettePermission] == "1") {
                         $("body").append(
                             '<section id="color-palette">' +
                                 '<div class="c p4 mcenter ccenter g4 wauto hauto bgLight oauto" style="min-height: 64px;" data-main-child="true"></div>' +
@@ -1113,7 +1128,7 @@
                     for (let i = 0; i < colors.length; i++) {
                         let color = colors[i];
                         window.document.body.style.setProperty(color.name, color.value);
-                        if (logged) {
+                        if (logged && permissions[colorPalettePermission] == "1") {
                             $("#color-palette").children("[data-main-child=true]").append(
                                 '<div class="r mbetween ccenter g2 ovisible">' +
                                     '<p class="i wauto hauto text-info">' + parseCssVariable(color.name) + ': </p>' +
@@ -1160,7 +1175,7 @@
                             });
                         }
                     }
-                    if (logged) {
+                    if (logged && permissions[colorPalettePermission] == "1") {
                         $("#color-palette-button").children().css("transform", "rotate(90deg)");
                         $("#color-palette-button").on("click", function () {
                             if ($(this).attr("data-hidden-palette") == "true") {

@@ -1,3 +1,9 @@
+const colorPalettePermission = 0;
+const createElementPermission = 1;
+const editElementPermission = 2;
+const createUserPermission = 3;
+const editUserPermission = 4;
+
 var lastScrollPosition, currentScrollPosition;
 var scrollingDown;
 

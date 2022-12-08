@@ -11,6 +11,7 @@ use App\Helper\InputHelper as InputHelper;
 use App\Helper\HashHelper as HashHelper;
 use App\Helper\ResponseHelper as ResponseHelper;
 use App\Helper\EmailHelper as EmailHelper;
+use App\Model\LoginModel;
 use App\Model\PasswordRequestModel as PasswordRequestModel;
 use Configuration\Server as Server;
 
@@ -184,6 +185,34 @@ class UserController {
             }
         } else {
             ResponseHelper::send(REQUEST_ERROR, 'Email inválido');
+        }
+    }
+
+    public function getPermissions(array $data): void {
+        $token = $_SERVER['HTTP_TOKEN'];
+        if (ValidateHelper::checkToken($token)) {
+            $login = (new LoginModel())->find(
+                'token = :token',
+                'token=' . HashHelper::encrypt($token, substr($token, 0, 12))
+            );
+            if ($login->count() > 0) {
+                $login = $login->fetch();
+                $user = (new UserModel)->find('sid = :sid', 'sid=' . $login->user_sid);
+                if ($user->count() > 0) {
+                    $user = $user->fetch();
+                    ResponseHelper::send(
+                        RESPONSE_SUCCESS,
+                        'Permissões resgatadas com sucesso',
+                        $user->permission_type
+                    );
+                } else {
+                    ResponseHelper::send(REQUEST_ERROR, 'Usuário não existe');
+                }
+            } else {
+                ResponseHelper::send(REQUEST_ERROR, 'Usuário não está logado');
+            }
+        } else {
+            ResponseHelper::send(REQUEST_ERROR, 'Usuário não está logado');
         }
     }
 }
