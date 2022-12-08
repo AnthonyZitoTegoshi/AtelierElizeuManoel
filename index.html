@@ -570,6 +570,8 @@
                                 let response = $.parseJSON(data);
                                 if (response.status == 1) {
                                     getAtelier();
+                                } else if (response.status == 0) {
+                                    window.alert(response.message);
                                 } else {
                                     window.alert(internalErrorMessage);
                                 }
@@ -698,6 +700,8 @@
                                 let response = $.parseJSON(data);
                                 if (response.status == 1) {
                                     getServices();
+                                } else if (response.status == 0) {
+                                    window.alert(response.message);
                                 } else {
                                     window.alert(internalErrorMessage);
                                 }
