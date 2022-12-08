@@ -1,5 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `atelier` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `atelier`;
+USE `hostdeprojetos_atelier`;
 -- MySQL dump 10.13  Distrib 8.0.29, for Linux (x86_64)
 --
 -- Host: localhost    Database: atelier
@@ -63,7 +62,7 @@ CREATE TABLE `logins` (
   CONSTRAINT `logins_ck_expire_date` CHECK (`expire_date` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
   CONSTRAINT `logins_ck_token` CHECK (`token` regexp _utf8mb4'^[A-Za-z0-9]{64}$'),
   CONSTRAINT `logins_ck_updated_at` CHECK (`updated_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,6 +71,7 @@ CREATE TABLE `logins` (
 
 LOCK TABLES `logins` WRITE;
 /*!40000 ALTER TABLE `logins` DISABLE KEYS */;
+INSERT INTO `logins` VALUES (28,'5wR1pgO7DT6f','da2492b18e57341d0ea4b953ab7884dd4ee33d73c301c54a56ff58a6efd2c4e9','2022-12-11 00:04:37','2022-12-08 00:04:37','2022-12-08 00:04:37');
 /*!40000 ALTER TABLE `logins` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +97,7 @@ CREATE TABLE `password_requests` (
   CONSTRAINT `password_requests_ck_expire_date` CHECK (`expire_date` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
   CONSTRAINT `password_requests_ck_token` CHECK (`token` regexp _utf8mb4'^[A-Za-z0-9]{64}$'),
   CONSTRAINT `password_requests_ck_updated_at` CHECK (`updated_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,7 +106,7 @@ CREATE TABLE `password_requests` (
 
 LOCK TABLES `password_requests` WRITE;
 /*!40000 ALTER TABLE `password_requests` DISABLE KEYS */;
-INSERT INTO `password_requests` VALUES (5,'aztegoshi@gmail.com','8a074060646fbe6755525185d7de5fe09dca6b86298db65335e34185e3adac1c','2022-12-05 00:00:21','2022-12-03 23:51:58','2022-12-04 00:00:21');
+INSERT INTO `password_requests` VALUES (7,'aztegoshi@gmail.com','d270ae3428a690e86b7a1a8aa798bea9eb3aa65ad2485a5ce15e958df52ac537','2022-12-08 23:58:56','2022-12-07 23:58:56','2022-12-07 23:58:56');
 /*!40000 ALTER TABLE `password_requests` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +129,7 @@ CREATE TABLE `site_atelier` (
   CONSTRAINT `site_atelier_ck_created_at` CHECK (`created_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
   CONSTRAINT `site_atelier_ck_image` CHECK (`image` regexp _utf8mb4'^[A-Za-z0-9.]{64}$'),
   CONSTRAINT `site_atelier_ck_updated_at` CHECK (`updated_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,8 +138,39 @@ CREATE TABLE `site_atelier` (
 
 LOCK TABLES `site_atelier` WRITE;
 /*!40000 ALTER TABLE `site_atelier` DISABLE KEYS */;
-INSERT INTO `site_atelier` VALUES (1,'5fd924625f6ab16a19cc9807c7c506ae1813490e4ba675f843d5a10e0ba.webp','Atelier Elizeu Manoel','Refinamento e classe: os motivos que encontrei para a excelência do meu trabalho. Procuro ser um especialista onde atuo, principalmente na criação e ajustes de violinos, violoncellos e violas. Venho me aperfeiçoando no ramo da lutheria há mais de 5 anos e, muito provavelmente, a consistência e o amor pelo trabalho têm me feito um dos melhores que conheço na cidade.','2022-12-04 21:59:59','2022-12-04 21:59:59'),(2,'bcbee97fbb9d59d289bc4127e31020b2d8daf4d4a68349483258cae290c.webp','Honra de servir à música','Atenção, meticulosidade, inspiração, harmonia... É como se a música fosse um guia, um caminho na minha vida. E ser responsável pela criação dos instrumentos que a produzem é, definitivamente, é a maior honra que poderia ter. Este sou eu, preparado para solucionar qualquer problema que você tenha no seu instrumento...','2022-12-04 21:59:59','2022-12-04 21:59:59');
+INSERT INTO `site_atelier` VALUES (1,'papcQOgIqQ85QqxpEGgcM1xPICsY39bECdxl5hx6XvQDH4GIpnixEuOn0Kg.webp','Atelier Elizeu Manoel','Refinamento e classe: os motivos que encontrei para a excelência do meu trabalho. Procuro ser um especialista onde atuo, principalmente na criação e ajustes de violinos, violoncellos e violas. Venho me aperfeiçoando no ramo da lutheria há mais de 5 anos e, muito provavelmente, a consistência e o amor pelo trabalho têm me feito um dos melhores que conheço na cidade.','2022-12-04 21:59:59','2022-12-06 23:18:43'),(2,'k9IuvL1AyTO8Ibn1reJz2SQWnXZrBGgWbyzkEKU1R8xCYSu74AysSwFTuji.webp','Honra de servir à música','Atenção, meticulosidade, inspiração, harmonia... É como se a música fosse um guia, um caminho na minha vida. E ser responsável pela criação dos instrumentos que a produzem é, definitivamente, é a maior honra que poderia ter. Este sou eu, preparado para solucionar qualquer problema que você tenha no seu instrumento...','2022-12-04 21:59:59','2022-12-06 23:21:37');
 /*!40000 ALTER TABLE `site_atelier` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `site_colors`
+--
+
+DROP TABLE IF EXISTS `site_colors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `site_colors` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `value` char(7) COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `site_colors_ck_created_at` CHECK (`created_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
+  CONSTRAINT `site_colors_ck_name` CHECK (`name` regexp _utf8mb4'^--[a-z-]+$'),
+  CONSTRAINT `site_colors_ck_updated_at` CHECK (`updated_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
+  CONSTRAINT `site_colors_ck_value` CHECK (`value` regexp _utf8mb4'^#[0-9A-F]{6}$')
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `site_colors`
+--
+
+LOCK TABLES `site_colors` WRITE;
+/*!40000 ALTER TABLE `site_colors` DISABLE KEYS */;
+INSERT INTO `site_colors` VALUES (1,'--dark','#260101','2022-12-06 23:43:20','2022-12-08 00:06:10'),(2,'--light','#f2f2f2','2022-12-06 23:43:20','2022-12-08 00:06:14'),(3,'--primary','#a63f03','2022-12-06 23:43:20','2022-12-07 23:22:56'),(4,'--primary-darker','#731702','2022-12-06 23:43:20','2022-12-06 23:43:20'),(5,'--primary-lighter','#d97904','2022-12-06 23:43:20','2022-12-06 23:43:20');
+/*!40000 ALTER TABLE `site_colors` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -170,8 +201,36 @@ CREATE TABLE `site_images` (
 
 LOCK TABLES `site_images` WRITE;
 /*!40000 ALTER TABLE `site_images` DISABLE KEYS */;
-INSERT INTO `site_images` VALUES (1,'atelier_logo','svg','2022-12-04 17:11:21','2022-12-04 18:33:20'),(2,'atelier_logo_icon','svg','2022-12-04 17:11:21','2022-12-04 19:29:10'),(3,'atelier_banner','svg','2022-12-04 17:11:21','2022-12-04 19:30:55');
+INSERT INTO `site_images` VALUES (1,'atelier_logo','svg','2022-12-04 17:11:21','2022-12-07 20:03:09'),(2,'atelier_logo_icon','svg','2022-12-04 17:11:21','2022-12-06 23:17:59'),(3,'atelier_banner','webp','2022-12-04 17:11:21','2022-12-06 23:18:18');
 /*!40000 ALTER TABLE `site_images` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `site_phrases`
+--
+
+DROP TABLE IF EXISTS `site_phrases`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `site_phrases` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `text` varchar(1000) COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `site_phrases_ck_created_at` CHECK (`created_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
+  CONSTRAINT `site_phrases_ck_updated_at` CHECK (`updated_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `site_phrases`
+--
+
+LOCK TABLES `site_phrases` WRITE;
+/*!40000 ALTER TABLE `site_phrases` DISABLE KEYS */;
+INSERT INTO `site_phrases` VALUES (1,'Visando a excelência, ofereço os mais variados serviços na lutheria com o uso dos mais sofisticados materiais. Reconheço o propósito do músico com seu instrumento e estou disposto a colaborar tanto com a criação quanto com os ajustes necessários nessa jornada.','2022-12-06 19:25:30','2022-12-06 23:25:18');
+/*!40000 ALTER TABLE `site_phrases` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -193,7 +252,7 @@ CREATE TABLE `site_services` (
   CONSTRAINT `site_services_ck_created_at` CHECK (`created_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
   CONSTRAINT `site_services_ck_image` CHECK (`image` regexp _utf8mb4'^[A-Za-z0-9.]{64}$'),
   CONSTRAINT `site_services_ck_updated_at` CHECK (`updated_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -202,7 +261,6 @@ CREATE TABLE `site_services` (
 
 LOCK TABLES `site_services` WRITE;
 /*!40000 ALTER TABLE `site_services` DISABLE KEYS */;
-INSERT INTO `site_services` VALUES (6,'Qd5BSJEt4ibVplfIJjevobDiDymkY9f7f5Aq7iPU4pUBfq5dN1Iqc8Mc1JTe.svg','Título','Descriçassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssão','2022-12-04 22:04:25','2022-12-04 22:30:46');
 /*!40000 ALTER TABLE `site_services` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,7 +298,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'5wR1pgO7DT6f','Anthony Zito Tegoshi','aztegoshi@gmail.com','4b51396e1d5003baab3589a70e8efaa1ac9e4aa704eacb2fd9c74a172d02c617','10000','2022-11-12 17:02:43','2022-12-03 20:16:58'),(2,'VGfYqtq9hGWE','asd','asd@asd.com','99084873c0a1081819e6182924d79cb84c10a02fc465f5ed991a186418fe9eed','11111','2022-12-04 21:35:49','2022-12-04 21:35:49');
+INSERT INTO `users` VALUES (1,'5wR1pgO7DT6f','Anthony Zito Tegoshi','aztegoshi@gmail.com','4b51396e1d5003baab3589a70e8efaa1ac9e4aa704eacb2fd9c74a172d02c617','10000','2022-11-12 17:02:43','2022-12-06 20:01:42'),(2,'VGfYqtq9hGWE','asd','asd@asd.com','99084873c0a1081819e6182924d79cb84c10a02fc465f5ed991a186418fe9eed','11111','2022-12-04 21:35:49','2022-12-04 21:35:49');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -253,4 +311,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-04 22:34:40
+-- Dump completed on 2022-12-08 14:00:22
