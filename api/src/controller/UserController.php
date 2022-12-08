@@ -69,7 +69,7 @@ class UserController {
                 );
             }
         } else {
-            ResponseHelper::send(TOKEN_ERROR, 'Usuário não está logado');
+            ResponseHelper::send(TOKEN_ERROR, 'Sessão expirada');
         }
      }
 
@@ -222,7 +222,7 @@ class UserController {
                 );
             }
         } else {
-            ResponseHelper::send(TOKEN_ERROR, 'Usuário não está logado');
+            ResponseHelper::send(TOKEN_ERROR, 'Sessão expirada');
         }
     }
 }
