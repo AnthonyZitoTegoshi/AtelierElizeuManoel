@@ -70,8 +70,9 @@ class LoginController {
             } else {
                 ResponseHelper::send(RESPONSE_ERROR, 'Ocorreu um erro ao deslogar o usuário');
             }
+        } else {
+            ResponseHelper::send(RESPONSE_SUCCESS, 'Usuário não está logado');
         }
-        ResponseHelper::send(REQUEST_ERROR, 'Usuário não está logado');
     }
 
     public function isLogged(array $data): void {
