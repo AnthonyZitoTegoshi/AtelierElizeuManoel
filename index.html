@@ -46,6 +46,7 @@
                         permissions = "00000";
                     } else if (response.status == -2) {
                         window.alert(response.message);
+                        addLoading();
                         window.location.reload();
                     } else {
                         window.alert(internalErrorMessage);
@@ -116,11 +117,13 @@
                             .done(function (data) {
                                 let response = $.parseJSON(data);
                                 if (response.status == 1) {
+                                    addLoading();
                                     window.location.reload();
                                 } else if (response.status == 0) {
                                     window.alert(response.message);
                                 } else if (response.status == -2) {
                                     window.alert(response.message);
+                                    addLoading();
                                     window.location.reload();
                                 } else {
                                     window.alert(internalErrorMessage);
@@ -142,11 +145,13 @@
                             .done(function (data) {
                                 let response = $.parseJSON(data);
                                 if (response.status == 1) {
+                                    addLoading();
                                     window.location.reload();
                                 } else if (response.status == 0) {
                                     window.alert(response.message);
                                 } else if (response.status == -2) {
                                     window.alert(response.message);
+                                    addLoading();
                                     window.location.reload();
                                 } else {
                                     window.alert(internalErrorMessage);
@@ -168,11 +173,13 @@
                             .done(function (data) {
                                 let response = $.parseJSON(data);
                                 if (response.status == 1) {
+                                    addLoading();
                                     window.location.reload();
                                 } else if (response.status == 0) {
                                     window.alert(response.message);
                                 } else if (response.status == -2) {
                                     window.alert(response.message);
+                                    addLoading();
                                     window.location.reload();
                                 } else {
                                     window.alert(internalErrorMessage);
@@ -266,6 +273,7 @@
                                                 window.alert(response.message);
                                             } else if (response.status == -2) {
                                                 window.alert(response.message);
+                                                addLoading();
                                                 window.location.reload();
                                             } else {
                                                 window.alert(internalErrorMessage);
@@ -355,6 +363,7 @@
                                                 window.alert(response.message);
                                             } else if (response.status == -2) {
                                                 window.alert(response.message);
+                                                addLoading();
                                                 window.location.reload();
                                             } else {
                                                 window.alert(internalErrorMessage);
@@ -452,6 +461,7 @@
                                                 window.alert(response.message);
                                             } else if (response.status == -2) {
                                                 window.alert(response.message);
+                                                addLoading();
                                                 window.location.reload();
                                             } else {
                                                 window.alert(internalErrorMessage);
@@ -484,6 +494,7 @@
                                             window.alert(response.message);
                                         } else if (response.status == -2) {
                                             window.alert(response.message);
+                                            addLoading();
                                             window.location.reload();
                                         } else {
                                             window.alert(internalErrorMessage);
@@ -514,6 +525,7 @@
                                             window.alert(response.message);
                                         } else if (response.status == -2) {
                                             window.alert(response.message);
+                                            addLoading();
                                             window.location.reload();
                                         } else {
                                             window.alert(internalErrorMessage);
@@ -545,6 +557,7 @@
                                                 window.alert(response.message);
                                             } else if (response.status == -2) {
                                                 window.alert(response.message);
+                                                addLoading();
                                                 window.location.reload();
                                             } else {
                                                 window.alert(internalErrorMessage);
@@ -604,6 +617,7 @@
                                     window.alert(response.message);
                                 } else if (response.status == -2) {
                                     window.alert(response.message);
+                                    addLoading();
                                     window.location.reload();
                                 } else {
                                     window.alert(internalErrorMessage);
@@ -662,6 +676,7 @@
                                             window.alert(response.message);
                                         } else if (response.status == -2) {
                                             window.alert(response.message);
+                                            addLoading();
                                             window.location.reload();
                                         } else {
                                             window.alert(internalErrorMessage);
@@ -740,6 +755,7 @@
                                     window.alert(response.message);
                                 } else if (response.status == -2) {
                                     window.alert(response.message);
+                                    addLoading();
                                     window.location.reload();
                                 } else {
                                     window.alert(internalErrorMessage);
@@ -813,6 +829,7 @@
                                                 window.alert(response.message);
                                             } else if (response.status == -2) {
                                                 window.alert(response.message);
+                                                addLoading();
                                                 window.location.reload();
                                             } else {
                                                 window.alert(internalErrorMessage);
@@ -846,6 +863,7 @@
                                             window.alert(response.message);
                                         } else if (response.status == -2) {
                                             window.alert(response.message);
+                                            addLoading();
                                             window.location.reload();
                                         } else {
                                             window.alert(internalErrorMessage);
@@ -877,6 +895,7 @@
                                             window.alert(response.message);
                                         } else if (response.status == -2) {
                                             window.alert(response.message);
+                                            addLoading();
                                             window.location.reload();
                                         } else {
                                             window.alert(internalErrorMessage);
@@ -909,6 +928,7 @@
                                                 window.alert(response.message);
                                             } else if (response.status == -2) {
                                                 window.alert(response.message);
+                                                addLoading();
                                                 window.location.reload();
                                             } else {
                                                 window.alert(internalErrorMessage);
@@ -1063,6 +1083,7 @@
                                                     window.alert(response.message);
                                                 } else if (response.status == -2) {
                                                     window.alert(response.message);
+                                                    addLoading();
                                                     window.location.reload();
                                                 } else {
                                                     window.alert(internalErrorMessage);
@@ -1224,6 +1245,7 @@
                                         window.alert(response.message);
                                     } else if (response.status == -2) {
                                         window.alert(response.message);
+                                        addLoading();
                                         window.location.reload();
                                     } else {
                                         window.alert(internalErrorMessage);

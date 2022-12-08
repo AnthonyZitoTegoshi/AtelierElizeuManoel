@@ -72,6 +72,7 @@
                                 let response = $.parseJSON(data);
                                 if (response.status == 1) {
                                     $("#error-display").css("display", "none");
+                                    addLoading();
                                     window.location.href = baseUrl + "/#home";
                                 } else if (response.status == 0) {
                                     $("#error-display").html(response.message).css("display", "block");
