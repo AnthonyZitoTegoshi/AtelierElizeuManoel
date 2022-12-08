@@ -33,28 +33,44 @@ class UserController {
      }
 
      public function add(array $data) {
-         $user = new UserModel();
-         $user->sid = GenerateHelper::randomSid();
-         $user->name = $data['name'];
-         $user->email = $data['email'];
-         if (!InputHelper::isValidEmail($data['email'])) {
-             ResponseHelper::send(REQUEST_ERROR, 'Email is invalid');
-         }
-         $user->password = HashHelper::encrypt($data['password'], $user->sid);
-         if (!InputHelper::isValidPassword($data['password']) && $data['password'] != $data['passwordConfirm']){
-             ResponseHelper::send(REQUEST_ERROR, 'Password is invalid');
-         }
-         $user->permission_type= $data['permission'];
-         if($user->save()){
-             ResponseHelper::send(RESPONSE_SUCCESS, 'O cadastro foi concluído');
-         } 
-         else {
-             ResponseHelper::send(REQUEST_ERROR, 'Houve um erro na efetivação do cadastro');
-
-         }
-                    
-    
-
+        $token = $_SERVER['HTTP_TOKEN'];
+        if (ValidateHelper::checkToken($token)) {
+            $permissions = LevelHelper::getPermissions($token);
+            if ($permissions != null) {
+                if (LevelHelper::hasCreateUserPermission($permissions)) {
+                    $user = new UserModel();
+                    $user->sid = GenerateHelper::randomSid();
+                    $user->name = $data['name'];
+                    $user->email = $data['email'];
+                    if (!InputHelper::isValidEmail($data['email'])) {
+                        ResponseHelper::send(REQUEST_ERROR, 'Email is invalid');
+                    }
+                    $user->password = HashHelper::encrypt($data['password'], $user->sid);
+                    if (!InputHelper::isValidPassword($data['password']) && $data['password'] != $data['passwordConfirm']){
+                        ResponseHelper::send(REQUEST_ERROR, 'Password is invalid');
+                    }
+                    $user->permission_type= $data['permission'];
+                    if($user->save()){
+                        ResponseHelper::send(RESPONSE_SUCCESS, 'O cadastro foi concluído');
+                    } 
+                    else {
+                        ResponseHelper::send(REQUEST_ERROR, 'Houve um erro na efetivação do cadastro');
+                    }
+                } else {
+                    ResponseHelper::send(
+                        REQUEST_ERROR,
+                        'Usuário não tem permissão para cadastrar um novo usuário'
+                    );
+                }
+            } else {
+                ResponseHelper::send(
+                    RESPONSE_ERROR,
+                    'Ocorreu um erro ao verificar as permissões do usuário'
+                );
+            }
+        } else {
+            ResponseHelper::send(REQUEST_ERROR, 'Usuário não está logado');
+        }
      }
 
     public function requestPassword(array $data): void {
