@@ -66,7 +66,7 @@ class SitePhraseController {
                 );
             }
         } else {
-            ResponseHelper::send(REQUEST_ERROR, 'Usuário não está logado');
+            ResponseHelper::send(TOKEN_ERROR, 'Usuário não está logado');
         }
     }
 }

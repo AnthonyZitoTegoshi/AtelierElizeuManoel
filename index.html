@@ -44,6 +44,8 @@
                         permissions = response.result;
                     } else if (response.status == 0) {
                         permissions = "00000";
+                    } else if (response.status == -2) {
+                        window.location.reload();
                     } else {
                         window.alert(internalErrorMessage);
                         permissions = "00000";
@@ -116,6 +118,8 @@
                                     window.location.reload();
                                 } else if (response.status == 0) {
                                     window.alert(response.message);
+                                } else if (response.status == -2) {
+                                    window.location.reload();
                                 } else {
                                     window.alert(internalErrorMessage);
                                 }
@@ -139,6 +143,8 @@
                                     window.location.reload();
                                 } else if (response.status == 0) {
                                     window.alert(response.message);
+                                } else if (response.status == -2) {
+                                    window.location.reload();
                                 } else {
                                     window.alert(internalErrorMessage);
                                 }
@@ -162,6 +168,8 @@
                                     window.location.reload();
                                 } else if (response.status == 0) {
                                     window.alert(response.message);
+                                } else if (response.status == -2) {
+                                    window.location.reload();
                                 } else {
                                     window.alert(internalErrorMessage);
                                 }
@@ -252,6 +260,8 @@
                                                 getBanner();
                                             } else if (response.status == 0) {
                                                 window.alert(response.message);
+                                            } else if (response.status == -2) {
+                                                window.location.reload();
                                             } else {
                                                 window.alert(internalErrorMessage);
                                             }
@@ -338,6 +348,8 @@
                                                 getLogoIcon();
                                             } else if (response.status == 0) {
                                                 window.alert(response.message);
+                                            } else if (response.status == -2) {
+                                                window.location.reload();
                                             } else {
                                                 window.alert(internalErrorMessage);
                                             }
@@ -432,6 +444,8 @@
                                                 getAtelier();
                                             } else if (response.status == 0) {
                                                 window.alert(response.message);
+                                            } else if (response.status == -2) {
+                                                window.location.reload();
                                             } else {
                                                 window.alert(internalErrorMessage);
                                             }
@@ -461,6 +475,8 @@
                                             getAtelier();
                                         } else if (response.status == 0) {
                                             window.alert(response.message);
+                                        } else if (response.status == -2) {
+                                            window.location.reload();
                                         } else {
                                             window.alert(internalErrorMessage);
                                         }
@@ -488,6 +504,8 @@
                                             getAtelier();
                                         } else if (response.status == 0) {
                                             window.alert(response.message);
+                                        } else if (response.status == -2) {
+                                            window.location.reload();
                                         } else {
                                             window.alert(internalErrorMessage);
                                         }
@@ -516,6 +534,8 @@
                                                 getAtelier();
                                             } else if (response.status == 0) {
                                                 window.alert(response.message);
+                                            } else if (response.status == -2) {
+                                                window.location.reload();
                                             } else {
                                                 window.alert(internalErrorMessage);
                                             }
@@ -572,6 +592,8 @@
                                     getAtelier();
                                 } else if (response.status == 0) {
                                     window.alert(response.message);
+                                } else if (response.status == -2) {
+                                    window.location.reload();
                                 } else {
                                     window.alert(internalErrorMessage);
                                 }
@@ -627,6 +649,8 @@
                                             getPhrase();
                                         } else if (response.status == 0) {
                                             window.alert(response.message);
+                                        } else if (response.status == -2) {
+                                            window.location.reload();
                                         } else {
                                             window.alert(internalErrorMessage);
                                         }
@@ -702,6 +726,8 @@
                                     getServices();
                                 } else if (response.status == 0) {
                                     window.alert(response.message);
+                                } else if (response.status == -2) {
+                                    window.location.reload();
                                 } else {
                                     window.alert(internalErrorMessage);
                                 }
@@ -772,6 +798,8 @@
                                                 getServices();
                                             } else if (response.status == 0) {
                                                 window.alert(response.message);
+                                            } else if (response.status == -2) {
+                                                window.location.reload();
                                             } else {
                                                 window.alert(internalErrorMessage);
                                             }
@@ -802,6 +830,8 @@
                                             getServices();
                                         } else if (response.status == 0) {
                                             window.alert(response.message);
+                                        } else if (response.status == -2) {
+                                            window.location.reload();
                                         } else {
                                             window.alert(internalErrorMessage);
                                         }
@@ -830,6 +860,8 @@
                                             getServices();
                                         } else if (response.status == 0) {
                                             window.alert(response.message);
+                                        } else if (response.status == -2) {
+                                            window.location.reload();
                                         } else {
                                             window.alert(internalErrorMessage);
                                         }
@@ -859,6 +891,8 @@
                                                 getServices();
                                             } else if (response.status == 0) {
                                                 window.alert(response.message);
+                                            } else if (response.status == -2) {
+                                                window.location.reload();
                                             } else {
                                                 window.alert(internalErrorMessage);
                                             }
@@ -1010,6 +1044,8 @@
                                                     getLogo();
                                                 } else if (response.status == 0) {
                                                     window.alert(response.message);
+                                                } else if (response.status == -2) {
+                                                    window.location.reload();
                                                 } else {
                                                     window.alert(internalErrorMessage);
                                                 }
@@ -1168,6 +1204,8 @@
                                         getColors();
                                     } else if (response.status == 0) {
                                         window.alert(response.message);
+                                    } else if (response.status == -2) {
+                                        window.location.reload();
                                     } else {
                                         window.alert(internalErrorMessage);
                                     }

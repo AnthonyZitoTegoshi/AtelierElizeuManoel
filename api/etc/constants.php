@@ -34,6 +34,7 @@ define(
 
 define('DEFAULT_DATETIME_FORMAT', 'Y-m-d H:i:s');
 
+define('TOKEN_ERROR', -2);
 define('RESPONSE_ERROR', -1);
 define('REQUEST_ERROR', 0);
 define('RESPONSE_SUCCESS', 1);
