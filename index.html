@@ -1230,31 +1230,45 @@
                             .children()
                             .last()
                             .find("input[name=color]")
+                            .on("input", function () {
+                                let value = $(this).val();
+                                value = value.toLowerCase();
+                                value = value.replaceAll(/[^0-9a-f]/g, '');
+                                value = "#" + value.slice(0, 6);
+                                $(this).val(value);
+                            });
+                            $("#color-palette")
+                            .children("[data-main-child=true]")
+                            .children()
+                            .last()
+                            .find("input[name=color]")
                             .on("change", async function () {
-                                addLoading();
-                                await $.ajax({
-                                    method: "PUT",
-                                    url: apiUrl + "/color",
-                                    data: "id=" + color.id + "&value=" + $(this).val(),
-                                })
-                                .done(function (data) {
-                                    let response = $.parseJSON(data);
-                                    if (response.status == 1) {
-                                        getColors();
-                                    } else if (response.status == 0) {
-                                        window.alert(response.message);
-                                    } else if (response.status == -2) {
-                                        window.alert(response.message);
-                                        addLoading();
-                                        window.location.reload();
-                                    } else {
-                                        window.alert(internalErrorMessage);
-                                    }
-                                })
-                                .fail(function (data) {
-                                    window.alert(unknownErrorMessage);
-                                });
-                                subLoading();
+                                if ($(this).val().match(/^#[0-9a-f]{6}$/g) != null) {
+                                    addLoading();
+                                    await $.ajax({
+                                        method: "PUT",
+                                        url: apiUrl + "/color",
+                                        data: "id=" + color.id + "&value=" + $(this).val(),
+                                    })
+                                    .done(function (data) {
+                                        let response = $.parseJSON(data);
+                                        if (response.status == 1) {
+                                            getColors();
+                                        } else if (response.status == 0) {
+                                            window.alert(response.message);
+                                        } else if (response.status == -2) {
+                                            window.alert(response.message);
+                                            addLoading();
+                                            window.location.reload();
+                                        } else {
+                                            window.alert(internalErrorMessage);
+                                        }
+                                    })
+                                    .fail(function (data) {
+                                        window.alert(unknownErrorMessage);
+                                    });
+                                    subLoading();
+                                }
                             });
                         }
                     }
