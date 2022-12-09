@@ -17,7 +17,50 @@
     <script src="./assets/js/constants.js"></script>
     <script src="./assets/js/main.js"></script>
     <script>
-        getColors();
+        startPage();
+        async function startPage() {
+            addLoading();
+            await $.get(apiUrl + "/login")
+            .done(function (data) {
+                let response = $.parseJSON(data);
+                if (response.status == 1) {
+                    logged = true;
+                } else if (response.status == 0) {
+                    logged = false;
+                } else {
+                    window.alert(internalErrorMessage);
+                    logged = false; 
+                }
+            })
+            .fail(function () {
+                window.alert(unknownErrorMessage);
+                logged = false;
+            });
+            if (logged) {
+                await $.get(apiUrl + "/user/permission")
+                .done(function (data) {
+                    let response = $.parseJSON(data);
+                    if (response.status == 1) {
+                        permissions = response.result;
+                    } else if (response.status == 0) {
+                        permissions = "00000";
+                    } else if (response.status == -2) {
+                        window.alert(response.message);
+                        addLoading();
+                        window.location.reload();
+                    } else {
+                        window.alert(internalErrorMessage);
+                        permissions = "00000";
+                    }
+                })
+                .fail(function () {
+                    window.alert(unknownErrorMessage);
+                });
+            }
+            getColors();
+            getUserList();
+            subLoading();
+        }
         async function getColors() {
             addLoading();
             await $.get(apiUrl + "/color")
@@ -131,86 +174,82 @@
                 </form>
             </div>
         </section>
-        <!-- <section class="c p2 mcenter ccenter w10 bgLight ">
-            <form action="" class="w6" id="frmDelete">
-                <div class="c p4 bgLight mcenter ccenter w6 g6">
-                <h5 class="r">Usuários Cadastrados</h5>
-                <label class="r mcenter ccenter g1 w12 hauto text-input-wrapper" for="password">
-                    <input type="number" class="r i text-input" name="userId" id="deleteArea">
-                </label>
-                <input class="i r submit-button" type="submit" value="Deletar" id="delete">
-                <input class="i r submit-button" type="submit" value="List" id="list">
-                </div>
-            </form>
-         </section> -->
-        <section class="c p4 mcenter ccenter g2 w12 w11-lmd w10-hmd w9-llg w8-hlg hauto">
+        <section class="c p4 mcenter ccenter g2 w12 w11-lmd w10-hmd w9-llg w8-hlg hauto" id="user-list">
             <div class="r p4 mcenter ccenter bgLight radius">
                 <div class="i title-alter dark">Código</div>
                 <div class="i title-alter dark">Nome</div>
                 <div class="i title-alter dark">Permissões</div>
             </div>
-            <div class="c p4 mcenter ccenter  w12 hauto bgLight radius" id="sectionUser"></div>
+            <div class="c p4 mcenter ccenter  w12 hauto bgLight radius"></div>
         </section>
     </main>
     <script>
-        getUserList();
-        async function getUserList(){
-            await $.get(apiUrl + "/user")
-            .done(function (data) { 
-                response = $.parseJSON(data);
-                if (response.status == 1) {
-                    response.result.forEach(user => {
-                        $('#sectionUser')
-                        .append(
-                            '<li class="r mevenly ccenter w12 hauto listUser ovisible" style="min-height: 44px;">' +
-                                    '<p class="i text-info">' + user.id  +'</p>' +
-                                    '<p class="i text-info">' + user.name  +'</p>' +
-                                    '<p class="i text-info">' + user.permission_type  +'</p>' +
-                                    '<button class="card-remove-button bordered-action-button" title="Deletar seção atelier"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M5 10.75v-1.5h10v1.5Z"/></svg></button>' +
-                            '</li>'
-                        );
-                        $('.card-remove-button')
-                        .last()
-                        .on("click", async function () {
-                            if (window.confirm("Você realmente deseja remover o usuário?")) {
-                                addLoading();
-                                await $.ajax({
-                                    method: "DELETE",
-                                    url: apiUrl + "/user",
-                                    data: "id= " + user.id,
-                                })
-                                .done(function (data) {
-                                    let response = $.parseJSON(data);
-                                    if (response.status == 1) {
-                                        addLoading();
-                                        window.location.reload();
-                                    } else if (response.status == 0) {
-                                        window.alert(response.message);
-                                    } else if (response.status == -2) {
-                                        window.alert(response.message);
-                                        addLoading();
-                                        window.location.href = baseUrl + "/#home";
-                                    } else {
-                                        window.alert(internalErrorMessage);
-                                    }
-                                })
-                                .fail(function (data) {
-                                    window.alert(unknownErrorMessage);
-                                });
-                                subLoading();
-                            }
-                        });
-                        $('.modify').last().on("click", function () { 
-                            window.open("register_modify.html?id="+ user.id);
+        async function getUserList() {
+            if (!logged || permissions[createUserPermission] != "1") {
+                $("#frmRegister").remove();
+            }
+            if (logged && (permissions[createUserPermission] == "1" || permissions[editUserPermission] == "1")) {
+                await $.get(apiUrl + "/user")
+                .done(function (data) { 
+                    response = $.parseJSON(data);
+                    if (response.status == 1) {
+                        response.result.forEach(user => {
+                            $('#user-list')
+                            .children()
+                            .last()
+                            .append(
+                                '<li class="r mevenly ccenter w12 hauto listUser ovisible" style="min-height: 44px;">' +
+                                        '<p class="i text-info">' + user.id  +'</p>' +
+                                        '<p class="i text-info">' + user.name  +'</p>' +
+                                        '<p class="i text-info">' + user.permission_type  +'</p>' +
+                                        (logged && permissions[editUserPermission] == "1" ? '<button class="card-remove-button bordered-action-button" title="Deletar seção atelier"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M5 10.75v-1.5h10v1.5Z"/></svg></button>' : '') +
+                                '</li>'
+                            );
+                            $('.card-remove-button')
+                            .last()
+                            .on("click", async function () {
+                                if (window.confirm("Você realmente deseja remover o usuário?")) {
+                                    addLoading();
+                                    await $.ajax({
+                                        method: "DELETE",
+                                        url: apiUrl + "/user",
+                                        data: "id= " + user.id,
+                                    })
+                                    .done(function (data) {
+                                        let response = $.parseJSON(data);
+                                        if (response.status == 1) {
+                                            addLoading();
+                                            window.location.reload();
+                                        } else if (response.status == 0) {
+                                            window.alert(response.message);
+                                        } else if (response.status == -2) {
+                                            window.alert(response.message);
+                                            addLoading();
+                                            window.location.href = baseUrl + "/#home";
+                                        } else {
+                                            window.alert(internalErrorMessage);
+                                        }
+                                    })
+                                    .fail(function (data) {
+                                        window.alert(unknownErrorMessage);
+                                    });
+                                    subLoading();
+                                }
+                            });
+                            $('.modify').last().on("click", function () { 
+                                window.open("register_modify.html?id="+ user.id);
 
+                            });
                         });
-                    });
-                } else if (response.status == 0) {
-                    window.alert(response.message);
-                } else {
-                    window.alert(internalErrorMessage);
-                }
-            });
+                    } else if (response.status == 0) {
+                        window.alert(response.message);
+                    } else {
+                        window.alert(internalErrorMessage);
+                    }
+                });
+            } else {
+                $("#user-list").remove();
+            }
         }
         $("#frmRegister").on("submit", function (event) {
             event.preventDefault();
