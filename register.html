@@ -131,7 +131,6 @@
                 </form>
             </div>
         </section>
-
         <!-- <section class="c p2 mcenter ccenter w10 bgLight ">
             <form action="" class="w6" id="frmDelete">
                 <div class="c p4 bgLight mcenter ccenter w6 g6">
@@ -144,21 +143,15 @@
                 </div>
             </form>
          </section> -->
-
-        <!--<section class="r p2 mcenter ccenter w8 bgDark hauto radius m-b-footer">
-            <li class="r mevenly w12" >
-                <div class="title-alter">Código</div>
-                <div class="title-alter">Nome</div>
-                <div class="title-alter">Permissões</div>
-            </li>
+        <section class="c p4 mcenter ccenter g2 w12 w11-lmd w10-hmd w9-llg w8-hlg hauto">
+            <div class="r p4 mcenter ccenter bgLight radius">
+                <div class="i title-alter dark">Código</div>
+                <div class="i title-alter dark">Nome</div>
+                <div class="i title-alter dark">Permissões</div>
+            </div>
+            <div class="c p4 mcenter ccenter  w12 hauto bgLight radius" id="sectionUser"></div>
         </section>
-
-        <section class="c p2 mcenter ccenter w8 bgDark hauto radius" id="sectionUser">
-        </section>-->
-        
-
     </main>
-    
     <script>
         getUserList();
         async function getUserList(){
@@ -169,56 +162,56 @@
                     response.result.forEach(user => {
                         $('#sectionUser')
                         .append(
-                            '<li class="r mevenly w12 listUser ">' +
-                                '<form class = "r w12 mcenter ccenter " action="" data-frmList = "true" >'+
-                                    '<input class = "r  w12 ccenter mccenter input-register" value = ' + user.id  +' readonly>' + 
-                                    '<input class = "r  w12 ccenter mcenter input-register" value = ' + user.name  +' readonly>' +
-                                    '<input class = "r  w12 ccenter mcenter input-register"value = ' + user.permission_type  +' readonly>' +
-                                    '<div class = " ">' + 
-                                        '<input class="i r submit-button delete" type="button" value="Deletar">' + 
-                                    '</div>' +
-                                    '<div class = "">' + 
-                                        '<input class="i r submit-button modify" type="button" value="Alterar">' + 
-                                    '</div>' +
-                                '</form>'+
+                            '<li class="r mevenly ccenter w12 hauto listUser ovisible" style="min-height: 44px;">' +
+                                    '<p class="i text-info">' + user.id  +'</p>' +
+                                    '<p class="i text-info">' + user.name  +'</p>' +
+                                    '<p class="i text-info">' + user.permission_type  +'</p>' +
+                                    '<button class="card-remove-button bordered-action-button" title="Deletar seção atelier"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M5 10.75v-1.5h10v1.5Z"/></svg></button>' +
                             '</li>'
-
-                            
                         );
-                        $('.delete').last().on("click", function() {
-                        info = "userId= " + user.id; 
-                        console.log(info)
-                        
-                        $.ajax({
-                            type: 'DELETE',
-                            dataType: 'json',
-                            url: apiUrl + "/user",
-                            data: info,
-                            async: true,
-                            success: function(response) {
-                                location.reload();
+                        $('.card-remove-button')
+                        .last()
+                        .on("click", async function () {
+                            if (window.confirm("Você realmente deseja remover o usuário?")) {
+                                addLoading();
+                                await $.ajax({
+                                    method: "DELETE",
+                                    url: apiUrl + "/user",
+                                    data: "id= " + user.id,
+                                })
+                                .done(function (data) {
+                                    let response = $.parseJSON(data);
+                                    if (response.status == 1) {
+                                        addLoading();
+                                        window.location.reload();
+                                    } else if (response.status == 0) {
+                                        window.alert(response.message);
+                                    } else if (response.status == -2) {
+                                        window.alert(response.message);
+                                        addLoading();
+                                        window.location.href = baseUrl + "/#home";
+                                    } else {
+                                        window.alert(internalErrorMessage);
+                                    }
+                                })
+                                .fail(function (data) {
+                                    window.alert(unknownErrorMessage);
+                                });
+                                subLoading();
                             }
-                        });
-
-                        return false;
                         });
                         $('.modify').last().on("click", function () { 
                             window.open("register_modify.html?id="+ user.id);
 
                         });
-
-                    });  
-                    
+                    });
                 } else if (response.status == 0) {
                     window.alert(response.message);
                 } else {
                     window.alert(internalErrorMessage);
                 }
-            })    
-            
-        } 
-        
-        
+            });
+        }
         $("#frmRegister").on("submit", function (event) {
             event.preventDefault();
             let level = "";
@@ -235,20 +228,19 @@
             .done(function (data) {
                 response = $.parseJSON(data);
                 if (response.status == 1) {
-                     $("#error-display").css("display", "none");
-                     addLoading();
-                     window.location.href = baseUrl + "/#home";
+                    $("#error-display").css("display", "none");
+                    addLoading();
+                    window.location.reload();
                 } else if (response.status == 0) {
-                     $("#error-display").html(response.message).css("display", "block");
+                    $("#error-display").html(response.message).css("display", "block");
                 } else {
-                     $("#error-display").html(internalErrorMessage).css("display", "block");
+                    $("#error-display").html(internalErrorMessage).css("display", "block");
                 }
             })
-             .fail(function () {
-                 $("#error-display").html(unknownErrorMessage).css("display", "block");
+            .fail(function () {
+                $("#error-display").html(unknownErrorMessage).css("display", "block");
             });
         });
-        
     </script>
 </body>
 </html>

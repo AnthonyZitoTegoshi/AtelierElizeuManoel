@@ -22,7 +22,6 @@
             addLoading();
             await $.get(apiUrl + "/login")
             .done(function (data) {
-                console.log(data);
                 let response = $.parseJSON(data);
                 if (response.status == 1) {
                     logged = true;
@@ -40,7 +39,6 @@
             if (logged) {
                 await $.get(apiUrl + "/user/permission")
                 .done(function (data) {
-                    console.log(data);
                     let response = $.parseJSON(data);
                     if (response.status == 1) {
                         permissions = response.result;
@@ -228,8 +226,6 @@
                     addLoading();
                     await $.get(apiUrl + "/image/atelier-banner")
                     .done(function (data) {
-                        console.log(data);
-                        console.log(data);
                         let response = $.parseJSON(data);
                         if (response.status == 1) {
                             $("#main-banner")
@@ -279,7 +275,6 @@
                                             data: "image=" + reader.result,
                                         })
                                         .done(function (data) {
-                                            console.log(data);
                                             let response = $.parseJSON(data);
                                             if (response.status == 1) {
                                                 getBanner();
@@ -318,8 +313,6 @@
                     addLoading();
                     await $.get(apiUrl + "/image/atelier-logo-icon")
                     .done(function (data) {
-                        console.log(data);
-                        console.log(data);
                         let response = $.parseJSON(data);
                         if (response.status == 1) {
                             $("[data-atelier-logo-icon=true]").attr("src", "./assets/img/" + response.result);
@@ -373,7 +366,6 @@
                                             data: "image=" + reader.result,
                                         })
                                         .done(function (data) {
-                                            console.log(data);
                                             let response = $.parseJSON(data);
                                             if (response.status == 1) {
                                                 getLogoIcon();
@@ -422,7 +414,6 @@
                 addLoading();
                 await $.get(apiUrl + "/atelier")
                 .done(function (data) {
-                    console.log(data);
                     let response = $.parseJSON(data);
                     if (response.status == 1) {
                         for (let i = 0; i < response.result.length; i++) {
@@ -473,7 +464,6 @@
                                             data: "id=" + atelier.id + "&image=" + reader.result,
                                         })
                                         .done(function (data) {
-                                            console.log(data);
                                             let response = $.parseJSON(data);
                                             if (response.status == 1) {
                                                 getAtelier();
@@ -507,7 +497,6 @@
                                         data: "id=" + atelier.id + "&title=" + $(this).val(),
                                     })
                                     .done(function (data) {
-                                        console.log(data);
                                         let response = $.parseJSON(data);
                                         if (response.status == 1) {
                                             getAtelier();
@@ -539,7 +528,6 @@
                                         data: "id=" + atelier.id + "&description=" + $(this).val(),
                                     })
                                     .done(function (data) {
-                                        console.log(data);
                                         let response = $.parseJSON(data);
                                         if (response.status == 1) {
                                             getAtelier();
@@ -572,7 +560,6 @@
                                             data: "id=" + atelier.id,
                                         })
                                         .done(function (data) {
-                                            console.log(data);
                                             let response = $.parseJSON(data);
                                             if (response.status == 1) {
                                                 getAtelier();
@@ -633,7 +620,6 @@
                             addLoading();
                             await $.post(apiUrl + "/atelier")
                             .done(function (data) {
-                                console.log(data);
                                 let response = $.parseJSON(data);
                                 if (response.status == 1) {
                                     getAtelier();
@@ -673,7 +659,6 @@
                     addLoading();
                     await $.get(apiUrl + "/phrase")
                     .done(function (data) {
-                        console.log(data);
                         let response = $.parseJSON(data);
                         if (response.status == 1) {
                             $("#phrase")
@@ -694,7 +679,6 @@
                                         data: "id=" + response.result.id + "&text=" + $(this).val(),
                                     })
                                     .done(function (data) {
-                                        console.log(data);
                                         let response = $.parseJSON(data);
                                         if (response.status == 1) {
                                             getPhrase();
@@ -774,7 +758,6 @@
                             addLoading();
                             await $.post(apiUrl + "/service")
                             .done(function (data) {
-                                console.log(data);
                                 let response = $.parseJSON(data);
                                 if (response.status == 1) {
                                     getServices();
@@ -798,7 +781,6 @@
                 addLoading();
                 await $.get(apiUrl + "/service")
                 .done(function (data) {
-                    console.log(data);
                     let response = $.parseJSON(data);
                     if (response.status == 1) {
                         response.result.forEach(service => {
@@ -850,7 +832,6 @@
                                             data: "id=" + service.id + "&image=" + reader.result,
                                         })
                                         .done(function (data) {
-                                            console.log(data);
                                             let response = $.parseJSON(data);
                                             if (response.status == 1) {
                                                 getServices();
@@ -885,7 +866,6 @@
                                         data: "id=" + service.id + "&title=" + $(this).val(),
                                     })
                                     .done(function (data) {
-                                        console.log(data);
                                         let response = $.parseJSON(data);
                                         if (response.status == 1) {
                                             getServices();
@@ -918,7 +898,6 @@
                                         data: "id=" + service.id + "&description=" + $(this).val(),
                                     })
                                     .done(function (data) {
-                                        console.log(data);
                                         let response = $.parseJSON(data);
                                         if (response.status == 1) {
                                             getServices();
@@ -952,7 +931,6 @@
                                             data: "id=" + service.id,
                                         })
                                         .done(function (data) {
-                                            console.log(data);
                                             let response = $.parseJSON(data);
                                             if (response.status == 1) {
                                                 getServices();
@@ -1026,7 +1004,6 @@
                         addLoading();
                         await $.get(apiUrl + "/image/atelier-logo")
                         .done(function (data) {
-                            console.log(data);
                             let response = $.parseJSON(data);
                             if (response.status == 1) {
                                 $("[data-atelier-logo=true]").attr("src", "./assets/img/" + response.result);
@@ -1109,7 +1086,6 @@
                                                 data: "image=" + reader.result,
                                             })
                                             .done(function (data) {
-                                                console.log(data);
                                                 let response = $.parseJSON(data);
                                                 if (response.status == 1) {
                                                     getLogo();
@@ -1227,7 +1203,6 @@
             $("#color-palette").remove();
             await $.get(apiUrl + "/color")
             .done(function (data) {
-                console.log(data);
                 let response = $.parseJSON(data);
                 if (response.status == 1) {
                     let colors = response.result;
@@ -1286,7 +1261,6 @@
                                         data: "id=" + color.id + "&value=" + $(this).val(),
                                     })
                                     .done(function (data) {
-                                        console.log(data);
                                         let response = $.parseJSON(data);
                                         if (response.status == 1) {
                                             getColors();

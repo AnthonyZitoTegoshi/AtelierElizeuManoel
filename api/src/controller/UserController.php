@@ -19,29 +19,44 @@ use Configuration\Server as Server;
 
 class UserController {
      public function view(array $data){
-         $user = (new UserModel())->find();
-         if ($user->count() > 0) {
-             $user = $user->fetch(true);
-             $result = array_map(
-                fn(UserModel $s)=>[
-                  'id' => $s->id,
-                  'sid' => $s->sid,
-                  'name' => $s->name,
-                  'email' => $s->email,
-                  'password' => $s->password,
-                  'permission_type' => $s->permission_type,
-                  'created_at' => $s->created_at,
-                  'update_at' => $s->update_at
+        $token = $_SERVER['HTTP_TOKEN'];
+        if (ValidateHelper::checkToken($token)) {
+            $permissions = LevelHelper::getPermissions($token);
+            if ($permissions != null) {
+                if (LevelHelper::hasCreateUserPermission($permissions) || LevelHelper::hasEditUserPermission($permissions)) {
+                    $user = (new UserModel())->find();
+                    if ($user->count() > 0) {
+                        $user = $user->fetch(true);
+                        $result = array_map(
+                            fn(UserModel $s)=>[
+                            'id' => $s->id,
+                            'sid' => $s->sid,
+                            'name' => $s->name,
+                            'email' => $s->email,
+                            'password' => $s->password,
+                            'permission_type' => $s->permission_type,
+                            'created_at' => $s->created_at,
+                            'update_at' => $s->update_at
 
-                ],
-                $user
-            );
-            ResponseHelper::send(RESPONSE_SUCCESS, 'Ok', $result);
-         }
-         else {
-             echo $user->fail()->getMessage();
-         }
-
+                            ],
+                            $user
+                        );
+                        ResponseHelper::send(RESPONSE_SUCCESS, 'Ok', $result);
+                    } else {
+                        ResponseHelper::send(REQUEST_ERROR, 'Não há usuários no sistema', []);
+                    }
+                } else {
+                    ResponseHelper::send(REQUEST_ERROR, 'Usuário não tem permissão para visualizar os usuários do sistema');
+                }
+            } else {
+                ResponseHelper::send(
+                    RESPONSE_ERROR,
+                    'Ocorreu um erro ao verificar as permissões do usuário'
+                );
+            }    
+        } else {
+            ResponseHelper::send(TOKEN_ERROR, 'Sessão expirada');
+        }
      }
 
      public function modify(array $data){
@@ -123,13 +138,20 @@ class UserController {
             $permissions = LevelHelper::getPermissions($token);
             if ($permissions = LevelHelper::getPermissions($token)) {
                 if (LevelHelper::hasEditUserPermission($permissions)) {
-                    $user = (new UserModel)->findById($data['userId']);
-                if ($user) {
-                    $user->destroy();
-                }else{
-                    ResponseHelper::send(REQUEST_ERROR, 'Houve um erro na remoção do usuário');
-                }
-                }else{
+                    $user = (new UserModel)->findById($data['id']);
+                    if ($user) {
+                        if ($user->destroy()) {
+                            ResponseHelper::send(RESPONSE_SUCCESS, 'Usuário removido com sucesso');
+                        } else {
+                            ResponseHelper::send(RESPONSE_ERROR, 'Houve um erro na remoção do usuário');
+                        }
+                    } else {
+                        ResponseHelper::send(
+                            REQUEST_ERROR,
+                            'Usuário não existe'
+                        );
+                    }
+                } else {
                     ResponseHelper::send(
                         REQUEST_ERROR,
                         'Usuário não tem permissão para cadastrar um novo usuário'
