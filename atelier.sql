@@ -18,6 +18,31 @@ USE `atelier`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `UserPermissions`
+--
+
+DROP TABLE IF EXISTS `UserPermissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `UserPermissions` (
+  `permissionId` int NOT NULL AUTO_INCREMENT,
+  `permissionName` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `permissionType` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '00000000000',
+  PRIMARY KEY (`permissionId`,`permissionType`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `UserPermissions`
+--
+
+LOCK TABLES `UserPermissions` WRITE;
+/*!40000 ALTER TABLE `UserPermissions` DISABLE KEYS */;
+INSERT INTO `UserPermissions` VALUES (0,'Alterar Menu-Logo','10000000'),(1,'Alterar Banner-img','01000000'),(2,'Alterar Banner-text','00100000'),(3,'Alterar Banner-Logo','00010000'),(4,'Modificar 1# Section','00001000'),(5,'Alterar 2# Section','00000100'),(6,'Nenhuma Permissão','00000000');
+/*!40000 ALTER TABLE `UserPermissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `logins`
 --
 

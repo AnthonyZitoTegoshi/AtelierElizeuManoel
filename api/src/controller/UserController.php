@@ -22,15 +22,59 @@ class UserController {
          $user = (new UserModel())->find();
          if ($user->count() > 0) {
              $user = $user->fetch(true);
-             foreach ($user as $userItem){
-                 var_dump($userItem->data());    
-             }
+             $result = array_map(
+                fn(UserModel $s)=>[
+                  'id' => $s->id,
+                  'sid' => $s->sid,
+                  'name' => $s->name,
+                  'email' => $s->email,
+                  'password' => $s->password,
+                  'permission_type' => $s->permission_type,
+                  'created_at' => $s->created_at,
+                  'update_at' => $s->update_at
+
+                ],
+                $user
+            );
+            ResponseHelper::send(RESPONSE_SUCCESS, 'Ok', $result);
          }
          else {
              echo $user->fail()->getMessage();
          }
 
      }
+
+     public function modify(array $data){
+        $token = $_SERVER['HTTP_TOKEN'];
+        if (ValidateHelper::checkToken($token)) {
+            $permissions = LevelHelper::getPermissions($token);
+
+            if ($permissions != null) {
+                if (LevelHelper::hasEditUserPermission($permissions)) {
+                    $user = (new UserModel())->findById($data['userId']);
+                    $user->permission_type = $data['permission'];
+                    if($user->save()){
+                        ResponseHelper::send(RESPONSE_SUCCESS, 'A alteração foi concluída');
+                    }
+                    else {
+                        ResponseHelper::send(REQUEST_ERROR, 'Houve um erro na alteração do usuário');
+            
+                    }
+                }else {
+                    ResponseHelper::send(REQUEST_ERROR,'Usuário não tem permissão para modificar este usuário');
+                }
+            }else{
+                ResponseHelper::send(
+                    RESPONSE_ERROR,
+                    'Ocorreu um erro ao verificar as permissões do usuário'
+                );
+            }    
+        }else{
+            ResponseHelper::send(TOKEN_ERROR, 'Sessão expirada');
+        }
+     }       
+        
+        
 
      public function add(array $data) {
         $token = $_SERVER['HTTP_TOKEN'];
@@ -73,6 +117,34 @@ class UserController {
         }
      }
 
+      public function remove(array $data){
+         $token = $_SERVER['HTTP_TOKEN'];
+         if (ValidateHelper::checkToken($token)) {
+            $permissions = LevelHelper::getPermissions($token);
+            if ($permissions = LevelHelper::getPermissions($token)) {
+                if (LevelHelper::hasEditUserPermission($permissions)) {
+                    $user = (new UserModel)->findById($data['userId']);
+                if ($user) {
+                    $user->destroy();
+                }else{
+                    ResponseHelper::send(REQUEST_ERROR, 'Houve um erro na remoção do usuário');
+                }
+                }else{
+                    ResponseHelper::send(
+                        REQUEST_ERROR,
+                        'Usuário não tem permissão para cadastrar um novo usuário'
+                    );
+                }
+            }else{
+                ResponseHelper::send(REQUEST_ERROR, 'Verifique novamente o ID informado');
+            }  
+         
+        }else {
+            ResponseHelper::send(TOKEN_ERROR, 'Sessão expirada');
+        }
+    }
+
+     
     public function requestPassword(array $data): void {
         $email = $data['email'];
         if (InputHelper::isValidEmail($email)) {

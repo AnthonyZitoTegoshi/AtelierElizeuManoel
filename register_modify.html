@@ -88,37 +88,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="error" id="email-error">E-mail inválido</div>
-                    <div class="error" id="email-required">E-mail é obrigatório</div>
-                    <div>
-                        <p>Nome</p>
-                        <label class="r mcenter ccenter g1 w12 hauto text-input-wrapper" for="name">
-                            <input class="i text-input" type="name" name="name" id="name" placeholder="Nome" required>
-                        </label>
-                    </div>
-                    <div>
-                        <p>Email</p>
-                        <label class="r mcenter ccenter g1 w12 hauto text-input-wrapper" for="email">
-                            <input class="i text-input" type="email" name="email" id="email" placeholder="Email" required>
-                        </label>
-                    </div>
-                    
-                    <div>
-                        <p>Senha</p>
-                        <label class="r mcenter ccenter g1 w12 hauto text-input-wrapper" for="password">
-                            <input class="i text-input" type="password" name="password" id="password" placeholder="Senha" required>
-                        </label>
-                    </div>
-                    <div>
-                        <p>Confirma Senha</p>
-                        <label class="r mcenter ccenter g1 w12 hauto text-input-wrapper" for="password">
-                            <input class="i text-input" type="password" name="passwordConfirm" id="password" placeholder="Senha" required>
-                        </label>
-                    </div>
-
                     <div>
                         <label class=" r mcenter ccenter g1 w12 " for="permission">
                             <input class=" i" type="hidden" name="permission" id="permission" required readonly>
+                        </label>
+                        <label class=" r mcenter ccenter g1 w12 " for="permission">
+                            <input class=" i" type="hidden" name="userId" id="userId" required readonly>
                         </label>
                     </div>
                     <input class="i submit-button" type="submit" value="Register">
@@ -126,97 +101,18 @@
             </div>
         </section>
 
-        <!-- <section class="c p2 mcenter ccenter w10 bgLight ">
-            <form action="" class="w6" id="frmDelete">
-                <div class="c p4 bgLight mcenter ccenter w6 g6">
-                <h5 class="r">Usuários Cadastrados</h5>
-                <label class="r mcenter ccenter g1 w12 hauto text-input-wrapper" for="password">
-                    <input type="number" class="r i text-input" name="userId" id="deleteArea">
-                </label>
-                <input class="i r submit-button" type="submit" value="Deletar" id="delete">
-                <input class="i r submit-button" type="submit" value="List" id="list">
-                </div>
-            </form>
-         </section> -->
-
-        <section class="r p2 mcenter ccenter w8 bgDark hauto radius m-b-footer">
-            <li class="r mevenly w12" >
-                <div class="title-alter">Código</div>
-                <div class="title-alter">Nome</div>
-                <div class="title-alter">Permissões</div>
-            </li>
-        </section>
-
-        <section class="c p2 mcenter ccenter w8 bgDark hauto radius" id="sectionUser">
-        </section>
-        
-
     </main>
-    
     <script>
-        getUserList();
-        async function getUserList(){
-            await $.get(apiUrl + "/user")
-            .done(function (data) { 
-                response = $.parseJSON(data);
-                if (response.status == 1) {
-                    response.result.forEach(user => {
-                        $('#sectionUser')
-                        .append(
-                            '<li class="r mevenly w12 listUser ">' +
-                                '<form class = "r w12 mcenter ccenter " action="" data-frmList = "true" >'+
-                                    '<input class = "r  w12 ccenter mccenter input-register" value = ' + user.id  +' readonly>' + 
-                                    '<input class = "r  w12 ccenter mcenter input-register" value = ' + user.name  +' readonly>' +
-                                    '<input class = "r  w12 ccenter mcenter input-register"value = ' + user.permission_type  +' readonly>' +
-                                    '<div class = " ">' + 
-                                        '<input class="i r submit-button delete" type="button" value="Deletar">' + 
-                                    '</div>' +
-                                    '<div class = "">' + 
-                                        '<input class="i r submit-button modify" type="button" value="Alterar">' + 
-                                    '</div>' +
-                                '</form>'+
-                            '</li>'
-
-                            
-                        );
-                        $('.delete').last().on("click", function() {
-                        info = "userId= " + user.id; 
-                        console.log(info)
-                        
-                        $.ajax({
-                            type: 'DELETE',
-                            dataType: 'json',
-                            url: apiUrl + "/user",
-                            data: info,
-                            async: true,
-                            success: function(response) {
-                                location.reload();
-                            }
-                        });
-
-                        return false;
-                        });
-                        $('.modify').last().on("click", function () { 
-                            window.open("register_modify.html?id="+ user.id);
-
-                        });
-
-                    });  
-                    
-                } else if (response.status == 0) {
-                    window.alert(response.message);
-                } else {
-                    window.alert(internalErrorMessage);
-                }
-            })    
-            
-        } 
-        
-        
         $("#frmRegister").on("submit", function (event) {
+
+            const idParams =  new URLSearchParams(window.location.search);
+            idValue = idParams.get("id");
+            console.log(idValue);
+            document.getElementById("userId").value = idValue;
+
             level = document.querySelectorAll(".nivel")
             data= [];
-            console.log(level);
+            //console.log(level);
             for (let i = 0; i < level.length; i++) {
                 if (level[i].type == 'radio') {
                     if (level[i].checked) {
@@ -228,7 +124,7 @@
             document.getElementById('permission').value = levelResult;
 
             event.preventDefault();
-            $.post(apiUrl + "/user", $(this).serialize())
+            $.post(apiUrl + "/user/register-modify", $(this).serialize())
             .done(function (data) {
                 console.log(data);
                 response = $.parseJSON(data);
@@ -247,7 +143,3 @@
         });
         
     </script>
-</body>
-</html>
-
-<!--Toda vez que eu passar um determinado valor eu terei que concatená-lo a fim de transformar em uma string-->

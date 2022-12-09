@@ -43,6 +43,8 @@ try {
 
     $router->post('/user', 'UserController:add');
     $router->get('/user', 'UserController:view');
+    $router->post('/user/register-modify', 'UserController:modify');
+    $router->delete('/user', 'UserController:remove');
     $router->post('/user/request-password', 'UserController:requestPassword');
     $router->put('/user/reset-password', 'UserController:resetPassword');
     $router->get('/user/permission', 'UserController:getPermissions');

@@ -692,7 +692,7 @@ input.submit-button:focus-within {
 }
 
 .m-b-footer{
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 @media only screen and (min-width: 300px) {
@@ -897,6 +897,18 @@ input.submit-button:focus-within {
   padding: 10px;
 }
 
+.invisible{
+  display: none;
+}
+
+.input-register{
+  border: none;
+}
+
+.radius{
+  border-radius: 20px;
+}
+
 #floating-action-button {
   position: absolute;
   border-width: 2px !important;
@@ -949,3 +961,4 @@ input.submit-button:focus-within {
   border: 1px solid var(--dark);
   cursor: pointer;
 }
+
