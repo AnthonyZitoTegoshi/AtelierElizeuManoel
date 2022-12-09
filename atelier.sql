@@ -1,4 +1,5 @@
-USE `hostdeprojetos_atelier`;
+CREATE DATABASE  IF NOT EXISTS `atelier` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `atelier`;
 -- MySQL dump 10.13  Distrib 8.0.29, for Linux (x86_64)
 --
 -- Host: localhost    Database: atelier
@@ -15,31 +16,6 @@ USE `hostdeprojetos_atelier`;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `UserPermissions`
---
-
-DROP TABLE IF EXISTS `UserPermissions`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `UserPermissions` (
-  `permissionId` int NOT NULL AUTO_INCREMENT,
-  `permissionName` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `permissionType` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '00000000000',
-  PRIMARY KEY (`permissionId`,`permissionType`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `UserPermissions`
---
-
-LOCK TABLES `UserPermissions` WRITE;
-/*!40000 ALTER TABLE `UserPermissions` DISABLE KEYS */;
-INSERT INTO `UserPermissions` VALUES (0,'Alterar Menu-Logo','10000000'),(1,'Alterar Banner-img','01000000'),(2,'Alterar Banner-text','00100000'),(3,'Alterar Banner-Logo','00010000'),(4,'Modificar 1# Section','00001000'),(5,'Alterar 2# Section','00000100'),(6,'Nenhuma Permissão','00000000');
-/*!40000 ALTER TABLE `UserPermissions` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `logins`
@@ -62,7 +38,7 @@ CREATE TABLE `logins` (
   CONSTRAINT `logins_ck_expire_date` CHECK (`expire_date` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
   CONSTRAINT `logins_ck_token` CHECK (`token` regexp _utf8mb4'^[A-Za-z0-9]{64}$'),
   CONSTRAINT `logins_ck_updated_at` CHECK (`updated_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +47,7 @@ CREATE TABLE `logins` (
 
 LOCK TABLES `logins` WRITE;
 /*!40000 ALTER TABLE `logins` DISABLE KEYS */;
-INSERT INTO `logins` VALUES (28,'5wR1pgO7DT6f','da2492b18e57341d0ea4b953ab7884dd4ee33d73c301c54a56ff58a6efd2c4e9','2022-12-11 00:04:37','2022-12-08 00:04:37','2022-12-08 00:04:37');
+INSERT INTO `logins` VALUES (29,'5wR1pgO7DT6f','e5654a9f2f8db1147f5f38d472744d4720b03877129fc96f9434a3b56a6c7529','2022-12-11 16:59:22','2022-12-08 16:59:22','2022-12-08 16:59:22');
 /*!40000 ALTER TABLE `logins` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,7 +145,7 @@ CREATE TABLE `site_colors` (
 
 LOCK TABLES `site_colors` WRITE;
 /*!40000 ALTER TABLE `site_colors` DISABLE KEYS */;
-INSERT INTO `site_colors` VALUES (1,'--dark','#260101','2022-12-06 23:43:20','2022-12-08 00:06:10'),(2,'--light','#f2f2f2','2022-12-06 23:43:20','2022-12-08 00:06:14'),(3,'--primary','#a63f03','2022-12-06 23:43:20','2022-12-07 23:22:56'),(4,'--primary-darker','#731702','2022-12-06 23:43:20','2022-12-06 23:43:20'),(5,'--primary-lighter','#d97904','2022-12-06 23:43:20','2022-12-06 23:43:20');
+INSERT INTO `site_colors` VALUES (1,'--dark','#260101','2022-12-06 23:43:20','2022-12-08 00:06:10'),(2,'--light','#f2f2f2','2022-12-06 23:43:20','2022-12-08 22:09:05'),(3,'--primary','#a63f03','2022-12-06 23:43:20','2022-12-07 23:22:56'),(4,'--primary-darker','#731702','2022-12-06 23:43:20','2022-12-06 23:43:20'),(5,'--primary-lighter','#d97904','2022-12-06 23:43:20','2022-12-06 23:43:20');
 /*!40000 ALTER TABLE `site_colors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -252,7 +228,7 @@ CREATE TABLE `site_services` (
   CONSTRAINT `site_services_ck_created_at` CHECK (`created_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
   CONSTRAINT `site_services_ck_image` CHECK (`image` regexp _utf8mb4'^[A-Za-z0-9.]{64}$'),
   CONSTRAINT `site_services_ck_updated_at` CHECK (`updated_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -261,7 +237,38 @@ CREATE TABLE `site_services` (
 
 LOCK TABLES `site_services` WRITE;
 /*!40000 ALTER TABLE `site_services` DISABLE KEYS */;
+INSERT INTO `site_services` VALUES (18,'94zrzIJhiPEUCnBcL7suW2XV17Qzosvk7KoM9tpKQz1SMxvSfD3utUZdxw2u.svg','Título','Descrição','2022-12-08 17:40:31','2022-12-08 17:40:31');
 /*!40000 ALTER TABLE `site_services` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_permissions`
+--
+
+DROP TABLE IF EXISTS `user_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_permissions` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `type` char(5) COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `user_permissions_ck_created_at` CHECK (`created_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
+  CONSTRAINT `user_permissions_ck_type` CHECK (`type` regexp _utf8mb4'^[01]{5}$'),
+  CONSTRAINT `user_permissions_ck_updated_at` CHECK (`updated_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_permissions`
+--
+
+LOCK TABLES `user_permissions` WRITE;
+/*!40000 ALTER TABLE `user_permissions` DISABLE KEYS */;
+INSERT INTO `user_permissions` VALUES (1,'Alterar paleta de cores','10000','2022-12-08 22:21:20','2022-12-08 22:21:20'),(2,'Criar elementos','01000','2022-12-08 22:21:20','2022-12-08 22:21:20'),(3,'Alterar e remover elementos','00100','2022-12-08 22:21:20','2022-12-08 22:21:20'),(4,'Criar usuários','00010','2022-12-08 22:21:20','2022-12-08 22:21:20'),(5,'Alterar e remover usuários','00001','2022-12-08 22:21:20','2022-12-08 22:21:20');
+/*!40000 ALTER TABLE `user_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -289,7 +296,7 @@ CREATE TABLE `users` (
   CONSTRAINT `users_ck_permission_type` CHECK (`permission_type` regexp _utf8mb4'^[01]{5}$'),
   CONSTRAINT `users_ck_sid` CHECK (`sid` regexp _utf8mb4'^[A-Za-z0-9]{12}$'),
   CONSTRAINT `users_ck_updated_at` CHECK (`updated_at` regexp _utf8mb4'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$')
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -298,7 +305,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'5wR1pgO7DT6f','Anthony Zito Tegoshi','aztegoshi@gmail.com','4b51396e1d5003baab3589a70e8efaa1ac9e4aa704eacb2fd9c74a172d02c617','10000','2022-11-12 17:02:43','2022-12-06 20:01:42'),(2,'VGfYqtq9hGWE','asd','asd@asd.com','99084873c0a1081819e6182924d79cb84c10a02fc465f5ed991a186418fe9eed','11111','2022-12-04 21:35:49','2022-12-04 21:35:49');
+INSERT INTO `users` VALUES (1,'5wR1pgO7DT6f','Anthony Zito Tegoshi','aztegoshi@gmail.com','4b51396e1d5003baab3589a70e8efaa1ac9e4aa704eacb2fd9c74a172d02c617','11101','2022-11-12 17:02:43','2022-12-06 20:01:42'),(2,'VGfYqtq9hGWE','asd','asd@asd.com','99084873c0a1081819e6182924d79cb84c10a02fc465f5ed991a186418fe9eed','11111','2022-12-04 21:35:49','2022-12-04 21:35:49');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -311,4 +318,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-08 14:00:22
+-- Dump completed on 2022-12-08 22:24:15
