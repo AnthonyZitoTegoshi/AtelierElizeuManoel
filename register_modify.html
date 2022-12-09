@@ -13,6 +13,32 @@
     <span class="r mcenter ccenter w12 h12" id="loading-screen">
         <img src="./assets/img/loading.gif" style="height: 8rem;" draggable="false">
     </span>
+    <script src="./assets/js/jquery-3.6.1.min.js"></script>
+    <script src="./assets/js/constants.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script>
+        getColors();
+        async function getColors() {
+            addLoading();
+            await $.get(apiUrl + "/color")
+            .done(function (data) {
+                let response = $.parseJSON(data);
+                if (response.status == 1) {
+                    let colors = response.result;
+                    for (let i = 0; i < colors.length; i++) {
+                        let color = colors[i];
+                        window.document.body.style.setProperty(color.name, color.value);
+                    }
+                    subLoading();
+                } else if (response.status == -1) {
+                    window.alert(internalErrorMessage);
+                }
+            })
+            .fail(function () {
+                window.alert(unknownErrorMessage);
+            });
+        }
+    </script>
 
     <main id="login-main-banner" class="c mcenter ccenter w12">
         <section class="c p4 mcenter ccenter w12 w8-lmd w7-hmd w6-llg w5-hlg ovisible ">
@@ -64,10 +90,10 @@
                     </div>
                     <div>
                         <label class=" r mcenter ccenter g1 w12 " for="permission">
-                            <input class=" i" type="text" name="permission" id="permission" required readonly>
+                            <input class=" i" type="hidden" name="permission" id="permission" required readonly>
                         </label>
                         <label class=" r mcenter ccenter g1 w12 " for="permission">
-                            <input class=" i" type="text" name="userId" id="userId" required readonly>
+                            <input class=" i" type="hidden" name="userId" id="userId" required readonly>
                         </label>
                     </div>
                     <input class="i submit-button" type="submit" value="Register">
@@ -76,9 +102,6 @@
         </section>
 
     </main>
-    <script src="./assets/js/jquery-3.6.1.min.js"></script>
-    <script src="./assets/js/constants.js"></script>
-    <script src="./assets/js/main.js"></script>
     <script>
         $("#frmRegister").on("submit", function (event) {
 

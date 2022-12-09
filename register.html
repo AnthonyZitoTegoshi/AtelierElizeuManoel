@@ -13,6 +13,32 @@
     <span class="r mcenter ccenter w12 h12" id="loading-screen">
         <img src="./assets/img/loading.gif" style="height: 8rem;" draggable="false">
     </span>
+    <script src="./assets/js/jquery-3.6.1.min.js"></script>
+    <script src="./assets/js/constants.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script>
+        getColors();
+        async function getColors() {
+            addLoading();
+            await $.get(apiUrl + "/color")
+            .done(function (data) {
+                let response = $.parseJSON(data);
+                if (response.status == 1) {
+                    let colors = response.result;
+                    for (let i = 0; i < colors.length; i++) {
+                        let color = colors[i];
+                        window.document.body.style.setProperty(color.name, color.value);
+                    }
+                    subLoading();
+                } else if (response.status == -1) {
+                    window.alert(internalErrorMessage);
+                }
+            })
+            .fail(function () {
+                window.alert(unknownErrorMessage);
+            });
+        }
+    </script>
 
     <main id="login-main-banner" class="c mcenter ccenter w12">
         <section class="c p4 mcenter ccenter w12 w8-lmd w7-hmd w6-llg w5-hlg ovisible ">
@@ -113,30 +139,21 @@
             </form>
          </section> -->
 
-        <section class="r p2 mcenter ccenter w8 bgDark hauto">
+        <section class="r p2 mcenter ccenter w8 bgDark hauto radius m-b-footer">
             <li class="r mevenly w12" >
-                <div class="bgLight">Código</div>
-                <div class="bgLight">Nome</div>
-                <div class="bgLight">Permissões</div>
+                <div class="title-alter">Código</div>
+                <div class="title-alter">Nome</div>
+                <div class="title-alter">Permissões</div>
             </li>
         </section>
 
-        <section class="c p2 mcenter ccenter w8 bgDark hauto" id="sectionUser">
+        <section class="c p2 mcenter ccenter w8 bgDark hauto radius" id="sectionUser">
         </section>
         
 
     </main>
     
-
-    
-
-
-
-    <script src="./assets/js/jquery-3.6.1.min.js"></script>
-    <script src="./assets/js/constants.js"></script>
-    <script src="./assets/js/main.js"></script>
     <script>
-
         getUserList();
         async function getUserList(){
             await $.get(apiUrl + "/user")
@@ -146,15 +163,15 @@
                     response.result.forEach(user => {
                         $('#sectionUser')
                         .append(
-                            '<li class="r mevenly w12 listUser">' +
-                                '<form class = "r w12 " action="" data-frmList = "true" >'+
-                                    '<input class = "r bgLight w12 ccenter mccenter" value = ' + user.id  +' readonly>' + 
-                                    '<input class = "r bgLight w12 ccenter mcenter" value = ' + user.name  +' readonly>' +
-                                    '<input class = "r bgLight w12 ccenter mcenter"value = ' + user.permission_type  +' readonly>' +
-                                    '<div class = "bgLight ">' + 
+                            '<li class="r mevenly w12 listUser ">' +
+                                '<form class = "r w12 mcenter ccenter " action="" data-frmList = "true" >'+
+                                    '<input class = "r  w12 ccenter mccenter input-register" value = ' + user.id  +' readonly>' + 
+                                    '<input class = "r  w12 ccenter mcenter input-register" value = ' + user.name  +' readonly>' +
+                                    '<input class = "r  w12 ccenter mcenter input-register"value = ' + user.permission_type  +' readonly>' +
+                                    '<div class = " ">' + 
                                         '<input class="i r submit-button delete" type="button" value="Deletar">' + 
                                     '</div>' +
-                                    '<div class = "bgLight">' + 
+                                    '<div class = "">' + 
                                         '<input class="i r submit-button modify" type="button" value="Alterar">' + 
                                     '</div>' +
                                 '</form>'+
@@ -228,13 +245,6 @@
                  $("#error-display").html(unknownErrorMessage).css("display", "block");
             });
         });
-        
-        
-        
-
-
-        
-        
         
     </script>
 </body>

@@ -45,18 +45,36 @@ class UserController {
      }
 
      public function modify(array $data){
-        $user = (new UserModel())->findById($data['userId']);
-        $user->permission_type = $data['permission'];
-        if($user->save()){
-            ResponseHelper::send(RESPONSE_SUCCESS, 'A alteração foi concluída');
-        } 
-        else {
-            ResponseHelper::send(REQUEST_ERROR, 'Houve um erro na alteração do usuário');
+        $token = $_SERVER['HTTP_TOKEN'];
+        if (ValidateHelper::checkToken($token)) {
+            $permissions = LevelHelper::getPermissions($token);
 
+            if ($permissions != null) {
+                if (LevelHelper::hasEditUserPermission($permissions)) {
+                    $user = (new UserModel())->findById($data['userId']);
+                    $user->permission_type = $data['permission'];
+                    if($user->save()){
+                        ResponseHelper::send(RESPONSE_SUCCESS, 'A alteração foi concluída');
+                    }
+                    else {
+                        ResponseHelper::send(REQUEST_ERROR, 'Houve um erro na alteração do usuário');
+            
+                    }
+                }else {
+                    ResponseHelper::send(REQUEST_ERROR,'Usuário não tem permissão para modificar este usuário');
+                }
+            }else{
+                ResponseHelper::send(
+                    RESPONSE_ERROR,
+                    'Ocorreu um erro ao verificar as permissões do usuário'
+                );
+            }    
+        }else{
+            ResponseHelper::send(TOKEN_ERROR, 'Sessão expirada');
         }
-     }
-
-     
+     }       
+        
+        
 
      public function add(array $data) {
         $token = $_SERVER['HTTP_TOKEN'];
@@ -100,14 +118,31 @@ class UserController {
      }
 
       public function remove(array $data){
-         $user = (new UserModel)->findById($data['userId']);
-         if ($user) {
-             $user->destroy();
-         }
-         else{
-             ResponseHelper::send(REQUEST_ERROR, 'Verifique novamente o ID informado');
-         }
-      }
+         $token = $_SERVER['HTTP_TOKEN'];
+         if (ValidateHelper::checkToken($token)) {
+            $permissions = LevelHelper::getPermissions($token);
+            if ($permissions = LevelHelper::getPermissions($token)) {
+                if (LevelHelper::hasEditUserPermission($permissions)) {
+                    $user = (new UserModel)->findById($data['userId']);
+                if ($user) {
+                    $user->destroy();
+                }else{
+                    ResponseHelper::send(REQUEST_ERROR, 'Houve um erro na remoção do usuário');
+                }
+                }else{
+                    ResponseHelper::send(
+                        REQUEST_ERROR,
+                        'Usuário não tem permissão para cadastrar um novo usuário'
+                    );
+                }
+            }else{
+                ResponseHelper::send(REQUEST_ERROR, 'Verifique novamente o ID informado');
+            }  
+         
+        }else {
+            ResponseHelper::send(TOKEN_ERROR, 'Sessão expirada');
+        }
+    }
 
      
     public function requestPassword(array $data): void {
