@@ -890,7 +890,7 @@ input.submit-button:focus-within {
 }
 
 .container-overflow{
-  height: 120px;
+  max-height: 120px;
   overflow-y: scroll;
   border: solid black 1px;
   border-radius: 10px;
