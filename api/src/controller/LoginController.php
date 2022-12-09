@@ -70,8 +70,9 @@ class LoginController {
             } else {
                 ResponseHelper::send(RESPONSE_ERROR, 'Ocorreu um erro ao deslogar o usuário');
             }
+        } else {
+            ResponseHelper::send(RESPONSE_SUCCESS, 'Sessão expirada');
         }
-        ResponseHelper::send(REQUEST_ERROR, 'Usuário não está logado');
     }
 
     public function isLogged(array $data): void {
@@ -79,6 +80,6 @@ class LoginController {
         if (ValidateHelper::checkToken($token)) {
             ResponseHelper::send(RESPONSE_SUCCESS, 'Usuário já está logado');
         }
-        ResponseHelper::send(REQUEST_ERROR, 'Usuário não está logado');
+        ResponseHelper::send(REQUEST_ERROR, 'Sessão expirada');
     }
 }
