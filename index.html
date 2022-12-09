@@ -53,6 +53,7 @@
                 <li class="i wmax"><a class="i wmax main-menu-link hover-line-bottom retractable-menu-option" href="#atelier">ATELIER</a></li>
                 <li class="i wmax"><a class="i wmax main-menu-link hover-line-bottom retractable-menu-option" href="#services">SERVIÇOS</a></li>
                 <li class="i wmax"><a class="i wmax main-menu-link hover-line-bottom retractable-menu-option" href="#contact">CONTATO</a></li>
+                <li class="i wmax " id="register"><a class="i wmax main-menu-link hover-line-bottom retractable-menu-option" href="./register.html">CADASTRAR</a></li>
                 <li class="i wmax"><div class="retractable-menu-option"><a class="i wmax main-menu-link login-link" href="./login.html">LOGIN</a></div></li>
                 <button class="main-menu-link retractable-menu-retractor no-border-action-button" data-toggle="retracted-main-menu-lsm" data-alternate="true" title="Menu de links">
                     <svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M5 30v-2.792h30V30Zm0-8.625v-2.75h30v2.75Zm0-8.583V10h30v2.792Z"/></svg>
@@ -199,6 +200,7 @@
                                         $(this).next("input").click();
                                     }
                                 });
+                                $("#register").show();
                                 $('[name="atelier-banner"]').on("change", async function () {
                                     addLoading();
                                     let reader = new FileReader();
@@ -514,6 +516,7 @@
                                         data: "id=" + service.id,
                                     })
                                     .done(function (data) {
+                                        alert(data)
                                         response = $.parseJSON(data);
                                         if (response.status == 1) {
                                             getServices();
@@ -575,6 +578,7 @@
                         addLoading();
                         await $.get(apiUrl + "/image/atelier-logo")
                         .done(function (data) {
+                            console.log(data)
                             response = $.parseJSON(data);
                             if (response.status == 1) {
                                 $("[data-atelier-logo=true]").attr("src", "./assets/img/" + response.result);

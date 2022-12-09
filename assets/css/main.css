@@ -891,3 +891,7 @@ input.submit-button:focus-within {
   border-radius: 10px;
   padding: 10px;
 }
+
+.invisible{
+  display: none;
+}

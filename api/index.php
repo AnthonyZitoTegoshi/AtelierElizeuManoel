@@ -23,8 +23,11 @@ try {
     $router->delete('/service', 'SiteServiceController:delete');
     $router->get('/service', 'SiteServiceController:read');
 
-    $router->post('/user', 'UserController:add');
+    
     $router->get('/user', 'UserController:view');
+    $router->post('/user', 'UserController:add');
+    $router->delete('/user', 'UserController:remove');
+    $router->post('/user/register-modify', 'UserController:modify');
     $router->post('/user/request-password', 'UserController:requestPassword');
     $router->put('/user/reset-password', 'UserController:resetPassword');
 

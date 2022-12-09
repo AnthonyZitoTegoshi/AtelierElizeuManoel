@@ -20,15 +20,41 @@ class UserController {
          $user = (new UserModel())->find();
          if ($user->count() > 0) {
              $user = $user->fetch(true);
-             foreach ($user as $userItem){
-                 var_dump($userItem->data());    
-             }
+             $result = array_map(
+                fn(UserModel $s)=>[
+                  'id' => $s->id,
+                  'sid' => $s->sid,
+                  'name' => $s->name,
+                  'email' => $s->email,
+                  'password' => $s->password,
+                  'permission_type' => $s->permission_type,
+                  'created_at' => $s->created_at,
+                  'update_at' => $s->update_at
+
+                ],
+                $user
+            );
+            ResponseHelper::send(RESPONSE_SUCCESS, 'Ok', $result);
          }
          else {
              echo $user->fail()->getMessage();
          }
 
      }
+
+     public function modify(array $data){
+        $user = (new UserModel())->findById($data['userId']);
+        $user->permission_type = $data['permission'];
+        if($user->save()){
+            ResponseHelper::send(RESPONSE_SUCCESS, 'A alteração foi concluída');
+        } 
+        else {
+            ResponseHelper::send(REQUEST_ERROR, 'Houve um erro na alteração do usuário');
+
+        }
+     }
+
+     
 
      public function add(array $data) {
          $user = new UserModel();
@@ -54,6 +80,16 @@ class UserController {
     
 
      }
+
+      public function remove(array $data){
+         $user = (new UserModel)->findById($data['userId']);
+         if ($user) {
+             $user->destroy();
+         }
+         else{
+             ResponseHelper::send(REQUEST_ERROR, 'Verifique novamente o ID informado');
+         }
+      }
 
      public function requestPassword(array $data): void {
          $email = $data['email'];
