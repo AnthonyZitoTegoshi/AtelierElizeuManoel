@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/structure.css">
     <link rel="stylesheet" href="./assets/css/main.css">
@@ -16,6 +17,7 @@
     <script src="./assets/js/jquery-3.6.1.min.js"></script>
     <script src="./assets/js/constants.js"></script>
     <script src="./assets/js/main.js"></script>
+    
     <script>
         startPage();
         async function startPage() {
@@ -201,8 +203,11 @@
                                 '<li class="r mevenly ccenter w12 hauto listUser ovisible" style="min-height: 44px;">' +
                                         '<p class="i text-info">' + user.id  +'</p>' +
                                         '<p class="i text-info">' + user.name  +'</p>' +
-                                        '<p class="i text-info">' + user.permission_type  +'</p>' +
-                                        (logged && permissions[editUserPermission] == "1" ? '<button class="card-remove-button bordered-action-button" title="Deletar seção atelier"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M5 10.75v-1.5h10v1.5Z"/></svg></button>' : '') +
+                                        '<p class="i text-info ">' + user.permission_type  +'</p>' +
+                                        (logged && permissions[editUserPermission] == "1" ? '<button class=" fa fa-pencil modify" title="Alterar user atelier">': '')+
+
+                                        (logged && permissions[editUserPermission] == "1" ? '<button class="card-remove-button bordered-action-button" title="Deletar user atelier"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M5 10.75v-1.5h10v1.5Z"/></svg></button>' : '') +
+                                        
                                 '</li>'
                             );
                             $('.card-remove-button')
